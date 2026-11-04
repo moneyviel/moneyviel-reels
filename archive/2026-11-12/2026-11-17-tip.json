@@ -1,0 +1,31 @@
+{
+ "kind": "tip",
+ "label": "MONEY TIP",
+ "hookEmoji": "⏳",
+ "hook": "The 24-hour rule that helps stop impulse buys",
+ "slides": [
+  {
+   "emoji": "🛒",
+   "text": "Want something that costs over ₹2,000? Don't buy it right away."
+  },
+  {
+   "emoji": "📝",
+   "text": "Add it to a list and wait 24 hours.",
+   "sub": "Many urges fade by the next day"
+  },
+  {
+   "emoji": "🤔",
+   "text": "Still want it tomorrow? Check that it fits this month's budget first."
+  },
+  {
+   "emoji": "🎯",
+   "text": "Skip just one ₹2,000 impulse buy a month, and that's ₹24,000 a year.",
+   "sub": "₹2,000 × 12 months"
+  },
+  {
+   "emoji": "✅",
+   "text": "Try this today: start a 'wait 24 hours' list on your phone."
+  }
+ ],
+ "cta": "Learn more free at moneyviel.com"
+}

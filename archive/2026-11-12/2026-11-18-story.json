@@ -1,0 +1,34 @@
+{
+ "kind": "story",
+ "label": "MONEY STORY",
+ "hookEmoji": "✈️",
+ "hook": "Ritu and Sameer wanted a ₹60,000 family trip, without a loan.",
+ "slides": [
+  {
+   "emoji": "🏖️",
+   "text": "They dreamed of a family holiday next summer, costing about ₹60,000.",
+   "sub": "Ritu and Sameer are an illustrative example"
+  },
+  {
+   "emoji": "🧮",
+   "text": "So they divided it by the months they had.",
+   "sub": "₹60,000 ÷ 10 months = ₹6,000 a month"
+  },
+  {
+   "emoji": "🏦",
+   "text": "Every salary day, ₹6,000 moved automatically into a separate 'trip' savings account."
+  },
+  {
+   "emoji": "🎒",
+   "text": "Ten months later, they travelled with the full amount ready and nothing to repay."
+  },
+  {
+   "emoji": "💡",
+   "text": "Lesson: big goals feel small when you divide them by months."
+  },
+  {
+   "emoji": "✅",
+   "text": "Try this today: pick one goal, divide its cost by months, and start this salary day."
+  }
+ ]
+}

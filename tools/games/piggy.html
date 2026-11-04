@@ -1,0 +1,51 @@
+<div class="mva" id="mv-pc">
+<div class="stage" id="pc-st" style="background:linear-gradient(#ffe0f0,#e8dcff 55%,#cfe6ff)">
+<div class="hud" style="color:#0f5560;text-shadow:none"><span id="pc-lives">💗💗💗</span><span>⏱ <span id="pc-t">60</span></span><span>💰 <span id="pc-sc">₹0</span></span></div>
+<div id="pc-bonus" style="position:absolute;left:0;right:0;top:40px;text-align:center;font-weight:900;color:#e0408f;z-index:6;font-size:17px"></div>
+<div id="pc-field" style="position:absolute;top:40px;left:0;right:0;bottom:0;overflow:hidden;z-index:4"></div>
+<div id="pc-pig" style="position:absolute;bottom:4%;left:50%;width:84px;height:84px;margin-left:-42px;font-size:68px;line-height:84px;text-align:center;z-index:7;transition:transform .1s;filter:drop-shadow(0 6px 8px rgba(0,0,0,.2))">🐷</div>
+<div class="ov" id="pc-ov"><div style="font-size:64px">🐷</div><h2>Piggy Catch</h2><p>Drag the piggy bank (or use ← →). <b>Catch</b> 💰 savings, 🏦 emergency funds and 🛡️ insurance. <b>Dodge</b> 🍔 impulse buys, 💳 card debt and 🎰 scams! Grab ⭐ for a <b>savings streak</b>: double points!</p><button class="gbtn" id="pc-go" type="button">▶ Play</button><p id="pc-best" style="margin-top:14px;opacity:.85;font-size:13px"></p></div>
+<button class="snd" id="pc-snd" type="button" aria-label="Sound">🔊</button>
+</div>
+<div class="below">Every rupee you don't waste is a rupee saved. Plan your safety net with the <a href="/money-tools/emergency-fund-calculator/">emergency fund calculator</a> or more games in the <a href="/money-tools/">MoneyViel Arcade</a>.</div>
+</div>
+<style>#mv-pc .it{position:absolute;width:76px;margin-left:-38px;text-align:center;pointer-events:none}#mv-pc .it b{display:block;font-size:40px;line-height:44px;filter:drop-shadow(0 4px 4px rgba(0,0,0,.15))}#mv-pc .it i{display:inline-block;font-style:normal;font-size:11px;font-weight:900;background:rgba(255,255,255,.9);border-radius:8px;padding:1px 6px;color:#0f5560;white-space:nowrap}#mv-pc .it.badi i{color:#c62f4f}</style>
+<script>
+(function(){var R=document.getElementById('mv-pc');if(!R)return;var $=function(i){return document.getElementById(i)};
+var ac=null,mute=false;try{mute=localStorage.getItem('mvmute')==='1'}catch(e){}$('pc-snd').textContent=mute?'🔇':'🔊';
+function tone(f,d,t,v,dl){if(mute)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain(),s=ac.currentTime+(dl||0);o.type=t||'sine';o.frequency.setValueAtTime(f,s);g.gain.setValueAtTime(v||.12,s);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(g);g.connect(ac.destination);o.start(s);o.stop(s+d)}catch(e){}}
+$('pc-snd').onclick=function(){mute=!mute;this.textContent=mute?'🔇':'🔊';try{localStorage.setItem('mvmute',mute?'1':'0')}catch(e){}};
+function pop(x,y,t,c){var p=document.createElement('div');p.className='pop';p.style.left=x+'px';p.style.top=y+'px';p.style.color=c;p.textContent=t;$('pc-st').appendChild(p);setTimeout(function(){p.remove()},900)}
+function confetti(n){for(var i=0;i<n;i++){var c=document.createElement('div');c.className='conf';c.style.left=Math.random()*100+'%';c.style.background=['#e0408f','#0f5560','#ffd23f','#7fb6ff','#6fd36f'][i%5];c.style.animationDuration=(1.2+Math.random()*1.4)+'s';$('pc-st').appendChild(c);(function(c){setTimeout(function(){c.remove()},3000)})(c)}}
+var GOOD=[['💰','Salary saved',500],['🧾','Bill paid on time',400],['🪙','Coin saved',200],['🛡️','Insurance',600],['🏦','Emergency fund',700],['📒','Budget kept',800]];
+var BAD=[['🍔','Late-night order'],['👟','Impulse buy'],['💳','Card debt'],['🎰','Get-rich scheme'],['📱','Phone on EMI'],['🛍️','Flash sale']];
+var st=null,raf=0,last=0,best=0;try{best=+localStorage.getItem('mvpc')||0}catch(e){}if(best)$('pc-best').textContent='Best: ₹'+best.toLocaleString('en-IN');
+var pigX=.5,keys={};
+function setPig(fx){pigX=Math.max(.08,Math.min(.92,fx));$('pc-pig').style.left=(pigX*100)+'%'}
+$('pc-st').addEventListener('pointermove',function(e){if(!st||!st.alive)return;var r=this.getBoundingClientRect();setPig((e.clientX-r.left)/r.width)});
+$('pc-st').addEventListener('pointerdown',function(e){if(!st||!st.alive)return;var r=this.getBoundingClientRect();setPig((e.clientX-r.left)/r.width)});
+document.addEventListener('keydown',function(e){if(!st||!st.alive)return;if(e.key==='ArrowLeft'||e.key==='ArrowRight'){keys[e.key]=1;e.preventDefault()}});document.addEventListener('keyup',function(e){keys[e.key]=0});
+function start(){$('pc-field').innerHTML='';st={sc:0,lives:3,t:60,items:[],spawn:0,alive:true,mult:1,multT:0,caught:0,dodgedBad:0};setPig(.5);$('pc-ov').style.display='none';hud();last=performance.now();cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
+function hud(){$('pc-lives').textContent='💗'.repeat(st.lives)+'🤍'.repeat(3-st.lives);$('pc-sc').textContent='₹'+st.sc.toLocaleString('en-IN');$('pc-t').textContent=Math.ceil(st.t);$('pc-bonus').textContent=st.multT>0?'⭐ SAVINGS STREAK x2 ⭐':''}
+function spawn(){var r=Math.random(),k,d=document.createElement('div');d.className='it';
+if(r<.07){k={type:'star',e:'⭐',l:'Savings streak!'}}else if(r<.6){var g=GOOD[Math.floor(Math.random()*GOOD.length)];k={type:'good',e:g[0],l:g[1],v:g[2]}}else{var b=BAD[Math.floor(Math.random()*BAD.length)];k={type:'bad',e:b[0],l:b[1]};d.className='it badi'}
+d.innerHTML='<b>'+k.e+'</b><i>'+k.l+'</i>';k.x=.08+Math.random()*.84;k.y=-70;k.vy=(.11+Math.random()*.06)*(1+(60-st.t)/60);k.el=d;d.style.left=(k.x*100)+'%';$('pc-field').appendChild(d);st.items.push(k)}
+function loop(t){var dt=Math.min(50,t-last);last=t;if(st&&st.alive){var S=$('pc-st'),W=S.clientWidth,H=S.clientHeight;
+if(keys.ArrowLeft)setPig(pigX-dt*.0011);if(keys.ArrowRight)setPig(pigX+dt*.0011);
+st.t-=dt/1000;if(st.multT>0)st.multT-=dt/1000;st.spawn-=dt;if(st.spawn<=0){spawn();st.spawn=Math.max(320,820-(60-st.t)*9)}
+var py=H*.96-84-40,px=pigX*W;
+for(var i=st.items.length-1;i>=0;i--){var k=st.items[i];k.y+=k.vy*dt*(H/600);k.el.style.top=k.y+'px';
+var kx=k.x*W;if(k.y>py-30&&k.y<py+40&&Math.abs(kx-px)<58){catchIt(k,kx,k.y);k.el.remove();st.items.splice(i,1);continue}
+if(k.y>H-40){if(k.type==='bad')st.dodgedBad++;k.el.remove();st.items.splice(i,1)}}
+hud();if(st.t<=0)over(true)}raf=requestAnimationFrame(loop)}
+function catchIt(k,x,y){var pig=$('pc-pig');pig.style.transform='scale(1.2)';setTimeout(function(){pig.style.transform=''},120);
+if(k.type==='star'){st.multT=6;tone(880,.1,'square',.08);tone(1320,.2,'square',.08,.1);pop(x-40,y-20,'x2 STREAK!','#e0408f');confetti(15)}
+else if(k.type==='good'){var v=k.v*(st.multT>0?2:1);st.sc+=v;st.caught++;tone(700+Math.random()*200,.09,'triangle');pop(x-30,y-10,'+₹'+v.toLocaleString('en-IN'),'#0f8a5f')}
+else{st.lives--;tone(160,.3,'sawtooth',.09);pop(x-30,y-10,'💸 '+k.l,'#c62f4f');$('pc-st').classList.remove('shake');void $('pc-st').offsetWidth;$('pc-st').classList.add('shake');if(st.lives<=0)over(false)}}
+function over(timeUp){if(!st.alive)return;st.alive=false;var nb=st.sc>best;if(nb){best=st.sc;try{localStorage.setItem('mvpc',best)}catch(e){}}
+var yrs=st.sc*12,fv=Math.round(yrs*((Math.pow(1.01,240)-1)/.01)*1.01/12);
+var txt='I saved ₹'+st.sc.toLocaleString('en-IN')+' in Piggy Catch 🐷 on MoneyViel! Can you beat me? '+location.href.split('?')[0];
+setTimeout(function(){$('pc-ov').innerHTML='<div style="font-size:56px">'+(nb?'🏆':timeUp?'⏰':'💸')+'</div><h2>'+(nb?'New best!':timeUp?'Time\'s up!':'Out of hearts!')+'</h2><div class="big">₹'+st.sc.toLocaleString('en-IN')+'</div><p style="margin-top:8px">Save this much <b>every month</b> and in a year you\'d have <b>₹'+(st.sc*12).toLocaleString('en-IN')+'</b> set aside, before any interest.</p><div class="share"><button class="gbtn" id="pc-re" type="button">↻ Play again</button><a class="gbtn sec" style="text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(txt)+'">Share</a></div>';$('pc-ov').style.display='flex';$('pc-re').onclick=start;if(nb)confetti(60)},500)}
+$('pc-go').onclick=start;
+})();
+</script>

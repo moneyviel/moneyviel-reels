@@ -1,0 +1,31 @@
+{
+ "kind": "tip",
+ "label": "MONEY TIP",
+ "hookEmoji": "🗓️",
+ "hook": "Try one no-spend day a week",
+ "slides": [
+  {
+   "emoji": "📌",
+   "text": "Pick one day a week when you spend only on essentials.",
+   "sub": "Bills, groceries and your daily commute are fine"
+  },
+  {
+   "emoji": "🍱",
+   "text": "Carry lunch from home, skip online shopping, make your chai at home."
+  },
+  {
+   "emoji": "🧮",
+   "text": "If that saves ₹300 each week, that's ₹15,600 in a year.",
+   "sub": "₹300 × 52 weeks"
+  },
+  {
+   "emoji": "😌",
+   "text": "Bonus: you start noticing which spends you don't miss at all."
+  },
+  {
+   "emoji": "✅",
+   "text": "Try this today: choose your no-spend day for this week."
+  }
+ ],
+ "cta": "Learn more free at moneyviel.com"
+}
