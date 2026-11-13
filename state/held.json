@@ -1,0 +1,22 @@
+{
+ "held": [
+  {
+   "date_held": "2026-11-04",
+   "item": "Cloud Catcher quiz reel (planned 2026-11-13)",
+   "reason": "Random quiz questions in the recording include market/investing items (e.g. 'Bull market means prices are…', 'Money doubles at 8% in about… 9 years' with no assumption label). Breaks checklist items 1 and 2. Fix: limit the reel's question pool to budgeting/saving questions before using this game again.",
+   "resolved": "2026-11-04: games fixed; reels re-recorded and re-reviewed"
+  },
+  {
+   "date_held": "2026-11-04",
+   "item": "Debt Monster reel (planned 2026-11-17)",
+   "reason": "Recording shows 'A personal loan to invest in stocks is…' and 'Card interest can be about… 36–45% a year' (rate that changes over time, unverified). Breaks checklist items 1 and 3. Replaced by a 24-hour-rule tip.",
+   "resolved": "2026-11-04: games fixed; reels re-recorded and re-reviewed"
+  },
+  {
+   "date_held": "2026-11-04",
+   "item": "Piggy Catch reel (planned 2026-11-13)",
+   "reason": "Gameplay shows SIP / 'Bonus invested' / 'Compounding x2' as good pickups (implied investment promotion and a misleading 'compounding doubles' idea), unformatted ₹ pop-ups and a start-screen overlap. Replaced by a no-spend-day tip. Note: the live games on moneyviel.com/money-tools/ have the same issues, so this week's posts link only to moneyviel.com.",
+   "resolved": "2026-11-04: games fixed; reels re-recorded and re-reviewed"
+  }
+ ]
+}

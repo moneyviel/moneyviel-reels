@@ -1,0 +1,94 @@
+{
+  "timezone": "Asia/Kolkata",
+  "publish_time": "19:30",
+  "last_scheduled_date": "2026-11-18",
+  "log": [
+    {
+      "date": "2026-11-04",
+      "note": "Manual first batch: YouTube Shorts only. Re-recorded from compliance-fixed games on 2026-11-04; old Shorts 6JdMocq_mvg, U4nQXPSKVwo, cvgvWmxmaKI set to Private.",
+      "items": [
+        {
+          "date": "2026-11-07",
+          "kind": "game",
+          "title": "Can you answer before the cloud lands? ☁️ Money Quiz Game #shorts",
+          "short_url": "https://youtube.com/shorts/V0ffF3GJ-to"
+        },
+        {
+          "date": "2026-11-09",
+          "kind": "game",
+          "title": "Catch savings, dodge impulse buys! 🐷 How much can you save? #shorts",
+          "short_url": "https://youtube.com/shorts/-1V7kJ9Ch_I"
+        },
+        {
+          "date": "2026-11-11",
+          "kind": "game",
+          "title": "Defeat the Debt Monsters 👾⚔️ Can you become debt-free? #shorts",
+          "short_url": "https://youtube.com/shorts/FQ2uwBhqxkM"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-04",
+      "note": "Auto batch; game reels held, replaced by tips",
+      "items": [
+        {
+          "date": "2026-11-12",
+          "kind": "tip",
+          "title": "The ₹100 Rule: How Small Daily Savings Add Up to ₹36,500 a Year",
+          "yt_title": "The ₹100 rule that finds ₹36,500 a year 💡 #shorts",
+          "short_url": "https://youtube.com/shorts/LLsgcOeOcu8",
+          "post_id": 2105
+        },
+        {
+          "date": "2026-11-13",
+          "kind": "tip",
+          "title": "The No-Spend Day: One Day a Week That Adds Up",
+          "yt_title": "Try one no-spend day a week 🗓️ #shorts",
+          "short_url": "https://youtube.com/shorts/6kPEmD0A2hM",
+          "post_id": 2107
+        },
+        {
+          "date": "2026-11-14",
+          "kind": "story",
+          "title": "Story: Arjun's ₹20,000 Festival Bonus Plan",
+          "yt_title": "Arjun got a ₹20,000 festival bonus. Here's what he did 🎉 #shorts",
+          "short_url": "https://youtube.com/shorts/JKbM-d5ptS8",
+          "post_id": 2109
+        },
+        {
+          "date": "2026-11-15",
+          "kind": "quote",
+          "title": "Quote – Savings grow on patience, not on luck.",
+          "yt_title": "Savings grow on patience, not on luck 🌱 #shorts",
+          "short_url": "https://youtube.com/shorts/LC7d7K1MPRA",
+          "post_id": 2111
+        },
+        {
+          "date": "2026-11-16",
+          "kind": "quote",
+          "title": "Quote – Know your numbers, and money stops feeling scary.",
+          "yt_title": "Know your numbers, and money stops feeling scary 📝 #shorts",
+          "short_url": "https://youtube.com/shorts/XJMmVVtr9jM",
+          "post_id": 2113
+        },
+        {
+          "date": "2026-11-17",
+          "kind": "tip",
+          "title": "The 24-Hour Rule: A Simple Way to Stop Impulse Buys",
+          "yt_title": "The 24-hour rule that helps stop impulse buys ⏳ #shorts",
+          "short_url": "https://youtube.com/shorts/VSZ7P9b21P8",
+          "post_id": 2115
+        },
+        {
+          "date": "2026-11-18",
+          "kind": "story",
+          "title": "Story: How Ritu and Sameer Saved for a ₹60,000 Family Trip",
+          "yt_title": "How Ritu and Sameer saved ₹60,000 for a family trip ✈️ #shorts",
+          "short_url": "https://youtube.com/shorts/OI3webcRRwU",
+          "post_id": 2117
+        }
+      ]
+    }
+  ],
+  "force_next_batch": false
+}

@@ -1,0 +1,26 @@
+{
+ "kind": "quote",
+ "label": "MONEY QUOTE",
+ "hookEmoji": "🌱",
+ "hook": "Savings grow on patience, not on luck.",
+ "slides": [
+  {
+   "emoji": "🗓️",
+   "text": "No one builds savings in a single month.",
+   "sub": "It's small amounts, again and again"
+  },
+  {
+   "emoji": "🔁",
+   "text": "₹500 a week becomes ₹26,000 in a year.",
+   "sub": "₹500 × 52 weeks, before any interest"
+  },
+  {
+   "emoji": "🧘",
+   "text": "The secret isn't a lucky break. It's showing up every single week."
+  },
+  {
+   "emoji": "✅",
+   "text": "Try this today: fix a weekly amount you'll save, even if it's small."
+  }
+ ]
+}

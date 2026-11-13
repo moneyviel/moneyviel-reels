@@ -1,0 +1,33 @@
+{
+ "kind": "tip",
+ "label": "MONEY TIP",
+ "hookEmoji": "💡",
+ "hook": "The ₹100 rule that finds ₹36,500 a year",
+ "slides": [
+  {
+   "emoji": "☕",
+   "text": "Pick one small daily spend you don't really need.",
+   "sub": "An extra snack, a delivery fee, a second chai"
+  },
+  {
+   "emoji": "🧮",
+   "text": "Skip just ₹100 of it every day.",
+   "sub": "₹100 × 30 days = ₹3,000 a month"
+  },
+  {
+   "emoji": "📅",
+   "text": "In one year, that adds up to ₹36,500.",
+   "sub": "₹100 × 365 days, no salary hike needed"
+  },
+  {
+   "emoji": "📲",
+   "text": "Move it the same day with a quick UPI transfer to your savings account.",
+   "sub": "Out of sight, out of mind"
+  },
+  {
+   "emoji": "✅",
+   "text": "Try this today: choose your ₹100 and move it to savings tonight."
+  }
+ ],
+ "cta": "Learn more free at moneyviel.com"
+}

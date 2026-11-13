@@ -1,0 +1,52 @@
+{
+  "next_game": "cloud",
+  "game_rotation": [
+    "cloud",
+    "piggy",
+    "monster"
+  ],
+  "used": [
+    "Your salary is not your wealth.",
+    "Keep at least 6 months of essential expenses in your emergency fund before chasing high-return investments.",
+    "Review your subscriptions every 3 months.",
+    "The easiest way to save money is to automate it.",
+    "Financial literacy changes generations, not just bank accounts.",
+    "Insurance is not an expense; it is protection against financial destruction.",
+    "A raise in income should increase investments before lifestyle.",
+    "Debt turns tomorrow's income into yesterday's mistake.",
+    "The goal is not to look rich, but to stay rich.",
+    "Impulse purchases create long-term regrets.",
+    "A person who tracks expenses controls life better than the one who doesn't.",
+    "Budgeting is not a restriction; it is permission to spend without fear.",
+    "Your money should buy peace, not pressure.",
+    "If your lifestyle grows faster than your income, stress will always follow.",
+    "Wealth is built quietly while the world chases appearances loudly.",
+    "Small daily savings look invisible… until one day they become your emergency fund.",
+    "Every unnecessary expense steals from your future self.",
+    "Your future depends less on how much you earn and more on what you keep.",
+    "A salary can pay bills, but financial discipline creates freedom.",
+    "The day you stop buying things to impress strangers is the day your wealth journey truly begins.",
+    "An Investment in Knowledge Pays the Best Interest",
+    "A part of all you earn is yours to keep",
+    "How Neha Came Out of the Debt Trap",
+    "Learn from Sonia: save first, spend later",
+    "The ₹100 rule that finds ₹36,500 a year",
+    "The ₹100 Rule: How Small Daily Savings Add Up to ₹36,500 a Year",
+    "Try one no-spend day a week",
+    "The No-Spend Day: One Day a Week That Adds Up",
+    "Arjun got a ₹20,000 festival bonus. Here's what he did.",
+    "Story: Arjun's ₹20,000 Festival Bonus Plan",
+    "Savings grow on patience, not on luck.",
+    "Quote – Savings grow on patience, not on luck.",
+    "Know your numbers, and money stops feeling scary.",
+    "Quote – Know your numbers, and money stops feeling scary.",
+    "The 24-hour rule that helps stop impulse buys",
+    "The 24-Hour Rule: A Simple Way to Stop Impulse Buys",
+    "Ritu and Sameer wanted a ₹60,000 family trip, without a loan.",
+    "Story: How Ritu and Sameer Saved for a ₹60,000 Family Trip"
+  ],
+  "note": "2026-11-04: all 3 game reels held (quiz/pickup content breaks the compliance checklist); next_game unchanged until the games are cleaned up.",
+  "notes": [
+    "2026-11-04: games fixed for compliance (safe question pools, no investment wording); game reels allowed again."
+  ]
+}

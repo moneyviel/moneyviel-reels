@@ -1,0 +1,25 @@
+{
+ "kind": "quote",
+ "label": "MONEY QUOTE",
+ "hookEmoji": "📝",
+ "hook": "Know your numbers, and money stops feeling scary.",
+ "slides": [
+  {
+   "emoji": "😟",
+   "text": "Money feels stressful when it's a mystery.",
+   "sub": "\"Where did this month's salary go?\""
+  },
+  {
+   "emoji": "🧾",
+   "text": "Write your income, fixed bills and EMIs in one place."
+  },
+  {
+   "emoji": "💪",
+   "text": "Once you see the numbers, you can plan instead of panic."
+  },
+  {
+   "emoji": "✅",
+   "text": "Try this today: list your monthly income and your top 5 expenses."
+  }
+ ]
+}
