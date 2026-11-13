@@ -105,3 +105,21 @@ Check items whose publish time passed since the last run: the post is live (`sta
 
 ## If Chrome is not reachable
 Do steps 0–4 only if they are not already done for this batch (check `state/pending.json`), save specs/videos to the repo under `pending/`, write `state/pending.json`, and finish with a one-line note. The next run will pick up from `pending/` when the laptop is on.
+
+
+## Long-form videos (week of 19–25 Nov 2026) — extra autopilot duties
+Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of this repo:
+| Date | Video ID | Slug | Main tool page |
+|---|---|---|---|
+| 2026-11-19 | Ih-rtpAdTCM | debt-race | https://moneyviel.com/money-tools/debt-payoff-planner/ (also /minimum-due-calculator/) |
+| 2026-11-21 | oXYd6Dy32hE | saver-vs-spender | https://moneyviel.com/money-tools/life-simulator/ |
+| 2026-11-23 | GvYu2WtOVOI | time-machine | https://moneyviel.com/money-tools/inflation-calculator/ (also /goal-planner/) |
+| 2026-11-25 | uXJlwcg4KIs | money-checkup | https://moneyviel.com/money-tools/money-health-report/ |
+
+1. **Teaser Shorts (when building the 19–25 Nov batch):** the 7:30 PM Short on each of these four dates must be a 20–30 s vertical teaser cut from that day's long-form video (`longform/<slug>.mp4`, idea in `longform/<slug>.json` → `short_idea`): crop/reframe to 1080×1920 with big captions, end card "Full video: tap the link above ↑". Title ends `#MoneyViel #shorts`; tags as usual; **Related video = that day's long-form video** (pick it in the Related video picker by its title). These replace that day's planned Short; keep the rest of the line-up. GATE 1 and GATE 2 apply.
+2. **After each video goes public (on any run on/after its date):**
+   a. Post the `pinned_comment` from `longform/<slug>.json` as a comment on the video (studio.youtube.com/video/<id>/comments or the watch page, signed in as the channel) and pin it. Verify it shows "Pinned".
+   b. Embed the video on its main tool page(s) on moneyviel.com: insert, right after the tool's `wp:html` block, `<!-- wp:embed {"url":"https://www.youtube.com/watch?v=<ID>","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->` … `<!-- /wp:embed -->` preceded by an h2 "Watch: <short title>" (only once; skip if already present).
+   c. Add it to the YouTube playlist "MoneyViel Free Money Tools" if not already there.
+   d. Record done items in `state/longform.json`.
+3. Delete `longform/*.mp4` from the repo (orphan-commit cleanup as usual) only after all four teasers are scheduled and 25 Nov has passed.
