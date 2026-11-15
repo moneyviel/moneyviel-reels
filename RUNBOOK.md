@@ -6,7 +6,7 @@ Owner: Mukesh (MoneyViel). Approved by the owner on 2026-11-04: generate and pub
 
 ## 0. Decide whether to run
 1. Read `state/schedule.json` (`last_scheduled_date`, IST). Today = current IST date.
-2. Always run GATE 4 (section 6c) first if anything was published since the last run. Then, if `last_scheduled_date` is more than 2 days after today AND `state/schedule.json` does not contain `"force_next_batch": true` → queue is healthy → STOP (finish with a one-line note). If `force_next_batch` is true, make the batch anyway and set it back to false when done.
+2. Always run GATE 4 (section 6c) first if anything was published since the last run. Check the kids queue (section 2a) and make a kids batch if it is due. Then, if `last_scheduled_date` is more than 2 days after today AND `state/schedule.json` does not contain `"force_next_batch": true` → queue is healthy → STOP (finish with a one-line note). If `force_next_batch` is true, make the batch anyway and set it back to false when done.
 3. Otherwise make the next batch: 7 items, one per day, for the 7 days starting the day after `max(last_scheduled_date, today)`, each at **19:30 IST**.
 
 ## 1. Weekly line-up (by weekday of the publish date) — owner-approved 2026-11-15, from the 19 Nov 2026 batch on
@@ -41,6 +41,16 @@ Card rules for EVERY post (Knowtopia shows the title, the excerpt and the first 
   - The video for a guide is a 30–45 s tip-style summary of the article; the post embeds it at the TOP of the article (same embed block as other posts), then the article, then the disclaimer.
   - The reviewer agent (GATE 1) reviews the full article text too.
 - Save each spec as JSON (format in `tools/make_story.js` header). Keep slide text ≤ 22 words.
+
+## 2a. Daily kids post ("Money for Kids") — owner-approved 2026-11-15
+One extra website post EVERY day at **18:00 IST** for children of Grades 1–8 (ages ~6–13). The owner's Knowtopia app shows these to Grades 1–8 as an in-app card (no link out), refreshing at 12 AM IST.
+- **Queue:** tracked separately in `state/schedule.json` → `kids_last_date`. In step 0, if `kids_last_date` is missing or is less than 3 days after today, make a kids batch: 7 posts, one per day, for the 7 days starting the day after `max(kids_last_date, today)` — even when the main queue is healthy. Log it in `log` with `"note":"kids batch"`, update `kids_last_date`, add titles to `state/history.json` → `used`.
+- **Category:** "Money for Kids", slug `money-for-kids`. If `/wp-json/wp/v2/categories?slug=money-for-kids` returns nothing, create it (POST `/wp-json/wp/v2/categories` `{name:"Money for Kids", slug:"money-for-kids", description:"Fun, simple money lessons for children aged 6–13 — read together with a grown-up."}`). Kids posts use ONLY this category (never 38/39/66), so they stay out of the grown-ups' card.
+- **No YouTube video** for kids posts (avoid "made for kids" channel issues). Featured image: render a 1080×1350 card with Playwright from simple HTML (MoneyViel colours, big title, one large emoji, "Money for Kids" badge) and upload it as usual.
+- **Daily rotation (weekday of publish date):** Mon tiny story · Tue money riddle (answer at the end under "Answer") · Wed needs or wants? sorting game · Thu money word for kids (e.g. saving, budget, interest as "money that grows", earning) · Fri make-and-do activity (savings jar, price-tag shop at home, coin sorting) · Sat count-the-coins maths (3 small sums, answers at the end) · Sun sharing, kindness and saving story.
+- **Writing rules:** 250–450 words; title ≤ 50 chars, no prefix, fun and clear ("Riya's Piggy Bank Race"); excerpt ≤ 120 chars = the one-line idea; very short sentences and easy words (a Grade 2 child can follow it read aloud); amounts small (₹1–₹500, coins and notes); first 3 short paragraphs carry the whole idea; one "Try it today" line; end with a short "For grown-ups:" paragraph (what the child learns, one way to talk about it). Illustrative first names from all communities, boys and girls equally.
+- **Kids safety (in addition to the GATE 1 checklist):** nothing about loans, credit cards, debt, EMIs, investing, shares, insurance, gambling, betting, lotteries, crypto, online shopping apps or in-app purchases; no brands or products; no fear, shame or comparison between rich and poor families; no asking children to share personal details, go online, or contact anyone; no links in the body (the website footer is enough); no prizes or rewards for clicking. Reviewer agent must check these too.
+- Posts end with the standard disclaimer paragraph (GATE 1 item 9).
 
 ## 2b. GATE 1: independent compliance review of every script (BEFORE rendering)
 Spawn a separate reviewer agent (Agent tool, fresh context, give it only the specs + this checklist, NOT your reasoning). It must return PASS / FIX (with exact edits) / HOLD for each item. Apply fixes, then re-review until PASS. Any HOLD → drop that item, write it to `state/held.json` with the reason, replace it with a new item and review that too. Never publish an item that did not PASS.
