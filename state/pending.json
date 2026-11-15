@@ -1,6 +1,1 @@
-{
- "kids_welcome": {
-  "what": "Publish the owner-approved kids introductory post NOW (status publish, not scheduled) from pending/kids-welcome.json: upload `image` to media (alt text), create the post with featured_media, category 67 only. Check it went live and has no googlesyndication tag, then delete pending/kids-welcome.json and upload/2026-11-15-kids-welcome.jpg, remove this entry, commit.",
-  "requested": "2026-11-15 23:22 IST"
- }
-}
+{}
