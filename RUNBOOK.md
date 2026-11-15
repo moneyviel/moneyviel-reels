@@ -9,23 +9,33 @@ Owner: Mukesh (MoneyViel). Approved by the owner on 2026-11-04: generate and pub
 2. Always run GATE 4 (section 6c) first if anything was published since the last run. Then, if `last_scheduled_date` is more than 2 days after today AND `state/schedule.json` does not contain `"force_next_batch": true` → queue is healthy → STOP (finish with a one-line note). If `force_next_batch` is true, make the batch anyway and set it back to false when done.
 3. Otherwise make the next batch: 7 items, one per day, for the 7 days starting the day after `max(last_scheduled_date, today)`, each at **19:30 IST**.
 
-## 1. Weekly line-up (by weekday of the publish date)
-| Day | Kind | Video maker | WP category id |
-|---|---|---|---|
-| Mon | quote | `make_story.js` kind=quote | 39 (Quotes) |
-| Tue | game reel | `make_reel.js` (rotate cloud → piggy → monster, see `state/history.json`.next_game) | 38 (Articles) |
-| Wed | story | `make_story.js` kind=story | 66 (Smart Money Habits) |
-| Thu | guide (search post) | `make_story.js` kind=tip (short summary video) | 38 (Articles) |
-| Fri | game reel | `make_reel.js` (next game in rotation) | 38 |
-| Sat | story | `make_story.js` kind=story | 66 |
-| Sun | guide (search post) | `make_story.js` kind=tip (short summary video) | 38 |
+## 1. Weekly line-up (by weekday of the publish date) — owner-approved 2026-11-15, from the 19 Nov 2026 batch on
+Every day gets ONE real text post on moneyviel.com (no standalone quote posts, no game-reel posts: those are thin pages that hurt AdSense). Each post is also the "Money tip of the day" card in the owner's Knowtopia app (it reads the newest moneyviel.com post at 12 AM IST), so the **title prefix is required** — the app shows it as the card's label.
+| Day | Type | Title format (prefix exact) | Short video maker | WP category id |
+|---|---|---|---|---|
+| Mon | Myth or Fact | `Myth or Fact: <common money belief>` | `make_story.js` kind=tip | 66 (Smart Money Habits) |
+| Tue | Story | `Story: <name>'s <₹ situation>` | `make_story.js` kind=story | 66 |
+| Wed | How-to guide (search post) | the Google question, no prefix | `make_story.js` kind=tip | 38 (Articles) |
+| Thu | Money word | `Money Word: <term> explained` | `make_story.js` kind=tip | 38 |
+| Fri | Weekend challenge | `Weekend Challenge: <one small action>` | `make_story.js` kind=tip | 66 |
+| Sat | Family money moment | `Family Money: <activity/talk with kids>` | `make_story.js` kind=story | 66 |
+| Sun | Quiz | `Quiz: <3 questions on a theme>` | `make_story.js` kind=tip | 38 |
+
+Card rules for EVERY post (Knowtopia shows the title, the excerpt and the first ~1,400 characters of text; CA Foundation students, some under 18, read it inside the app without a link):
+- Excerpt (≤ 155 chars) = the one-line takeaway / direct answer. Never empty.
+- First 2–3 paragraphs must stand alone as the full tip (no "see the video above", no "click here").
+- Suitable for every age and family; ₹ examples small and everyday.
+- Game reels: YouTube Shorts only (no website post), at most one a week, as an extra Short only if the day's Short slot is free (never on long-form teaser days).
 
 ## 2. Write fresh content (no repeats)
 - Read `state/history.json` (`used` list of hooks/titles). Write NEW items not in that list.
 - Indian context (₹, Indian names, UPI, SIP, EMI, festivals), warm and relatable, short sentences.
-- quote: hook (≤10 words) + 2–3 slides that unpack it + 1 "Try this today:" action slide.
-- story: hook ("Priya earned ₹45,000 but…"), 3–5 slides telling a tiny real-life story with a turning point, 1 lesson slide, 1 action slide. Names are illustrative; never present as a real person.
-- tip: hook ("The ₹100 rule…"), 3–4 practical slides with one concrete number/example, 1 action slide. Link a MoneyViel tool where it fits (https://moneyviel.com/money-tools/ …).
+- Myth or Fact (400–700 words): the belief in the title; first paragraph gives the verdict (Myth / Fact / Partly true) and why in 2 sentences; then a ₹ example (maths computed in code), "What to do instead" (3 bullets), and a link to a fitting MoneyViel tool.
+- Story (400–700 words): hook ("Priya earned ₹45,000 but…"), a tiny real-life story with a turning point, one lesson, one "Try this today" action. Names are illustrative; never present as a real person.
+- Money Word (400–700 words): plain-English meaning in 1–2 sentences first; then a ₹ example, a common mix-up, and "where you'll see it". Concepts only (e.g. compounding, inflation, emergency fund, EMI, NAV, expense ratio, credit score, net worth) — no product or market talk. Link https://moneyviel.com/money-tools/money-words/.
+- Weekend Challenge (300–600 words): one small, safe, free action for Sat–Sun (e.g. no-spend day, unsubscribe from 3 shopping apps' alerts, list every subscription), why it helps, how to do it step by step, how to note the result. Link the 52-Week Challenge tool where it fits.
+- Family Money (400–700 words): a 10–15 minute activity or conversation with children (pocket money jar, price-guessing at the market, needs vs wants game), with age tips (5–8, 9–12, 13+). Never shames children or parents. Link https://moneyviel.com/money-tools/kids/.
+- Quiz (300–600 words): 3 multiple-choice questions on one theme; answers with one-line explanations come after the questions under the heading "Answers"; end with "Check your full money health" → the Money Health Report tool. Close with an original one-line "Quote of the week".
 - guide (search post, owner-approved 2026-11-04 to grow Google traffic): pick ONE exact question everyday Indians type into Google, not already answered on moneyviel.com (check `/wp-json/wp/v2/search?search=...`) or in `used`. Evergreen money-habit questions only, e.g. "how to make a monthly budget on a ₹25,000 salary", "how much emergency fund do I need", "how to save money from a small salary", "50/30/20 rule explained with Indian example", "how to plan a wedding budget", "how to split rent with flatmates fairly", "how to stop impulse buying", "how to teach kids about money", "how to save for a festival without debt". Investing and insurance EDUCATION questions are welcome too (e.g. "how does a SIP work", "SIP vs lump sum explained", "what is NAV", "what is an expense ratio", "direct vs regular mutual fund plans", "term vs health insurance", "how much term cover do I need (rule of thumb, check with an adviser)", "how to check if an adviser is SEBI registered"). Never questions about which specific fund/stock/policy/card/loan/app to choose, market outlook, tax slabs, or anything ruled out in checklist items 1, 3 or 6.
   - Website article 700–1,100 words: title = the question in plain words (≤ 60 chars); slug = 3–6 keyword words; first paragraph answers the question in 2–3 sentences; 3–5 `<h2>` sections with short paragraphs, one worked ₹ example (maths computed in code), one numbered checklist; a short "Quick answers" section with 3 question/answer pairs; link to the matching MoneyViel calculator/game and to 2 older moneyviel.com posts (real URLs found via REST). Excerpt (≤ 155 chars) = the direct answer. If Rank Math meta is writable via REST (`meta.rank_math_focus_keyword`, `meta.rank_math_description`), set them; otherwise skip silently.
   - The video for a guide is a 30–45 s tip-style summary of the article; the post embeds it at the TOP of the article (same embed block as other posts), then the article, then the disclaimer.
@@ -51,7 +61,7 @@ Spawn a separate reviewer agent (Agent tool, fresh context, give it only the spe
 ```
 cd tools
 npm i playwright >/dev/null 2>&1 || true   # Chromium is pre-installed
-node make_story.js spec.json /tmp/rec_N            # quote/story/tip  -> prints {"src":...}
+node make_story.js spec.json /tmp/rec_N            # story/tip (every post type uses one of these; 30–45 s summary of the article) -> prints {"src":...}
 ./finish_video.sh /tmp/rec_N/*.webm /tmp/rec_N/events.json ../out/DATE-kind.mp4 SEED
 node make_reel.js cloud|piggy|monster              # game reel -> /tmp/reelrec_GAME/*.webm, events /tmp/ev_GAME.json
 ./finish_video.sh /tmp/reelrec_GAME/*.webm /tmp/ev_GAME.json ../out/DATE-game.mp4 SEED
@@ -83,11 +93,11 @@ For each video: open `https://studio.youtube.com/channel/UCymQ9Fi0Ix922qcEmpl8U_
 ## 6. Website posts (moneyviel.com, same Chrome) — auto-shared to FB/IG/Threads by Jetpack when they go live
 In a moneyviel.com tab: `nonce = await (await fetch('/wp-admin/admin-ajax.php?action=rest-nonce')).text()`; REST with header `X-WP-Nonce`.
 - Upload the featured image: fetch the raw `.jpg` URL → POST `/wp-json/wp/v2/media` (body = blob, headers `Content-Type: image/jpeg`, `Content-Disposition: attachment; filename="moneyviel-<slug>.jpg"`), then set `alt_text`.
-- Create the post: POST `/wp-json/wp/v2/posts` with `status:"future"`, `date:"YYYY-MM-DDT19:30:00"` (site time is IST), `categories:[id]`, `featured_media`, `excerpt` (first story sentence), `meta:{jetpack_publicize_message: <social caption with emojis + 4–6 hashtags>}`, and `content` in blocks:
+- Create the post: POST `/wp-json/wp/v2/posts` with `status:"future"`, `date:"YYYY-MM-DDT19:30:00"` (site time is IST), `categories:[id]`, `featured_media`, `excerpt` (the one-line takeaway, see the card rules in section 1), `meta:{jetpack_publicize_message: <social caption with emojis + 4–6 hashtags>}`, and `content` in blocks:
   1. `<!-- wp:embed {"url":"<short URL>","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-9-16 wp-has-aspect-ratio"} --><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-9-16 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">\n<short URL>\n</div></figure><!-- /wp:embed -->`
-  2. `<h3 class="wp-block-heading mv-example">What this looks like in real life</h3>` + 1–3 short paragraphs (the story/explanation),
-  3. `<h3>Your small step today</h3>` + 1 paragraph action, 4. for game reels: a button to the game page, 5. the disclaimer paragraph from GATE 1 item 9 (small font).
-  Titles: quotes as `Quote – <quote>`, stories as `Story: <title>`, tips/games as normal titles. Never reuse an existing post title.
+  2. the full article for that day's type (section 2), starting with the stand-alone takeaway paragraphs,
+  3. `<h3>Your small step today</h3>` + 1 paragraph action, 4. the disclaimer paragraph from GATE 1 item 9 (small font).
+  On long-form teaser days the embedded video is that day's teaser Short. Titles use the prefixes in section 1 (guides have none). Never reuse an existing post title.
 - Confirm each post shows `status: "future"` with the right date.
 
 ## 6b. GATE 3: verify what was scheduled
