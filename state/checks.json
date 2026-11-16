@@ -1,6 +1,9 @@
 {
- "kids_ads_note": "Snippet 5 active. No published kids post yet (first goes live 2026-11-16 18:00), so the page-HTML ad check should be done on the next run after that.",
- "gate4_last": "2026-11-15: posts 2105/2107/2109 live, FB/IG/Threads shares success, Shorts 12-14 Nov Published; no held comments on them",
+ "kids_ads_note": "2026-11-16: snippet 5 active; kids post 2242 page has no AdSense tag; normal post 2109 still has it.",
+ "gate4_last": "2026-11-16: post 2111 live (HTTP 200), FB/IG/Threads shares success; no held comments. Short LC7d7K1MPRA public status not checked (Chrome dropped).",
  "kids_snippet_ok": "2026-11-15",
- "kids_category_page_no_ads": "2026-11-15 (category page: no AdSense tag; normal post 2109: tag present; snippet 5 active). Post-page check pending until first kids post is live 2026-11-16 18:00."
+ "kids_category_page_no_ads": "2026-11-15 (category page: no AdSense tag; normal post 2109: tag present; snippet 5 active). Post-page check pending until first kids post is live 2026-11-16 18:00.",
+ "comments_swept": "2026-11-16",
+ "comments_swept_count": 0,
+ "kids_ads_checked": "2026-11-16"
 }
