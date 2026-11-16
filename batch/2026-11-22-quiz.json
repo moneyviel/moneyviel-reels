@@ -1,0 +1,28 @@
+{
+ "kind": "tip",
+ "label": "SUNDAY QUIZ",
+ "hookEmoji": "🧠",
+ "hook": "3 quick questions on emergency funds. Ready?",
+ "slides": [
+  {
+   "emoji": "❓",
+   "text": "Q1: An emergency fund is for… a sale, a holiday, or a sudden medical bill?",
+   "sub": "Answer: the medical bill"
+  },
+  {
+   "emoji": "❓",
+   "text": "Q2: Essentials cost ₹20,000 a month. A 3-month fund is…?",
+   "sub": "Answer: ₹60,000"
+  },
+  {
+   "emoji": "❓",
+   "text": "Q3: Keep it mixed with spending money, or separate and easy to reach?",
+   "sub": "Answer: separate and easy to reach"
+  },
+  {
+   "emoji": "🛟",
+   "text": "It makes a sudden bill something you can handle."
+  }
+ ],
+ "cta": "Find your number free at moneyviel.com"
+}

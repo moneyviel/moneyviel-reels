@@ -1,0 +1,30 @@
+{
+ "kind": "tip",
+ "label": "WEEKEND CHALLENGE",
+ "hookEmoji": "📋",
+ "hook": "This weekend: list every subscription you pay for",
+ "slides": [
+  {
+   "emoji": "🔁",
+   "text": "Music, videos, storage, gym, app upgrades: anything charged every month or year."
+  },
+  {
+   "emoji": "➕",
+   "text": "₹199 + ₹149 + ₹299 + ₹99 = ₹746 a month.",
+   "sub": "That's ₹8,952 a year"
+  },
+  {
+   "emoji": "🔎",
+   "text": "Check bank statements, UPI history and renewal emails."
+  },
+  {
+   "emoji": "✂️",
+   "text": "Keep what you use. Cancel what you forgot."
+  },
+  {
+   "emoji": "✅",
+   "text": "Move the money you free up into savings the same day."
+  }
+ ],
+ "cta": "Track it free at moneyviel.com"
+}

@@ -1,0 +1,31 @@
+{
+ "kind": "story",
+ "label": "MONEY STORY",
+ "hookEmoji": "🍱",
+ "hook": "Anjali earned ₹32,000 but never knew where it went…",
+ "slides": [
+  {
+   "emoji": "📝",
+   "text": "So for 7 days, she wrote down every rupee she spent."
+  },
+  {
+   "emoji": "😮",
+   "text": "Food delivery: about ₹140 a day.",
+   "sub": "₹140 × 30 = ₹4,200 a month"
+  },
+  {
+   "emoji": "📅",
+   "text": "New rule: order on weekends only, about ₹1,600 a month."
+  },
+  {
+   "emoji": "💰",
+   "text": "That freed ₹2,600 a month for her emergency fund.",
+   "sub": "₹31,200 a year"
+  },
+  {
+   "emoji": "✅",
+   "text": "Lesson: track before you cut. Try a 7-day spending note today."
+  }
+ ],
+ "cta": "Learn more free at moneyviel.com"
+}
