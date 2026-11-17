@@ -139,6 +139,7 @@ Check items whose publish time passed since the last run: the post is live (`sta
 - Send the owner a short message (SendUserMessage / final answer): the 7 dates, titles, and links. If anything failed (e.g. Chrome not reachable), say exactly what is still pending; do NOT update `last_scheduled_date` for items that were not scheduled, so the next run (twice daily) retries.
 
 ## If Chrome is not reachable
+**First try this (added 17 Nov 2026):** load `mcp__claude-in-chrome__list_connected_browsers` and `mcp__claude-in-chrome__select_browser` with ToolSearch, list the browsers, and call `select_browser` with deviceId `f16014b1-310b-410b-97cc-384058caf36b` (the MoneyViel Chrome, "Browser 1", Windows) — new sessions sometimes have no browser selected. Then call `tabs_context_mcp` with `createIfEmpty: true` and retry once after 20 seconds. Only if it still fails, do the steps below.
 Do steps 0–4 only if they are not already done for this batch (check `state/pending.json`), save specs/videos to the repo under `pending/`, write `state/pending.json`, and finish with a one-line note. The next run will pick up from `pending/` when the laptop is on.
 
 
