@@ -1,7 +1,7 @@
 {
  "timezone": "Asia/Kolkata",
  "publish_time": "19:30",
- "last_scheduled_date": "2026-11-18",
+ "last_scheduled_date": "2026-11-25",
  "log": [
   {
    "date": "2026-11-04",
@@ -141,6 +141,68 @@
      "kind": "kids",
      "title": "Ishaan Shares His Mango Money",
      "post_id": 2239
+    }
+   ]
+  },
+  {
+   "date": "2026-11-17",
+   "note": "Batch 19-25 Nov (prepared 16 Nov, scheduled 17 Nov 15:00 IST run). Teaser related video pending until each long-form goes public.",
+   "items": [
+    {
+     "date": "2026-11-19",
+     "kind": "teaser",
+     "title": "Money Word: Minimum Due explained",
+     "yt_title": "Paying only the minimum on ₹80,000? The 14-year race #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/XOYXHNmIfuw",
+     "post_id": 2260
+    },
+    {
+     "date": "2026-11-20",
+     "kind": "tip",
+     "title": "Weekend Challenge: List Every Subscription You Pay For",
+     "yt_title": "List every subscription you pay for this weekend 📋 #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/3dMCMB7aGTs",
+     "post_id": 2262
+    },
+    {
+     "date": "2026-11-21",
+     "kind": "teaser",
+     "title": "Family Money: The Save-First Jar Game with Your Kids",
+     "yt_title": "Same salary, 10 years later: saver vs spender twins #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/TmAJA1Aahh0",
+     "post_id": 2264
+    },
+    {
+     "date": "2026-11-22",
+     "kind": "tip",
+     "title": "Quiz: 3 Questions on Emergency Funds",
+     "yt_title": "Emergency fund quiz: can you get 3 out of 3? 🧠 #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/cEldiZMwmb8",
+     "post_id": 2266
+    },
+    {
+     "date": "2026-11-23",
+     "kind": "teaser",
+     "title": "Myth or Fact: ₹100 Will Buy the Same Things Next Year",
+     "yt_title": "What will ₹100 buy in 2046? The ₹ Time Machine ☕ #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/Tmif4pphyJw",
+     "post_id": 2268
+    },
+    {
+     "date": "2026-11-24",
+     "kind": "story",
+     "title": "Story: Anjali's ₹4,200 Food Delivery Surprise",
+     "yt_title": "Anjali tracked 7 days of spending: ₹4,200 a month on food delivery 🍱 #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/f-GL1a4wCO0",
+     "post_id": 2270
+    },
+    {
+     "date": "2026-11-25",
+     "kind": "teaser",
+     "title": "How to Make a Monthly Budget on a ₹25,000 Salary",
+     "yt_title": "Grab a pen ✍️ Can you answer this money question in 8 seconds? #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/ejUZrAX8QLA",
+     "post_id": 2272
     }
    ]
   }

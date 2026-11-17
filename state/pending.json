@@ -1,74 +1,9 @@
 {
  "batch": "2026-11-19..2026-11-25",
- "created": "2026-11-16 10:25 IST run",
- "status": "Steps 0-4 done: content written, GATE 1 PASS (after fixes), GATE 2 videos/images checked and re-reviewed, files pushed to upload/. Chrome disconnected before YouTube/WordPress steps.",
- "content": "batch/batch.json (items: titles, excerpts, content_body HTML without the embed block, social, alt, yt_title, yt_desc, yt_tags, related: 'lf' = that day's long-form video, 'tour' = ritFEzIrZJ4)",
+ "status": "Shorts + WP posts scheduled 2026-11-17. Only the teaser Related-video links remain.",
  "todo": [
-  "Section 5: upload 7 Shorts from upload/<id>.mp4, schedule 19:30 IST on each date; teaser days 19/21/23/25 Related video = that day's long-form video",
-  "Section 6: create 7 WP posts (status future, 19:30) with featured image upload/<id>.jpg, embed the Short URL at top, then content_body",
-  "GATE 3, then section 7 cleanup (orphan commit removing upload/), update history.json, schedule.json last_scheduled_date=2026-11-25 and log"
+  "On/after each date, once the long-form video is public (11:00 IST), open studio.youtube.com/video/<teaser>/edit, set Related video = that day's long-form (search by its title in the picker), Save. Teasers: 2026-11-19 XOYXHNmIfuw -> Ih-rtpAdTCM 'Minimum Due vs Fixed Payment...'; 2026-11-21 TmAJA1Aahh0 -> oXYd6Dy32hE 'Saver vs Spender...'; 2026-11-23 Tmif4pphyJw -> GvYu2WtOVOI 'What Will ₹100 Buy in 2046?...'; 2026-11-25 ejUZrAX8QLA -> uXJlwcg4KIs 'Are You Money-Healthy?...'. The picker lists only public videos.",
+  "Non-teaser Shorts 3dMCMB7aGTs, cEldiZMwmb8, f-GL1a4wCO0 already have Related video = Tools Tour (done 2026-11-17)."
  ],
- "items": [
-  {
-   "id": "2026-11-19-word",
-   "date": "2026-11-19",
-   "title": "Money Word: Minimum Due explained",
-   "video": "upload/2026-11-19-teaser.mp4",
-   "short_url": null,
-   "post_id": null
-  },
-  {
-   "id": "2026-11-20-challenge",
-   "date": "2026-11-20",
-   "title": "Weekend Challenge: List Every Subscription You Pay For",
-   "video": "upload/2026-11-20-challenge.mp4",
-   "short_url": null,
-   "post_id": null
-  },
-  {
-   "id": "2026-11-21-family",
-   "date": "2026-11-21",
-   "title": "Family Money: The Save-First Jar Game with Your Kids",
-   "video": "upload/2026-11-21-teaser.mp4",
-   "short_url": null,
-   "post_id": null
-  },
-  {
-   "id": "2026-11-22-quiz",
-   "date": "2026-11-22",
-   "title": "Quiz: 3 Questions on Emergency Funds",
-   "video": "upload/2026-11-22-quiz.mp4",
-   "short_url": null,
-   "post_id": null
-  },
-  {
-   "id": "2026-11-23-myth",
-   "date": "2026-11-23",
-   "title": "Myth or Fact: ₹100 Will Buy the Same Things Next Year",
-   "video": "upload/2026-11-23-teaser.mp4",
-   "short_url": null,
-   "post_id": null
-  },
-  {
-   "id": "2026-11-24-story",
-   "date": "2026-11-24",
-   "title": "Story: Anjali's ₹4,200 Food Delivery Surprise",
-   "video": "upload/2026-11-24-story.mp4",
-   "short_url": null,
-   "post_id": null
-  },
-  {
-   "id": "2026-11-25-guide",
-   "date": "2026-11-25",
-   "title": "How to Make a Monthly Budget on a ₹25,000 Salary",
-   "video": "upload/2026-11-25-teaser.mp4",
-   "short_url": null,
-   "post_id": null
-  }
- ],
- "attempts": [
-  "2026-11-16 18:25 IST run: Chrome not reachable; YouTube/WordPress/X/LinkedIn steps still pending",
-  "2026-11-17 10:33 IST run: Chrome not reachable (no browser connected); YouTube/WordPress/X/LinkedIn steps still pending",
-  "2026-11-17 ~10:40 IST manual catch-up run: Chrome still not reachable (no browser connected to this account)"
- ]
+ "teaser_related_done": {}
 }
