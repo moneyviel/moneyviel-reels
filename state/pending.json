@@ -68,6 +68,7 @@
  ],
  "attempts": [
   "2026-11-16 18:25 IST run: Chrome not reachable; YouTube/WordPress/X/LinkedIn steps still pending",
-  "2026-11-17 10:33 IST run: Chrome not reachable (no browser connected); YouTube/WordPress/X/LinkedIn steps still pending"
+  "2026-11-17 10:33 IST run: Chrome not reachable (no browser connected); YouTube/WordPress/X/LinkedIn steps still pending",
+  "2026-11-17 ~10:40 IST manual catch-up run: Chrome still not reachable (no browser connected to this account)"
  ]
 }
