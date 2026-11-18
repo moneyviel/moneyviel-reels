@@ -6,7 +6,159 @@
    "title": "Piggu's Kite Dream",
    "short_url": "https://youtube.com/shorts/q6YibigUdIY",
    "post_id": 2278
+  },
+  {
+   "ep": 2,
+   "date": "2026-11-19",
+   "title": "Sikka's Mystery Coin",
+   "short_url": "https://youtube.com/shorts/V3Ie5DzOTsY",
+   "post_id": 2280
+  },
+  {
+   "ep": 3,
+   "date": "2026-11-20",
+   "title": "The Lemonade Stand",
+   "short_url": "https://youtube.com/shorts/4YK76j2YdcI",
+   "post_id": 2282
+  },
+  {
+   "ep": 4,
+   "date": "2026-11-21",
+   "title": "The Need or Want Market",
+   "short_url": "https://youtube.com/shorts/gWOELvNwwb8",
+   "post_id": 2284
+  },
+  {
+   "ep": 5,
+   "date": "2026-11-22",
+   "title": "Sikka's Three Magic Jars",
+   "short_url": "https://youtube.com/shorts/URJZIMaNbbQ",
+   "post_id": 2286
+  },
+  {
+   "ep": 6,
+   "date": "2026-11-23",
+   "title": "The Price Tag Puzzle",
+   "short_url": "https://youtube.com/shorts/S-SvVdnIrjE",
+   "post_id": 2288
+  },
+  {
+   "ep": 7,
+   "date": "2026-11-24",
+   "title": "A Gift for Grandma",
+   "short_url": "https://youtube.com/shorts/_TAX17PiN3E",
+   "post_id": 2290
+  },
+  {
+   "ep": 8,
+   "date": "2026-11-25",
+   "title": "The Wait-a-Day Rule",
+   "short_url": "https://youtube.com/shorts/QAN9WZ99fj0",
+   "post_id": 2292
+  },
+  {
+   "ep": 9,
+   "date": "2026-11-26",
+   "title": "The Coin Count Race",
+   "short_url": "https://youtube.com/shorts/IB828aHn2Hc",
+   "post_id": 2294
+  },
+  {
+   "ep": 10,
+   "date": "2026-11-27",
+   "title": "Piggu's Broken Toy",
+   "short_url": "https://youtube.com/shorts/bnW8GzLMvMU",
+   "post_id": 2297
+  },
+  {
+   "ep": 11,
+   "date": "2026-11-28",
+   "title": "Fun at the Fair",
+   "short_url": "https://youtube.com/shorts/7iD8in8s26k",
+   "post_id": 2299
+  },
+  {
+   "ep": 12,
+   "date": "2026-11-29",
+   "title": "Sikka's Coin Garden",
+   "short_url": "https://youtube.com/shorts/T7MfNzg1hPo",
+   "post_id": 2301
+  },
+  {
+   "ep": 13,
+   "date": "2026-11-30",
+   "title": "Trade Day",
+   "short_url": "https://youtube.com/shorts/z6jKOVFRLAM",
+   "post_id": 2303
+  },
+  {
+   "ep": 14,
+   "date": "2026-12-01",
+   "title": "Too Many Snacks",
+   "short_url": "https://youtube.com/shorts/qDS6R9GjINg",
+   "post_id": 2305
+  },
+  {
+   "ep": 15,
+   "date": "2026-12-02",
+   "title": "Coins Around the World",
+   "short_url": "https://youtube.com/shorts/KA9-ZafLdK0",
+   "post_id": 2307
   }
  ],
- "long": []
+ "long": [
+  {
+   "date": "2026-11-21",
+   "eps": [
+    1,
+    2,
+    3
+   ],
+   "url": "https://www.youtube.com/watch?v=C9w5ZVNuA0M",
+   "post_id": 2308,
+   "marathon": false
+  },
+  {
+   "date": "2026-11-25",
+   "eps": [
+    4,
+    5,
+    6,
+    7
+   ],
+   "url": "https://www.youtube.com/watch?v=hrfJ9RXQM_Q",
+   "post_id": 2309,
+   "marathon": false
+  },
+  {
+   "date": "2026-11-28",
+   "eps": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "url": "https://www.youtube.com/watch?v=1I1oq9r_VrI",
+   "post_id": 2310,
+   "marathon": true
+  },
+  {
+   "date": "2026-12-02",
+   "eps": [
+    11,
+    12,
+    13,
+    14
+   ],
+   "url": "https://www.youtube.com/watch?v=VwQ5YiNMwIE",
+   "post_id": 2311,
+   "marathon": false
+  }
+ ]
 }

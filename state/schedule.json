@@ -208,7 +208,9 @@
   }
  ],
  "force_next_batch": false,
- "kids_last_date": "2026-11-22",
- "kidsyt_last_date": "2026-11-18",
- "kidsyt_last_ep": 1
+ "kids_last_date": "2026-12-02",
+ "kidsyt_last_date": "2026-12-02",
+ "kidsyt_last_ep": 15,
+ "kidsyt_last_long": "2026-12-02",
+ "main_long_last_date": "2026-12-01"
 }

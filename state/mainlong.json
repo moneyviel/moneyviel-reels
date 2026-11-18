@@ -1,0 +1,18 @@
+{
+ "videos": [
+  {
+   "date": "2026-11-27",
+   "time": "11:00",
+   "url": "https://youtu.be/1TE3lwSlC9w",
+   "spec": "tools/longform/long_salary.js",
+   "title": "Salary Day Plan"
+  },
+  {
+   "date": "2026-12-01",
+   "time": "11:00",
+   "url": "https://youtu.be/T9ZYV2ktSFQ",
+   "spec": "tools/longform/long_leaks.js",
+   "title": "8 Small Money Leaks"
+  }
+ ]
+}
