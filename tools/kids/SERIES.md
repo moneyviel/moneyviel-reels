@@ -49,3 +49,17 @@ After Ep 16: continue with new stories on the same lesson list (saving goal, ear
 
 ## Global and festivals
 Rotate everyday settings from many cultures. Festival specials on the day before: Diwali, Christmas, Eid, Lunar New Year, Holi, back to school. No religious teaching; just the celebration and a money lesson (budget for gifts, sharing sweets).
+
+## Big Adventures (16:9, Wed + Sat 17:00 IST from 5 Dec 2026)
+Characters: Piggu, Sikka, **Granny Owl** (kind grandmother, gives wise advice; `MVK2.owl`), **Mr Hop** (bunny shopkeeper with a blue apron; `MVK2.bunny`). Every episode keeps the same show pattern (see RUNBOOK 2c) and 10–12 stars.
+| BA | Title | World | Lesson | Shop / quiz maths idea |
+|---|---|---|---|---|
+| 1 | Piggu's Festival Fair 🎡 | fair | Make a plan, then spend | 50 coins: 20+15+10+5 = 50 |
+| 2 | Granny's Rainy Day Jar ☔ | home | Keep some savings for surprises | Save 5 a week for 6 weeks = 30; umbrella 25 → 5 left |
+| 3 | Mr Hop's Busy Shop 🥕 | shop (new world) | Earning by helping | 4 jobs × 10 = 40 coins |
+| 4 | The Birthday Party Plan 🎂 | home | Budget for a party | 60 coins: balloons 20 + snacks 30 = 50 → 10 left |
+| 5 | Treasure Map of Saving 🗺️ | park (new world) | Goals and steps | 5 steps of 10 = 50 |
+| 6 | The Big Swap Market 🔄 | fair | Fair trades | 2 stickers = 1 pencil |
+| 7 | Snow Day Lemonade… Hot Cocoa! ☕ | home | Earning + costs | 8 cups × 5 = 40, costs 15 → 25 |
+| 8 | Granny's Garden Coins 🌱 | park | Keep adding, watch it grow | 10 a week × 8 = 80 |
+Festival specials (Diwali, Christmas, Eid, Lunar New Year) replace the normal episode on the nearest Wed/Sat.

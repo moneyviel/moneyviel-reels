@@ -1,0 +1,123 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:F;src:url(Fredoka.ttf)}
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;font-family:F}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden}
+.abs{position:absolute}
+.big{position:absolute;left:80px;right:80px;text-align:center;font-weight:700;color:#3b1f8f;line-height:1.15;text-shadow:-5px -5px 0 #fff,5px -5px 0 #fff,-5px 5px 0 #fff,5px 5px 0 #fff,0 6px 0 #fff,0 -6px 0 #fff,6px 0 0 #fff,-6px 0 0 #fff,0 12px 14px rgba(43,29,58,.25)}
+.card{position:absolute;background:rgba(255,255,255,.95);border-radius:56px;box-shadow:0 14px 0 rgba(59,31,143,.18)}
+.say{position:absolute;background:#fff;border-radius:40px;padding:52px 36px 26px;font-size:50px;font-weight:600;color:#2b1d3a;box-shadow:0 10px 0 rgba(0,0,0,.12);line-height:1.18;border:8px solid;box-sizing:border-box}
+.who{position:absolute;left:28px;top:-36px;color:#fff;font-weight:700;font-size:40px;border-radius:40px;padding:4px 28px;letter-spacing:2px}
+.opt{position:absolute;border-radius:40px;background:#fff;border:8px solid #c9b6ff;font-weight:700;color:#3b1f8f;text-align:center;box-sizing:border-box;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.pill{display:inline-block;border-radius:60px;padding:10px 36px;font-weight:700;color:#fff}
+</style><script src="characters.js"></script><script src="characters2.js"></script><script src="logo.js"></script></head><body><div id="stage"></div>
+<script>
+// ===== MoneyViel Kids "Big Adventure" engine (16:9). Episode files call BIG({...}). Every number checked in the episode's `checks`.
+const S=document.getElementById('stage');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=t=>{t=clamp(t);return 1-Math.pow(1-t,3)};
+const pop=t=>{t=clamp(t);return t<.6?ease(t/.6)*1.1:1.1-.1*ease((t-.6)/.4)};
+const bob=(t,a=10,f=2)=>Math.sin(t*f*Math.PI)*a;
+const talk=(ts,on)=>on?Math.abs(Math.sin(ts*9))*12:0;
+const fade=(ts,a,d=.4)=>clamp((ts-a)/d);
+const big=(txt,top,size,ts,a,col='#3b1f8f')=>ts<a?'':`<div class="big" style="top:${top}px;font-size:${size}px;color:${col};transform:scale(${pop((ts-a)/.5)})">${txt}</div>`;
+const svgc=(inner,x,y,s,flip)=>`<svg class="abs" style="left:${x}px;top:${y}px;overflow:visible" width="${200*s}" height="${200*s}" viewBox="0 0 200 200">${flip?`<g transform="translate(200,0) scale(-1,1)">${inner}</g>`:inner}</svg>`;
+const CH={piggu:{n:'PIGGU',c:'#ff5c8a',d:(m)=>MVK.piggu(m)},sikka:{n:'SIKKA',c:'#f0a000',d:(m)=>MVK.sikka(m)},granny:{n:'GRANNY OWL',c:'#7a5cff',d:(m)=>MVK2.owl(m)},hop:{n:'MR HOP',c:'#2f9fd8',d:(m)=>MVK2.bunny(m)}};
+// stage spots (bottom of screen). x = left of the 200-box, s = scale
+const SPOT={piggu:{x:150,y:650,s:1.9},sikka:{x:560,y:730,s:1.3},granny:{x:1420,y:620,s:2.0},hop:{x:1440,y:640,s:1.9}};
+function cast(list,ts,who,moods={}){return list.map(k=>{const p=SPOT[k];const ty=p.y-(k===who?talk(ts,ts>.3):0)+bob(ts+k.length,4,1);return svgc(CH[k].d(moods[k]||'happy'),p.x,ty,p.s)}).join('');}
+function say(who,txt,ts,a,w=760){if(ts<a)return'';const p=SPOT[who],C=CH[who];const hx=p.x+100*p.s, hy=p.y+20*p.s;const base=hy-50;
+  let x=Math.round(hx-w/2);x=Math.max(60,Math.min(1920-60-w,x));const k=pop((ts-a)/.4);const bx=Math.max(x+70,Math.min(x+w-70,hx));
+  return `<svg class="abs" style="left:0;top:0;overflow:visible" width="1920" height="1080"><path d="M${bx-40} ${base-12} L${hx} ${hy} L${bx+40} ${base-12} Z" fill="#fff" stroke="${C.c}" stroke-width="8" stroke-linejoin="round" opacity="${Math.min(1,k)}"/></svg><div class="say" style="left:${x}px;bottom:${1080-base}px;width:${w}px;border-color:${C.c};transform:scale(${k});transform-origin:${hx-x}px 100%"><div class="who" style="background:${C.c}">${C.n}</div>${txt}</div>`;}
+function timer(ts,a,n,cx,cy,r=100){if(ts<a||ts>=a+n)return'';const left=n-(ts-a),num=Math.ceil(left),f=1-left/n,C=2*Math.PI*r;
+  return `<svg class="abs" style="left:${cx-r-24}px;top:${cy-r-24}px" width="${2*r+48}" height="${2*r+48}"><circle cx="${r+24}" cy="${r+24}" r="${r}" fill="#fff" stroke="#e8e0ff" stroke-width="24"/><circle cx="${r+24}" cy="${r+24}" r="${r}" fill="none" stroke="#ff5c8a" stroke-width="24" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*f}" transform="rotate(-90 ${r+24} ${r+24})"/><text x="${r+24}" y="${r+24+r*.38}" text-anchor="middle" font-family="F" font-weight="700" font-size="${r*1.05}" fill="#3b1f8f">${num}</text></svg>`;}
+const emo=(e,x,y,size)=>`<div class="abs" style="left:${x}px;top:${y}px;font-size:${size}px;line-height:1">${e}</div>`;
+const confetti=(ts)=>{let s='';for(let i=0;i<90;i++){const x=(i*211)%1920,y=((i*233)%600)-200+ts*600*(0.6+(i%5)/5);const c=['#ff5c8a','#ffc533','#5bc0ff','#7ce08a','#b38bff'][i%5];s+=`<rect x="${x}" y="${y%1080}" width="20" height="30" fill="${c}" transform="rotate(${(ts*200+i*40)%360} ${x} ${y%1080})"/>`;}return `<svg class="abs" style="left:0;top:0" width="1920" height="1080">${s}</svg>`;};
+const dim=`<div class="abs" style="inset:0;background:rgba(43,29,58,.45)"></div>`;
+const lvl=l=>l==='big'?`<span class="pill" style="background:#7a5cff;font-size:34px">🦉 Big kids</span>`:`<span class="pill" style="background:#1f9d55;font-size:34px">🐣 Little ones</span>`;
+// ---------- worlds ----------
+const WORLD={
+ fair:(t,sun=0)=>{ // sun 0 = day, 1 = sunset
+   const sky1=sun?`rgb(${Math.round(143+112*sun)},${Math.round(220-60*sun)},${Math.round(255-80*sun)})`:'#8fdcff',sky2=sun?`rgb(255,${Math.round(225-40*sun)},${Math.round(239-80*sun)})`:'#ffe1ef';
+   let s=`<div class="abs" style="inset:0;background:linear-gradient(180deg,${sky1} 0%,${sky2} 70%)"></div><svg class="abs" style="left:0;top:0" width="1920" height="1080">`;
+   s+=`<circle cx="${1650-sun*200}" cy="${150+sun*420}" r="80" fill="${sun?'#ffb347':'#ffe066'}"/>`;
+   [[100,170,1],[700,110,1.3],[1250,200,1]].forEach(([x,y,k],i)=>{x=(x+t*14*(i+1))%2200-200;s+=`<g transform="translate(${x},${y}) scale(${k})" fill="#fff" opacity=".8"><circle r="44"/><circle cx="50" cy="-18" r="58"/><circle cx="106" r="44"/><rect width="106" height="44"/></g>`});
+   s+=`<path d="M0 640 Q300 560 640 630 T1300 610 T1920 630 V1080 H0Z" fill="#a7e3a0"/>`;
+   // ferris wheel (rotating)
+   const cx=1520,cy=360,R=190,a=t*12;s+=`<g><path d="M${cx-110} 660 L${cx} ${cy} L${cx+110} 660" stroke="#7a5cff" stroke-width="16" fill="none"/><circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#ff5c8a" stroke-width="12"/>`;
+   for(let i=0;i<8;i++){const an=(a+i*45)*Math.PI/180,px=cx+R*Math.cos(an),py=cy+R*Math.sin(an);s+=`<line x1="${cx}" y1="${cy}" x2="${px}" y2="${py}" stroke="#ffc533" stroke-width="6"/><rect x="${px-26}" y="${py}" width="52" height="40" rx="10" fill="${['#5bc0ff','#ff5c8a','#7ce08a','#b38bff'][i%4]}"/>`;}
+   s+=`<circle cx="${cx}" cy="${cy}" r="22" fill="#3b1f8f"/></g>`;
+   // tents
+   [[420,'#ff5c8a'],[760,'#5bc0ff'],[1060,'#ffb020']].forEach(([x,c],i)=>{s+=`<g><rect x="${x}" y="520" width="240" height="150" fill="#fff"/>${[0,1,2,3,4,5].map(j=>j%2?'':`<rect x="${x+j*40}" y="520" width="40" height="150" fill="${c}" opacity=".85"/>`).join('')}<path d="M${x-20} 525 L${x+120} 420 L${x+260} 525Z" fill="${c}"/><circle cx="${x+120}" cy="412" r="10" fill="#ffc533"/></g>`;});
+   // bunting
+   s+=`<path d="M0 120 Q480 220 960 130 T1920 140" stroke="#3b1f8f" stroke-width="4" fill="none"/>`;for(let i=0;i<24;i++){const x=40+i*80,y=125+Math.sin(i/24*Math.PI*2)*40+ (i%2?20:0)*0;s+=`<path d="M${x} ${y+40*Math.sin((x/1920)*Math.PI)*0} l24 50 l24 -50z" fill="${['#ff5c8a','#ffc533','#5bc0ff','#7ce08a'][i%4]}" transform="translate(0 ${45*Math.sin(x/1920*Math.PI)-10})"/>`;}
+   if(sun>.5)for(let i=0;i<30;i++){s+=`<circle cx="${60+i*64}" cy="${200+45*Math.sin((60+i*64)/1920*Math.PI)}" r="8" fill="#fff6a8" opacity="${.5+.5*Math.abs(Math.sin(t*3+i))}"/>`;}
+   s+=`<rect x="0" y="900" width="1920" height="180" fill="#8fd18a"/><path d="M0 900 H1920" stroke="#7cc176" stroke-width="10"/></svg>`;return s;},
+ home:(t)=>`<div class="abs" style="inset:0;background:linear-gradient(180deg,#ffe8c7 0%,#ffd6e5 100%)"></div><svg class="abs" style="left:0;top:0" width="1920" height="1080"><rect x="140" y="140" width="380" height="300" rx="20" fill="#bfe8ff" stroke="#fff" stroke-width="18"/><path d="M330 140 V440 M140 290 H520" stroke="#fff" stroke-width="12"/><rect x="1300" y="200" width="420" height="40" rx="10" fill="#c98a5a"/><rect x="1340" y="120" width="70" height="80" rx="10" fill="#ff5c8a"/><rect x="1430" y="140" width="60" height="60" rx="10" fill="#5bc0ff"/><circle cx="1560" cy="165" r="35" fill="#ffc533"/><rect x="0" y="900" width="1920" height="180" fill="#e3b98f"/></svg>`,
+};
+// ---------- beats ----------
+const B={
+ coldopen:(b)=>({dur:b.dur||7,sfx:[[.2,'bad']],draw:(ts,t)=>WORLD[b.world||'fair'](t,0)+big(b.text,150,96,ts,.2)+cast(b.cast||['piggu','sikka'],ts,null,{piggu:'wow',sikka:'think'})}),
+ theme:(b)=>({dur:b.dur||8,sfx:[[.1,'level'],[1.2,'good'],[2.4,'good'],[3.6,'level'],[5,'good']],draw:(ts)=>{const sp=ts*80;let s=`<div class="abs" style="inset:0;background:conic-gradient(from ${sp}deg at 50% 55%,#ff5c8a,#ffc533,#4cc3ff,#7a5cff,#ff5c8a)"></div><div class="abs" style="inset:0;background:radial-gradient(circle at 50% 55%,rgba(255,255,255,.9) 0 30%,rgba(255,255,255,0) 60%)"></div>`;
+   s+=`<div class="abs" style="left:560px;top:150px;width:800px;transform:scale(${pop(ts/.8)})">${kidsLogo({w:800})}</div>`+big('PIGGU &amp; SIKKA',560,90,ts,1.2,'#e0408f')+big(`Big Adventure ${b.no}: ${b.title}`,690,70,ts,2.4)+svgc(MVK.piggu('happy'),200,720-Math.abs(Math.sin(ts*4))*60,1.5)+svgc(MVK.sikka('wink'),1500,760-Math.abs(Math.sin(ts*4+1))*60,1.2);return s;}}),
+ say:(b)=>({dur:b.dur||5,sfx:[[.3,'slide']],draw:(ts,t)=>WORLD[b.world||'fair'](t,b.sun||0)+(b.prop?emo(b.prop,b.px||860,b.py||430,b.ps||200):'')+cast(b.cast,ts,b.who,b.moods||{})+say(b.who,b.text,ts,.3,b.w||760)}),
+ card:(b)=>({dur:b.dur||5,sfx:[[.2,'slide']],draw:(ts,t)=>WORLD[b.world||'fair'](t,b.sun||0)+`<div class="card" style="left:260px;right:260px;top:150px;height:${b.sub?470:330}px;opacity:${fade(ts,0)}"></div>`+big(b.text,200,84,ts,.1)+(b.sub?big(b.sub,420,58,ts,.6,'#e0408f'):'')+cast(b.cast||['piggu','sikka'],ts,null,b.moods||{})}),
+ // choose the door
+ door:(b)=>{const th=b.think||6,A=1.5+th,hold=b.hold||5;const sf=[[.1,'slide']];for(let i=0;i<th;i++)sf.push([1.5+i,'slide']);sf.push([A,'good'],[A+.4,'level']);
+   return {dur:A+hold,sfx:sf,stars:[A],draw:(ts,t)=>{let s=WORLD[b.world||'fair'](t,b.sun||0)+dim+`<div class="abs" style="left:0;right:0;top:40px;text-align:center"><span class="pill" style="background:#ff5c8a;font-size:44px">🚪 CHOOSE THE DOOR!</span></div>`+big(b.q,140,72,ts,.3,'#fff').replace('color:#fff','color:#3b1f8f');
+    const open=ts>=A;[[b.left,0],[b.right,1]].forEach(([o,i])=>{const ok=i===b.correct;const x=i?1040:280;const col=open?(ok?'#1f9d55':'#c9b6ff'):'#ff9dbd';
+      s+=`<div class="opt" style="left:${x}px;top:330px;width:600px;height:460px;border-color:${col};${open&&!ok?'opacity:.55;':''}transform:scale(${open&&ok?1+.05*Math.sin(ts*6):1})"><div style="font-size:150px">${open?(ok?'✅':'🙈'):(i?'🚪':'🚪')}</div><div style="font-size:52px;padding:0 30px">${o}</div></div>`;});
+    if(!open)s+=timer(ts,1.5,th,960,880,80);else s+=`<div class="abs" style="left:200px;right:200px;top:830px;text-align:center;font-size:54px;font-weight:700;color:#fff;text-shadow:0 4px 0 #3b1f8f">${b.explain}</div>`;
+    return s;}};},
+ // Piggu's Quiz Corner
+ quiz:(b)=>{const per=[];let T=1.5;const sf=[[.2,'level']];const st=[];b.qs.forEach(q=>{const th=q.think||6,hold=q.hold||5;per.push([T,th,hold]);sf.push([T+.1,'slide']);for(let i=0;i<th;i++)sf.push([T+1.2+i,'slide']);sf.push([T+1.2+th,'good']);st.push(T+1.2+th);T+=1.2+th+hold;});
+   return {dur:T,sfx:sf,stars:st,draw:(ts,t)=>{let s=`<div class="abs" style="inset:0;background:radial-gradient(circle at 50% 40%,#fff4c2,#ffc6dd 70%)"></div>`+`<div class="abs" style="left:0;right:0;top:36px;text-align:center"><span class="pill" style="background:#3b1f8f;font-size:50px">🎤 Piggu's Quiz Corner</span></div>`+svgc(MVK.piggu(ts%10<5?'happy':'wink'),60,700,1.7);
+    if(ts<1.5)return s+big('3 quick questions!',420,100,ts,.2,'#e0408f');
+    const i=Math.max(0,per.findIndex(([a,th,h])=>ts<a+1.2+th+h));const [a,th,h]=per[i<0?per.length-1:i];const q=b.qs[i<0?per.length-1:i];const lt=ts-a;const A=1.2+th;
+    s+=`<div class="abs" style="left:0;right:0;top:150px;text-align:center">${lvl(q.level)} <span class="pill" style="background:#ffb020;font-size:34px;color:#2b1d3a">Question ${(i<0?per.length-1:i)+1} of ${per.length}</span></div>`;
+    s+=big(q.q,240,72,lt,0);if(q.show)s+=`<div class="abs" style="left:0;right:0;top:${q.q.includes('<br>')?430:360}px;text-align:center;font-size:110px;letter-spacing:10px">${q.show}</div>`;
+    q.opts.forEach((o,j)=>{const ok=j===q.ans,open=lt>=A;const x=480+j*520;s+=`<div class="opt" style="left:${x}px;top:620px;width:440px;height:200px;font-size:72px;border-color:${open?(ok?'#1f9d55':'#e8e0ff'):'#c9b6ff'};${open&&!ok?'opacity:.45;':''}"><div style="font-size:36px;color:#9b8ac9">${'AB'[j]}</div>${o}</div>`;});
+    if(lt<A)s+=timer(lt,1.2,th,960,940,64);else s+=`<div class="abs" style="left:0;right:0;top:860px;text-align:center;font-size:52px;font-weight:700;color:#1f9d55">⭐ ${q.explain}</div>`;
+    return s;}};},
+ // Sikka's Shop: pick items within budget, then show a good answer
+ shop:(b)=>{const th=b.think||10,A=2+th,hold=b.hold||8;const sf=[[.2,'level']];for(let i=0;i<th;i++)sf.push([2+i,'slide']);b.answer.forEach((_,i)=>sf.push([A+.6*i,'good']));sf.push([A+.6*b.answer.length+.3,'level']);
+   return {dur:A+hold,sfx:sf,stars:[A+.6*b.answer.length+.3],draw:(ts,t)=>{let s=`<div class="abs" style="inset:0;background:linear-gradient(180deg,#d6f5ff,#fff1c9)"></div><svg class="abs" style="left:0;top:0" width="1920" height="1080"><path d="M0 0 H1920 V90 ${Array.from({length:16},(_,i)=>`L${1920-i*120-60} 140 L${1920-(i+1)*120} 90`).join(' ')} Z" fill="#ff5c8a"/></svg>`;
+    s+=`<div class="abs" style="left:0;right:0;top:20px;text-align:center"><span class="pill" style="background:#f0a000;font-size:50px">🛍️ Sikka's Shop</span></div>`;
+    s+=big(b.q,160,62,ts,.3)+`<div class="abs" style="left:80px;top:290px;font-size:46px;font-weight:700;color:#fff;background:#3b1f8f;border-radius:30px;padding:10px 30px">Budget: ${b.budget} coins 🪙</div>`;
+    const n=b.items.length,gap=1760/n;b.items.forEach(([e,name,price],i)=>{const picked=ts>=A+.6*b.answer.indexOf(i)&&b.answer.includes(i);const x=80+i*gap;
+      s+=`<div class="opt" style="left:${x}px;top:390px;width:${gap-30}px;height:330px;border-color:${picked?'#1f9d55':'#c9b6ff'};${ts>=A&&!b.answer.includes(i)?'opacity:.45;':''}"><div style="font-size:120px">${e}</div><div style="font-size:42px">${name}</div><div style="margin-top:10px;background:#ffc533;border-radius:20px;padding:4px 18px;font-size:46px;color:#2b1d3a">${price} coins</div>${picked?'<div class="abs" style="top:-30px;right:-20px;font-size:80px">✅</div>':''}</div>`;});
+    if(ts<A)s+=timer(ts,2,th,960,880,80)+svgc(MVK.sikka('think'),1640,800,1.1);
+    else{const tot=b.answer.map(i=>b.items[i][2]);const sum=tot.reduce((a,c)=>a+c,0);s+=(ts>=A+.6*b.answer.length+.3?`<div class="abs" style="left:100px;right:100px;top:770px;text-align:center;font-size:64px;font-weight:700;color:#3b1f8f">${tot.join(' + ')} = ${sum} coins ✅</div><div class="abs" style="left:100px;right:100px;top:870px;text-align:center;font-size:48px;font-weight:700;color:#e0408f">${b.explain}</div>`:'')+svgc(MVK.sikka('wink'),1640,800,1.1);}
+    return s;}};},
+ // move break: jump when you see the golden coin
+ move:(b)=>{const times=b.times;const sf=[[.2,'level']];times.forEach(x=>sf.push([x,'good']));const D=b.dur||(times[times.length-1]+5);
+   return {dur:D,sfx:sf,draw:(ts,t)=>{let s=WORLD.fair(t,0)+`<div class="abs" style="left:0;right:0;top:40px;text-align:center"><span class="pill" style="background:#1f9d55;font-size:56px">🤸 MOVE BREAK!</span></div>`+big('Stand up! JUMP every time<br>you see the golden coin! 🪙',150,72,ts,.3);
+    const hit=times.find(x=>ts>=x&&ts<x+1.2);const cnt=times.filter(x=>ts>=x).length;
+    if(hit!==undefined){const k=pop((ts-hit)/.4);s+=`<svg class="abs" style="left:${760}px;top:${380}px;overflow:visible;transform:scale(${k})" width="400" height="400" viewBox="0 0 200 200">${MVK.sikka('wow')}</svg>`+big('JUMP! 🙌',820,110,ts,hit,'#e0408f');}
+    s+=svgc(MVK.piggu('happy'),150,650-(hit!==undefined?Math.sin((ts-hit)/1.2*Math.PI)*160:0),1.9);
+    if(ts>times[times.length-1]+1.4)s+=`<div class="card" style="left:560px;right:560px;top:400px;height:260px"></div>`+big(`You jumped ${times.length} times! 🎉`,450,80,ts,times[times.length-1]+1.4,'#e0408f');
+    else s+=`<div class="abs" style="right:80px;top:300px;font-size:60px;font-weight:700;color:#3b1f8f">Jumps: ${cnt}</div>`;
+    return s;}};},
+ // spot the difference / which is cheaper
+ spot:(b)=>{const th=b.think||6,A=1.5+th,hold=b.hold||5;const sf=[[.1,'slide']];for(let i=0;i<th;i++)sf.push([1.5+i,'slide']);sf.push([A,'good']);
+   return {dur:A+hold,sfx:sf,stars:[A],draw:(ts,t)=>{let s=WORLD.fair(t,0)+dim+`<div class="abs" style="left:0;right:0;top:36px;text-align:center"><span class="pill" style="background:#7a5cff;font-size:48px">🔍 SPOT THE DIFFERENCE</span></div>`+big(b.q,140,68,ts,.3);
+    b.sides.forEach(([e,label,price],i)=>{const ok=i===b.ans,open=ts>=A;const x=i?1010:290;s+=`<div class="opt" style="left:${x}px;top:300px;width:620px;height:500px;border-color:${open?(ok?'#1f9d55':'#e8e0ff'):'#c9b6ff'}"><div style="font-size:44px;color:#9b8ac9">${label}</div><div style="font-size:200px">${e}</div><div style="background:#ffc533;border-radius:24px;padding:6px 30px;font-size:64px;color:#2b1d3a;${open&&ok?'outline:8px solid #1f9d55;':''}">${price} coins</div></div>`;});
+    if(ts<A)s+=timer(ts,1.5,th,960,890,70);else s+=`<div class="abs" style="left:200px;right:200px;top:840px;text-align:center;font-size:56px;font-weight:700;color:#fff;text-shadow:0 4px 0 #3b1f8f">⭐ ${b.explain}</div>`;
+    return s;}};},
+ // Can you remember? (same as quiz but different frame)
+ memory:(b)=>{const q=B.quiz(b);return {dur:q.dur,sfx:q.sfx,stars:q.stars,draw:(ts,t)=>q.draw(ts,t).replace("🎤 Piggu's Quiz Corner","🧠 Can you remember?").replace('3 quick questions!','Remember the story? 🤔').replace('#3b1f8f;font-size:50px','#e0408f;font-size:50px')};},
+ win:(b)=>({dur:b.dur||6,sfx:[[.3,'level']],draw:(ts,t)=>WORLD[b.world||'fair'](t,b.sun||0)+confetti(ts)+cast(b.cast,ts,b.who,b.moods||{})+say(b.who,b.text,ts,.4,b.w||760)}),
+ stars:(b)=>({dur:b.dur||7,sfx:[[.3,'level']],draw:(ts,t)=>`<div class="abs" style="inset:0;background:radial-gradient(circle,#fff4c2,#c9b6ff)"></div>`+big('Count your stars! ⭐',140,100,ts,.2,'#e0408f')+`<div class="abs" style="left:0;right:0;top:360px;text-align:center;font-size:120px;letter-spacing:6px">${'⭐'.repeat(b.total)}</div>`+big(`Did you get all ${b.total}?<br>You are a Money Star! 🌟`,620,80,ts,1.2)}),
+ lesson:(b)=>({dur:b.dur||9,sfx:[[.1,'good']],draw:(ts,t)=>`<div class="abs" style="inset:0;background:linear-gradient(180deg,#8fdcff,#ffe1ef)"></div><div class="card" style="left:300px;right:300px;top:110px;height:330px"></div>`+big(b.text,150,96,ts,0,'#e0408f')+svgc(MVK.piggu('happy'),220,560,1.7)+svgc(MVK.sikka('wink'),1470,620,1.3)+`<div class="abs" style="left:0;right:0;top:500px;text-align:center;opacity:${fade(ts,1.5)}"><span class="pill" style="background:#ffb020;color:#2b1d3a;font-size:48px">Next Big Adventure: ${b.next}</span></div><div class="abs" style="left:610px;top:620px;width:700px;opacity:${fade(ts,2)}">${kidsLogo({w:700})}</div>`}),
+};
+window.BIG=function(spec){let t=0;const scenes=[],sfx=[],stars=[];
+ spec.beats.forEach(b=>{const X=B[b.k](b);scenes.push({t0:t,t1:t+X.dur,draw:X.draw,k:b.k});X.sfx.forEach(([a,k])=>sfx.push([+(t+a).toFixed(2),k]));(X.stars||[]).forEach(a=>stars.push(t+a));t+=X.dur;});
+ window.EP={no:spec.no,title:spec.title,scenes,sfx,stars,duration:+t.toFixed(2),outro:+(t-4).toFixed(2),spec};};
+window.render=function(t){const ep=window.EP;const sc=ep.scenes.find(s=>t>=s.t0&&t<s.t1)||ep.scenes[ep.scenes.length-1];let h=sc.draw(t-sc.t0,t);
+ // HUD: logo, episode chip, star collector, copyright
+ const got=ep.stars.filter(x=>t>=x).length,tot=ep.stars.length;
+ if(sc.k!=='theme'&&sc.k!=='lesson'){h+=`<div class="abs" style="left:24px;top:20px;width:220px">${kidsLogo({w:220})}</div>`;
+  h+=`<div class="abs" style="right:24px;top:24px;background:rgba(255,255,255,.92);border-radius:40px;padding:6px 18px;font-size:40px">${Array.from({length:tot},(_,i)=>`<span style="opacity:${i<got?1:.22}">⭐</span>`).join('')}</div>`;}
+ h+=`<div class="abs" style="right:26px;bottom:16px;font-size:26px;font-weight:600;color:rgba(59,31,143,.6)">© MoneyViel Kids</div>`;
+ S.innerHTML=h;};
+window.pop=pop;
+</script></body></html>
