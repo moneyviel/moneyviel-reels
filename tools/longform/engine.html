@@ -1,0 +1,74 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(Poppins-Regular.ttf);font-weight:400}
+@font-face{font-family:P;src:url(Poppins-Medium.ttf);font-weight:500}
+@font-face{font-family:P;src:url(Poppins-Bold.ttf);font-weight:700}
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;font-family:P;color:#fff}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:#1B1640}
+.abs{position:absolute}
+.pill{display:inline-block;border-radius:999px;padding:8px 26px;font-weight:700;font-size:26px;letter-spacing:2px}
+.card{position:absolute;background:#fff;color:#1B1640;border-radius:36px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.h1{font-weight:700;line-height:1.12}
+.mut{color:#CFC8F2}
+.mag{color:#ff5fa8}.gold{color:#FFB020}.teal{color:#2fd3b5}.vio{color:#9b86ff}
+.row{display:flex;justify-content:space-between;align-items:center;padding:18px 34px;border-bottom:2px solid #eee9ff;font-size:38px}
+.row b{font-weight:700}
+</style></head><body><div id="stage"></div>
+<script>
+const S=document.getElementById('stage');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=t=>{t=clamp(t);return 1-Math.pow(1-t,3)};
+const pop=t=>{t=clamp(t);return t<.6?ease(t/.6)*1.06:1.06-.06*ease((t-.6)/.4)};
+const inr=n=>{n=Math.round(n);const s=String(Math.abs(n));const l3=s.slice(-3),r=s.slice(0,-3);return (n<0?'−':'')+'₹'+(r?r.replace(/\B(?=(\d{2})+(?!\d))/g,',')+','+l3:l3)};
+const fade=(ts,a,d=.5)=>clamp((ts-a)/d);
+const up=(ts,a)=>`opacity:${fade(ts,a)};transform:translateY(${(1-ease((ts-a)/.5))*30}px)`;
+function ring(ts,a,n,x,y,r=120){if(ts<a||ts>=a+n)return'';const left=n-(ts-a),num=Math.ceil(left),f=1-left/n,C=2*Math.PI*r;
+ return `<svg class="abs" style="left:${x-r-24}px;top:${y-r-24}px" width="${2*r+48}" height="${2*r+48}"><circle cx="${r+24}" cy="${r+24}" r="${r}" fill="#2a2360" stroke="#3b3380" stroke-width="22"/><circle cx="${r+24}" cy="${r+24}" r="${r}" fill="none" stroke="#ff5fa8" stroke-width="22" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*f}" transform="rotate(-90 ${r+24} ${r+24})"/><text x="${r+24}" y="${r+24+40}" text-anchor="middle" font-family="P" font-weight="700" font-size="${r}" fill="#fff">${num}</text></svg>`;}
+function bg(t){let s=`<div class="abs" style="inset:0;background:radial-gradient(1200px 700px at ${20+Math.sin(t/9)*8}% 10%,#3a2a8a 0%,transparent 60%),radial-gradient(1000px 700px at ${85+Math.cos(t/11)*6}% 95%,#6a1f63 0%,transparent 60%),#1B1640"></div>`;return s;}
+function chrome(t,V,sc){const ch=V.chapters;let pills='';ch.forEach((c,i)=>{const on=i===sc.ch;pills+=`<span class="pill" style="font-size:20px;letter-spacing:0;padding:6px 18px;margin-left:10px;background:${on?'linear-gradient(90deg,#5B3FD6,#E0408F)':'rgba(255,255,255,.08)'};color:${on?'#fff':'#a59fd0'}">${c}</span>`});
+ return `<img class="abs" src="logo_light.png" style="left:44px;top:30px;height:62px"><div class="abs" style="right:40px;top:40px">${pills}</div>`+
+ `<div class="abs" style="left:0;right:0;bottom:22px;text-align:center;font-size:21px;color:#8f88bf">For education only · Example numbers, yours will differ · Not financial advice</div>`+
+ `<div class="abs" style="left:0;bottom:0;height:8px;width:${1920*t/V.duration}px;background:linear-gradient(90deg,#5B3FD6,#E0408F)"></div>`;}
+// ---------- scene types ----------
+const T={
+ title:(s)=>(ts)=>`<div class="abs" style="left:140px;right:140px;top:300px;text-align:center;${up(ts,.1)}"><span class="pill" style="background:#FFB020;color:#1B1640">${s.kicker}</span></div>
+  <div class="abs h1" style="left:120px;right:120px;top:400px;text-align:center;font-size:96px;transform:scale(${pop((ts-.4)/.6)});opacity:${fade(ts,.4)}">${s.title}</div>
+  <div class="abs mut" style="left:200px;right:200px;top:${s.title.includes('<br>')?660:580}px;text-align:center;font-size:40px;${up(ts,1.4)}">${s.sub}</div>`,
+ big:(s)=>(ts)=>`<div class="abs h1" style="left:140px;right:140px;top:${s.sub?330:400}px;text-align:center;font-size:${s.size||88}px;${up(ts,.1)}">${s.text}</div>`+(s.sub?`<div class="abs mut" style="left:220px;right:220px;top:${s.subTop||640}px;text-align:center;font-size:42px;line-height:1.4;${up(ts,1.2)}">${s.sub}</div>`:''),
+ say:(s)=>(ts)=>`<div class="abs" style="left:170px;top:300px;width:300px;height:300px;border-radius:50%;background:linear-gradient(135deg,#5B3FD6,#E0408F);display:flex;align-items:center;justify-content:center;font-size:170px;transform:scale(${pop(ts/.6)})">${s.emoji}</div>
+  <div class="abs" style="left:170px;top:630px;width:300px;text-align:center;font-size:40px;font-weight:700">${s.name}</div><div class="abs mut" style="left:170px;top:690px;width:300px;text-align:center;font-size:26px">(example character)</div>
+  <div class="card" style="left:560px;right:150px;top:${s.top||300}px;padding:50px 60px;font-size:46px;line-height:1.38;${up(ts,.4)}">${s.lines.map((l,i)=>`<div style="opacity:${fade(ts,.6+i*(s.gap||2.2))}">${l}</div>`).join('')}</div>`,
+ table:(s)=>(ts)=>{const n=s.rows.length,step=s.step||1.1;let rows=s.rows.map(([l,v,c],i)=>{const a=1+i*step;return `<div class="row" style="opacity:${fade(ts,a)}"><span>${l}</span><b style="color:${c||'#1B1640'}">${v<0?'−':''}${inr(Math.abs(v)*ease((ts-a)/.8))}</b></div>`}).join('');
+   const ta=1+n*step+.4;const tot=s.total?`<div class="row" style="border:0;background:${s.total[2]||'#f3efff'};font-size:44px;opacity:${fade(ts,ta)}"><b>${s.total[0]}</b><b style="color:${s.total[3]||'#5B3FD6'}">${inr(s.total[1]*ease((ts-ta)/1))}</b></div>`:'';
+   return `<div class="abs h1" style="left:0;right:0;top:150px;text-align:center;font-size:58px;${up(ts,.1)}">${s.title}</div><div class="card" style="left:360px;right:360px;top:260px;overflow:hidden;${up(ts,.3)}">${rows}${tot}</div>`+(s.note?`<div class="abs mut" style="left:0;right:0;top:${300+(n+(s.total?1:0))*84+40}px;text-align:center;font-size:36px;${up(ts,ta+1)}">${s.note}</div>`:'')},
+ pause:(s)=>(ts)=>{const th=s.think||5,A=1.6+th;let h=`<div class="abs" style="left:0;right:0;top:150px;text-align:center;${up(ts,0)}"><span class="pill" style="background:#ff5fa8;color:#fff;font-size:34px">✋ PAUSE &amp; THINK</span></div>
+   <div class="abs h1" style="left:180px;right:180px;top:250px;text-align:center;font-size:${s.qsize||64}px;${up(ts,.4)}">${s.q}</div>`;
+   const qy=s.ay||560;
+   if(ts<A) h+=ring(ts,1.6,th,960,qy+160)+`<div class="abs mut" style="left:0;right:0;top:${qy+330}px;text-align:center;font-size:36px;opacity:${fade(ts,1.6)}">Say your answer out loud (or type it in the comments!)</div>`;
+   else h+=`<div class="abs h1 gold" style="left:100px;right:100px;top:${qy}px;text-align:center;font-size:${s.asize||104}px;transform:scale(${pop((ts-A)/.6)})">${s.answer}</div><div class="abs" style="left:200px;right:200px;top:${qy+(s.asize||104)*1.25+30}px;text-align:center;font-size:42px;line-height:1.4;${up(ts,A+.8)}">${s.work}</div>`;
+   return h;},
+ step:(s)=>(ts)=>`<div class="abs" style="left:150px;top:260px;width:330px;height:330px;border-radius:60px;background:linear-gradient(135deg,#5B3FD6,#E0408F);text-align:center;transform:scale(${pop(ts/.6)})"><div style="font-size:40px;font-weight:700;margin-top:52px;letter-spacing:4px">${s.label||'STEP'}</div><div style="font-size:170px;font-weight:700;line-height:1">${s.n}</div></div>
+  <div class="abs h1" style="left:560px;right:120px;top:250px;font-size:72px;${up(ts,.4)}">${s.title}</div>
+  <div class="abs" style="left:560px;right:140px;top:${s.title.length>28?470:380}px;font-size:42px;line-height:1.4">${s.lines.map((l,i)=>`<div style="margin-bottom:22px;display:flex;gap:22px;${up(ts,1.4+i*(s.gap||2.4))}"><span class="gold">●</span><span>${l}</span></div>`).join('')}</div>`,
+ bars:(s)=>(ts)=>{const mx=Math.max(...s.items.map(i=>i[1]))||1;return `<div class="abs h1" style="left:0;right:0;top:160px;text-align:center;font-size:58px;${up(ts,.1)}">${s.title}</div>`+s.items.map(([l,v,c],i)=>{const a=1+i*(s.gap||1.2),w=1000*v/mx*ease((ts-a)/1.2);return `<div class="abs" style="left:160px;top:${310+i*(s.rowh||150)}px;width:420px;font-size:36px;line-height:1.2;opacity:${fade(ts,a)}">${l}</div><div class="abs" style="left:600px;top:${318+i*(s.rowh||150)}px;height:70px;width:${Math.max(w,6)}px;border-radius:20px;background:${c};opacity:${fade(ts,a)}"></div><div class="abs" style="left:${620+Math.max(w,6)}px;top:${322+i*(s.rowh||150)}px;font-size:46px;font-weight:700;opacity:${fade(ts,a)}">${inr(v*ease((ts-a)/1.2))}${s.suffix||''}</div>`}).join('')+(s.note?`<div class="abs mut" style="left:0;right:0;top:${330+s.items.length*(s.rowh||150)}px;text-align:center;font-size:36px;${up(ts,1+s.items.length*(s.gap||1.2)+.8)}">${s.note}</div>`:'')},
+ check:(s)=>(ts)=>`<div class="abs h1" style="left:0;right:0;top:140px;text-align:center;font-size:60px;${up(ts,.1)}">${s.title}</div><div class="card" style="left:300px;right:300px;top:250px;padding:30px 60px;${up(ts,.3)}">${s.items.map((it,i)=>{const a=1+i*(s.gap||1.6);const on=ts>a+.5;return `<div style="display:flex;align-items:center;gap:26px;font-size:${s.fs||38}px;padding:12px 0;opacity:${fade(ts,a)}"><span style="width:56px;height:56px;border-radius:16px;flex:none;display:flex;align-items:center;justify-content:center;background:${on?'#2fd3b5':'#eee9ff'};color:#fff;font-size:40px;font-weight:700">${on?'✓':''}</span><span>${it}</span></div>`}).join('')}</div>`,
+ leak:(s)=>(ts)=>{const A=4,th=5,R=A+1+th;let h=`<div class="abs" style="left:140px;top:170px;width:240px;height:240px;border-radius:50%;background:linear-gradient(135deg,#5B3FD6,#E0408F);display:flex;align-items:center;justify-content:center;font-size:130px;transform:scale(${pop(ts/.6)})">${s.emoji}</div>
+   <div class="abs" style="left:440px;top:175px;${up(ts,.2)}"><span class="pill" style="background:#FFB020;color:#1B1640">LEAK ${s.n} of 8</span></div>
+   <div class="abs h1" style="left:440px;right:120px;top:250px;font-size:66px;${up(ts,.5)}">${s.name}</div>
+   <div class="abs mut" style="left:440px;right:120px;top:${s.name.length>34?420:340}px;font-size:42px;${up(ts,1.5)}">${s.how}</div>`;
+   if(ts>=A&&ts<R) h+=`<div class="abs h1 mag" style="left:0;right:0;top:520px;text-align:center;font-size:56px;opacity:${fade(ts,A)}">Guess the YEARLY cost! 🤔</div>`+ring(ts,A+1,th,960,770,110);
+   if(ts>=R){const cols=[['Per month',s.year/12],['Per year',s.year],['In 10 years*',s.year*10]];h+=cols.map(([l,v],i)=>{const a=R+i*.8;return `<div class="card" style="left:${190+i*530}px;top:520px;width:480px;height:230px;text-align:center;opacity:${fade(ts,a)};transform:scale(${pop((ts-a)/.6)})"><div style="font-size:34px;color:#6B6488;margin-top:34px">${l}</div><div style="font-size:${i==1?76:64}px;font-weight:700;color:${i==1?'#E0408F':'#1B1640'};margin-top:10px">${i==0?'≈ ':''}${inr(v*ease((ts-a)/1))}</div></div>`}).join('')+
+     `<div class="abs mut" style="left:0;right:0;top:770px;text-align:center;font-size:26px;opacity:${fade(ts,R+2)}">*just adding it up: no growth, no price rises</div>`+
+     `<div class="abs" style="left:190px;right:190px;top:840px;font-size:42px;display:flex;gap:20px;${up(ts,R+3)}"><span class="pill" style="background:#2fd3b5;color:#1B1640;flex:none;align-self:flex-start;margin-top:4px">FIX</span><span>${s.fix}</span></div>`;}
+   return h;},
+ score:(s)=>(ts)=>`<div class="abs h1" style="left:0;right:0;top:160px;text-align:center;font-size:62px;${up(ts,.1)}">${s.title}</div>`+s.items.map(([r,l,c],i)=>`<div class="card" style="left:${170+i*540}px;top:330px;width:500px;height:420px;text-align:center;opacity:${fade(ts,1+i*1.2)};transform:scale(${pop((ts-1-i*1.2)/.6)})"><div style="font-size:96px;font-weight:700;color:${c};margin-top:50px">${r}</div><div style="font-size:30px;color:#6B6488">leaks</div><div style="font-size:46px;font-weight:700;margin:30px 30px 0;line-height:1.25">${l}</div></div>`).join('')+(s.note?`<div class="abs mut" style="left:0;right:0;top:810px;text-align:center;font-size:38px;${up(ts,5)}">${s.note}</div>`:''),
+ cta:(s)=>(ts)=>`<div class="abs h1" style="left:0;right:0;top:150px;text-align:center;font-size:66px;${up(ts,.1)}">${s.title}</div>`+s.tools.map(([e,n,d],i)=>`<div class="card" style="left:${260+i*720}px;top:290px;width:680px;height:410px;padding:36px 40px;box-sizing:border-box;opacity:${fade(ts,1+i*1)};transform:scale(${pop((ts-1-i)/.6)})"><div style="font-size:90px">${e}</div><div style="font-size:42px;font-weight:700;margin-top:6px;line-height:1.15">${n}</div><div style="font-size:30px;color:#6B6488;margin-top:10px;line-height:1.35">${d}</div></div>`).join('')+`<div class="abs" style="left:0;right:0;top:740px;text-align:center;font-size:44px;font-weight:700;${up(ts,3.2)}">Free at <span class="gold">moneyviel.com</span> · link in the description</div><div class="abs mag h1" style="left:0;right:0;top:820px;text-align:center;font-size:46px;${up(ts,5)}">${s.ask}</div>`,
+ end:(s)=>(ts)=>`<img class="abs" src="logo_light.png" style="left:${960-372}px;top:300px;width:744px;transform:scale(${pop(ts/.8)})"><div class="abs h1" style="left:0;right:0;top:560px;text-align:center;font-size:56px;${up(ts,1)}">${s.text}</div><div class="abs mut" style="left:0;right:0;top:660px;text-align:center;font-size:40px;${up(ts,2)}">${s.sub}</div>`,
+};
+window.LONG=function(V){let t=0;V.scenes=V.scenes.map(s=>{const sc={...s,t0:t,t1:t+s.dur,draw:T[s.type](s)};t+=s.dur;return sc;});V.duration=t;
+ V.sfx=[];V.scenes.forEach(s=>{V.sfx.push([+(s.t0+.15).toFixed(2),'slide']);if(s.type==='pause'){const th=s.think||5;for(let i=0;i<th;i++)V.sfx.push([+(s.t0+1.6+i).toFixed(2),'slide']);V.sfx.push([+(s.t0+1.6+th).toFixed(2),'good'])}
+  if(s.type==='leak'){for(let i=0;i<5;i++)V.sfx.push([+(s.t0+5+i).toFixed(2),'slide']);V.sfx.push([+(s.t0+10).toFixed(2),'good'])}
+  if(s.type==='check')s.items.forEach((_,i)=>V.sfx.push([+(s.t0+1.5+i*(s.gap||1.6)).toFixed(2),'good']));});
+ V.chapterTimes=[];V.scenes.forEach(s=>{if(V.chapterTimes[s.ch]===undefined)V.chapterTimes[s.ch]=s.t0});window.V=V;};
+window.render=function(t){const V=window.V;const sc=V.scenes.find(s=>t>=s.t0&&t<s.t1)||V.scenes[V.scenes.length-1];S.innerHTML=bg(t)+sc.draw(t-sc.t0)+chrome(t,V,sc);};
+window.inr=inr;
+</script></body></html>
