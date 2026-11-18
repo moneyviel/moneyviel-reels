@@ -22,7 +22,7 @@ window.EP={no:1,title:"Piggu's Kite Dream",bg:sky,
    if(ov){s+=`<div class="abs" style="left:0;right:0;top:0;bottom:0;background:rgba(43,29,58,.55)"></div>`+big('🍬 Day 3: Candy for ₹10!',400,80,ts,2.7,h,'#fff').replace('color:#fff','color:#2b1d3a')+big('Need or want?<br>You decide!',620,96,ts,3.2,h,'#ffc533')+(ts>5?big('WANT! Piggu waits 💪',1100,86,ts,5,h,'#7ce08a'):'');}
    return s;}},
  {t0:31,t1:37,draw:(ts,t,h)=>confetti(ts)+kite(560,330+bob(ts,25,1),1.4,Math.sin(ts*3)*10)+P('happy',120,1080+bob(ts,20,3),2.6)+K('wink',690,1320+bob(ts+.3,20,3),1.6)+big('Day 6: KITE TIME! 🪁',1650,92,ts,0.3,h,'#3b1f8f')},
- {t0:37,t1:43,draw:(ts,t,h)=>big('Small coins<br>+ patience<br>= BIG dreams! ⭐',300,104,ts,0,h,'#e0408f')+K('wow',380,1000,1.6)+`<div class="tag" style="top:1450px;opacity:${ts>2?1:0}">Next time: Sikka finds a mystery coin! 🔍</div>`+big('MoneyViel Kids',1620,70,ts,2.5,h,'#3b1f8f')},
+ {t0:37,t1:43,draw:(ts,t,h)=>big('Small coins<br>+ patience<br>= BIG dreams! ⭐',300,104,ts,0,h,'#e0408f')+K('wow',380,1000,1.6)+`<div class="tag" style="top:1450px;opacity:${ts>2?1:0}">Next time: Sikka finds a mystery coin! 🔍</div>`+`<div class="abs" style="left:240px;top:1560px;width:600px;opacity:${ts>2.5?1:0}">${kidsLogo({w:600})}</div>`},
  ]};
 window.EP.duration=43;
 window.EP.sfx=[[0.2,'level'],[4.5,'slide'],[10.4,'good'],[15.1,'slide'],[17.2,'slide'],[18.2,'slide'],[19.2,'slide'],[20.2,'good'],[22.1,'good'],[23.3,'good'],[24.5,'good'],[24.7,'bad'],[28.5,'good'],[29.7,'good'],[30.9,'good'],[31.1,'level'],[37.1,'good']];
