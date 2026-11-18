@@ -32,7 +32,7 @@ html{zoom:2}html,body{margin:0;width:540px;height:960px;overflow:hidden;font-fam
 <div id="bars">${slides.map(()=>'<i><b></b></i>').join('')}</div>
 <div id="brand">moneyviel<small>EMPOWERING PROSPERITY</small></div>
 ${slides.map((s,i)=>`<div class="sl ${s.hook?'hook':''} ${s.cta?'cta':''}" id="s${i}">${s.hook?`<div class="label">${esc(s.sub)}</div>`:''}<div class="em">${s.emoji||''}</div><div class="tx">${esc(s.text).split(' ').map((w,j)=>`<w style="animation-delay:${(j*0.06).toFixed(2)}s">${w}</w>`).join(' ')}</div>${s.cta?`<div class="pill">moneyviel.com</div>`:''}${!s.hook&&s.sub?`<div class="sb">${esc(s.sub)}</div>`:''}</div>`).join('')}
-<div id="foot">moneyviel.com</div></body>`;
+<div id="foot">© MoneyViel · moneyviel.com</div></body>`;
 fs.writeFileSync('/tmp/story_page.html',html);
 (async()=>{fs.rmSync(outDir,{recursive:true,force:true});
 const b=await chromium.launch();const ctx=await b.newContext({viewport:{width:1080,height:1920},recordVideo:{dir:outDir,size:{width:1080,height:1920}}});

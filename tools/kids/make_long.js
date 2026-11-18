@@ -19,7 +19,7 @@ const { chromium } = require('playwright'); const { execSync } = require('child_
     const [f, no, ...tt] = eps[i].split(':'); const t = tt.join(':');
     const logo = await p.evaluate(() => kidsLogo({ w: 520 }));
     await card(`${tmp}/bg${i}.png`, bg + `<div class="abs" style="left:60px;top:380px;width:520px">${logo}</div>` +
-      `<div class="abs" style="left:1340px;top:330px;width:520px;text-align:center"><div style="display:inline-block;background:#3b1f8f;color:#fff;border-radius:50px;padding:12px 40px;font-size:56px;font-weight:700">Episode ${no}</div><div style="margin-top:40px;font-size:68px;font-weight:700;color:#e0408f;line-height:1.15">${esc(t)}</div></div>`);
+      `<div class="abs" style="left:1340px;top:330px;width:520px;text-align:center"><div style="display:inline-block;background:#3b1f8f;color:#fff;border-radius:50px;padding:12px 40px;font-size:56px;font-weight:700">Episode ${no}</div><div style="margin-top:40px;font-size:68px;font-weight:700;color:#e0408f;line-height:1.15">${esc(t)}</div></div><div class="abs" style="left:60px;bottom:30px;font-size:30px;font-weight:600;color:rgba(59,31,143,.6)">© MoneyViel Kids</div>`);
     execSync(`ffmpeg -y -loglevel error -loop 1 -i ${tmp}/bg${i}.png -i ${path.resolve(f)} -filter_complex "[1:v]scale=-2:1080[v];[0:v][v]overlay=(W-w)/2:0:shortest=1,fps=30,format=yuv420p[o]" -map "[o]" -map 1:a -c:v libx264 -preset veryfast -crf 20 -c:a aac -b:a 192k -ar 44100 -ac 2 ${tmp}/s${i + 1}.mp4`);
     segs.push(`${tmp}/s${i + 1}.mp4`);
   }

@@ -26,7 +26,7 @@ function ring(ts,a,n,x,y,r=120){if(ts<a||ts>=a+n)return'';const left=n-(ts-a),nu
 function bg(t){let s=`<div class="abs" style="inset:0;background:radial-gradient(1200px 700px at ${20+Math.sin(t/9)*8}% 10%,#3a2a8a 0%,transparent 60%),radial-gradient(1000px 700px at ${85+Math.cos(t/11)*6}% 95%,#6a1f63 0%,transparent 60%),#1B1640"></div>`;return s;}
 function chrome(t,V,sc){const ch=V.chapters;let pills='';ch.forEach((c,i)=>{const on=i===sc.ch;pills+=`<span class="pill" style="font-size:20px;letter-spacing:0;padding:6px 18px;margin-left:10px;background:${on?'linear-gradient(90deg,#5B3FD6,#E0408F)':'rgba(255,255,255,.08)'};color:${on?'#fff':'#a59fd0'}">${c}</span>`});
  return `<img class="abs" src="logo_light.png" style="left:44px;top:30px;height:62px"><div class="abs" style="right:40px;top:40px">${pills}</div>`+
- `<div class="abs" style="left:0;right:0;bottom:22px;text-align:center;font-size:21px;color:#8f88bf">For education only · Example numbers, yours will differ · Not financial advice</div>`+
+ `<div class="abs" style="left:0;right:0;bottom:22px;text-align:center;font-size:21px;color:#8f88bf">© MoneyViel · For education only · Example numbers, yours will differ · Not financial advice</div>`+
  `<div class="abs" style="left:0;bottom:0;height:8px;width:${1920*t/V.duration}px;background:linear-gradient(90deg,#5B3FD6,#E0408F)"></div>`;}
 // ---------- scene types ----------
 const T={

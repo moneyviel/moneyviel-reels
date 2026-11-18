@@ -33,6 +33,7 @@ function render(t){const ep=window.EP;let h='';
   h+=`<svg class="abs" width="1080" height="1920" viewBox="0 0 1080 1920" style="left:0;top:0">${(ep.decor||(()=>''))(t)}</svg>`;
   h+=sc.draw(t-sc.t0,t,{pop,ease,clamp});
   // persistent brand corner + episode label
+  h+=`<div class="abs" style="right:26px;bottom:22px;font-size:26px;font-weight:600;color:rgba(59,31,143,.55)">© MoneyViel Kids</div>`;
   h+=`<div class="abs" style="left:28px;top:40px;width:250px">${kidsLogo({w:250})}</div><div class="abs" style="left:300px;top:118px;background:#3b1f8f;color:#fff;border-radius:30px;padding:6px 22px;font-size:34px;font-weight:700">Ep ${ep.no}</div>`;
   S.innerHTML=h;}
 window.render=render;window.pop=pop;
