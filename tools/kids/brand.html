@@ -1,0 +1,21 @@
+<html><head><style>@font-face{font-family:F;src:url(Fredoka.ttf)}body{margin:0}</style><script src="characters.js"></script></head><body>
+<div id="av" style="width:800px;height:800px;background:radial-gradient(circle at 50% 40%,#7fd3ff,#5b3fd6);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+ <svg width="800" height="800" viewBox="0 0 800 800" style="position:absolute;left:0;top:0">
+  <g transform="translate(150,170) scale(2.4)" id="pg"></g>
+  <g transform="translate(470,470) scale(1.15)" id="sk"></g>
+ </svg></div>
+<div id="bn" style="width:2560px;height:1440px;position:relative;overflow:hidden;background:linear-gradient(180deg,#8fdcff 0%,#c9b6ff 55%,#ffd1e6 100%);font-family:F">
+ <svg width="2560" height="1440" viewBox="0 0 2560 1440" style="position:absolute;left:0;top:0" id="bsv"></svg>
+ <div style="position:absolute;left:0;right:0;top:560px;text-align:center">
+  <div style="font-size:118px;font-weight:700;color:#3b1f8f;letter-spacing:2px;text-shadow:0 6px 0 #fff">MoneyViel <span style="color:#e0408f">Kids</span></div>
+  <div style="font-size:48px;font-weight:600;color:#3b1f8f;margin-top:8px">Fun money stories with Piggu &amp; Sikka</div>
+  <div style="display:inline-block;margin-top:22px;background:#ffb020;color:#2b1d3a;font-size:40px;font-weight:700;padding:8px 34px;border-radius:60px">⭐ New episode every day!</div>
+ </div></div>
+<script>
+document.getElementById('pg').innerHTML=MVK.piggu('happy');document.getElementById('sk').innerHTML=MVK.sikka('wink');
+let s='';const cloud=(x,y,k)=>`<g transform="translate(${x},${y}) scale(${k})" fill="#fff" opacity=".85"><circle cx="0" cy="0" r="50"/><circle cx="55" cy="-20" r="65"/><circle cx="120" cy="0" r="50"/><rect x="0" y="0" width="120" height="50"/></g>`;
+s+=cloud(120,160,1.3)+cloud(2150,200,1.5)+cloud(900,120,0.9)+cloud(1650,1250,1.2)+cloud(200,1250,1.1);
+for(let i=0;i<14;i++){const x=150+Math.random()*2260,y=80+Math.random()*1280;if(x>480&&x<2080&&y>480&&y<960)continue;s+=`<g transform="translate(${x},${y})"><circle r="24" fill="#ffc533" stroke="#e39b00" stroke-width="6"/><text y="11" text-anchor="middle" font-size="30" font-weight="700" fill="#b06f00" font-family="F">₹</text></g>`;}
+s+=`<g transform="translate(530,575) scale(1.25)">${MVK.piggu('happy')}</g><g transform="translate(1790,595) scale(1.15)">${MVK.sikka('wow')}</g>`;
+document.getElementById('bsv').innerHTML=s;
+</script></body></html>
