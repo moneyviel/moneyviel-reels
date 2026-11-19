@@ -1,19 +1,50 @@
 /**
- * MoneyViel: check each purchase with Razorpay before showing downloads.
+ * MoneyViel Shop: catalogue, on-site Razorpay checkout, payment checks and signed downloads.
  *
- * - Download pages only show the files after Razorpay confirms a real, captured
- *   payment of the right amount (payment ID from the redirect, or typed in by the buyer).
- * - Files are served through short-lived signed links, so the real file addresses
- *   are never shown.
+ * - Products live in mv_shop_catalogue(). Prices are in paise.
+ * - Buy buttons (class "mv-buy", data-product="slug") open Razorpay Checkout with a server-created order.
+ *   After payment the signature is checked on the server, then the buyer goes to /my-downloads/ with a signed token.
+ * - /my-downloads/ also accepts a Razorpay payment ID (pay_...) for re-downloads: 30 days, up to 15 visits.
+ * - Old Razorpay Payment Pages (Starter Kit, Saving Challenge) keep working through their download pages.
+ * - Files are served through 24-hour signed links; real file addresses are never shown.
  * - API keys are pasted by the owner in Settings > MoneyViel Shop (never stored in code).
  */
 
-function mv_pay_products() {
-	// Download page ID => product.
-	return array(
-		2361 => array( 'name' => 'Money Club Starter Kit', 'amount' => 14900, 'files' => array( 'a4' => 2357, 'letter' => 2358 ) ),
-		2362 => array( 'name' => '30-Day Saving Challenge', 'amount' => 9900, 'files' => array( 'a4' => 2355, 'letter' => 2356 ) ),
+function mv_shop_catalogue() {
+	$kids_files = array(
+		array( 'Starter Kit (A4)', 2357 ), array( 'Starter Kit (US Letter)', 2358 ),
+		array( 'Saving Challenge (A4)', 2355 ), array( 'Saving Challenge (US Letter)', 2356 ),
+		array( 'Money Detective (A4)', 2395 ), array( 'Money Detective (US Letter)', 2396 ),
+		array( 'Bank Book (A4)', 2397 ), array( 'Bank Book (US Letter)', 2398 ),
+		array( 'MoneyViel Mart (A4)', 2399 ), array( 'MoneyViel Mart (US Letter)', 2400 ),
+		array( 'Chore & Earn (A4)', 2401 ), array( 'Chore & Earn (US Letter)', 2402 ),
 	);
+	return array(
+		'starter-kit'           => array( 'name' => 'Money Club Starter Kit', 'price' => 14900, 'legacy' => true, 'files' => array( array( 'A4 PDF', 2357 ), array( 'US Letter PDF', 2358 ) ) ),
+		'saving-challenge'      => array( 'name' => '30-Day Saving Challenge', 'price' => 9900, 'legacy' => true, 'files' => array( array( 'A4 PDF', 2355 ), array( 'US Letter PDF', 2356 ) ) ),
+		'money-detective'       => array( 'name' => 'Money Detective Escape Game', 'price' => 14900, 'files' => array( array( 'A4 PDF', 2395 ), array( 'US Letter PDF', 2396 ) ) ),
+		'bank-book'             => array( 'name' => "Pip's Pocket-Money Bank Book", 'price' => 9900, 'files' => array( array( 'A4 PDF', 2397 ), array( 'US Letter PDF', 2398 ) ) ),
+		'moneyviel-mart'        => array( 'name' => 'MoneyViel Mart Pretend Shop', 'price' => 12900, 'files' => array( array( 'A4 PDF', 2399 ), array( 'US Letter PDF', 2400 ) ) ),
+		'chore-earn'            => array( 'name' => 'Chore & Earn Board', 'price' => 9900, 'files' => array( array( 'A4 PDF', 2401 ), array( 'US Letter PDF', 2402 ) ) ),
+		'kids-bundle'           => array( 'name' => 'Family Bundle: all 6 MoneyViel Kids kits', 'price' => 39900, 'files' => $kids_files ),
+		'emergency-organiser'   => array( 'name' => 'Family Emergency & Legacy Organiser', 'price' => 29900, 'files' => array( array( 'Printable PDF (A4)', 2403 ), array( 'Printable PDF (US Letter)', 2404 ), array( 'Excel / Google Sheets version', 2407 ) ) ),
+		'money-date-night'      => array( 'name' => 'Money Date Night Cards', 'price' => 19900, 'files' => array( array( 'A4 PDF', 2405 ), array( 'US Letter PDF', 2406 ) ) ),
+		'money-command-centre'  => array( 'name' => 'Money Command Centre', 'price' => 39900, 'files' => array( array( 'Excel / Google Sheets file', 2408 ) ) ),
+		'wedding-event-planner' => array( 'name' => 'Wedding & Big-Event Planner', 'price' => 24900, 'files' => array( array( 'Excel / Google Sheets file', 2409 ) ) ),
+	);
+}
+/** Old download pages (from the Razorpay Payment Pages) => product slug. */
+function mv_pay_legacy_pages() {
+	return array( 2361 => 'starter-kit', 2362 => 'saving-challenge' );
+}
+function mv_shop_all_files() {
+	$ids = array();
+	foreach ( mv_shop_catalogue() as $p ) {
+		foreach ( $p['files'] as $f ) {
+			$ids[] = (int) $f[1];
+		}
+	}
+	return array_unique( $ids );
 }
 function mv_pay_settings() {
 	$s = get_option( 'mv_shop_keys', array() );
@@ -79,39 +110,58 @@ function mv_pay_settings_page() {
 	echo '</table><p><button class="button button-primary" name="mv_shop_save" value="1">Save</button> <button class="button" name="mv_shop_test" value="1">Check keys</button></p></form></div>';
 }
 
-/* ---------- Payment check ---------- */
-function mv_pay_fetch( $pay_id, $mode ) {
+
+function mv_pay_keys_ready( $mode = 'live' ) {
 	$s = mv_pay_settings();
-	if ( ! $s[ $mode . '_id' ] || ! $s[ $mode . '_secret' ] ) {
+	return ( 'test' === $mode ) ? ( $s['test_id'] && $s['test_secret'] ) : ( $s['live_id'] && $s['live_secret'] );
+}
+function mv_pay_ready() {
+	$s = mv_pay_settings();
+	return mv_pay_keys_ready( 'live' ) || ( $s['allow_test'] && mv_pay_keys_ready( 'test' ) );
+}
+function mv_pay_api( $method, $path, $mode, $body = null ) {
+	$s = mv_pay_settings();
+	if ( ! mv_pay_keys_ready( $mode ) ) {
 		return null;
 	}
-	$r = wp_remote_get( 'https://api.razorpay.com/v1/payments/' . rawurlencode( $pay_id ), array(
+	$args = array(
+		'method'  => $method,
 		'timeout' => 15,
-		'headers' => array( 'Authorization' => 'Basic ' . base64_encode( $s[ $mode . '_id' ] . ':' . $s[ $mode . '_secret' ] ) ),
-	) );
+		'headers' => array( 'Authorization' => 'Basic ' . base64_encode( $s[ $mode . '_id' ] . ':' . $s[ $mode . '_secret' ] ), 'Content-Type' => 'application/json' ),
+	);
+	if ( null !== $body ) {
+		$args['body'] = wp_json_encode( $body );
+	}
+	$r = wp_remote_request( 'https://api.razorpay.com/v1/' . ltrim( $path, '/' ), $args );
 	if ( is_wp_error( $r ) ) {
 		return 'error';
 	}
 	$code = wp_remote_retrieve_response_code( $r );
-	if ( 200 !== $code ) {
-		return ( $code >= 500 ) ? 'error' : null;
+	if ( $code >= 500 ) {
+		return 'error';
+	}
+	if ( $code < 200 || $code > 299 ) {
+		return null;
 	}
 	$j = json_decode( wp_remote_retrieve_body( $r ), true );
 	return is_array( $j ) ? $j : 'error';
 }
-/** Looks a payment up once (live, then test if allowed). Returns array, null (not found) or 'error'. */
-function mv_pay_lookup( $pay_id ) {
+function mv_pay_fetch( $pay_id, $mode ) {
+	return mv_pay_api( 'GET', 'payments/' . rawurlencode( $pay_id ), $mode );
+}
+/** Looks a payment up once (live, then test if allowed). Returns array (status, amount, currency, product, mode), null (not found) or 'error'. */
+function mv_pay_lookup( $pay_id, $force_mode = '' ) {
 	if ( ! preg_match( '/^pay_[A-Za-z0-9]{8,30}$/', $pay_id ) ) {
 		return null;
 	}
-	$cache_key = 'mv_payl_' . md5( $pay_id );
+	$cache_key = 'mv_payl2_' . md5( $pay_id . $force_mode );
 	$cached    = get_transient( $cache_key );
 	if ( false !== $cached ) {
 		return 'none' === $cached ? null : $cached;
 	}
-	$s      = mv_pay_settings();
-	$modes  = array( 'live' );
-	if ( $s['allow_test'] ) {
+	$s     = mv_pay_settings();
+	$modes = $force_mode ? array( $force_mode ) : array( 'live' );
+	if ( ! $force_mode && $s['allow_test'] ) {
 		$modes[] = 'test';
 	}
 	$result = null;
@@ -122,7 +172,16 @@ function mv_pay_lookup( $pay_id ) {
 			continue;
 		}
 		if ( is_array( $p ) ) {
-			$result = array( 'status' => $p['status'] ?? '', 'amount' => (int) ( $p['amount'] ?? 0 ), 'currency' => $p['currency'] ?? '' );
+			$product = '';
+			if ( ! empty( $p['notes']['mv_product'] ) ) {
+				$product = (string) $p['notes']['mv_product'];
+			} elseif ( ! empty( $p['order_id'] ) ) {
+				$o = mv_pay_api( 'GET', 'orders/' . rawurlencode( $p['order_id'] ), $mode );
+				if ( is_array( $o ) && ! empty( $o['notes']['mv_product'] ) ) {
+					$product = (string) $o['notes']['mv_product'];
+				}
+			}
+			$result = array( 'status' => $p['status'] ?? '', 'amount' => (int) ( $p['amount'] ?? 0 ), 'currency' => $p['currency'] ?? '', 'product' => $product, 'mode' => $mode, 'order_id' => $p['order_id'] ?? '' );
 			break;
 		}
 	}
@@ -131,8 +190,25 @@ function mv_pay_lookup( $pay_id ) {
 	}
 	return $result;
 }
-function mv_pay_is_paid_for( $p, $product ) {
-	return is_array( $p ) && 'captured' === $p['status'] && (int) $p['amount'] === (int) $product['amount'] && 'INR' === $p['currency'];
+/** Which catalogue product did this payment buy? Returns slug or ''. */
+function mv_pay_product_for( $p ) {
+	if ( ! is_array( $p ) || 'INR' !== $p['currency'] || ! in_array( $p['status'], array( 'captured', 'authorized' ), true ) ) {
+		return '';
+	}
+	$cat = mv_shop_catalogue();
+	if ( $p['product'] ) {
+		return ( isset( $cat[ $p['product'] ] ) && (int) $cat[ $p['product'] ]['price'] === (int) $p['amount'] ) ? $p['product'] : '';
+	}
+	// Old Razorpay Payment Pages carry no product note: match by price among the legacy products only.
+	if ( 'captured' !== $p['status'] ) {
+		return '';
+	}
+	foreach ( $cat as $slug => $prod ) {
+		if ( ! empty( $prod['legacy'] ) && (int) $prod['price'] === (int) $p['amount'] ) {
+			return $slug;
+		}
+	}
+	return '';
 }
 /** Counts a use of the payment ID: 30 days, up to 15 visits. Returns true if allowed. */
 function mv_pay_count_use( $pay_id ) {
@@ -146,7 +222,7 @@ function mv_pay_count_use( $pay_id ) {
 		return false;
 	}
 	$log[ $pay_id ]['count']++;
-	foreach ( $log as $k => $v ) { // Forget entries older than 60 days.
+	foreach ( $log as $k => $v ) {
 		if ( $now - (int) $v['first'] > 60 * DAY_IN_SECONDS ) {
 			unset( $log[ $k ] );
 		}
@@ -154,35 +230,42 @@ function mv_pay_count_use( $pay_id ) {
 	update_option( 'mv_shop_unlocks', $log, false );
 	return true;
 }
-/** Returns 'ok', 'bad', 'limit' or 'error'. */
-function mv_pay_verify( $pay_id, $product ) {
-	$p = mv_pay_lookup( $pay_id );
-	if ( 'error' === $p ) {
-		return 'error';
-	}
-	if ( ! mv_pay_is_paid_for( $p, $product ) ) {
-		return 'bad';
-	}
-	return mv_pay_count_use( $pay_id ) ? 'ok' : 'limit';
-}
-function mv_pay_rate_ok() {
+function mv_pay_rate_ok( $limit = 20 ) {
 	$ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? md5( (string) $_SERVER['REMOTE_ADDR'] ) : 'x';
 	$key = 'mv_pay_rl_' . $ip;
 	$n   = (int) get_transient( $key );
-	if ( $n >= 20 ) {
+	if ( $n >= $limit ) {
 		return false;
 	}
 	set_transient( $key, $n + 1, HOUR_IN_SECONDS );
 	return true;
 }
 
-/* ---------- Signed download links ---------- */
+/* ---------- Signed download links and access tokens ---------- */
 function mv_pay_sign( $att, $exp ) {
 	return hash_hmac( 'sha256', $att . '|' . $exp, wp_salt( 'auth' ) . 'mv-shop' );
 }
 function mv_pay_link( $att ) {
 	$exp = time() + DAY_IN_SECONDS;
 	return add_query_arg( array( 'mv_dl' => (int) $att, 'e' => $exp, 's' => mv_pay_sign( (int) $att, $exp ) ), home_url( '/' ) );
+}
+function mv_pay_token( $pay_id, $slug ) {
+	$exp = time() + 2 * DAY_IN_SECONDS;
+	$sig = substr( hash_hmac( 'sha256', $pay_id . '|' . $slug . '|' . $exp, wp_salt( 'auth' ) . 'mv-token' ), 0, 32 );
+	return rtrim( strtr( base64_encode( $pay_id . '|' . $slug . '|' . $exp . '|' . $sig ), '+/', '-_' ), '=' );
+}
+function mv_pay_read_token( $t ) {
+	$raw   = base64_decode( strtr( (string) $t, '-_', '+/' ) );
+	$parts = explode( '|', (string) $raw );
+	if ( 4 !== count( $parts ) ) {
+		return null;
+	}
+	list( $pay_id, $slug, $exp, $sig ) = $parts;
+	$good = substr( hash_hmac( 'sha256', $pay_id . '|' . $slug . '|' . $exp, wp_salt( 'auth' ) . 'mv-token' ), 0, 32 );
+	if ( (int) $exp < time() || ! hash_equals( $good, $sig ) ) {
+		return null;
+	}
+	return array( $pay_id, $slug );
 }
 add_action( 'init', function () {
 	if ( empty( $_GET['mv_dl'] ) ) {
@@ -191,27 +274,26 @@ add_action( 'init', function () {
 	$att = (int) $_GET['mv_dl'];
 	$exp = (int) ( $_GET['e'] ?? 0 );
 	$sig = (string) ( $_GET['s'] ?? '' );
-	$ok  = false;
-	foreach ( mv_pay_products() as $p ) {
-		if ( in_array( $att, $p['files'], true ) ) {
-			$ok = true;
-		}
-	}
-	if ( ! $ok || $exp < time() || ! hash_equals( mv_pay_sign( $att, $exp ), $sig ) ) {
+	if ( ! in_array( $att, mv_shop_all_files(), true ) || $exp < time() || ! hash_equals( mv_pay_sign( $att, $exp ), $sig ) ) {
 		status_header( 403 );
 		nocache_headers();
-		wp_die( 'This download link has expired or is not valid. Please go back to your download page, or email support@moneyviel.com with your Razorpay payment ID.', 'Download link expired', array( 'response' => 403 ) );
+		wp_die( 'This download link has expired or is not valid. Please go to moneyviel.com/my-downloads and enter your Razorpay payment ID, or email support@moneyviel.com.', 'Download link expired', array( 'response' => 403 ) );
 	}
 	$file = get_attached_file( $att );
 	if ( ! $file || ! is_readable( $file ) ) {
 		status_header( 404 );
 		exit;
 	}
-	$name = preg_replace( '/-[0-9a-f]{12}(?=\.pdf$)/i', '', basename( $file ) );
-	$name = 'moneyviel-kids-' . $name;
+	$base = basename( $file );
+	$name = preg_replace( '/-[0-9a-f]{12}(?=\.(pdf|xlsx|zip)$)/i', '', $base );
+	$name = preg_replace( '/^mvp-/', '', $name );
+	$name = str_replace( '-xlsx.', '.', $name );
+	$name = 'moneyviel-' . preg_replace( '/^moneyviel-/', '', $name );
+	$ext  = strtolower( pathinfo( $base, PATHINFO_EXTENSION ) );
+	$type = array( 'pdf' => 'application/pdf', 'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'zip' => 'application/zip' );
 	nocache_headers();
 	header( 'X-Robots-Tag: noindex, nofollow', true );
-	header( 'Content-Type: application/pdf' );
+	header( 'Content-Type: ' . ( $type[ $ext ] ?? 'application/octet-stream' ) );
 	header( 'Content-Disposition: attachment; filename="' . $name . '"' );
 	header( 'Content-Length: ' . filesize( $file ) );
 	while ( ob_get_level() ) {
@@ -221,17 +303,32 @@ add_action( 'init', function () {
 	exit;
 }, 1 );
 
-/* ---------- Download page content ---------- */
+/** The download box shown after a successful check. */
+function mv_pay_files_box( $slug ) {
+	$cat = mv_shop_catalogue();
+	$p   = $cat[ $slug ];
+	$out = '<div style="background:linear-gradient(135deg,#fff6dd,#ffe9f0);border-radius:22px;padding:24px 20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:10px 0 18px">';
+	$out .= '<h2 style="margin:0 0 6px">🎉 Your ' . esc_html( $p['name'] ) . '</h2><p style="margin:0 0 12px;font-size:.92em;color:#4b5563">Download links work for 24 hours. Please save your files now. You can come back to My downloads for 30 days.</p><p>';
+	foreach ( $p['files'] as $i => $f ) {
+		$bg   = ( $i % 2 ) ? '#6d28d9' : '#e8457a';
+		$out .= '<a style="display:inline-block;margin:6px;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:' . $bg . '" href="' . esc_url( mv_pay_link( $f[1] ) ) . '">⬇ ' . esc_html( $f[0] ) . '</a>';
+	}
+	$out .= '</p><p style="font-size:.88em;margin:8px 0 0">PDFs: print at 100% / Actual size. Spreadsheets open in Excel, or upload to Google Sheets (File → Import). For personal, family or single-classroom use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.</p></div>';
+	return $out;
+}
+
+/* ---------- Old download pages (Razorpay Payment Pages) ---------- */
 add_filter( 'the_content', function ( $content ) {
 	if ( ! is_singular( 'page' ) || ! in_the_loop() || ! is_main_query() ) {
 		return $content;
 	}
-	$id       = get_the_ID();
-	$products = mv_pay_products();
-	if ( ! isset( $products[ $id ] ) ) {
+	$id     = get_the_ID();
+	$legacy = mv_pay_legacy_pages();
+	if ( ! isset( $legacy[ $id ] ) ) {
 		return $content;
 	}
-	$product = $products[ $id ];
+	$slug    = $legacy[ $id ];
+	$product = mv_shop_catalogue()[ $slug ];
 	$admin   = current_user_can( 'edit_pages' );
 	$pay_id  = '';
 	if ( isset( $_POST['mv_pay_id'] ) ) {
@@ -240,22 +337,31 @@ add_filter( 'the_content', function ( $content ) {
 		$pay_id = trim( sanitize_text_field( wp_unslash( $_GET['razorpay_payment_id'] ) ) );
 	}
 	$state = '';
-	$s     = mv_pay_settings();
-	$ready = ( $s['live_id'] && $s['live_secret'] ) || ( $s['allow_test'] && $s['test_id'] && $s['test_secret'] );
-	if ( ! $ready ) {
-		$state = 'ok'; // Keys not set up yet: keep the shop working as before.
+	if ( ! mv_pay_ready() ) {
+		$state = 'ok';
 	} elseif ( $admin && '' === $pay_id ) {
 		$state = 'ok';
 	} elseif ( '' !== $pay_id ) {
-		$state = mv_pay_rate_ok() ? mv_pay_verify( $pay_id, $product ) : 'busy';
+		if ( ! mv_pay_rate_ok() ) {
+			$state = 'busy';
+		} else {
+			$p = mv_pay_lookup( $pay_id );
+			if ( 'error' === $p ) {
+				$state = 'error';
+			} elseif ( mv_pay_product_for( $p ) !== $slug ) {
+				$state = 'bad';
+			} else {
+				$state = mv_pay_count_use( $pay_id ) ? 'ok' : 'limit';
+			}
+		}
 	}
 	if ( 'ok' === $state ) {
 		$content = str_replace(
 			array( '#mv-a4', '#mv-letter' ),
-			array( esc_url( mv_pay_link( $product['files']['a4'] ) ), esc_url( mv_pay_link( $product['files']['letter'] ) ) ),
+			array( esc_url( mv_pay_link( $product['files'][0][1] ) ), esc_url( mv_pay_link( $product['files'][1][1] ) ) ),
 			$content
 		);
-		if ( $ready && $admin && '' === $pay_id ) {
+		if ( mv_pay_ready() && $admin && '' === $pay_id ) {
 			$content = '<p style="background:#fff3cd;padding:10px 14px;border-radius:10px;font-size:14px">Admin preview: you see the files because you are logged in. Buyers see them only after their payment is checked.</p>' . $content;
 		}
 		return $content;
@@ -267,7 +373,7 @@ add_filter( 'the_content', function ( $content ) {
 		'error' => 'We could not reach our payment provider just now. Please try again in a minute.',
 		'busy'  => 'Too many attempts. Please wait an hour or email support@moneyviel.com.',
 	);
-	$msg = $msgs[ $state ] ?? '';
+	$msg  = $msgs[ $state ] ?? '';
 	$out  = '<div class="mv-dl" style="max-width:640px;margin:0 auto;font-size:17px;line-height:1.6;color:#1f2937">';
 	$out .= '<h1 style="text-align:center;font-size:1.8em;line-height:1.25">🔒 Your ' . esc_html( $product['name'] ) . ' download</h1>';
 	if ( $msg ) {
@@ -275,7 +381,7 @@ add_filter( 'the_content', function ( $content ) {
 	}
 	$out .= '<p>Thank you for your purchase! To open your download page, please enter the <strong>payment ID</strong> from your Razorpay receipt email or payment screen. It starts with <strong>pay_</strong>.</p>';
 	$out .= '<form method="post" action="' . esc_url( get_permalink( $id ) ) . '" style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0">';
-	$out .= '<input type="text" name="mv_pay_id" required pattern="pay_[A-Za-z0-9]+" placeholder="pay_XXXXXXXXXXXXXX" autocomplete="off" style="flex:1;min-width:220px;padding:12px 14px;border:1px solid #d1d5db;border-radius:999px;font-size:16px">';
+	$out .= '<input type="text" name="mv_pay_id" required pattern="pay_[A-Za-z0-9]+" placeholder="pay_XXXXXXXXXXXXXX" autocomplete="off" aria-label="Razorpay payment ID" style="flex:1;min-width:220px;padding:12px 14px;border:1px solid #d1d5db;border-radius:999px;font-size:16px">';
 	$out .= '<button type="submit" style="padding:12px 22px;border:0;border-radius:999px;background:#e8457a;color:#fff;font-weight:700;font-size:16px;cursor:pointer">Show my files</button></form>';
 	$out .= '<p style="font-size:.9em;color:#4b5563">Haven\'t bought this yet? Visit our <a href="https://moneyviel.com/shop/">shop</a>. Need help? Email <a href="mailto:support@moneyviel.com">support@moneyviel.com</a> with your payment ID.</p></div>';
 	return $out;
@@ -283,18 +389,23 @@ add_filter( 'the_content', function ( $content ) {
 
 /* ---------- Public "My downloads" page: [mv_my_downloads] ---------- */
 add_shortcode( 'mv_my_downloads', function () {
-	$s     = mv_pay_settings();
-	$ready = ( $s['live_id'] && $s['live_secret'] ) || ( $s['allow_test'] && $s['test_id'] && $s['test_secret'] );
-	$out   = '<div class="mv-my-dl" style="max-width:640px;margin:0 auto;font-size:17px;line-height:1.6;color:#1f2937">';
+	$out = '<div class="mv-my-dl" style="max-width:640px;margin:0 auto;font-size:17px;line-height:1.6;color:#1f2937">';
+	$msg = '';
+	if ( ! empty( $_GET['mv_t'] ) ) {
+		$tok = mv_pay_read_token( sanitize_text_field( wp_unslash( $_GET['mv_t'] ) ) );
+		if ( $tok && isset( mv_shop_catalogue()[ $tok[1] ] ) ) {
+			return $out . '<p style="background:#e6f6ea;border-radius:12px;padding:12px 16px">✅ Payment successful. Thank you! Your payment ID is <b>' . esc_html( $tok[0] ) . '</b>. Keep it to download again later.</p>' . mv_pay_files_box( $tok[1] ) . '</div>';
+		}
+		$msg = 'This link has expired. Please enter your payment ID below.';
+	}
 	$pay_id = '';
 	if ( isset( $_POST['mv_pay_id'] ) ) {
 		$pay_id = trim( sanitize_text_field( wp_unslash( $_POST['mv_pay_id'] ) ) );
 	} elseif ( isset( $_GET['razorpay_payment_id'] ) ) {
 		$pay_id = trim( sanitize_text_field( wp_unslash( $_GET['razorpay_payment_id'] ) ) );
 	}
-	$msg = '';
 	if ( '' !== $pay_id ) {
-		if ( ! $ready ) {
+		if ( ! mv_pay_ready() ) {
 			$msg = 'Downloads by payment ID are being set up. Please email support@moneyviel.com with your payment ID and we will send your files.';
 		} elseif ( ! mv_pay_rate_ok() ) {
 			$msg = 'Too many attempts. Please wait an hour or email support@moneyviel.com.';
@@ -303,22 +414,13 @@ add_shortcode( 'mv_my_downloads', function () {
 			if ( 'error' === $p ) {
 				$msg = 'We could not reach our payment provider just now. Please try again in a minute.';
 			} else {
-				$found = null;
-				foreach ( mv_pay_products() as $pid => $product ) {
-					if ( mv_pay_is_paid_for( $p, $product ) ) {
-						$found = $product;
-					}
-				}
-				if ( ! $found ) {
-					$msg = 'We could not find a successful MoneyViel Kids purchase with that payment ID. Please check the ID in your Razorpay receipt email (it starts with "pay_").';
+				$slug = mv_pay_product_for( $p );
+				if ( ! $slug ) {
+					$msg = 'We could not find a successful MoneyViel purchase with that payment ID. Please check the ID in your Razorpay receipt email (it starts with "pay_").';
 				} elseif ( ! mv_pay_count_use( $pay_id ) ) {
 					$msg = 'This payment ID has already been used many times or is more than 30 days old. Please email support@moneyviel.com and we will help.';
 				} else {
-					$out .= '<div style="background:linear-gradient(135deg,#fff6dd,#ffe9f0);border-radius:22px;padding:24px 20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06)">';
-					$out .= '<h2 style="margin:0 0 6px">🎉 Your ' . esc_html( $found['name'] ) . '</h2><p style="margin:0 0 12px;font-size:.92em;color:#4b5563">PDF · pick the paper size you use · links work for 24 hours</p>';
-					$out .= '<p><a style="display:inline-block;margin:6px;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:#e8457a" href="' . esc_url( mv_pay_link( $found['files']['a4'] ) ) . '">A4 (India, UK, Europe)</a>';
-					$out .= '<a style="display:inline-block;margin:6px;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:#6d28d9" href="' . esc_url( mv_pay_link( $found['files']['letter'] ) ) . '">US Letter (USA, Canada)</a></p>';
-					$out .= '<p style="font-size:.9em;margin:8px 0 0">Print at 100% / Actual size. For personal, family or single-classroom use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.</p></div>';
+					$out .= mv_pay_files_box( $slug );
 				}
 			}
 		}
@@ -326,9 +428,94 @@ add_shortcode( 'mv_my_downloads', function () {
 	if ( $msg ) {
 		$out .= '<p style="background:#fde8ef;border-radius:12px;padding:12px 16px">' . esc_html( $msg ) . '</p>';
 	}
-	$out .= '<form method="post" style="display:flex;flex-wrap:wrap;gap:10px;margin:18px 0">';
+	$out .= '<form method="post" action="' . esc_url( get_permalink() ) . '" style="display:flex;flex-wrap:wrap;gap:10px;margin:18px 0">';
 	$out .= '<input type="text" name="mv_pay_id" required pattern="pay_[A-Za-z0-9]+" placeholder="pay_XXXXXXXXXXXXXX" autocomplete="off" aria-label="Razorpay payment ID" style="flex:1;min-width:220px;padding:12px 14px;border:1px solid #d1d5db;border-radius:999px;font-size:16px">';
 	$out .= '<button type="submit" style="padding:12px 22px;border:0;border-radius:999px;background:#e8457a;color:#fff;font-weight:700;font-size:16px;cursor:pointer">Get my files</button></form>';
 	$out .= '</div>';
 	return $out;
 } );
+
+/* ---------- On-site checkout ---------- */
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'mv-shop/v1', '/order', array(
+		'methods'             => 'POST',
+		'permission_callback' => '__return_true',
+		'callback'            => function ( WP_REST_Request $req ) {
+			$slug = sanitize_key( (string) $req->get_param( 'product' ) );
+			$cat  = mv_shop_catalogue();
+			if ( ! isset( $cat[ $slug ] ) ) {
+				return new WP_Error( 'mv_bad_product', 'Unknown product.', array( 'status' => 400 ) );
+			}
+			$mode = ( $req->get_param( 'test' ) && current_user_can( 'manage_options' ) ) ? 'test' : 'live';
+			if ( ! mv_pay_keys_ready( $mode ) ) {
+				return new WP_Error( 'mv_not_ready', 'Checkout is not available right now. Please try again later.', array( 'status' => 503 ) );
+			}
+			if ( ! mv_pay_rate_ok( 40 ) ) {
+				return new WP_Error( 'mv_busy', 'Too many attempts. Please try again later.', array( 'status' => 429 ) );
+			}
+			$o = mv_pay_api( 'POST', 'orders', $mode, array(
+				'amount'   => (int) $cat[ $slug ]['price'],
+				'currency' => 'INR',
+				'receipt'  => 'mv-' . substr( $slug, 0, 20 ) . '-' . time(),
+				'notes'    => array( 'mv_product' => $slug, 'site' => 'moneyviel.com' ),
+			) );
+			if ( ! is_array( $o ) || empty( $o['id'] ) ) {
+				return new WP_Error( 'mv_order_failed', 'We could not start the payment. Please try again in a minute.', array( 'status' => 502 ) );
+			}
+			$s = mv_pay_settings();
+			return array( 'order_id' => $o['id'], 'amount' => (int) $o['amount'], 'key' => $s[ $mode . '_id' ], 'name' => $cat[ $slug ]['name'], 'mode' => $mode );
+		},
+	) );
+	register_rest_route( 'mv-shop/v1', '/verify', array(
+		'methods'             => 'POST',
+		'permission_callback' => '__return_true',
+		'callback'            => function ( WP_REST_Request $req ) {
+			$order = (string) $req->get_param( 'razorpay_order_id' );
+			$pay   = (string) $req->get_param( 'razorpay_payment_id' );
+			$sig   = (string) $req->get_param( 'razorpay_signature' );
+			$mode  = ( $req->get_param( 'test' ) && current_user_can( 'manage_options' ) ) ? 'test' : 'live';
+			$s     = mv_pay_settings();
+			if ( ! preg_match( '/^order_[A-Za-z0-9]+$/', $order ) || ! preg_match( '/^pay_[A-Za-z0-9]+$/', $pay ) || ! $s[ $mode . '_secret' ] ) {
+				return new WP_Error( 'mv_bad', 'Invalid payment details.', array( 'status' => 400 ) );
+			}
+			if ( ! hash_equals( hash_hmac( 'sha256', $order . '|' . $pay, $s[ $mode . '_secret' ] ), $sig ) ) {
+				return new WP_Error( 'mv_bad_sig', 'We could not verify this payment. If money was taken, email support@moneyviel.com with your payment ID.', array( 'status' => 400 ) );
+			}
+			$p    = mv_pay_lookup( $pay, $mode );
+			$slug = mv_pay_product_for( $p );
+			if ( ! $slug || ( is_array( $p ) && $p['order_id'] !== $order ) ) {
+				return new WP_Error( 'mv_unpaid', 'Payment not confirmed yet. Please go to moneyviel.com/my-downloads in a few minutes and enter your payment ID.', array( 'status' => 402 ) );
+			}
+			mv_pay_count_use( $pay );
+			return array( 'ok' => true, 'redirect' => add_query_arg( 'mv_t', mv_pay_token( $pay, $slug ), home_url( '/my-downloads/' ) ) );
+		},
+	) );
+} );
+
+/* Buy buttons: <button class="mv-buy" data-product="slug">. Loads Razorpay Checkout only when clicked. */
+add_action( 'wp_footer', function () {
+	if ( ! is_page( array( 2373 ) ) ) {
+		return;
+	}
+	$test = ( isset( $_GET['mvtest'] ) && current_user_can( 'manage_options' ) ) ? 1 : 0;
+	$cfg  = array( 'rest' => esc_url_raw( rest_url( 'mv-shop/v1/' ) ), 'nonce' => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '', 'test' => $test );
+	?>
+<script>
+(function(){
+var C=<?php echo wp_json_encode( $cfg ); ?>;
+function msg(b,t){var p=b.parentNode.querySelector('.mv-buy-msg');if(!p){p=document.createElement('p');p.className='mv-buy-msg';p.style.cssText='margin:6px 0 0;font-size:14px;color:#b4235a;text-align:center';b.parentNode.insertBefore(p,b.nextSibling);}p.textContent=t||'';}
+function post(path,data){var h={'Content-Type':'application/json'};if(C.nonce)h['X-WP-Nonce']=C.nonce;return fetch(C.rest+path,{method:'POST',headers:h,credentials:'same-origin',body:JSON.stringify(data)}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.message||'Something went wrong.');return j;});});}
+function load(cb){if(window.Razorpay)return cb();var s=document.createElement('script');s.src='https://checkout.razorpay.com/v1/checkout.js';s.onload=cb;s.onerror=function(){cb(new Error('load'));};document.head.appendChild(s);}
+document.addEventListener('click',function(e){var b=e.target.closest('.mv-buy');if(!b)return;e.preventDefault();if(b.dataset.busy)return;b.dataset.busy=1;var label=b.textContent;b.textContent='Opening secure checkout…';msg(b,'');
+var done=function(){delete b.dataset.busy;b.textContent=label;};
+load(function(err){if(err){done();msg(b,'Could not load the payment window. Please check your connection and try again.');return;}
+post('order',{product:b.dataset.product,test:C.test}).then(function(o){
+var rzp=new Razorpay({key:o.key,amount:o.amount,currency:'INR',name:'MoneyViel',description:o.name,order_id:o.order_id,theme:{color:'#e8457a'},
+handler:function(r){b.textContent='Checking your payment…';post('verify',{razorpay_order_id:r.razorpay_order_id,razorpay_payment_id:r.razorpay_payment_id,razorpay_signature:r.razorpay_signature,test:C.test}).then(function(v){window.location.href=v.redirect;}).catch(function(x){done();msg(b,x.message+' Your payment ID: '+r.razorpay_payment_id);});},
+modal:{ondismiss:done}});
+rzp.on('payment.failed',function(r){msg(b,'Payment failed: '+((r.error&&r.error.description)||'please try again')+'. No money was taken, or it will be returned automatically by your bank.');});
+rzp.open();}).catch(function(x){done();msg(b,x.message);});});});
+})();
+</script>
+	<?php
+}, 50 );
