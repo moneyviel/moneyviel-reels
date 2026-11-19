@@ -251,7 +251,8 @@ Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of th
 - The product is now a Google Sheets tool (12 tabs, no scripts). Buyers get an "Access card" PDF with two Google "/copy" links (With examples, Blank). The two shared copies are view-only + Drive-locked; masters are private + locked (Drive: MoneyViel Shop > 01 MASTER / 02 CUSTOMER DELIVERY).
 - WordPress: paid attachment 2471 (mvp- name, hidden by Snippet 8) is the only file for money-command-centre in Snippet 9; the catalogue entry has a 'note' shown under the download button. Old xlsx attachment 2456 is no longer used.
 - Shop card (/shop/): image shop-money-command-centre-v4.jpg (media 2476), "Watch the 1-minute demo" links media 2473 (moneyviel-money-command-centre-demo.mp4). Homepage line says "(Google Sheets)".
-- Payhip g53Zr: title "Money Command Centre: Family Budget, Net Worth & EMI Dashboard (Google Sheets)", $12.99, file = access card PDF, 5 images, demo link in description. Payhip video embed needs a YouTube/Vimeo link: add it once the demo is on YouTube.
+- YouTube (main channel, public 20 Nov 2026): demo https://youtu.be/ReZ-VtiX7R8 (custom thumbnail) and Short https://youtube.com/shorts/gVlq6PaHkCc (related video = the demo). Both in the new public playlist "MoneyViel Tools & Templates" (use it for future product demos). The /shop/ card embeds the demo (youtube-nocookie iframe, lazy) and links "Watch on YouTube"; the old mp4 (media 2473) was deleted.
+- Payhip g53Zr: title "Money Command Centre: Family Budget, Net Worth & EMI Dashboard (Google Sheets)", $12.99, file = access card PDF, 5 images + the YouTube demo in the cover media, YouTube demo link in the description.
 - Etsy: files prepared only; do nothing on Etsy until the owner confirms.
 - Access card source: /home/claude/gsheets/access_card.py (private working folder). If the /copy links ever change, rebuild the PDF and replace it on BOTH WordPress (2471) and Payhip.
 
