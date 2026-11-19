@@ -161,7 +161,8 @@ function mv_pay_lookup( $pay_id, $force_mode = '' ) {
 	}
 	$s     = mv_pay_settings();
 	$modes = $force_mode ? array( $force_mode ) : array( 'live' );
-	if ( ! $force_mode && $s['allow_test'] ) {
+	// Test (no-money) payments are only ever accepted for the logged-in site admin.
+	if ( ! $force_mode && $s['allow_test'] && current_user_can( 'manage_options' ) ) {
 		$modes[] = 'test';
 	}
 	$result = null;
