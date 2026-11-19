@@ -99,44 +99,43 @@ function mv_pay_fetch( $pay_id, $mode ) {
 	$j = json_decode( wp_remote_retrieve_body( $r ), true );
 	return is_array( $j ) ? $j : 'error';
 }
-/** Returns 'ok', 'bad', 'limit' or 'error'. */
-function mv_pay_verify( $pay_id, $product ) {
+/** Looks a payment up once (live, then test if allowed). Returns array, null (not found) or 'error'. */
+function mv_pay_lookup( $pay_id ) {
 	if ( ! preg_match( '/^pay_[A-Za-z0-9]{8,30}$/', $pay_id ) ) {
-		return 'bad';
+		return null;
 	}
-	$cache_key = 'mv_pay_' . md5( $pay_id . '|' . $product['amount'] );
+	$cache_key = 'mv_payl_' . md5( $pay_id );
 	$cached    = get_transient( $cache_key );
 	if ( false !== $cached ) {
-		$status = $cached;
-	} else {
-		$s      = mv_pay_settings();
-		$status = 'bad';
-		$modes  = array( 'live' );
-		if ( $s['allow_test'] ) {
-			$modes[] = 'test';
+		return 'none' === $cached ? null : $cached;
+	}
+	$s      = mv_pay_settings();
+	$modes  = array( 'live' );
+	if ( $s['allow_test'] ) {
+		$modes[] = 'test';
+	}
+	$result = null;
+	foreach ( $modes as $mode ) {
+		$p = mv_pay_fetch( $pay_id, $mode );
+		if ( 'error' === $p ) {
+			$result = 'error';
+			continue;
 		}
-		foreach ( $modes as $mode ) {
-			$p = mv_pay_fetch( $pay_id, $mode );
-			if ( 'error' === $p ) {
-				$status = 'error';
-				continue;
-			}
-			if ( is_array( $p ) ) {
-				$status = ( isset( $p['status'], $p['amount'], $p['currency'] )
-					&& 'captured' === $p['status']
-					&& (int) $p['amount'] === (int) $product['amount']
-					&& 'INR' === $p['currency'] ) ? 'ok' : 'bad';
-				break;
-			}
-		}
-		if ( 'error' !== $status ) {
-			set_transient( $cache_key, $status, 10 * MINUTE_IN_SECONDS );
+		if ( is_array( $p ) ) {
+			$result = array( 'status' => $p['status'] ?? '', 'amount' => (int) ( $p['amount'] ?? 0 ), 'currency' => $p['currency'] ?? '' );
+			break;
 		}
 	}
-	if ( 'ok' !== $status ) {
-		return $status;
+	if ( 'error' !== $result ) {
+		set_transient( $cache_key, null === $result ? 'none' : $result, 10 * MINUTE_IN_SECONDS );
 	}
-	// A payment unlocks the files for 30 days, up to 15 visits.
+	return $result;
+}
+function mv_pay_is_paid_for( $p, $product ) {
+	return is_array( $p ) && 'captured' === $p['status'] && (int) $p['amount'] === (int) $product['amount'] && 'INR' === $p['currency'];
+}
+/** Counts a use of the payment ID: 30 days, up to 15 visits. Returns true if allowed. */
+function mv_pay_count_use( $pay_id ) {
 	$log = get_option( 'mv_shop_unlocks', array() );
 	$log = is_array( $log ) ? $log : array();
 	$now = time();
@@ -144,7 +143,7 @@ function mv_pay_verify( $pay_id, $product ) {
 		$log[ $pay_id ] = array( 'first' => $now, 'count' => 0 );
 	}
 	if ( $now - (int) $log[ $pay_id ]['first'] > 30 * DAY_IN_SECONDS || (int) $log[ $pay_id ]['count'] >= 15 ) {
-		return 'limit';
+		return false;
 	}
 	$log[ $pay_id ]['count']++;
 	foreach ( $log as $k => $v ) { // Forget entries older than 60 days.
@@ -153,7 +152,18 @@ function mv_pay_verify( $pay_id, $product ) {
 		}
 	}
 	update_option( 'mv_shop_unlocks', $log, false );
-	return 'ok';
+	return true;
+}
+/** Returns 'ok', 'bad', 'limit' or 'error'. */
+function mv_pay_verify( $pay_id, $product ) {
+	$p = mv_pay_lookup( $pay_id );
+	if ( 'error' === $p ) {
+		return 'error';
+	}
+	if ( ! mv_pay_is_paid_for( $p, $product ) ) {
+		return 'bad';
+	}
+	return mv_pay_count_use( $pay_id ) ? 'ok' : 'limit';
 }
 function mv_pay_rate_ok() {
 	$ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? md5( (string) $_SERVER['REMOTE_ADDR'] ) : 'x';
@@ -270,3 +280,55 @@ add_filter( 'the_content', function ( $content ) {
 	$out .= '<p style="font-size:.9em;color:#4b5563">Haven\'t bought this yet? Visit our <a href="https://moneyviel.com/shop/">shop</a>. Need help? Email <a href="mailto:support@moneyviel.com">support@moneyviel.com</a> with your payment ID.</p></div>';
 	return $out;
 }, 20 );
+
+/* ---------- Public "My downloads" page: [mv_my_downloads] ---------- */
+add_shortcode( 'mv_my_downloads', function () {
+	$s     = mv_pay_settings();
+	$ready = ( $s['live_id'] && $s['live_secret'] ) || ( $s['allow_test'] && $s['test_id'] && $s['test_secret'] );
+	$out   = '<div class="mv-my-dl" style="max-width:640px;margin:0 auto;font-size:17px;line-height:1.6;color:#1f2937">';
+	$pay_id = '';
+	if ( isset( $_POST['mv_pay_id'] ) ) {
+		$pay_id = trim( sanitize_text_field( wp_unslash( $_POST['mv_pay_id'] ) ) );
+	} elseif ( isset( $_GET['razorpay_payment_id'] ) ) {
+		$pay_id = trim( sanitize_text_field( wp_unslash( $_GET['razorpay_payment_id'] ) ) );
+	}
+	$msg = '';
+	if ( '' !== $pay_id ) {
+		if ( ! $ready ) {
+			$msg = 'Downloads by payment ID are being set up. Please email support@moneyviel.com with your payment ID and we will send your files.';
+		} elseif ( ! mv_pay_rate_ok() ) {
+			$msg = 'Too many attempts. Please wait an hour or email support@moneyviel.com.';
+		} else {
+			$p = mv_pay_lookup( $pay_id );
+			if ( 'error' === $p ) {
+				$msg = 'We could not reach our payment provider just now. Please try again in a minute.';
+			} else {
+				$found = null;
+				foreach ( mv_pay_products() as $pid => $product ) {
+					if ( mv_pay_is_paid_for( $p, $product ) ) {
+						$found = $product;
+					}
+				}
+				if ( ! $found ) {
+					$msg = 'We could not find a successful MoneyViel Kids purchase with that payment ID. Please check the ID in your Razorpay receipt email (it starts with "pay_").';
+				} elseif ( ! mv_pay_count_use( $pay_id ) ) {
+					$msg = 'This payment ID has already been used many times or is more than 30 days old. Please email support@moneyviel.com and we will help.';
+				} else {
+					$out .= '<div style="background:linear-gradient(135deg,#fff6dd,#ffe9f0);border-radius:22px;padding:24px 20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06)">';
+					$out .= '<h2 style="margin:0 0 6px">🎉 Your ' . esc_html( $found['name'] ) . '</h2><p style="margin:0 0 12px;font-size:.92em;color:#4b5563">PDF · pick the paper size you use · links work for 24 hours</p>';
+					$out .= '<p><a style="display:inline-block;margin:6px;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:#e8457a" href="' . esc_url( mv_pay_link( $found['files']['a4'] ) ) . '">A4 (India, UK, Europe)</a>';
+					$out .= '<a style="display:inline-block;margin:6px;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:#6d28d9" href="' . esc_url( mv_pay_link( $found['files']['letter'] ) ) . '">US Letter (USA, Canada)</a></p>';
+					$out .= '<p style="font-size:.9em;margin:8px 0 0">Print at 100% / Actual size. For personal, family or single-classroom use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.</p></div>';
+				}
+			}
+		}
+	}
+	if ( $msg ) {
+		$out .= '<p style="background:#fde8ef;border-radius:12px;padding:12px 16px">' . esc_html( $msg ) . '</p>';
+	}
+	$out .= '<form method="post" style="display:flex;flex-wrap:wrap;gap:10px;margin:18px 0">';
+	$out .= '<input type="text" name="mv_pay_id" required pattern="pay_[A-Za-z0-9]+" placeholder="pay_XXXXXXXXXXXXXX" autocomplete="off" aria-label="Razorpay payment ID" style="flex:1;min-width:220px;padding:12px 14px;border:1px solid #d1d5db;border-radius:999px;font-size:16px">';
+	$out .= '<button type="submit" style="padding:12px 22px;border:0;border-radius:999px;background:#e8457a;color:#fff;font-weight:700;font-size:16px;cursor:pointer">Get my files</button></form>';
+	$out .= '</div>';
+	return $out;
+} );
