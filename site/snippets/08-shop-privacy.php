@@ -6,7 +6,9 @@
  * and download pages are marked noindex.
  */
 function mv_shop_file_is_private( $file ) {
-	return (bool) preg_match( '/-(A4|US-Letter)-[0-9a-f]{12}(-\d+)?\.pdf$/i', (string) $file );
+	$file = (string) $file;
+	return (bool) ( preg_match( '/-(A4|US-Letter)-[0-9a-f]{12}(-\d+)?\.pdf$/i', $file )
+		|| preg_match( '#(^|/)mvp-[a-z0-9-]+-[0-9a-f]{12}(-\d+)?\.(pdf|xlsx|zip)$#i', $file ) );
 }
 function mv_shop_slug_is_private( $slug ) {
 	return (bool) preg_match( '/-download-[0-9a-f]{12}$/', (string) $slug );
@@ -31,7 +33,7 @@ function mv_shop_private_ids() {
 	}
 	global $wpdb;
 	$ids  = array();
-	$rows = $wpdb->get_results( "SELECT post_id, meta_value FROM {$wpdb->postmeta} WHERE meta_key = '_wp_attached_file' AND meta_value LIKE '%.pdf'" );
+	$rows = $wpdb->get_results( "SELECT post_id, meta_value FROM {$wpdb->postmeta} WHERE meta_key = '_wp_attached_file' AND ( meta_value LIKE '%.pdf' OR meta_value LIKE '%.xlsx' OR meta_value LIKE '%.zip' )" );
 	foreach ( (array) $rows as $r ) {
 		if ( mv_shop_file_is_private( $r->meta_value ) ) {
 			$ids[] = (int) $r->post_id;
