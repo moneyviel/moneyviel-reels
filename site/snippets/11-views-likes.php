@@ -38,8 +38,9 @@ add_action( 'wp_footer', function () {
 .mv-react .wp_ulike_general_class{display:flex!important;align-items:center;gap:0;background:#fff;border:2px solid #E0408F;border-radius:999px;padding:4px;box-shadow:0 4px 14px rgba(224,64,143,.15);transition:transform .15s}
 .mv-react .wp_ulike_general_class:hover{transform:translateY(-1px)}
 .mv-react .wp_ulike_btn{width:34px!important;height:34px!important;min-width:34px!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;position:relative}
-.mv-react .wp_ulike_btn:before{content:"🤍";font-size:20px;line-height:34px;display:block;text-align:center}
-.mv-react .wp_ulike_is_liked .wp_ulike_btn:before,.mv-react .wp_ulike_btn_is_active:before{content:"💜";animation:mvpop .45s ease}
+.mv-react .wp_ulike_btn{background-image:none!important}
+.mv-react .wp_ulike_btn:before{content:"\2661";font-size:26px;font-weight:900;color:#E0408F;line-height:32px;display:block;text-align:center}
+.mv-react .wp_ulike_is_liked .wp_ulike_btn:before,.mv-react .wp_ulike_btn_is_active:before{content:"💜";font-size:21px;animation:mvpop .45s ease}
 .mv-react .wp_ulike_put_image:after{display:none!important}
 .mv-react .count-box{display:none!important}
 .mv-react .act{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
