@@ -73,10 +73,11 @@ ul.parentNode.insertBefore(box,ul);var act=box.querySelector('.act');act.appendC
 var wa=box.querySelector('.wa');wa.href='https://wa.me/?text='+encodeURIComponent(TITLE+' '+URL);
 box.querySelector('.cp').addEventListener('click',function(){var b=this;function ok(){b.textContent='Copied ✓'}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(URL).then(ok,function(){})}});
 function upd(){var c=ul.querySelector('.count-box');var n=0;if(c){n=parseInt((c.getAttribute('data-ulike-counter-value')||c.textContent||'0').replace(/[^0-9]/g,''),10)||0}
+ if(clicked){box.querySelector('.share').classList.toggle('on',!!ul.querySelector('.wp_ulike_btn_is_active'))}
  lbl.classList.toggle('mv-zero',n===0);lbl.textContent=n===0?'Be the first to find this helpful':grp(n)+(n===1?' person found this helpful':' people found this helpful')}
 upd();
-var liked=false;
-ul.addEventListener('click',function(e){if(e.target.closest('.wp_ulike_btn')){setTimeout(function(){var on=!!ul.querySelector('.wp_ulike_is_liked,.wp_ulike_btn_is_active');var sh=box.querySelector('.share');sh.classList.toggle('on',on);liked=on},700)}});
+var clicked=false;
+ul.addEventListener('click',function(e){if(e.target.closest('.wp_ulike_btn')){clicked=true;setTimeout(upd,1500);setTimeout(upd,3500)}});
 new MutationObserver(upd).observe(ul,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['data-ulike-counter-value','class']});
 })();
 </script>
