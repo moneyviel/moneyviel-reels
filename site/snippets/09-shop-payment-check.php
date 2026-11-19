@@ -29,7 +29,7 @@ function mv_shop_catalogue() {
 		'kids-bundle'           => array( 'name' => 'Family Bundle: all 6 MoneyViel Kids kits', 'price' => 39900, 'files' => $kids_files ),
 		'emergency-organiser'   => array( 'name' => 'Family Emergency & Legacy Organiser', 'price' => 29900, 'files' => array( array( 'Printable PDF (A4)', 2451 ), array( 'Printable PDF (US Letter)', 2452 ), array( 'Excel / Google Sheets version', 2455 ) ) ),
 		'money-date-night'      => array( 'name' => 'Money Date Night Cards', 'price' => 19900, 'files' => array( array( 'A4 PDF', 2453 ), array( 'US Letter PDF', 2454 ) ) ),
-		'money-command-centre'  => array( 'name' => 'Money Command Centre', 'price' => 39900, 'files' => array( array( 'Excel / Google Sheets file', 2456 ) ) ),
+		'money-command-centre'  => array( 'name' => 'Money Command Centre', 'price' => 39900, 'files' => array( array( 'Access card (PDF): your Google Sheets links', 2471 ) ), 'note' => 'Open the access card and click "Make my copy" to save your own private Google Sheets copy (free Google account needed). This is a Google Sheets tool; Excel is not supported. For personal and family use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.' ),
 		'wedding-event-planner' => array( 'name' => 'Wedding & Big-Event Planner', 'price' => 24900, 'files' => array( array( 'Excel / Google Sheets file', 2457 ) ) ),
 	);
 }
@@ -346,7 +346,8 @@ function mv_pay_files_box( $slug ) {
 		$bg   = ( $i % 2 ) ? '#6d28d9' : '#e8457a';
 		$out .= '<a style="display:inline-block;margin:6px;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:' . $bg . '" href="' . esc_url( mv_pay_link( $f[1] ) ) . '">⬇ ' . esc_html( $f[0] ) . '</a>';
 	}
-	$out .= '</p><p style="font-size:.88em;margin:8px 0 0">PDFs: print at 100% / Actual size. Spreadsheets open in Excel, or upload to Google Sheets (File → Import). For personal, family or single-classroom use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.</p></div>';
+	$note = isset( $p['note'] ) ? $p['note'] : 'PDFs: print at 100% / Actual size. Spreadsheets open in Excel, or upload to Google Sheets (File → Import). For personal, family or single-classroom use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.';
+	$out .= '</p><p style="font-size:.88em;margin:8px 0 0">' . $note . '</p></div>';
 	return $out;
 }
 
