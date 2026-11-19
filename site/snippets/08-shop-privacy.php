@@ -63,14 +63,16 @@ add_filter( 'rest_page_query', 'mv_shop_exclude_args' );
 add_filter( 'rest_post_search_query', 'mv_shop_exclude_args' );
 add_filter( 'wp_sitemaps_posts_query_args', 'mv_shop_exclude_args' );
 
-function mv_shop_rest_block( $response, $post ) {
-	if ( ! mv_shop_can_see() && mv_shop_is_private_post( $post ) ) {
+// Single-item lookups such as /wp/v2/media/123 or /wp/v2/pages/123.
+add_filter( 'rest_request_before_callbacks', function ( $response, $handler, $request ) {
+	if ( mv_shop_can_see() ) {
+		return $response;
+	}
+	if ( preg_match( '#^/wp/v2/(media|pages)/(\d+)#', (string) $request->get_route(), $m ) && mv_shop_is_private_post( (int) $m[2] ) ) {
 		return new WP_Error( 'rest_post_invalid_id', 'Invalid post ID.', array( 'status' => 404 ) );
 	}
 	return $response;
-}
-add_filter( 'rest_prepare_attachment', 'mv_shop_rest_block', 99, 2 );
-add_filter( 'rest_prepare_page', 'mv_shop_rest_block', 99, 2 );
+}, 10, 3 );
 
 // No attachment page for paid files.
 add_action( 'template_redirect', function () {
