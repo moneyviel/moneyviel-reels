@@ -10,18 +10,18 @@ add_action( 'wp_head', function () {
 <style>
 /* ---------- share box ---------- */
 .ct-share-box{justify-content:flex-start!important;margin:26px auto 30px!important;padding:20px 22px!important;border-radius:20px;background:#1B1640;color:#fff;display:flex!important;flex-wrap:wrap;align-items:center;gap:12px 16px;box-shadow:0 10px 30px rgba(27,22,64,.18)}
-.ct-share-box .ct-module-title{display:block!important;text-align:left!important;flex-basis:100%;font-size:17px!important;font-weight:800!important;letter-spacing:0!important;text-transform:none!important;color:#fff!important;margin:0!important}
+.ct-share-box .ct-module-title{display:block!important;text-align:left!important;flex-basis:100%;font-size:17px!important;font-weight:800!important;letter-spacing:0!important;text-transform:none!important;color:#fff!important;margin:0!important;width:100%!important;max-width:none!important;padding:0!important}
 .ct-share-box .ct-module-title small{display:block;font-size:13px;font-weight:600;color:#bdb3f0;margin-top:2px}
-.ct-share-box>div[data-icons-type]{display:flex!important;flex-wrap:wrap;gap:8px!important;align-items:center}
-.ct-share-box a[data-network]{width:40px!important;height:40px!important;border-radius:50%!important;background:rgba(255,255,255,.1)!important;display:inline-flex!important;align-items:center;justify-content:center;transition:transform .15s,background .15s}
+.ct-share-box>div[data-icons-type]{display:flex!important;flex-wrap:wrap;gap:7px!important;width:100%;align-items:center}
+.ct-share-box a[data-network]{width:38px!important;height:38px!important;border-radius:50%!important;background:rgba(255,255,255,.1)!important;display:inline-flex!important;align-items:center;justify-content:center;transition:transform .15s,background .15s}
 .ct-share-box a[data-network] .ct-icon-container{background:transparent!important;width:auto!important;height:auto!important;border-radius:0!important;padding:0!important;box-shadow:none!important}
 .ct-share-box a[data-network]{overflow:hidden;margin:0!important}
 .ct-share-box a[data-network] svg{fill:#fff!important;width:17px!important;height:17px!important}
 .ct-share-box a[data-network]:hover{transform:translateY(-2px);background:var(--official-color)!important}
 .ct-share-box a[data-network="viber"],.ct-share-box a[data-network="reddit"]{display:none!important}
-.ct-share-box a[data-network="whatsapp"]{order:-2;width:auto!important;border-radius:999px!important;padding:0 18px 0 14px!important;background:#25D366!important;gap:8px;font-weight:800;font-size:14.5px;color:#fff!important;text-decoration:none!important}
+.ct-share-box a[data-network="whatsapp"]{order:-2;width:auto!important;border-radius:999px!important;padding:0 18px 0 14px!important;background:#25D366!important;gap:8px;font-weight:800;font-size:14px;color:#fff!important;text-decoration:none!important;height:38px!important}
 .ct-share-box a[data-network="whatsapp"]:after{content:"Share on WhatsApp"}
-.ct-share-box .mv-sh{order:-1;height:40px;border:0;border-radius:999px;padding:0 16px;font-weight:800;font-size:14px;cursor:pointer;background:#FFB020;color:#1B1640;display:inline-flex;align-items:center;gap:6px}
+.ct-share-box .mv-sh{order:-1;height:38px;border:0;border-radius:999px;padding:0 16px;font-weight:800;font-size:14px;cursor:pointer;background:#FFB020;color:#1B1640;display:inline-flex;align-items:center;gap:6px}
 .ct-share-box .mv-sh.cp{background:#fff;color:#1B1640}
 /* ---------- header follow icons ---------- */
 .ct-social-box{gap:6px!important}
