@@ -230,7 +230,11 @@ add_filter( 'the_content', function ( $content ) {
 		$pay_id = trim( sanitize_text_field( wp_unslash( $_GET['razorpay_payment_id'] ) ) );
 	}
 	$state = '';
-	if ( $admin && '' === $pay_id ) {
+	$s     = mv_pay_settings();
+	$ready = ( $s['live_id'] && $s['live_secret'] ) || ( $s['allow_test'] && $s['test_id'] && $s['test_secret'] );
+	if ( ! $ready ) {
+		$state = 'ok'; // Keys not set up yet: keep the shop working as before.
+	} elseif ( $admin && '' === $pay_id ) {
 		$state = 'ok';
 	} elseif ( '' !== $pay_id ) {
 		$state = mv_pay_rate_ok() ? mv_pay_verify( $pay_id, $product ) : 'busy';
@@ -241,7 +245,7 @@ add_filter( 'the_content', function ( $content ) {
 			array( esc_url( mv_pay_link( $product['files']['a4'] ) ), esc_url( mv_pay_link( $product['files']['letter'] ) ) ),
 			$content
 		);
-		if ( $admin && '' === $pay_id ) {
+		if ( $ready && $admin && '' === $pay_id ) {
 			$content = '<p style="background:#fff3cd;padding:10px 14px;border-radius:10px;font-size:14px">Admin preview: you see the files because you are logged in. Buyers see them only after their payment is checked.</p>' . $content;
 		}
 		return $content;
