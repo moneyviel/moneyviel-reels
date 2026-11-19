@@ -255,4 +255,6 @@ Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of th
 - Payhip g53Zr: title "Money Command Centre: Family Budget, Net Worth & EMI Dashboard (Google Sheets)", $12.99, file = access card PDF, 5 images + the YouTube demo in the cover media, YouTube demo link in the description.
 - Etsy: files prepared only; do nothing on Etsy until the owner confirms.
 - Access card source: /home/claude/gsheets/access_card.py (private working folder). If the /copy links ever change, rebuild the PDF and replace it on BOTH WordPress (2471) and Payhip.
+- 2026-11-20: Code Snippet 10 "MoneyViel: YouTube embed fallback" (site/snippets/10-youtube-embed-fallback.php): when WordPress caches a failed YouTube oEmbed (post scheduled before its Short is public), it now shows a YouTube player instead of an empty 9:16 box with the bare link. Never deactivate. Fixed posts 2260, 2280, 2117, 2115, 2113, 2111, 2109, 2107, 2105.
+- Launch post 2480 "Where Did This Month's Salary Go? Meet the Money Command Centre (Google Sheets)" scheduled 2026-11-20 12:30 IST (Articles, sales copy approved by the owner: market the product). Jetpack shares it to FB/IG/Threads; X + LinkedIn Page are posted by a scheduled task at 12:40 IST with owner-approved product captions (this post is an exception to the "no products" caption rule).
 
