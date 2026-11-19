@@ -219,3 +219,12 @@ Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of th
 - Kids newsletter consent text: "I am a parent or guardian aged 18+ and agree to receive emails from MoneyViel". Adults: "I am 18 or older and would like MoneyViel Money Tips emails. I can unsubscribe at any time." (confirmation button "Yes, I'm 18+, subscribe me").
 - (2026-11-19) Privacy Policy names the owner: "MoneyViel is run by Mukesh Jhedu, India" (owner-approved for the policy; when MoneyViel is registered as a business, replace with the business name). Google Fonts are self-hosted via the OMGF plugin (host-webfonts-local); never re-add @import of fonts.googleapis.com in Additional CSS. If a new font is added, run OMGF "Save & Optimize" and confirm no fonts.googleapis.com on pages.
 - Kids form consent label on /kids/ is also enforced by the page's own script (EmailOctopus's embed serves a cached older label).
+
+## 0g. Shop (paid printables) — set up 2026-11-19
+- Pages: /shop/ (id 2373), /terms/ (2349), /refund-policy/ (2350). All ad-free (Code Snippet 5) and linked in the footer; "🛍️ Printables shop" sits under the Kids menu.
+- Products: Money Club Starter Kit ₹149, 30-Day Saving Challenge ₹99. Payment = Razorpay Payment Pages (account owner name shows as MUKESH JHEDU): https://rzp.io/rzp/moneyviel-starter-kit and https://rzp.io/rzp/moneyviel-saving-challenge. After payment Razorpay redirects to a hidden download page (ids 2361 and 2362).
+- Paid PDFs live in the WordPress media library with random names. NEVER put paid PDFs, their URLs or the download-page slugs in this public repo, posts, emails or social media. Free samples (moneyviel-kids-...-sample-...pdf) are public on purpose.
+- Code Snippet 8 "keep paid downloads private" hides paid PDFs and download pages from the REST API, search, sitemaps and attachment pages for logged-out visitors, and marks download pages noindex. Any new kit must follow the same naming: files "<kit>-A4-<12 hex>.pdf" / "<kit>-US-Letter-<12 hex>.pdf", page slug "<kit>-download-<12 hex>".
+- Kit sources are built from build.py / render.js in the private working folder (not in this repo). site/pages/download-template.html is the download page layout with placeholders only.
+- Refund rule: no refunds after download except duplicate charge, files not received, broken file, wrong product; report within 7 days; reply within 48 hours. Support: support@moneyviel.com, phone shown on Razorpay pages.
+- Privacy Policy item 6 "Purchases" and Razorpay in the processors list cover the shop.
