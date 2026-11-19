@@ -4,7 +4,7 @@
  * - Products live in mv_shop_catalogue(). Prices are in paise.
  * - Buy buttons (class "mv-buy", data-product="slug") open Razorpay Checkout with a server-created order.
  *   After payment the signature is checked on the server, then the buyer goes to /my-downloads/ with a signed token.
- * - /my-downloads/ also accepts a Razorpay payment ID (pay_...) for re-downloads: 30 days, up to 15 visits.
+ * - A payment ID unlocks the files ONCE (the download page then works for 24 hours). After that, only the logged-in admin can re-open it (for support).
  * - Old Razorpay Payment Pages (Starter Kit, Saving Challenge) keep working through their download pages.
  * - Files are served through 24-hour signed links; real file addresses are never shown.
  * - API keys are pasted by the owner in Settings > MoneyViel Shop (never stored in code).
@@ -214,7 +214,7 @@ function mv_pay_product_for( $p ) {
 	}
 	return '';
 }
-/** Counts a use of the payment ID: 30 days, up to 15 visits. Returns true if allowed. */
+/** Counts a use of the payment ID: it unlocks once only. The logged-in admin can always re-open it to help a buyer. Returns true if allowed. */
 function mv_pay_count_use( $pay_id ) {
 	$log = get_option( 'mv_shop_unlocks', array() );
 	$log = is_array( $log ) ? $log : array();
@@ -222,7 +222,10 @@ function mv_pay_count_use( $pay_id ) {
 	if ( empty( $log[ $pay_id ] ) ) {
 		$log[ $pay_id ] = array( 'first' => $now, 'count' => 0 );
 	}
-	if ( $now - (int) $log[ $pay_id ]['first'] > 30 * DAY_IN_SECONDS || (int) $log[ $pay_id ]['count'] >= 15 ) {
+	if ( current_user_can( 'manage_options' ) ) {
+		return true;
+	}
+	if ( (int) $log[ $pay_id ]['count'] >= 1 ) {
 		return false;
 	}
 	$log[ $pay_id ]['count']++;
@@ -254,7 +257,7 @@ function mv_pay_link( $att ) {
 	return add_query_arg( array( 'mv_dl' => (int) $att, 'e' => $exp, 's' => mv_pay_sign( (int) $att, $exp ) ), home_url( '/' ) );
 }
 function mv_pay_token( $pay_id, $slug ) {
-	$exp = time() + 2 * DAY_IN_SECONDS;
+	$exp = time() + DAY_IN_SECONDS;
 	$sig = substr( hash_hmac( 'sha256', $pay_id . '|' . $slug . '|' . $exp, wp_salt( 'auth' ) . 'mv-token' ), 0, 32 );
 	return rtrim( strtr( base64_encode( $pay_id . '|' . $slug . '|' . $exp . '|' . $sig ), '+/', '-_' ), '=' );
 }
@@ -312,7 +315,7 @@ function mv_pay_files_box( $slug ) {
 	$cat = mv_shop_catalogue();
 	$p   = $cat[ $slug ];
 	$out = '<div style="background:linear-gradient(135deg,#fff6dd,#ffe9f0);border-radius:22px;padding:24px 20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:10px 0 18px">';
-	$out .= '<h2 style="margin:0 0 6px">🎉 Your ' . esc_html( $p['name'] ) . '</h2><p style="margin:0 0 12px;font-size:.92em;color:#4b5563">Download links work for 24 hours. Please save your files now. You can come back to My downloads for 30 days.</p><p>';
+	$out .= '<h2 style="margin:0 0 6px">🎉 Your ' . esc_html( $p['name'] ) . '</h2><p style="margin:0 0 12px;font-size:.92em;color:#4b5563">This page and its download links work for 24 hours only. Please download and save all your files now. Problem? Email support@moneyviel.com with your payment ID.</p><p>';
 	foreach ( $p['files'] as $i => $f ) {
 		$bg   = ( $i % 2 ) ? '#6d28d9' : '#e8457a';
 		$out .= '<a style="display:inline-block;margin:6px;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:' . $bg . '" href="' . esc_url( mv_pay_link( $f[1] ) ) . '">⬇ ' . esc_html( $f[0] ) . '</a>';
@@ -373,7 +376,7 @@ add_filter( 'the_content', function ( $content ) {
 	$msgs = array(
 		''      => '',
 		'bad'   => 'We could not find a successful payment for this product with that payment ID. Please check the ID in your Razorpay receipt email (it starts with "pay_").',
-		'limit' => 'This payment ID has already been used many times or is more than 30 days old. Please email support@moneyviel.com and we will help.',
+		'limit' => 'This payment ID has already been used to unlock the files. If you could not download them, email support@moneyviel.com with your payment ID and we will help.',
 		'error' => 'We could not reach our payment provider just now. Please try again in a minute.',
 		'busy'  => 'Too many attempts. Please wait an hour or email support@moneyviel.com.',
 	);
@@ -422,7 +425,7 @@ add_shortcode( 'mv_my_downloads', function () {
 				if ( ! $slug ) {
 					$msg = 'We could not find a successful MoneyViel purchase with that payment ID. Please check the ID in your Razorpay receipt email (it starts with "pay_").';
 				} elseif ( ! mv_pay_count_use( $pay_id ) ) {
-					$msg = 'This payment ID has already been used many times or is more than 30 days old. Please email support@moneyviel.com and we will help.';
+					$msg = 'This payment ID has already been used to unlock the files. If you could not download them, email support@moneyviel.com with your payment ID and we will help.';
 				} else {
 					$out .= mv_pay_files_box( $slug );
 				}
