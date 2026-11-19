@@ -1,0 +1,34 @@
+# Main menu (id 14) before restructure, 2026-11-20: id|parent|order|title|url
+1084|0|1|Home|/
+2001|0|2|Start Here|/start-here/ (page 2000)
+2080|0|3|Money Tools|/money-tools/ (page 2074)
+2209|2080|4|⛓️ Debt Payoff Planner|/money-tools/debt-payoff-planner/
+2210|2080|5|💳 Minimum Due Trap|/money-tools/minimum-due-calculator/
+2211|2080|6|🚦 Before You Borrow|/money-tools/before-you-borrow/
+2217|2080|7|🎮 Life Simulator|/money-tools/life-simulator/
+2185|2080|8|🎯 Life Goals Planner|/money-tools/goal-planner/
+2186|2080|9|🌴 Retirement Planner|/money-tools/retirement-planner/
+2187|2080|10|⏳ ₹ Time Machine|/money-tools/inflation-calculator/
+2188|2080|11|🩺 Money Health Report|/money-tools/money-health-report/
+2189|2080|12|🏆 52-Week Challenge|/money-tools/52-week-challenge/
+2190|2080|13|🪔 Festival & Event Planner|/money-tools/festival-budget-planner/
+2191|2080|14|📈 SIP Calculator|/money-tools/sip-calculator/
+2192|2080|15|🏦 EMI Calculator|/money-tools/emi-calculator/
+2193|2080|16|🛟 Emergency Fund|/money-tools/emergency-fund-calculator/
+2194|2080|17|🕹️ All tools & games|/money-tools/
+1121|0|18|Learn|/learn/
+2218|1121|19|Daily Money Minute|/daily-money-minute/
+1726|1121|20|Articles|/learn/articles/
+1933|1121|21|Smart Money Habits|/learn/smart-money-habits/
+1727|1121|22|Quotes|/learn/quotes/
+2195|1121|23|Money Words|/money-words/
+2196|0|24|Kids|/money-for-kids/
+2275|2196|25|📖 Money for Kids stories|/money-for-kids/
+2276|2196|26|🎈 Kids Money Corner (games)|/kids-money-corner/
+2335|2196|27|🐷 Pip's Money Club (for parents)|/kids/
+2376|2196|28|🛍️ Printables shop|/shop/
+2393|0|29|🛍️ Shop|/shop/
+788|0|30|About|/about-us/
+2197|788|31|Editorial Policy|/editorial-policy/
+1999|0|32|Contact|/contact-us/
+2336|0|33|Subscribe|/subscribe/
