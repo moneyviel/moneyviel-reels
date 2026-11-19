@@ -9,11 +9,13 @@ add_action( 'wp_head', function () {
 	?>
 <style>
 /* ---------- share box ---------- */
-.ct-share-box{margin:26px auto 30px!important;padding:20px 22px!important;border-radius:20px;background:#1B1640;color:#fff;display:flex!important;flex-wrap:wrap;align-items:center;gap:12px 16px;box-shadow:0 10px 30px rgba(27,22,64,.18)}
-.ct-share-box .ct-module-title{flex-basis:100%;font-size:17px!important;font-weight:800!important;letter-spacing:0!important;text-transform:none!important;color:#fff!important;margin:0!important}
+.ct-share-box{justify-content:flex-start!important;margin:26px auto 30px!important;padding:20px 22px!important;border-radius:20px;background:#1B1640;color:#fff;display:flex!important;flex-wrap:wrap;align-items:center;gap:12px 16px;box-shadow:0 10px 30px rgba(27,22,64,.18)}
+.ct-share-box .ct-module-title{display:block!important;text-align:left!important;flex-basis:100%;font-size:17px!important;font-weight:800!important;letter-spacing:0!important;text-transform:none!important;color:#fff!important;margin:0!important}
 .ct-share-box .ct-module-title small{display:block;font-size:13px;font-weight:600;color:#bdb3f0;margin-top:2px}
 .ct-share-box>div[data-icons-type]{display:flex!important;flex-wrap:wrap;gap:8px!important;align-items:center}
 .ct-share-box a[data-network]{width:40px!important;height:40px!important;border-radius:50%!important;background:rgba(255,255,255,.1)!important;display:inline-flex!important;align-items:center;justify-content:center;transition:transform .15s,background .15s}
+.ct-share-box a[data-network] .ct-icon-container{background:transparent!important;width:auto!important;height:auto!important;border-radius:0!important;padding:0!important;box-shadow:none!important}
+.ct-share-box a[data-network]{overflow:hidden;margin:0!important}
 .ct-share-box a[data-network] svg{fill:#fff!important;width:17px!important;height:17px!important}
 .ct-share-box a[data-network]:hover{transform:translateY(-2px);background:var(--official-color)!important}
 .ct-share-box a[data-network="viber"],.ct-share-box a[data-network="reddit"]{display:none!important}
