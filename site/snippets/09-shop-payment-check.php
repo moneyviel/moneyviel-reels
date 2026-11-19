@@ -248,17 +248,41 @@ function mv_pay_rate_ok( $limit = 20 ) {
 	return true;
 }
 
+/* ---------- Browser binding: files open only in the browser that unlocked them ---------- */
+function mv_dev_id() {
+	if ( current_user_can( 'manage_options' ) ) {
+		return '-'; // Admin: links are not tied to a browser, so they can be sent to a buyer who needs help.
+	}
+	$d = isset( $_COOKIE['mv_dev'] ) ? (string) $_COOKIE['mv_dev'] : '';
+	return preg_match( '/^[a-f0-9]{32}$/', $d ) ? $d : '';
+}
+add_action( 'init', function () {
+	$uri  = isset( $_SERVER['REQUEST_URI'] ) ? (string) $_SERVER['REQUEST_URI'] : '';
+	$need = ! empty( $_GET['mv_t'] ) || isset( $_POST['mv_pay_id'] ) || isset( $_GET['razorpay_payment_id'] ) || false !== strpos( $uri, 'mv-shop/v1/verify' );
+	if ( ! $need || headers_sent() || ( isset( $_COOKIE['mv_dev'] ) && preg_match( '/^[a-f0-9]{32}$/', (string) $_COOKIE['mv_dev'] ) ) ) {
+		return;
+	}
+	$d = bin2hex( random_bytes( 16 ) );
+	setcookie( 'mv_dev', $d, array( 'expires' => time() + 2 * DAY_IN_SECONDS, 'path' => '/', 'secure' => is_ssl(), 'httponly' => true, 'samesite' => 'Lax' ) );
+	$_COOKIE['mv_dev'] = $d;
+}, 0 );
+
 /* ---------- Signed download links and access tokens ---------- */
-function mv_pay_sign( $att, $exp ) {
-	return hash_hmac( 'sha256', $att . '|' . $exp, wp_salt( 'auth' ) . 'mv-shop' );
+function mv_pay_sign( $att, $exp, $dev = '' ) {
+	return hash_hmac( 'sha256', $att . '|' . $exp . '|' . $dev, wp_salt( 'auth' ) . 'mv-shop' );
 }
 function mv_pay_link( $att ) {
 	$exp = time() + DAY_IN_SECONDS;
-	return add_query_arg( array( 'mv_dl' => (int) $att, 'e' => $exp, 's' => mv_pay_sign( (int) $att, $exp ) ), home_url( '/' ) );
+	$dev = mv_dev_id();
+	$a   = array( 'mv_dl' => (int) $att, 'e' => $exp, 's' => mv_pay_sign( (int) $att, $exp, $dev ) );
+	if ( '-' === $dev ) {
+		$a['o'] = 1;
+	}
+	return add_query_arg( $a, home_url( '/' ) );
 }
 function mv_pay_token( $pay_id, $slug ) {
 	$exp = time() + DAY_IN_SECONDS;
-	$sig = substr( hash_hmac( 'sha256', $pay_id . '|' . $slug . '|' . $exp, wp_salt( 'auth' ) . 'mv-token' ), 0, 32 );
+	$sig = substr( hash_hmac( 'sha256', $pay_id . '|' . $slug . '|' . $exp . '|' . mv_dev_id(), wp_salt( 'auth' ) . 'mv-token' ), 0, 32 );
 	return rtrim( strtr( base64_encode( $pay_id . '|' . $slug . '|' . $exp . '|' . $sig ), '+/', '-_' ), '=' );
 }
 function mv_pay_read_token( $t ) {
@@ -268,8 +292,9 @@ function mv_pay_read_token( $t ) {
 		return null;
 	}
 	list( $pay_id, $slug, $exp, $sig ) = $parts;
-	$good = substr( hash_hmac( 'sha256', $pay_id . '|' . $slug . '|' . $exp, wp_salt( 'auth' ) . 'mv-token' ), 0, 32 );
-	if ( (int) $exp < time() || ! hash_equals( $good, $sig ) ) {
+	$dev  = mv_dev_id();
+	$good = substr( hash_hmac( 'sha256', $pay_id . '|' . $slug . '|' . $exp . '|' . $dev, wp_salt( 'auth' ) . 'mv-token' ), 0, 32 );
+	if ( (int) $exp < time() || '' === $dev || ! hash_equals( $good, $sig ) ) {
 		return null;
 	}
 	return array( $pay_id, $slug );
@@ -281,10 +306,11 @@ add_action( 'init', function () {
 	$att = (int) $_GET['mv_dl'];
 	$exp = (int) ( $_GET['e'] ?? 0 );
 	$sig = (string) ( $_GET['s'] ?? '' );
-	if ( ! in_array( $att, mv_shop_all_files(), true ) || $exp < time() || ! hash_equals( mv_pay_sign( $att, $exp ), $sig ) ) {
+	$dev = empty( $_GET['o'] ) ? ( isset( $_COOKIE['mv_dev'] ) && preg_match( '/^[a-f0-9]{32}$/', (string) $_COOKIE['mv_dev'] ) ? (string) $_COOKIE['mv_dev'] : 'none' ) : '-';
+	if ( ! in_array( $att, mv_shop_all_files(), true ) || $exp < time() || ! hash_equals( mv_pay_sign( $att, $exp, $dev ), $sig ) ) {
 		status_header( 403 );
 		nocache_headers();
-		wp_die( 'This download link has expired or is not valid. Please go to moneyviel.com/my-downloads and enter your Razorpay payment ID, or email support@moneyviel.com.', 'Download link expired', array( 'response' => 403 ) );
+		wp_die( 'This download link has expired, or it was opened in a different browser or device from the one used to buy. Download links work only in the browser used for the purchase, for 24 hours. Need help? Email support@moneyviel.com with your payment ID.', 'Download link not valid here', array( 'response' => 403 ) );
 	}
 	$file = get_attached_file( $att );
 	if ( ! $file || ! is_readable( $file ) ) {
@@ -315,7 +341,7 @@ function mv_pay_files_box( $slug ) {
 	$cat = mv_shop_catalogue();
 	$p   = $cat[ $slug ];
 	$out = '<div style="background:linear-gradient(135deg,#fff6dd,#ffe9f0);border-radius:22px;padding:24px 20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:10px 0 18px">';
-	$out .= '<h2 style="margin:0 0 6px">🎉 Your ' . esc_html( $p['name'] ) . '</h2><p style="margin:0 0 12px;font-size:.92em;color:#4b5563">This page and its download links work for 24 hours only. Please download and save all your files now. Problem? Email support@moneyviel.com with your payment ID.</p><p>';
+	$out .= '<h2 style="margin:0 0 6px">🎉 Your ' . esc_html( $p['name'] ) . '</h2><p style="margin:0 0 12px;font-size:.92em;color:#4b5563">This page and its download links work for 24 hours, only in this browser. Please download and save all your files now. Problem? Email support@moneyviel.com with your payment ID.</p><p>';
 	foreach ( $p['files'] as $i => $f ) {
 		$bg   = ( $i % 2 ) ? '#6d28d9' : '#e8457a';
 		$out .= '<a style="display:inline-block;margin:6px;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:' . $bg . '" href="' . esc_url( mv_pay_link( $f[1] ) ) . '">⬇ ' . esc_html( $f[0] ) . '</a>';
@@ -401,9 +427,9 @@ add_shortcode( 'mv_my_downloads', function () {
 	if ( ! empty( $_GET['mv_t'] ) ) {
 		$tok = mv_pay_read_token( sanitize_text_field( wp_unslash( $_GET['mv_t'] ) ) );
 		if ( $tok && isset( mv_shop_catalogue()[ $tok[1] ] ) ) {
-			return $out . '<p style="background:#e6f6ea;border-radius:12px;padding:12px 16px">✅ Payment successful. Thank you! Your payment ID is <b>' . esc_html( $tok[0] ) . '</b>. Keep it to download again later.</p>' . mv_pay_files_box( $tok[1] ) . '</div>';
+			return $out . '<p style="background:#e6f6ea;border-radius:12px;padding:12px 16px">✅ Payment successful. Thank you! Your payment ID is <b>' . esc_html( $tok[0] ) . '</b>. Keep it in case you need help.</p>' . mv_pay_files_box( $tok[1] ) . '</div>';
 		}
-		$msg = 'This link has expired. Please enter your payment ID below.';
+		$msg = 'This download page has expired, or it was opened in a different browser or device from the one used to buy. If you have not used your payment ID yet, enter it below; otherwise email support@moneyviel.com with your payment ID.';
 	}
 	$pay_id = '';
 	if ( isset( $_POST['mv_pay_id'] ) ) {
