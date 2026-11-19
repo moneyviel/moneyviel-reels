@@ -186,13 +186,16 @@ function mv_pay_lookup( $pay_id, $force_mode = '' ) {
 		}
 	}
 	if ( 'error' !== $result ) {
-		set_transient( $cache_key, null === $result ? 'none' : $result, 10 * MINUTE_IN_SECONDS );
+		// Cache a captured payment for 10 minutes; anything else only briefly, so a just-captured payment is seen quickly.
+		$ttl = ( is_array( $result ) && 'captured' === $result['status'] ) ? 10 * MINUTE_IN_SECONDS : 20;
+		set_transient( $cache_key, null === $result ? 'none' : $result, $ttl );
 	}
 	return $result;
 }
 /** Which catalogue product did this payment buy? Returns slug or ''. */
 function mv_pay_product_for( $p ) {
-	if ( ! is_array( $p ) || 'INR' !== $p['currency'] || ! in_array( $p['status'], array( 'captured', 'authorized' ), true ) ) {
+	// Only fully captured payments unlock files (an 'authorized' payment can still lapse and be returned to the buyer).
+	if ( ! is_array( $p ) || 'INR' !== $p['currency'] || 'captured' !== $p['status'] ) {
 		return '';
 	}
 	$cat = mv_shop_catalogue();
@@ -482,6 +485,12 @@ add_action( 'rest_api_init', function () {
 				return new WP_Error( 'mv_bad_sig', 'We could not verify this payment. If money was taken, email support@moneyviel.com with your payment ID.', array( 'status' => 400 ) );
 			}
 			$p    = mv_pay_lookup( $pay, $mode );
+			// Auto-capture usually completes within seconds of the checkout closing: wait briefly for it.
+			for ( $i = 0; $i < 4 && is_array( $p ) && 'authorized' === $p['status']; $i++ ) {
+				sleep( 3 );
+				delete_transient( 'mv_payl2_' . md5( $pay . $mode ) );
+				$p = mv_pay_lookup( $pay, $mode );
+			}
 			$slug = mv_pay_product_for( $p );
 			if ( ! $slug || ( is_array( $p ) && $p['order_id'] !== $order ) ) {
 				return new WP_Error( 'mv_unpaid', 'Payment not confirmed yet. Please go to moneyviel.com/my-downloads in a few minutes and enter your payment ID.', array( 'status' => 402 ) );
