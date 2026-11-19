@@ -246,3 +246,12 @@ Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of th
 - Razorpay international cards are NOT activated (only a PayPal link option exists); owner decides whether to link PayPal.
 - v2 files (after the independent expert review, 19 Nov): WordPress paid attachment IDs 2439–2457 (see Snippet 9); all 11 Payhip products re-uploaded with the same v2 files. Review fixes: Detective clue 1 wording (code 7485), "1 COIN" singular, chore cards that need an adult say "with a grown-up" plus a safety line, wedding totals exclude Cancelled vendors, Command Centre example figures made consistent, organiser never asks for the phone code itself. Any future file change must be made on BOTH WordPress and Payhip.
 - Temporary encrypted transfer folders (tmp-xfer*) must be deleted from this repo straight after use (done for tmp-xfer4).
+
+## 0i. Money Command Centre v2 = Google Sheets (2026-11-20)
+- The product is now a Google Sheets tool (12 tabs, no scripts). Buyers get an "Access card" PDF with two Google "/copy" links (With examples, Blank). The two shared copies are view-only + Drive-locked; masters are private + locked (Drive: MoneyViel Shop > 01 MASTER / 02 CUSTOMER DELIVERY).
+- WordPress: paid attachment 2471 (mvp- name, hidden by Snippet 8) is the only file for money-command-centre in Snippet 9; the catalogue entry has a 'note' shown under the download button. Old xlsx attachment 2456 is no longer used.
+- Shop card (/shop/): image shop-money-command-centre-v4.jpg (media 2476), "Watch the 1-minute demo" links media 2473 (moneyviel-money-command-centre-demo.mp4). Homepage line says "(Google Sheets)".
+- Payhip g53Zr: title "Money Command Centre: Family Budget, Net Worth & EMI Dashboard (Google Sheets)", $12.99, file = access card PDF, 5 images, demo link in description. Payhip video embed needs a YouTube/Vimeo link: add it once the demo is on YouTube.
+- Etsy: files prepared only; do nothing on Etsy until the owner confirms.
+- Access card source: /home/claude/gsheets/access_card.py (private working folder). If the /copy links ever change, rebuild the PDF and replace it on BOTH WordPress (2471) and Payhip.
+
