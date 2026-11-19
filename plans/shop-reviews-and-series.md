@@ -23,3 +23,7 @@
 3. ~Fri 27 Nov: "Our family's net worth updates itself" - net worth + emergency fund months of cover.
 4. ~Mon 30 Nov: "What's your Money Health Score?" - score out of 100 + the check-in page from the access card.
 Each: short Short/clip or image from the real sheet, honest captions, sample-data label, education disclaimer.
+
+## C. Next in pipeline (owner, 2026-11-20)
+1. Views + likes makeover (plugins: Post Views Counter + WP ULike). Views hidden until a post has more than 10 views. Proposal: one "reaction bar" at the end of grown-up articles ("Was this helpful? 💜 Helpful · 💡 Learned something"), a small "👀 1.2K readers" pill near the title (Indian K/lakh style), "Be the first to find this helpful" when 0 likes, a gentle share nudge after a like, optional "🔥 Trending this week" badge. Nothing on kids pages.
+2. Menu restructure: 9 top items, Money Tools has 14 children. Proposal: mega menu for Tools grouped by goal (Plan & save / Get out of debt / Check-ups / Play & learn) with emoji, one-line descriptions and a "New" badge; Learn and Kids as small panels; Shop + Subscribe as highlighted buttons; About/Contact move into "More" and the footer; mobile = full-screen sheet with big tiles + "I want to..." quick picker.
