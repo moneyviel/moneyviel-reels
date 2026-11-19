@@ -12,25 +12,25 @@
 
 function mv_shop_catalogue() {
 	$kids_files = array(
-		array( 'Starter Kit (A4)', 2357 ), array( 'Starter Kit (US Letter)', 2358 ),
-		array( 'Saving Challenge (A4)', 2355 ), array( 'Saving Challenge (US Letter)', 2356 ),
-		array( 'Money Detective (A4)', 2395 ), array( 'Money Detective (US Letter)', 2396 ),
-		array( 'Bank Book (A4)', 2397 ), array( 'Bank Book (US Letter)', 2398 ),
-		array( 'MoneyViel Mart (A4)', 2399 ), array( 'MoneyViel Mart (US Letter)', 2400 ),
-		array( 'Chore & Earn (A4)', 2401 ), array( 'Chore & Earn (US Letter)', 2402 ),
+		array( 'Starter Kit (A4)', 2441 ), array( 'Starter Kit (US Letter)', 2442 ),
+		array( 'Saving Challenge (A4)', 2443 ), array( 'Saving Challenge (US Letter)', 2444 ),
+		array( 'Money Detective (A4)', 2439 ), array( 'Money Detective (US Letter)', 2440 ),
+		array( 'Bank Book (A4)', 2445 ), array( 'Bank Book (US Letter)', 2446 ),
+		array( 'MoneyViel Mart (A4)', 2447 ), array( 'MoneyViel Mart (US Letter)', 2448 ),
+		array( 'Chore & Earn (A4)', 2449 ), array( 'Chore & Earn (US Letter)', 2450 ),
 	);
 	return array(
-		'starter-kit'           => array( 'name' => 'Money Club Starter Kit', 'price' => 14900, 'legacy' => true, 'files' => array( array( 'A4 PDF', 2357 ), array( 'US Letter PDF', 2358 ) ) ),
-		'saving-challenge'      => array( 'name' => '30-Day Saving Challenge', 'price' => 9900, 'legacy' => true, 'files' => array( array( 'A4 PDF', 2355 ), array( 'US Letter PDF', 2356 ) ) ),
-		'money-detective'       => array( 'name' => 'Money Detective Escape Game', 'price' => 14900, 'files' => array( array( 'A4 PDF', 2395 ), array( 'US Letter PDF', 2396 ) ) ),
-		'bank-book'             => array( 'name' => "Pip's Pocket-Money Bank Book", 'price' => 9900, 'files' => array( array( 'A4 PDF', 2397 ), array( 'US Letter PDF', 2398 ) ) ),
-		'moneyviel-mart'        => array( 'name' => 'MoneyViel Mart Pretend Shop', 'price' => 12900, 'files' => array( array( 'A4 PDF', 2399 ), array( 'US Letter PDF', 2400 ) ) ),
-		'chore-earn'            => array( 'name' => 'Chore & Earn Board', 'price' => 9900, 'files' => array( array( 'A4 PDF', 2401 ), array( 'US Letter PDF', 2402 ) ) ),
+		'starter-kit'           => array( 'name' => 'Money Club Starter Kit', 'price' => 14900, 'legacy' => true, 'files' => array( array( 'A4 PDF', 2441 ), array( 'US Letter PDF', 2442 ) ) ),
+		'saving-challenge'      => array( 'name' => '30-Day Saving Challenge', 'price' => 9900, 'legacy' => true, 'files' => array( array( 'A4 PDF', 2443 ), array( 'US Letter PDF', 2444 ) ) ),
+		'money-detective'       => array( 'name' => 'Money Detective Escape Game', 'price' => 14900, 'files' => array( array( 'A4 PDF', 2439 ), array( 'US Letter PDF', 2440 ) ) ),
+		'bank-book'             => array( 'name' => "Pip's Pocket-Money Bank Book", 'price' => 9900, 'files' => array( array( 'A4 PDF', 2445 ), array( 'US Letter PDF', 2446 ) ) ),
+		'moneyviel-mart'        => array( 'name' => 'MoneyViel Mart Pretend Shop', 'price' => 12900, 'files' => array( array( 'A4 PDF', 2447 ), array( 'US Letter PDF', 2448 ) ) ),
+		'chore-earn'            => array( 'name' => 'Chore & Earn Board', 'price' => 9900, 'files' => array( array( 'A4 PDF', 2449 ), array( 'US Letter PDF', 2450 ) ) ),
 		'kids-bundle'           => array( 'name' => 'Family Bundle: all 6 MoneyViel Kids kits', 'price' => 39900, 'files' => $kids_files ),
-		'emergency-organiser'   => array( 'name' => 'Family Emergency & Legacy Organiser', 'price' => 29900, 'files' => array( array( 'Printable PDF (A4)', 2403 ), array( 'Printable PDF (US Letter)', 2404 ), array( 'Excel / Google Sheets version', 2407 ) ) ),
-		'money-date-night'      => array( 'name' => 'Money Date Night Cards', 'price' => 19900, 'files' => array( array( 'A4 PDF', 2405 ), array( 'US Letter PDF', 2406 ) ) ),
-		'money-command-centre'  => array( 'name' => 'Money Command Centre', 'price' => 39900, 'files' => array( array( 'Excel / Google Sheets file', 2408 ) ) ),
-		'wedding-event-planner' => array( 'name' => 'Wedding & Big-Event Planner', 'price' => 24900, 'files' => array( array( 'Excel / Google Sheets file', 2409 ) ) ),
+		'emergency-organiser'   => array( 'name' => 'Family Emergency & Legacy Organiser', 'price' => 29900, 'files' => array( array( 'Printable PDF (A4)', 2451 ), array( 'Printable PDF (US Letter)', 2452 ), array( 'Excel / Google Sheets version', 2455 ) ) ),
+		'money-date-night'      => array( 'name' => 'Money Date Night Cards', 'price' => 19900, 'files' => array( array( 'A4 PDF', 2453 ), array( 'US Letter PDF', 2454 ) ) ),
+		'money-command-centre'  => array( 'name' => 'Money Command Centre', 'price' => 39900, 'files' => array( array( 'Excel / Google Sheets file', 2456 ) ) ),
+		'wedding-event-planner' => array( 'name' => 'Wedding & Big-Event Planner', 'price' => 24900, 'files' => array( array( 'Excel / Google Sheets file', 2457 ) ) ),
 	);
 }
 /** Old download pages (from the Razorpay Payment Pages) => product slug. */
