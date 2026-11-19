@@ -55,6 +55,11 @@ function mv_shop_exclude_args( $args ) {
 	$ids = mv_shop_private_ids();
 	if ( $ids ) {
 		$args['post__not_in'] = array_merge( isset( $args['post__not_in'] ) ? (array) $args['post__not_in'] : array(), $ids );
+		// WP_Query ignores post__not_in when post__in is set (for example ?include=), so filter that too.
+		if ( ! empty( $args['post__in'] ) ) {
+			$left             = array_values( array_diff( array_map( 'intval', (array) $args['post__in'] ), $ids ) );
+			$args['post__in'] = $left ? $left : array( 0 );
+		}
 	}
 	return $args;
 }
