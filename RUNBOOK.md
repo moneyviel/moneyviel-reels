@@ -198,3 +198,9 @@ Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of th
    c. Add it to the YouTube playlist "MoneyViel Free Money Tools" if not already there.
    d. Record done items in `state/longform.json`.
 3. Delete `longform/*.mp4` from the repo (orphan-commit cleanup as usual) only after all four teasers are scheduled and 25 Nov has passed.
+
+## 0d. Fixed family pages (QR codes printed in books) — added 2026-11-19
+- **moneyviel.com/kids/** = "Pip's Money Club" (page 2329) and **moneyviel.com/wonder-trail/** = "The Wonder Trail Puzzle Books" (page 2330). These addresses are printed as QR codes in the owner's books: NEVER change their slug, parent, status, or delete/trash them, and never create another post/page/category/redirect that uses `kids` or `wonder-trail` as a slug.
+- The old games page "Kids Money Corner" (2181) moved to **/kids-money-corner/** on 2026-11-19 (menu item 2276, homepage 2183 and tools page 2074 links updated).
+- No ads and no comments on 2329, 2330 and 2181 (Code Snippets snippet 5, by page ID). The weekly kids no-ads check also fetches /kids/ and /wonder-trail/ and confirms no `googlesyndication.com/pagead`.
+- Page sources: `site/pages/kids.html`, `site/pages/wonder-trail.html` (Custom HTML block). Wonder Trail buttons show "Coming soon to Amazon" (`span.mv-soon`) until the owner gives a link; then swap to `<a class="mv-btn wt-amz mv-live" href="AMAZON_LINK" target="_blank" rel="noopener">Available on Amazon</a>`. Printables and the newsletter form are placeholders until the owner sends the PDFs / the newsletter account is set up. Only edit these pages when the owner asks.
