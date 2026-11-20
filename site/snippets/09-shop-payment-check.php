@@ -29,7 +29,7 @@ function mv_shop_catalogue() {
 		'kids-bundle'           => array( 'name' => 'Family Bundle: all 6 MoneyViel Kids kits', 'price' => 39900, 'files' => $kids_files ),
 		'emergency-organiser'   => array( 'name' => 'Family Emergency & Legacy Organiser', 'price' => 29900, 'files' => array( array( 'Printable PDF (A4)', 2451 ), array( 'Printable PDF (US Letter)', 2452 ), array( 'Excel / Google Sheets version', 2455 ) ) ),
 		'money-date-night'      => array( 'name' => 'Money Date Night Cards', 'price' => 19900, 'files' => array( array( 'A4 PDF', 2453 ), array( 'US Letter PDF', 2454 ) ) ),
-		'money-command-centre'  => array( 'name' => 'Money Command Centre', 'price' => 39900, 'files' => array( array( 'Access card (PDF): your Google Sheets links', 2471 ) ), 'note' => 'Open the access card and click "Make my copy" to save your own private Google Sheets copy (free Google account needed). This is a Google Sheets tool; Excel is not supported. For personal and family use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.' ),
+		'money-command-centre'  => array( 'name' => 'Money Command Centre', 'price' => 39900, 'files' => array( array( 'Access card (PDF): your Google Sheets links', 2520 ) ), 'note' => 'Open the access card and click "Make my copy" to save your own private Google Sheets copy (free Google account needed). This is a Google Sheets tool; Excel is not supported. For personal and family use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.' ),
 		'wedding-event-planner' => array( 'name' => 'Wedding & Big-Event Planner', 'price' => 24900, 'files' => array( array( 'Excel / Google Sheets file', 2457 ) ) ),
 	);
 }
