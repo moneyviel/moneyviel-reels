@@ -36,7 +36,8 @@ add_action( 'wp_footer', function () {
 .mvl-sr span{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px;opacity:.6}
 .mvl-bd{overflow:auto;padding:4px 20px 18px}
 .mvl-gh{font-size:11.5px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:#5B3FD6;margin:12px 0 6px}
-.mvl-gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px}
+.mvl-gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px;align-items:start}
+.mvl-l>span{min-width:0}.mvl-l b{white-space:nowrap}.mvl-l small{white-space:nowrap}
 .mvl-l{display:flex;align-items:center;justify-content:space-between;gap:6px;border:1.5px solid #EEE9FF;background:#fff;border-radius:11px;padding:6px 10px;cursor:pointer;text-align:left;color:#1B1640;transition:border-color .12s,background .12s}
 .mvl-l:hover{border-color:#5B3FD6;background:#FAF8FF}
 .mvl-l b{display:inline;font-size:15.5px;font-weight:800;line-height:1.3}
