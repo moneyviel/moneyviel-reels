@@ -28,6 +28,22 @@ add_action( 'wp_head', function () {
 /* ---------- mobile menu ---------- */
 #offcanvas .mv-grp>a,#mobile-menu .mv-grp>a{font-weight:800;color:#5B3FD6}
 #mobile-menu .mv-new>a:after,#offcanvas .mv-new>a:after{content:"NEW";margin-left:6px;font-size:10px;font-weight:900;color:#1B1640;background:#FFB020;border-radius:999px;padding:1px 6px}
+/* ---------- home page: swipe rows on phones (cards peek so people see there is more) ---------- */
+@media(max-width:680px){
+.home .hp-tiles{display:flex!important;grid-template-columns:none!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px!important;padding:2px 2px 14px!important;margin-right:-16px!important;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.home .hp-tiles::-webkit-scrollbar{display:none}
+.home .hp-tiles>*{flex:0 0 80%!important;scroll-snap-align:start;max-width:80%!important}
+.home .hp-tiles+.mv-swipe{display:block}
+}
+.mv-swipe{display:none;font-size:12.5px;font-weight:700;color:#6B6488;margin:-6px 0 12px}
 </style>
 	<?php
 }, 30 );
+
+/* "Swipe" hint under each home row on phones */
+add_action( 'wp_footer', function () {
+	if ( ! is_front_page() ) {
+		return;
+	}
+	echo '<script>(function(){[].forEach.call(document.querySelectorAll(".hp-tiles"),function(t){if(t.children.length<2)return;var h=document.createElement("div");h.className="mv-swipe";h.textContent="Swipe for more \u2192";t.parentNode.insertBefore(h,t.nextSibling)})})();</script>';
+}, 52 );
