@@ -46,7 +46,7 @@ So one evening, Riya opens the banking app and writes three things on a sheet of
 **Your turn (10 minutes)**
 Do what Riya did: write down what came in last month, your 5 biggest spends, and what was left at the end.
 
-Then take our free 3-minute check-up and keep your score. In Chapter 7 you'll take it again and compare.
+Then take our free 2-minute check-up and keep your score. In Chapter 7 you'll take it again and compare.
 👉 https://moneyviel.com/money-tools/money-health-report/
 
 Tomorrow: the Sharmas find ₹7,000 a month without earning a rupee more.
