@@ -36,6 +36,9 @@ add_action( 'wp_head', function () {
 .home .hp-tiles+.mv-swipe{display:block}
 }
 .mv-swipe{display:none;font-size:12.5px;font-weight:700;color:#6B6488;margin:-6px 0 12px}
+/* translated pages: longer words, so tighten the menu and hide the Subscribe pill (still in the footer/newsletter boxes) */
+html.translated-ltr #header-menu-1 .mv-sub,html.translated-rtl #header-menu-1 .mv-sub{display:none!important}
+html.translated-ltr #header-menu-1>ul>li>a,html.translated-rtl #header-menu-1>ul>li>a{font-size:14px!important;padding-left:9px!important;padding-right:9px!important}
 </style>
 	<?php
 }, 30 );
