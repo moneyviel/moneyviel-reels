@@ -20,9 +20,10 @@ add_action( 'wp_footer', function () {
 .mvl-btn:hover{border-color:#5B3FD6;box-shadow:0 3px 10px rgba(91,63,214,.15)}
 .mvl-btn .g{font-size:15px}
 .mvl-btn .c{min-width:18px;text-align:center}
-.mvl-fab{position:fixed;left:14px;bottom:18px;z-index:9990;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#3B2A7A;font-weight:900;box-shadow:0 6px 18px rgba(27,22,64,.22);display:none;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;line-height:1;padding:0}
+.mvl-fab{position:fixed;left:14px;bottom:18px;z-index:9990;width:46px;height:46px;border-radius:50%;border:1px solid rgba(91,63,214,.30);background:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#3B2A7A;font-weight:900;box-shadow:0 4px 14px rgba(27,22,64,.12);display:flex;transition:background .15s,box-shadow .15s;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;line-height:1;padding:0}
 .mvl-fab .g{font-size:18px}.mvl-fab .c{font-size:9.5px;color:#E0408F;margin-top:2px;max-width:40px;overflow:hidden;white-space:nowrap}
 .mvl-fab:active{transform:scale(.94)}
+.mvl-fab:hover{background:rgba(255,255,255,.95);box-shadow:0 6px 18px rgba(27,22,64,.22)}
 .mvl-row{display:flex;align-items:center;justify-content:space-between;width:100%;margin:0 0 14px;padding:10px 14px;border:1.5px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.06);color:inherit;font-weight:800;font-size:15px;cursor:pointer;text-align:left}
 .mvl-row small{opacity:.75;font-weight:700}
 .mvl-ov{position:fixed;inset:0;z-index:99998;background:rgba(27,22,64,.45);display:flex;align-items:flex-start;justify-content:center;padding:84px 14px 14px;animation:mvlfade .2s ease}
@@ -57,7 +58,7 @@ add_action( 'wp_footer', function () {
 @keyframes mvlup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes mvlfade{from{opacity:0}to{opacity:1}}
 @keyframes mvlpop{from{opacity:0;transform:translateY(-8px) scale(.98)}to{opacity:1;transform:none}}
-@media(max-width:999px){.mvl-fab{display:flex}.mvl-btn{display:none}
+@media(max-width:999px){.mvl-btn{display:none}
 .mvl-ov{align-items:flex-end;padding:0}
 .mvl-pn{width:100%;max-height:82vh;border-radius:22px 22px 0 0;animation:mvlup .25s ease}
 .mvl-gr{grid-template-columns:repeat(2,minmax(0,1fr))}}
