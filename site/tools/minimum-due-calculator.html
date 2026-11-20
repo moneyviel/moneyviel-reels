@@ -1,0 +1,196 @@
+<style>
+#mv-md{--vi:#5B3FD6}
+#mv-md .md-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+#mv-md .md-top>div:first-child{flex:1 1 300px}
+#mv-md .md-cur{flex:0 0 auto;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.6);border-radius:12px;padding:6px 10px}
+#mv-md .md-cur label{margin:0;font-size:13px}
+#mv-md .md-cur select{width:auto;padding:6px 8px;font-size:15px;min-height:40px}
+#mv-md input[type=number],#mv-md select{min-height:46px}
+#mv-md .md-ex{font-size:12px;color:#8a5570;font-weight:700}
+#mv-md .md-pct{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#mv-md .md-pay{display:grid;grid-template-columns:1fr 150px;gap:14px;align-items:center}
+#mv-md .md-qb{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+#mv-md .md-qb .btn{min-height:46px}
+#mv-md .md-vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+#mv-md .md-p{border-radius:16px;padding:18px;text-align:center}
+#mv-md .md-p.a{background:linear-gradient(135deg,#fff0f7,#fbd9ea);color:#7d1d4f}
+#mv-md .md-p.b{background:linear-gradient(135deg,#eeeaff,#ddd4ff);color:var(--t)}
+#mv-md .md-p h4{margin:0 0 6px;font-size:15.5px}
+#mv-md .md-yr{font-size:46px;font-weight:900;line-height:1.05;margin:4px 0 2px}
+#mv-md .md-p.a .md-yr{color:var(--p)}
+#mv-md .md-p.b .md-yr{color:var(--vi)}
+#mv-md .md-yr.sm{font-size:28px}
+#mv-md .md-l{font-size:13px;opacity:.85}
+#mv-md .md-n{font-size:22px;font-weight:900;margin:2px 0 8px}
+#mv-md .md-save{margin-top:14px;background:var(--t);color:#fff;border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+#mv-md .md-save .k{font-size:14px;opacity:.9}
+#mv-md .md-save .v{font-size:28px;font-weight:900;line-height:1.15;color:#FFB020}
+#mv-md .md-chart{position:relative;margin-top:8px}
+#mv-md .md-chart svg{display:block;width:100%;height:auto}
+#mv-md .md-anim{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:mdDraw 1.1s ease-out forwards}
+#mv-md .md-anim.d2{animation-delay:.25s}
+@keyframes mdDraw{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){#mv-md .md-anim{animation:none;stroke-dashoffset:0}}
+#mv-md .md-steps{margin:0;padding-left:0;list-style:none;counter-reset:s}
+#mv-md .md-steps li{position:relative;padding-left:44px;margin:0 0 12px;font-size:15px}
+#mv-md .md-steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:var(--bg);color:var(--t);font-weight:900;display:flex;align-items:center;justify-content:center}
+#mv-md .md-split{display:flex;height:34px;border-radius:10px;overflow:hidden;margin:10px 0 6px;font-size:13px;font-weight:800;color:#fff}
+#mv-md .md-split span{display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;min-width:0}
+#mv-md .md-btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+#mv-md .md-btns .btn{min-height:48px}
+#mv-md .md-chk{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:14.5px;color:#2b2a40;margin:12px 0 0;cursor:pointer}
+#mv-md .md-chk input{width:22px;height:22px;flex:0 0 22px;accent-color:var(--p);margin:1px 0 0}
+#mv-md .md-prev{display:none;margin-top:14px;text-align:center}
+#mv-md .md-prev img{width:100%;max-width:280px;border-radius:12px;box-shadow:0 6px 20px rgba(42,31,107,.18);display:block;margin:0 auto 12px}
+#mv-md .md-foot{text-align:center;font-size:12.5px;color:#5c6b70;margin:6px 0 0}
+@media(max-width:520px){#mv-md .md-pay{grid-template-columns:1fr}#mv-md .md-vs{gap:10px}#mv-md .md-p{padding:14px 10px}#mv-md .md-yr{font-size:34px}#mv-md .md-yr.sm{font-size:22px}#mv-md .md-n{font-size:18px}#mv-md .md-save .v{font-size:23px}#mv-md .md-btns .btn,#mv-md .md-qb .btn{flex:1 1 auto;text-align:center}}
+</style>
+<div class="mvt" id="mv-md">
+<div class="card hero">
+<div class="md-top"><div><h2>Minimum Due Trap Simulator</h2><p>Paying just the "minimum due" on a credit card feels easy. See how long it really takes, and how much a fixed monthly amount can save you.</p></div>
+<div class="md-cur"><label for="md-cur">Currency</label><select id="md-cur"><option value="INR">₹ INR</option><option value="USD">$ USD</option><option value="GBP">£ GBP</option><option value="EUR">€ EUR</option><option value="AED">AED</option><option value="SGD">S$ SGD</option></select></div>
+</div></div>
+
+<div class="card">
+<h3>1. Your card</h3>
+<div class="grid">
+<div class="field"><label for="md-bal">Card balance you owe (<span class="md-cs">₹</span>)</label><input type="number" id="md-bal" value="80000" min="0" step="1000" inputmode="decimal"></div>
+<div class="field"><label for="md-rate">Interest % per year</label><input type="number" id="md-rate" value="36" min="0" max="100" step="0.5" inputmode="decimal"><div class="md-ex">example rate: use your own statement</div></div>
+<div class="field"><label>Minimum due</label><div class="md-pct"><div><input type="number" id="md-pc" value="5" min="0.5" max="100" step="0.5" aria-label="Minimum due percent of balance" inputmode="decimal"><div class="hint">% of balance</div></div><div><input type="number" id="md-fl" value="200" min="0" step="50" aria-label="Minimum due floor amount" inputmode="decimal"><div class="hint">or at least <span class="md-cs">₹</span></div></div></div><div class="hint">Check your statement. Example shown.</div></div>
+<div class="field"><label for="md-sp">New spending on this card each month (<span class="md-cs">₹</span>)</label><input type="number" id="md-sp" value="0" min="0" step="500" inputmode="decimal"><div class="hint">Optional. Leave 0 if you've stopped using it.</div></div>
+</div>
+</div>
+
+<div class="card">
+<h3>2. What if you pay a fixed amount instead?</h3>
+<label for="md-fx">Fixed amount you pay every month (<span class="md-cs">₹</span>)</label>
+<div class="md-pay"><input type="range" id="md-fxr" min="0" max="20000" step="100" value="5000" aria-label="Fixed monthly payment slider"><input type="number" id="md-fx" min="0" step="100" value="5000" inputmode="decimal"></div>
+<div class="hint" id="md-fxh"></div>
+<div class="md-qb"><button type="button" class="btn alt" id="md-add">+ <span class="md-cs">₹</span>1,000 / month</button><button type="button" class="btn ghost" id="md-sub">− <span class="md-cs">₹</span>1,000</button></div>
+</div>
+
+<div class="card">
+<h3>3. The difference</h3>
+<div class="md-vs">
+<div class="md-p a"><h4>🐢 Minimum due only</h4><div class="md-yr" id="md-ay">–</div><div class="md-l">to clear the card</div><div class="md-l" style="margin-top:10px">Total interest</div><div class="md-n" id="md-ai">–</div><div class="md-l">Total you pay</div><div class="md-n" id="md-ap">–</div></div>
+<div class="md-p b"><h4>🚀 <span id="md-bh">Fixed amount</span></h4><div class="md-yr" id="md-by">–</div><div class="md-l">to clear the card</div><div class="md-l" style="margin-top:10px">Total interest</div><div class="md-n" id="md-bi">–</div><div class="md-l">Total you pay</div><div class="md-n" id="md-bp">–</div></div>
+</div>
+<div class="md-save" id="md-save"><div><div class="k" id="md-svk">Paying a fixed amount saves you</div><div class="v" id="md-sv">–</div></div><div style="text-align:right"><div class="k" id="md-stk">and you're free</div><div class="v" id="md-st">–</div></div></div>
+<div style="margin:14px 0 0;text-align:center"><a class="btn" id="md-race" href="https://moneyviel.com/money-tools/debt-free-grand-prix/">🏁 Watch this as a race</a><div class="hint" style="margin-top:6px">Opens the Debt-Free Grand Prix with your numbers</div></div>
+<h3 style="margin-top:18px">Balance left over time</h3>
+<div class="legend"><span><i style="background:#E0408F"></i>Minimum due only</span><span><i style="background:#5B3FD6"></i>Fixed amount</span></div>
+<div class="md-chart" id="md-chart"></div>
+</div>
+
+<div class="card">
+<h3>Why the minimum due is a trap</h3>
+<p style="margin:0 0 6px" id="md-first"></p>
+<div class="md-split" id="md-split"></div>
+<div class="legend" style="margin-bottom:14px"><span><i style="background:#E0408F"></i>Goes to interest</span><span><i style="background:#5B3FD6"></i>Actually reduces what you owe</span></div>
+<ol class="md-steps">
+<li>The minimum due is usually a small % of your balance. It is set so your account stays in good standing, <b>not</b> so you finish quickly.</li>
+<li>Interest is charged every month on whatever is left. When you pay only the minimum, a big part of it just covers that interest.</li>
+<li>As the balance shrinks, the minimum shrinks too, so progress gets slower and slower. That's the long tail you see in the chart.</li>
+<li>On many cards, carrying a balance can also mean new purchases start attracting interest straight away. Check your card's terms.</li>
+<li><b>The fix is simple:</b> choose a fixed amount you can manage, pay it every month (even when the minimum drops), and pause new spending on the card if you can.</li>
+</ol>
+<p class="muted" style="margin:0">How we calculate: each month, interest = balance × (annual rate ÷ 12), new spending is added, then the payment is made. Minimum due = the bigger of the % and the floor. Real statements may differ because of fees, taxes and billing dates.</p>
+</div>
+
+<div class="card">
+<h3>Share what you learned</h3>
+<p class="muted" style="margin:0 0 12px">Makes a picture of the comparison. Nothing is uploaded: you choose if and where to share it.</p>
+<div class="md-btns"><button type="button" class="btn alt" id="md-mk">🖼️ Create share image</button></div>
+<label class="md-chk"><input type="checkbox" id="md-amt"> Show amounts on the image (hidden by default, only the years are shown)</label>
+<p class="muted" id="md-shmsg" style="margin:10px 0 0"></p>
+<div class="md-prev" id="md-prev"><img id="md-img" alt="Share image comparing minimum due with a fixed payment"><div class="md-btns" style="justify-content:center"><a class="btn" id="md-dl" download="moneyviel-minimum-due-trap.png" href="#">⬇ Download image</a><button type="button" class="btn ghost" id="md-sb" style="display:none">📤 Share</button></div></div>
+</div>
+<div class="card links"><h3>Next steps</h3><p style="margin:0">Check what any loan really costs with the <a href="https://moneyviel.com/money-tools/emi-calculator/">EMI Calculator</a>, and keep a small cushion with the <a href="https://moneyviel.com/money-tools/emergency-fund-calculator/">Emergency Fund Calculator</a>. Struggling to pay? Talk to your card issuer early, before you miss a payment.</p></div>
+<p class="md-foot">For education only. Not financial advice. Figures are estimates based on your assumptions.</p>
+</div>
+<script>
+(function(){var R=document.getElementById('mv-md');if(!R)return;var $=function(i){return document.getElementById(i)};var MAXM=600;
+var CUR={INR:'₹',USD:'$',GBP:'£',EUR:'€',AED:'AED ',SGD:'S$'},cur='INR';
+function grp(n){var s=String(Math.round(Math.abs(n)));if(cur==='INR'&&s.length>3){var l=s.slice(-3),h=s.slice(0,-3);s=h.replace(/\B(?=(\d{2})+(?!\d))/g,',')+','+l}else s=s.replace(/\B(?=(\d{3})+(?!\d))/g,',');return s}
+function f(n){return (n<-0.5?'-':'')+CUR[cur]+grp(n)}
+function trim(x,d){return (+x.toFixed(d)).toString()}
+function fw(n){var a=Math.abs(n);if(cur==='INR'){if(a>=1e7)return CUR[cur]+trim(n/1e7,2)+' crore';if(a>=1e5)return CUR[cur]+trim(n/1e5,2)+' lakh'}else{if(a>=1e9)return CUR[cur]+trim(n/1e9,2)+' billion';if(a>=1e6)return CUR[cur]+trim(n/1e6,2)+' million'}return f(n)}
+function fc(n){var a=Math.abs(n),s=CUR[cur].trim();if(cur==='INR'){if(a>=1e7)return s+trim(n/1e7,1)+'Cr';if(a>=1e5)return s+trim(n/1e5,1)+'L'}else if(a>=1e6)return s+trim(n/1e6,1)+'M';if(a>=1e3)return s+trim(n/1e3,1)+'K';return s+Math.round(n)}
+function num(id,lo,hi){var v=parseFloat($(id).value);if(!isFinite(v))v=0;if(v<lo)v=lo;if(hi!=null&&v>hi)v=hi;return v}
+function dur(m){var y=Math.floor(m/12),r=m%12;return (y?y+(y===1?' yr':' yrs'):'')+(y&&r?' ':'')+(r||!y?r+(r===1?' month':' months'):'')}
+function yrs(m){return m<12?m+(m===1?' month':' months'):trim(m/12,1)+' years'}
+function sim(b,r,pc,fl,sp,fx){var bal=b,ti=0,tp=0,m=0,s=[b];
+ while(m<MAXM&&bal>0.005){m++;var it=bal*r/1200;bal+=it;ti+=it;bal+=sp;var due=Math.min(Math.max(bal*pc/100,fl),bal),pay=fx==null?due:Math.min(Math.max(fx,due),bal);bal-=pay;tp+=pay;if(bal<=0.005)bal=0;s.push(bal)}
+ return {m:m,int:ti,paid:tp,s:s,never:bal>0.005}}
+var last=null,anim=true;
+function calc(){var b=num('md-bal',0),r=num('md-rate',0,100),pc=num('md-pc',0.1,100),fl=num('md-fl',0),sp=num('md-sp',0);
+ var fb=b*(1+r/1200)+sp,due1=Math.min(Math.max(fb*pc/100,fl),fb);
+ var fxr=$('md-fxr'),mx=Math.max(5000,Math.ceil(Math.max(b/4,due1*4)/1000)*1000),mn=Math.ceil(due1/100)*100;fxr.max=mx;fxr.min=Math.min(mn,mx);fxr.step=mx>40000?500:100;
+ var fx=num('md-fx',0);if(fx<due1&&b>0){$('md-fxh').innerHTML='This is below your first minimum due ('+f(due1)+'), so we use the minimum due wherever your amount is lower.'}else $('md-fxh').textContent='You keep paying this same amount every month, even as the minimum due drops.';
+ fxr.value=Math.min(Math.max(fx,+fxr.min),mx);
+ var A=sim(b,r,pc,fl,sp,null),B=sim(b,r,pc,fl,sp,fx);last={A:A,B:B,b:b,fx:fx,sp:sp,r:r,due1:due1};
+ function put(p,X){var y=$('md-'+p+'y');if(b<=0){y.textContent='–';$('md-'+p+'i').textContent='–';$('md-'+p+'p').textContent='–';return}
+  if(X.never){y.textContent='Never';y.classList.remove('sm');$('md-'+p+'i').textContent='Keeps adding up';$('md-'+p+'p').textContent='No end at this rate';return}
+  y.textContent=yrs(X.m);y.classList.toggle('sm',yrs(X.m).length>11);$('md-'+p+'i').textContent=f(X.int);$('md-'+p+'p').textContent=f(X.paid)}
+ put('a',A);put('b',B);$('md-bh').textContent=f(Math.max(fx,0))+' every month';
+ var sv=$('md-save');if(b<=0){sv.style.display='none'}else{sv.style.display='flex';
+  var K=function(a,b){$('md-svk').textContent=a;$('md-stk').textContent=b};
+  if(B.never){K('At this amount, the balance','Try a bigger amount');$('md-sv').textContent='doesn\'t go down';$('md-st').textContent='or pause new spending'}
+  else if(A.never){K('Minimum due alone never clears it.','You could be debt-free in');$('md-sv').textContent='A fixed amount does';$('md-st').textContent=dur(B.m)}
+  else{K('Paying a fixed amount saves you','and you\'re free');$('md-sv').textContent=f(Math.max(0,A.int-B.int))+' in interest';$('md-st').textContent=A.m>B.m?dur(A.m-B.m)+' sooner':'at the same time'}}
+ // first payment split
+ var it1=b*r/1200;if(b>0){var red=Math.max(0,due1-it1),pi=due1>0?Math.min(100,it1/due1*100):0;
+  $('md-first').innerHTML='Your first minimum due is about <b>'+f(due1)+'</b>. '+(due1<it1-0.5?'That is less than this month\'s interest of <b>'+f(it1)+'</b>, so paying only the minimum would let the balance grow':'Of that, <b>'+f(Math.min(it1,due1))+'</b> goes to interest and only <b>'+f(red)+'</b> reduces what you owe')+(sp>0?' (before your new spending of '+f(sp)+' is added back)':'')+'.';
+  $('md-split').innerHTML=(pi>0?'<span style="width:'+pi+'%;background:#E0408F">'+(pi>18?Math.round(pi)+'% interest':'')+'</span>':'')+(pi<100?'<span style="width:'+(100-pi)+'%;background:#5B3FD6">'+(100-pi>18?Math.round(100-pi)+'% repays debt':'')+'</span>':'')}
+ else{$('md-first').textContent='Enter your card balance above.';$('md-split').innerHTML=''}
+ var rl=$('md-race');if(rl)rl.href='https://moneyviel.com/money-tools/debt-free-grand-prix/?gp='+[Math.round(b),r,pc,fl,Math.round(num('md-fx',0)),2000,0].join('_')+'#mv-gp';chart();[].forEach.call(R.querySelectorAll('.md-cs'),function(e){e.textContent=CUR[cur].trim()})}
+function chart(){var A=last.A,B=last.B,w=$('md-chart'),W=Math.max(300,Math.round(w.clientWidth||600)),H=W<520?240:300,L=W<520?46:58,Rp=14,T=14,Bm=30;
+ if(last.b<=0){w.innerHTML='<p class="muted">Enter a balance to see the chart.</p>';return}
+ var X=Math.max(A.never?0:A.m,B.never?0:B.m);if(A.never||B.never)X=Math.min(MAXM,Math.max(X*2,120));X=Math.max(X,3);
+ var ym=0;[A,B].forEach(function(r){for(var i=0;i<=Math.min(X,r.s.length-1);i++)if(r.s[i]>ym)ym=r.s[i]});
+ var mag=Math.pow(10,Math.floor(Math.log(ym)/Math.LN10)),st=[1,2,2.5,5,10].map(function(k){return k*mag}).filter(function(s){return ym/s<=5})[0]||mag*10,yM=Math.ceil(ym/st)*st;
+ var pw=W-L-Rp,ph=H-T-Bm,sx=function(m){return L+m/X*pw},sy=function(v){return T+ph-v/yM*ph};
+ var g='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Balance over time: minimum due only takes '+(A.never?'forever':yrs(A.m))+', fixed amount takes '+(B.never?'forever':yrs(B.m))+'">';
+ for(var v=0;v<=yM+1e-9;v+=st){var y=sy(v);g+='<line x1="'+L+'" x2="'+(W-Rp)+'" y1="'+y+'" y2="'+y+'" stroke="'+(v===0?'#c9c0ea':'#eee9fb')+'"/><text x="'+(L-6)+'" y="'+(y+4)+'" text-anchor="end" font-size="11" fill="#5c6b70">'+fc(v)+'</text>'}
+ var stepM=X<=18?3:X<=36?6:12*Math.max(1,Math.ceil(X/12/6));
+ for(var m=stepM;m<=X;m+=stepM){var x=sx(m);g+='<text x="'+x+'" y="'+(H-8)+'" text-anchor="middle" font-size="11" fill="#5c6b70">'+(stepM<12?m+'m':(m/12)+'y')+'</text>'}
+ g+='<text x="'+L+'" y="'+(H-8)+'" font-size="11" fill="#5c6b70">now</text>';
+ [[A,'#E0408F',''],[B,'#5B3FD6',' d2']].forEach(function(o){var r=o[0],n=Math.min(X,r.s.length-1),d='',len=0,px=null,py=null;for(var i=0;i<=n;i++){var xx=sx(i),yy=sy(r.s[i]);if(px!==null)len+=Math.sqrt((xx-px)*(xx-px)+(yy-py)*(yy-py));px=xx;py=yy;d+=(i?'L':'M')+xx.toFixed(1)+' '+yy.toFixed(1)}
+  g+='<path class="'+(anim?'md-anim'+o[2]:'')+'" style="--len:'+Math.ceil(len+2)+'" d="'+d+'" fill="none" stroke="'+o[1]+'" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>';
+  if(!r.never&&r.m<=X)g+='<circle cx="'+sx(r.m)+'" cy="'+sy(0)+'" r="5.5" fill="'+o[1]+'" stroke="#fff" stroke-width="2"/><text x="'+Math.min(W-Rp,Math.max(L+30,sx(r.m)))+'" text-anchor="'+(sx(r.m)>W-Rp-45?'end':'middle')+'" y="'+(sy(0)-12-(o[0]===B&&!A.never&&Math.abs(sx(A.m)-sx(B.m))<70?18:0))+'" font-size="12" font-weight="800" fill="'+o[1]+'" stroke="#fff" stroke-width="4" paint-order="stroke">'+yrs(r.m)+'</text>'});
+ if(A.never)g+='<text x="'+(W-Rp)+'" y="'+Math.max(T+12,sy(A.s[Math.min(X,A.s.length-1)])-12)+'" text-anchor="end" font-size="12" font-weight="800" fill="#a3245f" stroke="#fff" stroke-width="4" paint-order="stroke">still owing</text>';
+ w.innerHTML=g+'</svg>';anim=false}
+['md-bal','md-rate','md-pc','md-fl','md-sp','md-fx'].forEach(function(id){$(id).addEventListener('input',calc);$(id).addEventListener('change',function(){anim=true;calc()})});
+$('md-fxr').addEventListener('input',function(){$('md-fx').value=this.value;calc()});$('md-fxr').addEventListener('change',function(){anim=true;calc()});
+function bump(d){var v=Math.max(0,num('md-fx',0)+d);$('md-fx').value=Math.round(v);anim=true;calc()}
+$('md-add').addEventListener('click',function(){bump(1000)});$('md-sub').addEventListener('click',function(){bump(-1000)});
+$('md-cur').addEventListener('change',function(){cur=CUR[this.value]?this.value:'INR';calc()});
+var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(chart,150)});
+/* share */
+function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function makeCard(){if(!last||last.b<=0){$('md-shmsg').textContent='Enter your card balance first.';return}
+ var A=last.A,B=last.B,amt=$('md-amt').checked,W=1080,H=1350,cv=document.createElement('canvas');cv.width=W;cv.height=H;var c=cv.getContext('2d');if(!c)return;
+ var FF='"Quicksand","Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif',g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,'#c9bfff');g.addColorStop(.55,'#e6dcff');g.addColorStop(1,'#ffd0ea');c.fillStyle=g;c.fillRect(0,0,W,H);
+ c.fillStyle='rgba(255,255,255,.4)';c.beginPath();c.arc(W-90,130,220,0,7);c.fill();c.beginPath();c.arc(70,H-250,170,0,7);c.fill();
+ c.textAlign='center';c.fillStyle='#2A1F6B';c.font='900 64px '+FF;c.fillText('The Minimum Due Trap',W/2,150);
+ c.font='700 36px '+FF;c.fillStyle='#3a2a4f';c.fillText(amt?'Clearing a '+fw(last.b)+' card balance':'Clearing a credit card balance',W/2,210);
+ function panel(x,col,bg,title,X,sub){c.fillStyle=bg;rr(c,x,260,440,600,40);c.fill();c.fillStyle=col;c.font='800 40px '+FF;c.fillText(title[0],x+220,340);c.font='700 32px '+FF;c.fillText(title[1],x+220,388);
+  var t=X.never?'Never':yrs(X.m),fs=110;c.font='900 '+fs+'px '+FF;while(c.measureText(t).width>390&&fs>50){fs-=6;c.font='900 '+fs+'px '+FF}c.fillText(t,x+220,560);
+  c.fillStyle='#3a2a4f';c.font='700 34px '+FF;c.fillText('to be debt-free',x+220,620);
+  if(amt){c.font='700 30px '+FF;c.fillText('Interest paid',x+220,720);c.fillStyle=col;c.font='900 50px '+FF;c.fillText(X.never?'keeps growing':fw(X.int),x+220,785)}}
+ panel(80,'#C42B78','#fff0f7',['🐢 Paying only','the minimum due'],A);
+ panel(560,'#5B3FD6','#f1edff',['🚀 Paying a','fixed amount'+(amt?' of '+f(last.fx):'')],B);
+ var msg=B.never?'Small steps still count: try a bigger fixed amount':A.never?'A fixed amount turns "never" into '+yrs(B.m):A.m>B.m?'Debt-free '+dur(A.m-B.m)+' sooner!':'A fixed amount keeps you on track';
+ c.fillStyle='#2A1F6B';var fs=50;c.font='900 '+fs+'px '+FF;while(c.measureText(msg).width>W-160&&fs>30){fs-=4;c.font='900 '+fs+'px '+FF}c.fillText(msg,W/2,960);
+ c.fillStyle='#5c6b70';c.font='600 27px '+FF;c.fillText('Estimate · example interest rate · not guaranteed',W/2,1030);
+ c.fillStyle='#2A1F6B';c.font='900 58px '+FF;c.fillText('moneyviel.com',W/2,1165);
+ c.fillStyle='#3a2a4f';c.font='700 32px '+FF;c.fillText('Try it free → Minimum Due Trap Simulator',W/2,1228);
+ c.font='500 24px '+FF;c.fillText('For education only. Not financial advice.',W/2,1290);
+ var url=cv.toDataURL('image/png');$('md-img').src=url;$('md-dl').href=url;$('md-prev').style.display='block';$('md-shmsg').textContent='Your image is ready.';
+ var sb=$('md-sb');sb.style.display='none';
+ if(navigator.share&&navigator.canShare&&cv.toBlob){cv.toBlob(function(bl){if(!bl)return;try{var file=new File([bl],'moneyviel-minimum-due-trap.png',{type:'image/png'});if(navigator.canShare({files:[file]})){sb.style.display='inline-block';sb.onclick=function(){navigator.share({files:[file],title:'The Minimum Due Trap',text:'Made with the MoneyViel Minimum Due Trap Simulator'}).catch(function(){})}}}catch(e){}},'image/png')}}
+$('md-mk').addEventListener('click',function(){makeCard();if($('md-prev').style.display==='block')$('md-prev').scrollIntoView({behavior:'smooth',block:'nearest'})});
+$('md-amt').addEventListener('change',function(){if($('md-prev').style.display==='block')makeCard()});
+calc();
+})();
+</script>
