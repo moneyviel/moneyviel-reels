@@ -37,7 +37,7 @@ add_action( 'wp_footer', function () {
 .mvl-bd{overflow:auto;padding:4px 20px 18px}
 .mvl-gh{font-size:11.5px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:#5B3FD6;margin:12px 0 6px}
 .mvl-gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px;align-items:start}
-.mvl-l>span{min-width:0}.mvl-l b{white-space:nowrap}.mvl-l small{white-space:nowrap}
+.mvl-l{min-width:0}.mvl-l>span{min-width:0;overflow:hidden}.mvl-l b,.mvl-l small{white-space:nowrap}.mvl-l b{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom}
 .mvl-l{display:flex;align-items:center;justify-content:space-between;gap:6px;border:1.5px solid #EEE9FF;background:#fff;border-radius:11px;padding:6px 10px;cursor:pointer;text-align:left;color:#1B1640;transition:border-color .12s,background .12s}
 .mvl-l:hover{border-color:#5B3FD6;background:#FAF8FF}
 .mvl-l b{display:inline;font-size:15.5px;font-weight:800;line-height:1.3}
@@ -60,7 +60,7 @@ add_action( 'wp_footer', function () {
 @media(max-width:999px){.mvl-fab{display:flex}.mvl-btn{display:none}
 .mvl-ov{align-items:flex-end;padding:0}
 .mvl-pn{width:100%;max-height:82vh;border-radius:22px 22px 0 0;animation:mvlup .25s ease}
-.mvl-gr{grid-template-columns:repeat(2,1fr)}}
+.mvl-gr{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <script>
 (function(){
