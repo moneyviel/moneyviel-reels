@@ -58,7 +58,8 @@ for i in range(0,len(chs),3):
 <tr><td style="padding:16px 28px 26px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.5;color:#6B6488;border-top:1px solid #EEE9FF">
 <p style="margin:0 0 10px">{html.escape(foot)}</p>
 <p style="margin:0 0 10px">You're receiving this because you joined MoneyViel Money Tips at moneyviel.com. <a href="{{{{UnsubscribeURL}}}}" style="color:#5B3FD6">Unsubscribe</a></p>
-<p style="margin:0">{{{{SenderInfoLine}}}}</p>
+<p style="margin:0 0 8px">{{{{SenderInfoLine}}}}</p>
+<p style="margin:0"><a href="{{{{RewardsURL}}}}" style="color:#9A93BF">Powered by EmailOctopus</a></p>
 </td></tr></table></td></tr></table></body></html>'''
     open(f'html/ch{n}.html','w').write(doc)
     out[n]={'subject':subj,'preview':prev,'when':when}
