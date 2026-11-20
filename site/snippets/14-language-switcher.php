@@ -65,7 +65,7 @@ add_action( 'wp_footer', function () {
 </style>
 <script>
 (function(){
-var L=[['en','English','English',''],['hi','हिंदी','Hindi','in'],['mr','मराठी','Marathi','in'],['bn','বাংলা','Bengali','in'],['ta','தமிழ்','Tamil','in'],['te','తెలుగు','Telugu','in'],['gu','ગુજરાતી','Gujarati','in'],['kn','ಕನ್ನಡ','Kannada','in'],['ml','മലയാളം','Malayalam','in'],['pa','ਪੰਜਾਬੀ','Punjabi','in'],['ur','اردو','Urdu','in'],['sd','سنڌي','Sindhi','in'],['ne','नेपाली','Nepali','in'],
+var L=[['en','English','English',''],['hi','हिंदी','Hindi','in'],['mr','मराठी','Marathi','in'],['bn','বাংলা','Bengali','in'],['ta','தமிழ்','Tamil','in'],['te','తెలుగు','Telugu','in'],['gu','ગુજરાતી','Gujarati','in'],['kn','ಕನ್ನಡ','Kannada','in'],['ml','മലയാളം','Malayalam','in'],['pa','ਪੰਜਾਬੀ','Punjabi','in'],['ur','اردو','Urdu','in'],['sd','سنڌي','Sindhi (Arabic script)','in'],['ne','नेपाली','Nepali','in'],
  ['ar','العربية','Arabic','w'],['zh-CN','中文 (简体)','Chinese','w'],['nl','Nederlands','Dutch','w'],['fi','Suomi','Finnish','w'],['fr','Français','French','w'],['de','Deutsch','German','w'],['id','Bahasa Indonesia','Indonesian','w'],['ga','Gaeilge','Irish','w'],['it','Italiano','Italian','w'],['ja','日本語','Japanese','w'],['ms','Bahasa Melayu','Malay','w'],['my','မြန်မာ','Burmese','w'],['no','Norsk','Norwegian','w'],['pt','Português','Portuguese','w'],['ru','Русский','Russian','w'],['es','Español','Spanish','w'],['th','ไทย','Thai','w'],['tr','Türkçe','Turkish','w'],['uk','Українська','Ukrainian','w']];
 var BY={};L.forEach(function(x){BY[x[0]]=x});
 var SHORT={en:'EN',hi:'हिं',mr:'मरा',bn:'বাং',ta:'தமி',te:'తెలు',gu:'ગુજ',kn:'ಕನ್ನ',ml:'മല',pa:'ਪੰਜਾ',ur:'اردو',sd:'سنڌي',ne:'नेपा','zh-CN':'中文',ja:'日本'};
