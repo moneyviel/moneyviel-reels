@@ -21,6 +21,18 @@ add_action('wp_footer', function () {
 .mvc-note{flex-basis:100%;font-size:12px;color:#5D5590}
 .mvl-cur{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 18px;border-top:1px solid #EEE9FF;background:#FAF8FF;font-size:14px;color:#3A3170}
 .mvl-cur select{font:inherit;padding:6px 10px;border-radius:10px;border:1px solid #CFC6FF;background:#fff;color:#1B1640;max-width:60%}
+.mvc-cb{position:relative;display:inline-block;min-width:260px}
+.mvc-cb input{width:100%;font:inherit;font-size:14px;padding:7px 12px 7px 32px;border-radius:999px;border:1.5px solid #CFC6FF;background:#fff;color:#1B1640;outline:none}
+.mvc-cb input:focus{border-color:#5B3FD6;box-shadow:0 0 0 3px rgba(91,63,214,.12)}
+.mvc-cb>span{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.6;pointer-events:none}
+.mvc-ls{position:absolute;left:0;right:0;z-index:99999;max-height:250px;overflow:auto;margin:0;padding:4px;list-style:none;background:#fff;border:1px solid #E2DBFF;border-radius:12px;box-shadow:0 14px 34px rgba(27,22,64,.18);text-align:left}
+.mvc-ls.up{bottom:calc(100% + 6px)}.mvc-ls.dn{top:calc(100% + 6px)}
+.mvc-ls li{display:flex;justify-content:space-between;gap:10px;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:14px;color:#1B1640;margin:0}
+.mvc-ls li small{color:#6B6488}
+.mvc-ls li.hi,.mvc-ls li:hover{background:#F4F1FF}
+.mvc-ls li.on b:after{content:' ✓';color:#5B3FD6}
+.mvc-ls .no{color:#6B6488;cursor:default}
+.mvl-cur .mvc-cb{flex:0 1 300px}
 </style>
 <script id="mvc-js">
 (function(){
@@ -56,12 +68,42 @@ add_action('wp_footer', function () {
  function lab(k){var y=CUR[k][0].trim();return y===k?k:y+' '+k}
  function sel(){var h='<select aria-label="Currency">';Object.keys(CUR).forEach(function(k){h+='<option value="'+k+'"'+(k===code?' selected':'')+'>'+lab(k)+' · '+CUR[k][1]+'</option>'});return h+'</select>'}
  function choose(v){if(!CUR[v])return;set('mvCur',v);location.reload()}
+ var CN={IN:'India',US:'United States USA America',GB:'United Kingdom UK Britain England',AE:'UAE Dubai Abu Dhabi Emirates',SA:'Saudi Arabia',QA:'Qatar',KW:'Kuwait',OM:'Oman',BH:'Bahrain',CA:'Canada',AU:'Australia',NZ:'New Zealand',SG:'Singapore',HK:'Hong Kong',MY:'Malaysia',ID:'Indonesia',PH:'Philippines',TH:'Thailand',JP:'Japan',CN:'China',KR:'Korea',PK:'Pakistan',BD:'Bangladesh',NP:'Nepal',LK:'Sri Lanka',NG:'Nigeria',KE:'Kenya',ZA:'South Africa',EG:'Egypt',BR:'Brazil',MX:'Mexico',CH:'Switzerland',SE:'Sweden',NO:'Norway',DK:'Denmark',PL:'Poland',TR:'Turkey',RU:'Russia',DE:'Germany',FR:'France',ES:'Spain',IT:'Italy',NL:'Netherlands',BE:'Belgium',IE:'Ireland',PT:'Portugal',AT:'Austria',FI:'Finland',GR:'Greece'};
+ var WORDS={};Object.keys(CC).forEach(function(c){var k=CC[c];WORDS[k]=(WORDS[k]||'')+' '+(CN[c]||c)});
+ function combo(){
+  var w=document.createElement('div');w.className='mvc-cb';
+  w.innerHTML='<span>🔎</span><input type="text" autocomplete="off" spellcheck="false" aria-label="Search currency" placeholder="Type a currency or country… e.g. dollar, Dubai, €">';
+  var inp=w.querySelector('input'),ls=null,hi=0,items=[];
+  function close(){if(ls){ls.remove();ls=null}}
+  function render(){
+   var q=inp.value.trim().toLowerCase();
+   items=Object.keys(CUR).filter(function(k){return !q||(k+' '+CUR[k][0]+' '+CUR[k][1]+' '+(WORDS[k]||'')).toLowerCase().indexOf(q)>-1});
+   if(!ls){ls=document.createElement('ul');ls.className='mvc-ls';ls.setAttribute('role','listbox');w.appendChild(ls)}
+   var r=w.getBoundingClientRect();ls.className='mvc-ls '+(window.innerHeight-r.bottom<270&&r.top>270?'up':'dn');
+   if(hi>=items.length)hi=0;
+   ls.innerHTML=items.length?items.map(function(k,i){return '<li role="option" data-k="'+k+'" class="'+(i===hi?'hi ':'')+(k===code?'on':'')+'"><b>'+lab(k)+'</b><small>'+CUR[k][1]+'</small></li>'}).join(''):'<li class="no">No match. Try a country or a code like USD</li>';
+   var h=ls.querySelector('.hi');if(h&&h.scrollIntoView)h.scrollIntoView({block:'nearest'});
+  }
+  inp.addEventListener('focus',function(){hi=0;render()});
+  inp.addEventListener('input',function(){hi=0;render()});
+  inp.addEventListener('keydown',function(e){
+   if(e.key==='ArrowDown'){e.preventDefault();hi=Math.min(hi+1,items.length-1);render()}
+   else if(e.key==='ArrowUp'){e.preventDefault();hi=Math.max(hi-1,0);render()}
+   else if(e.key==='Enter'){e.preventDefault();if(items[hi])choose(items[hi])}
+   else if(e.key==='Escape'){e.stopPropagation();close();inp.blur()}});
+  w.addEventListener('mousedown',function(e){var li=e.target.closest('li[data-k]');if(li){e.preventDefault();choose(li.getAttribute('data-k'))}});
+  inp.addEventListener('blur',function(){setTimeout(close,150)});
+  return w;
+ }
+ function wide(){try{return matchMedia('(min-width:1000px) and (pointer:fine)').matches}catch(e){return false}}
+ function picker(){if(wide())return combo();var t=document.createElement('div');t.innerHTML=sel();var x=t.firstChild;x.onchange=function(){choose(this.value)};return x}
+
  window.mvCurrency={code:code,symbol:SYM,set:choose};
  function chip(box){
   if(box.previousElementSibling&&box.previousElementSibling.classList.contains('mvc-chip'))return;
   var d=document.createElement('div');d.className='mvc-chip';
   d.innerHTML='<span>💱 Amounts in <b>'+lab(code)+'</b></span><button type="button">Change</button>'+(INR?'':'<span class="mvc-note">Example figures and some rules (like tax) are based on India. The maths works the same in any currency.</span>');
-  d.querySelector('button').onclick=function(){var b=this;b.insertAdjacentHTML('afterend',sel());b.nextSibling.onchange=function(){choose(this.value)};b.remove()};
+  d.querySelector('button').onclick=function(){var p=picker();this.replaceWith(p);var f=p.querySelector?p.querySelector('input'):null;if(f)f.focus()};
   box.parentNode.insertBefore(d,box);
  }
  function init(){
@@ -71,7 +113,7 @@ add_action('wp_footer', function () {
    boxes.forEach(function(b){walk(b);new MutationObserver(function(ms){ms.forEach(function(m){if(m.type==='characterData')walk(m.target);else for(var i=0;i<m.addedNodes.length;i++)walk(m.addedNodes[i]);if(m.type==='attributes')walk(m.target)})}).observe(b,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['placeholder','aria-label','title']})});
   }
   // currency row inside the 🌐 language panel
-  function addRow(){var pn=document.querySelector('.mvl-pn');if(pn&&!pn.querySelector('.mvl-cur')){var r=document.createElement('div');r.className='mvl-cur';r.innerHTML='<span>💱 Show money in</span>'+sel();pn.appendChild(r);r.querySelector('select').onchange=function(){choose(this.value)}}}
+  function addRow(){var pn=document.querySelector('.mvl-pn');if(pn&&!pn.querySelector('.mvl-cur')){var r=document.createElement('div');r.className='mvl-cur';r.innerHTML='<span>💱 Show money in</span>';var p=picker();if(p.classList.contains('mvc-cb'))p.querySelector('input').placeholder=lab(code)+' · '+CUR[code][1]+' (type to change)';r.appendChild(p);pn.appendChild(r)}}
   document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.mvl-btn,.mvl-fab,.mvl-row,.mvl-ask')){setTimeout(addRow,30);setTimeout(addRow,300)}},true);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
