@@ -1,5 +1,6 @@
 /**
  * MoneyViel: easy language switcher (works with the GTranslate plugin: doGTranslate('en|xx'), cookie googtrans=/en/xx).
+ * GTranslate keeps the chosen language in localStorage __GT_TRANSLATE_LANGS {srcLang,tgtLang}; we set it and reload.
  * - Computer: small "EN | हिं" switch in the header, next to Search.
  * - Phone: small round "अ/A" button at the bottom-left (opposite the back-to-top arrow).
  * - Phone menu: "English | हिंदी | More languages" row at the top of the menu panel.
@@ -38,13 +39,10 @@ add_action( 'wp_footer', function () {
 var NAMES={en:'English',hi:'हिंदी',mr:'मराठी',bn:'বাংলা',ta:'தமிழ்',te:'తెలుగు',gu:'ગુજરાતી',kn:'ಕನ್ನಡ',ml:'മലയാളം',pa:'ਪੰਜਾਬੀ',ur:'اردو',ne:'नेपाली',sd:'سنڌي',ar:'العربية',de:'Deutsch',es:'Español',fr:'Français',it:'Italiano',ja:'日本語','zh-CN':'中文',ru:'Русский',pt:'Português',id:'Bahasa Indonesia',ms:'Bahasa Melayu',th:'ไทย',tr:'Türkçe',uk:'Українська',nl:'Nederlands',fi:'Suomi',no:'Norsk',ga:'Gaeilge',my:'မြန်မာ'};
 var INDIAN=['hi','mr','bn','ta','te','gu','kn','ml','pa','ur'];
 var ASK={hi:'हिंदी में पढ़ना चाहेंगे?',mr:'मराठीत वाचायचे आहे का?',bn:'বাংলায় পড়তে চান?',ta:'தமிழில் படிக்க விரும்புகிறீர்களா?',te:'తెలుగులో చదవాలనుకుంటున్నారా?',gu:'ગુજરાતીમાં વાંચવું છે?',kn:'ಕನ್ನಡದಲ್ಲಿ ಓದಲು ಬಯಸುವಿರಾ?',ml:'മലയാളത്തിൽ വായിക്കണോ?',pa:'ਕੀ ਪੰਜਾਬੀ ਵਿੱਚ ਪੜ੍ਹਨਾ ਚਾਹੋਗੇ?',ur:'کیا آپ اردو میں پڑھنا چاہیں گے؟'};
-function cur(){var m=document.cookie.match(/googtrans=\/[a-zA-Z-]+\/([a-zA-Z-]+)/);return m?m[1]:'en'}
+function cur(){try{var o=JSON.parse(localStorage.getItem('__GT_TRANSLATE_LANGS')||'{}');return o.tgtLang||'en'}catch(e){return 'en'}}
 function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
-function go(l){store('mvLang',l);var v='/en/'+l,h=location.hostname.replace(/^www\./,'');
- ['',';domain='+h,';domain=.'+h].forEach(function(d){document.cookie='googtrans='+v+';path=/'+d});
- if(l==='en'){['',';domain='+h,';domain=.'+h].forEach(function(d){document.cookie='googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+d})}
- location.reload()}
+function go(l){store('mvLang',l);try{if(l==='en')localStorage.removeItem('__GT_TRANSLATE_LANGS');else localStorage.setItem('__GT_TRANSLATE_LANGS',JSON.stringify({srcLang:'en',tgtLang:l}))}catch(e){}location.reload()}
 function paint(){var c=cur();[].forEach.call(document.querySelectorAll('[data-mvl]'),function(b){b.classList.toggle('on',b.getAttribute('data-mvl')===c||(b.getAttribute('data-mvl')==='hi'&&c==='hi'))});var f=document.querySelector('.mvl-fab');if(f){f.innerHTML=c==='en'?'अ<span>हिंदी</span>':'A<span>English</span>';f.setAttribute('aria-label',c==='en'?'हिंदी में पढ़ें':'Read in English')}
  var s=document.querySelector('.mvl-row select');if(s)s.value=(c==='en'||c==='hi')?'':c;note()}
 function nt(el){el.classList.add('notranslate');el.setAttribute('translate','no');return el}

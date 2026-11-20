@@ -31,7 +31,7 @@
 <div class="card">
 <div class="gl-top">
 <div class="gl-search"><svg viewBox="0 0 24 24" fill="none" stroke="#5c6b70" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="gl-q" placeholder="Search e.g. EMI, बजट, inflation" aria-label="Search money words" autocomplete="off"></div>
-<div class="gl-lang" role="group" aria-label="Language"><button type="button" id="gl-en" aria-pressed="true">English</button><button type="button" id="gl-hi" aria-pressed="false" lang="hi">हिंदी</button></div>
+<div class="gl-lang" role="group" aria-label="Language" style="display:none"><button type="button" id="gl-en" aria-pressed="true">English</button><button type="button" id="gl-hi" aria-pressed="false" lang="hi">हिंदी</button></div>
 </div>
 <div class="gl-az" id="gl-az" role="group" aria-label="Filter by letter"></div>
 <p class="gl-count" id="gl-count" aria-live="polite"></p>
@@ -65,6 +65,6 @@ function draw(){$('gl-en').setAttribute('aria-pressed',lang==='en');$('gl-hi').s
  $('gl-list').innerHTML=list.length?list.map(function(d){return '<article class="gl-c"'+(hi?' lang="hi"':'')+'><h4>'+(hi?hl(d.hindi):hl(d.term))+'</h4><div class="gl-alt"'+(hi?' lang="en"':' lang="hi"')+'>'+(hi?hl(d.term):hl(d.hindi))+'</div><p>'+hl(hi?d.hi:d.en)+'</p>'+(d.example?'<div class="gl-ex" lang="'+(hi&&d.exh?'hi':'en')+'"><b>'+(hi?'उदाहरण':'Example')+':</b> '+esc(hi&&d.exh?d.exh:d.example)+'</div>':'')+'</article>'}).join(''):
  '<div class="card gl-empty" style="grid-column:1/-1">'+(hi?'कोई शब्द नहीं मिला। दूसरा शब्द आज़माएँ।':'No words found. Try a different word, or tap "All".')+'</div>';}
 draw();
-try{var gt=(document.cookie.match(/googtrans=\/[a-z-]+\/([a-z-]+)/i)||[])[1];if(gt==='hi'){var RT=document.getElementById('mv-gl');RT.classList.add('notranslate');RT.setAttribute('translate','no');var hb=document.getElementById('gl-hi');if(hb)hb.click()}}catch(e){}
+try{var gt='en';try{gt=(JSON.parse(localStorage.getItem('__GT_TRANSLATE_LANGS')||'{}').tgtLang)||'en'}catch(e){}if(gt==='hi'){['gl-list','gl-az','gl-count','gl-q'].forEach(function(id){var RT=document.getElementById(id);if(RT){RT.classList.add('notranslate');RT.setAttribute('translate','no')}});var hb=document.getElementById('gl-hi');if(hb)hb.click()}}catch(e){}
 })();
 </script>
