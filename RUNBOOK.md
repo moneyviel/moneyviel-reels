@@ -292,3 +292,12 @@ Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of th
   3. Start Part A.
   4. Change the home `.mv-sunday` text to "Free 7-Day Money Reset by email" (now: "one money habit every Sunday").
 - Do NOT start Part A before this checklist is done.
+
+## 0l. Family Emergency File (Google Sheets) — DRAFT, waiting for owner approval (2026-11-21)
+- Replaces the old "Family Emergency & Legacy Organiser" (₹299 / Payhip $9.99) once the owner approves. Prices stay the same.
+- Builder: file "FamilyEmergencyFile.gs" in the Apps Script project 1xNoqEdT… (same project as the Command Centre builder; all its code sits inside EFB, so it can't clash). Run buildEmergencyFile(): it builds BOTH editions and logs its own check (errors, score, to-do list). Source is kept privately in /home/claude/gsheets/ef.gs (NOT in this public repo).
+- 16 tabs: Start Here, Ready Score (0–100 + "Fix these first"), If Something Happens (hospital / death / lost phone checklists that fill from the user's data), Family, Contacts, Money Map, Insurance, Loans & Dues, Documents, Digital Life, Property & Locker, Wishes & Will, Lost Money Finder (UDGAM, Bima Bharosa, MITRA, IEPF, EPFO), Letter to Family (writes itself), Fridge Sheet (print), Settings & Lists.
+- Safety: last-4-digits validation, a red warning for full account/card numbers or PANs, password/PIN/OTP warnings, and no passwords ever stored.
+- Facts checked 21 Nov 2026 (nominee rules, the portals, 21-day death registration, 1930, Sanchar Saathi). An independent expert review was done and all must-fix and should-fix items were applied.
+- Draft sheets (private, owner's Drive root): With examples 1W4GWV5q-xuDFRSbRWLiFhl6gSaXI8QKau9SZJYvp62Q, Blank 1r6J0K40ScAHjoMkC91-Juj64cz-UMynCQGycX6AgskE. 4 older test builds with the same name still need trashing (the Drive connector can't trash script-made files).
+- NEXT, only after approval: move to MoneyViel Shop > 01 MASTER, make locked view-only delivery copies (02 DELIVERY), build the access card, swap the WordPress + Payhip files, then the demo video and Short (no Etsy).
