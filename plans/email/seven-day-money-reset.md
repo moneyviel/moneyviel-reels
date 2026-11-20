@@ -4,6 +4,7 @@ List: "MoneyViel Money Tips (adults)" (b1c30eaa-e3eb-11f1-a5f3-4b6e822dbeb8). Tr
 Every subscriber starts at Chapter 1 on the day THEY join, then one chapter a day for 7 days on their own timeline
 (someone joining a month later still starts at Chapter 1, never mid-story).
 Sender: "MoneyViel" <hello@moneyviel.com>. Education only. Links point only to moneyviel.com.
+Reviewed 20 Nov 2026 by two independent checkers (finance accuracy: all numbers recomputed in code, facts checked against SBI Card MITC, ICICI Bank, Experian; compliance & editorial). All fixes applied.
 Do NOT activate until the owner gives the postal address for the footer and says go.
 
 ## Story bible (all numbers checked in code)
@@ -18,7 +19,8 @@ Do NOT activate until the owner gives the postal address for the footer and says
   - (With 18% GST on interest: minimum only 217 months / ₹1,67,401; fixed ₹8,000: 13 months / ₹20,519. Not quoted in emails.)
 - Bike loan: ₹45,000 balance at 11% a year, EMI ₹3,000 (only used for the Avalanche vs Snowball choice; no timeline quoted).
 - Old savings account: ₹15,000 (not part of the monthly flow). Chapter 5 medical bill ₹9,000 paid from it → ₹6,000 left = start of the safety net.
-- Must-pay monthly costs (safety-net base, card excluded as it is being cleared): rent 22,000 + groceries 11,500 + school 6,000 + bills 4,500 + transport 4,000 + bike EMI 3,000 = ₹51,000. 3 months = ₹1,53,000; 6 months = ₹3,06,000. First stop ₹51,000: ₹45,000 to go at ₹3,000 a month = 15 months; after the card is cleared, the ₹8,000 card payment can join → ₹11,000 a month.
+- Must-pay monthly costs (safety-net base, card excluded as it is being cleared): rent 22,000 + groceries 11,500 + school 6,000 + bills 4,500 + transport 4,000 + bike EMI 3,000 = ₹51,000. 3 months = ₹1,53,000; 6 months = ₹3,06,000. First stop ₹51,000: ₹45,000 to go. ₹3,000 a month alone = 15 months, but the card clears after 13 months (₹6,000 + 13 × ₹3,000 = ₹45,000), then ₹11,000 in month 14 → ₹56,000 ≥ ₹51,000. So about 14 months.
+- Chapter 6: they trim another ₹1,000 a month from shopping to start Meera's goal (the freed ₹7,000 is fully used: ₹3,000 saving + ₹4,000 card).
 - Goal: Meera's school/coaching costs in 5 years, ₹2,00,000 at today's prices. Assumed 6% a year price rise → ≈ ₹2,67,600 → ≈ ₹4,460 a month for 60 months (before any interest earned). Labelled as an assumption.
 
 ---
@@ -28,7 +30,7 @@ Preview: Meet the Sharmas. Their story starts today, and so does yours.
 
 Hi {{FirstName | there}},
 
-Welcome to the 7-Day Money Reset. Over the next 7 days you'll follow one family, the Sharmas, as they fix their money one small step at a time. Each chapter ends with a 10-minute step for you. Everyone starts here, at Chapter 1.
+Welcome to the 7-Day Money Reset. Over the next 7 days you'll follow one family, the Sharmas, as they fix their money one small step at a time. Each chapter ends with a 10-minute step for you. Everyone starts here, at Chapter 1. (You're getting this because you joined at moneyviel.com.)
 
 **Chapter 1: The 25th of the month**
 
@@ -44,7 +46,7 @@ So one evening, Riya opens the banking app and writes three things on a sheet of
 **Your turn (10 minutes)**
 Do what Riya did: write down what came in last month, your 5 biggest spends, and what was left at the end.
 
-Then take our free 3-minute check-up and keep your score. On Day 7 you'll take it again and compare.
+Then take our free 3-minute check-up and keep your score. In Chapter 7 you'll take it again and compare.
 👉 https://moneyviel.com/money-tools/money-health-report/
 
 Tomorrow: the Sharmas find ₹7,000 a month without earning a rupee more.
@@ -83,7 +85,7 @@ Mark each of your 5 big spends as a Need or a Want. Choose one saving amount you
 
 🎮 Want a 45-second warm-up? https://moneyviel.com/money-tools/needs-vs-wants/
 
-Tomorrow: Arjun races two credit cards, and the result shocks him.
+Tomorrow: Arjun races two ways of paying off the same credit card, and the result shocks him.
 
 MoneyViel
 
@@ -102,17 +104,17 @@ Arjun puts their numbers into our Debt-Free Grand Prix and watches the cars race
 - 🔴 **Minimum due only:** about **14 years** to clear the card, and about **₹1,08,000 in interest**.
 - 🟡 **A fixed ₹8,000 a month** (the ₹4,000 minimum plus the extra ₹4,000 from Chapter 2): clear in **13 months**, with about **₹16,500 in interest**.
 
-Same card, same family. Paying a fixed amount instead of the shrinking minimum saves them more than **₹90,000**. They stop using the card for new spending and set up a fixed ₹8,000 auto-payment.
+Same card, same family. Paying a fixed amount instead of the shrinking minimum saves them more than **₹90,000 in interest**. They stop using the card for new spending and set up a fixed ₹8,000 auto-payment.
 
-(These figures assume no new spending on the card and don't include the 18% GST that Indian cards add to interest. With GST, both costs are higher. The maths works the same way in any currency.)
+(These figures are examples. They assume no new spending on the card and a minimum due of 5% of the balance, and they don't include the 18% GST that Indian cards add to interest. With GST, both costs are higher. The maths works the same way in any currency.)
 
 **Your turn**
 Have card debt? Put your own numbers into the race and see your debt-free date.
 🏁 https://moneyviel.com/money-tools/debt-free-grand-prix/
 
-No card debt? Set your card to auto-pay the **full** statement amount every month, and you'll never pay card interest.
+No card debt? Set your card to auto-pay the **full** statement amount every month, and keep enough in your bank account to cover it. Paying the full statement by the due date means no interest on your purchases. (Cash withdrawals on a card are charged interest from day one, so avoid them.)
 
-Tomorrow: Arjun remembers another loan, and they have to choose which one to attack first.
+Tomorrow: the card isn't their only debt, and they have to choose which one to attack first.
 
 MoneyViel
 
@@ -125,11 +127,11 @@ Hi {{FirstName | there}},
 
 **Chapter 4: Which debt first?**
 
-Arjun has a bike loan too: ₹45,000 left at 11% a year, with a ₹3,000 EMI. So which debt should get their extra money?
+The card isn't their only debt. Arjun's bike loan still has ₹45,000 left at 11% a year, with a ₹3,000 EMI. So which debt should get their extra money?
 
 There are two popular methods:
-- 🏔️ **Avalanche:** pay the minimum on everything, and put every extra rupee on the debt with the **highest interest rate**. This usually saves the most interest.
-- ⛄ **Snowball:** put the extra on the **smallest balance** first. You clear one debt quickly, and that win keeps you motivated.
+- 🏔️ **Avalanche:** keep paying the minimum or regular EMI on every debt, and put every extra rupee on the debt with the **highest interest rate**. This usually saves the most interest.
+- ⛄ **Snowball:** pay the minimum or EMI on everything, and put the extra on the **smallest balance** first. You clear one debt quickly, and that win keeps you motivated.
 
 For the Sharmas, Snowball would mean the bike loan first (it's the smaller balance). Avalanche means the credit card first (36% a year vs 11%). The gap in interest rates is huge, so they choose **Avalanche**: the extra goes to the card, and the bike EMI continues as normal.
 
@@ -141,7 +143,7 @@ List every debt you have: what's left, the interest rate and the monthly payment
 
 Finding it hard to pay? Talk to your lender early. Many can offer a payment plan.
 
-Tomorrow: Meera falls ill, and the Sharmas learn why a safety net matters.
+Tomorrow: a surprise doctor's bill, and why a safety net matters.
 
 MoneyViel
 
@@ -156,15 +158,15 @@ Hi {{FirstName | there}},
 
 On a Sunday morning, Meera has a high fever. After the doctor's visit, tests and medicines, the bill is ₹9,000. Thankfully she's fine within a few days.
 
-A week ago they would have put it on the credit card and undone their plan. This time Riya remembers ₹15,000 sitting in an old savings account. They pay the bill from there, and the card plan stays on track.
+Before this week, they would have put it on the credit card and undone their plan. This time Riya remembers ₹15,000 sitting in an old savings account. They pay the bill from there, and the card plan stays on track.
 
 It makes them ask: how much should a safety net be?
 
 **A common guide:** keep **3 to 6 months of must-pay costs** (needs only, not wants) somewhere safe and easy to reach, such as a separate savings account. Keep more if your income is irregular or one person earns for the whole family.
 
-The Sharmas' must-pay costs (rent, groceries, school fees, bills, transport and the bike EMI) add up to ₹51,000 a month. So their target is ₹1,53,000 (3 months) to ₹3,06,000 (6 months).
+The Sharmas' must-pay costs (rent, groceries, school fees, bills, transport and the bike EMI) add up to ₹51,000 a month. (They leave out the credit card because it will be gone in about a year. Until then, a fund that also covers its minimum payment would be safer.) So their target is ₹1,53,000 (3 months) to ₹3,06,000 (6 months).
 
-That sounds huge, so they break it down. The ₹6,000 left in the old account becomes the start of their safety net. **First stop: one month, ₹51,000.** With ₹45,000 still to go and ₹3,000 going in every month, that takes 15 months. Once the credit card is cleared, the ₹8,000 card payment can join it, making it ₹11,000 a month.
+That sounds huge, so they break it down. The ₹6,000 left in the old account becomes the start of their safety net. **First stop: one month, ₹51,000.** With ₹45,000 still to go, ₹3,000 a month alone would take 15 months. But the card will be cleared in about 13 months, and then its ₹8,000 payment can join, making it ₹11,000 a month. So they reach ₹51,000 in about 14 months.
 
 **Your turn**
 Work out your own must-pay costs and your first target.
@@ -185,9 +187,9 @@ Hi {{FirstName | there}},
 
 Riya has always said, "We'll manage Meera's studies somehow." Today she replaces "somehow" with numbers.
 
-In 5 years, Meera will need about ₹2,00,000 for school and coaching, **at today's prices**. But prices rise. If they rise by 6% a year (that's an assumption, not a promise), the same costs would be about **₹2,67,600** in 5 years.
+In 5 years, Meera will need about ₹2,00,000 for school and coaching (extra tuition), **at today's prices**. But prices rise. If they rise by 6% a year (that's an assumption, not a promise), the same costs would be about **₹2,67,600** in 5 years.
 
-Spread over 60 months, that's about **₹4,460 a month**, even before any interest it earns. They can't afford all of it yet, so they start with ₹1,000 a month now and plan to raise it once the credit card is gone.
+Spread over 60 months, that's about **₹4,460 a month**, not counting any interest the savings might earn. They can't afford all of it yet, so they trim another ₹1,000 a month from shopping and start with that. They'll raise it once the credit card is cleared and their safety net reaches its first stop.
 
 A goal with a date and a monthly amount stops being a worry and becomes a plan.
 
@@ -210,13 +212,13 @@ Hi {{FirstName | there}},
 
 **Chapter 7: One week later**
 
-Same family, same ₹85,000 salary. But this time, when Riya looks at the month ahead, she isn't wondering where the money will go. In one week the Sharmas:
+Same family, same ₹85,000 take-home pay. But this time, when Riya looks at the month ahead, she isn't wondering where the money will go. In one week the Sharmas:
 ✅ saw exactly where their money goes
-✅ found ₹7,000 a month by cutting wants they didn't miss
-✅ pay their future first, automatically, on salary day
+✅ found ₹7,000 a month: ₹5,100 by cutting wants they didn't miss, plus the ₹1,900 that used to drift away
+✅ set up automatic saving on salary day
 ✅ swapped the minimum-due trap for a 13-month card plan
 ✅ chose a clear order for their debts
-✅ started a safety net, which already handled one surprise
+✅ paid a surprise bill from savings instead of the card, then turned what was left into a safety net
 ✅ gave Meera's future a monthly number
 
 Nothing dramatic. Just small steps, done in the right order.
@@ -228,11 +230,11 @@ Retake the free check-up and compare it with your Chapter 1 score.
 **Keep the habit going**
 - 🏆 The 52-Week Challenge, a fun way to save a little more each week: https://moneyviel.com/money-tools/52-week-challenge/
 - 🧰 All our free tools and games: https://moneyviel.com/money-tools/
-- Want everything in one place? The Money Command Centre (Google Sheets) tracks your budget, net worth and Money Health Score as you go: https://moneyviel.com/shop/
+- Want everything in one place? Our **paid** Money Command Centre, a Google Sheets template, tracks your budget, net worth and Money Health Score as you go: https://moneyviel.com/shop/
 
-From now on, we'll email you only now and then, with useful tips and new free tools. Thank you for spending this week with the Sharmas. Their story is fiction; your progress is real.
+From now on, we'll email you only now and then, with useful tips, new free tools and occasional news about MoneyViel products. You can unsubscribe any time using the link at the bottom of this email. Thank you for spending this week with the Sharmas. Their story is fiction; your progress is real.
 
 MoneyViel
 
 ---
-Footer on every email (small print): The Sharma family is fictional and the numbers are examples. MoneyViel shares general money education only; it is not financial, investment, tax or legal advice. Please speak to a qualified adviser about your own situation.
+Footer on every email (small print): The Sharma family is fictional and the numbers are examples. MoneyViel shares general money education only. It is not financial, investment, tax or legal advice, and MoneyViel does not recommend any financial product. MoneyViel is not a SEBI-registered investment adviser or research analyst. Results from our tools are estimates based on what you enter. Please speak to a qualified, registered adviser about your own situation.
