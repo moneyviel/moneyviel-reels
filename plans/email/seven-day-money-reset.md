@@ -206,7 +206,7 @@ MoneyViel
 ---
 ## Chapter 7 (1 day later)
 Subject: Chapter 7: One week later 🎉
-Preview: Same family, same salary, a plan for every rupee.
+Preview: Same family, same pay, a plan for every rupee.
 
 Hi {{FirstName | there}},
 
