@@ -15,7 +15,7 @@ add_action( 'wp_head', function () {
 #header-menu-1 .menu-item-2080>.sub-menu>li>a{justify-content:flex-start!important}
 #header-menu-1 .menu-item-2080 .mv-grp>a{font-size:12px!important;font-weight:800!important;letter-spacing:.06em;text-transform:uppercase;color:#5B3FD6!important;padding:6px 8px 8px!important;border-bottom:2px solid #F3EFFF;margin-bottom:4px;pointer-events:none}
 #header-menu-1 .menu-item-2080 .mv-grp>a .ct-toggle-dropdown-desktop,#header-menu-1 .menu-item-2080 .mv-grp>a .ct-toggle-dropdown-desktop-ghost{display:none!important}
-#header-menu-1 .menu-item-2080 .mv-grp>.sub-menu{position:static!important;opacity:1!important;visibility:visible!important;transform:none!important;box-shadow:none!important;background:none!important;padding:0!important;margin:0!important;width:auto!important;min-width:0!important;display:block!important;pointer-events:auto}
+#header-menu-1 .menu-item-2080 .mv-grp>.sub-menu{position:static!important;opacity:1!important;visibility:inherit!important;transform:none!important;box-shadow:none!important;background:none!important;padding:0!important;margin:0!important;width:auto!important;min-width:0!important;display:block!important;pointer-events:inherit}
 #header-menu-1 .menu-item-2080 .mv-grp>.sub-menu>li{display:block!important;width:auto!important}
 #header-menu-1 .menu-item-2080 .mv-grp>.sub-menu a{padding:7px 8px!important;border-radius:10px;font-size:14px!important;white-space:nowrap;color:#1B1640!important;display:flex!important;justify-content:flex-start!important}
 #header-menu-1 .menu-item-2080 .mv-grp>.sub-menu a:hover{background:#F3EFFF;color:#3B2A7A!important}
