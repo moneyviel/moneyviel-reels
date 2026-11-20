@@ -278,3 +278,17 @@ Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of th
   Translation notice (Snippet 14): shown when a language is picked (and to anyone already reading in a language they never accepted). Stored in localStorage mvTrOk {v, lang: time}; shown again if TV (warning version) is raised or after 180 days. Raise TV whenever the notice or the policies' translation wording changes.
   Extra safety: "See in English" (peek: sessionStorage mvPeek, green "Back to <language>" bar), yellow reminder above every tool box and on /shop, footer line, and brand/tool names (MoneyViel, Debt-Free Grand Prix, Budget Boss, Money Command Centre) wrapped in notranslate server-side (output buffer, text only).
   Policies updated 20 Nov 2026: Disclaimer (Elementor page; "Automatic translations" section added by Snippet 14's the_content filter, anchor #automatic-translations), Terms ("Language of these Terms and translations"), Privacy (Translation paragraph: Google gets page text + IP; local storage not cookies), Editorial Policy (Language paragraph).
+
+## 0k. Email course: "The 7-Day Money Reset" (Sharma Family story), set up 2026-11-20
+- Story and verified numbers: `plans/email/seven-day-money-reset.md`. HTML is built by `plans/email/build_html.py` → `plans/email/html/ch1..7.html`, with the live copy at commit d052fe3. The finance and compliance reviewers both passed it.
+- EmailOctopus free plan allows only 5 steps per automation, so the course is split into 3 chained automations. All 3 free automation slots are now used.
+  - **Part A (Ch1-2)** `37cf4d26-e4c6-11f1-a8f6-a5d15c0458aa`: trigger is "contact added to MoneyViel Money Tips (adults)". Steps: Ch1, wait 1 day, Ch2, wait 1 day, then trigger Part B. **Status: DRAFT (not started).**
+  - **Part B (Ch3-4)** `eae0ee64-e4c7-11f1-9b1f-9de896f70d7a`: manual trigger. Steps: Ch3, wait, Ch4, wait, then trigger Part C. Active, but it only runs when Part A hands someone over.
+  - **Part C (Ch5-7)** `59a4910c-e4c8-11f1-8ec3-a5d15c0458aa`: manual trigger. Steps: Ch5, wait, Ch6, wait, Ch7. Active, same as Part B.
+- Every new subscriber starts at Chapter 1, whenever they join.
+- **Go-live checklist (owner):**
+  1. Give a PO Box or business postal address for the email footer (`{{SenderInfoLine}}`).
+  2. Say "go".
+  3. Start Part A.
+  4. Change the home `.mv-sunday` text to "Free 7-Day Money Reset by email" (now: "one money habit every Sunday").
+- Do NOT start Part A before this checklist is done.
