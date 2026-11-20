@@ -41,7 +41,10 @@ var ASK={hi:'हिंदी में पढ़ना चाहेंगे?',m
 function cur(){var m=document.cookie.match(/googtrans=\/[a-zA-Z-]+\/([a-zA-Z-]+)/);return m?m[1]:'en'}
 function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
-function go(l){store('mvLang',l);if(typeof window.doGTranslate==='function'){window.doGTranslate('en|'+l);setTimeout(paint,600)}else{document.cookie='googtrans=/en/'+l+';path=/';location.reload()}}
+function go(l){store('mvLang',l);var v='/en/'+l,h=location.hostname.replace(/^www\./,'');
+ ['',';domain='+h,';domain=.'+h].forEach(function(d){document.cookie='googtrans='+v+';path=/'+d});
+ if(l==='en'){['',';domain='+h,';domain=.'+h].forEach(function(d){document.cookie='googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+d})}
+ location.reload()}
 function paint(){var c=cur();[].forEach.call(document.querySelectorAll('[data-mvl]'),function(b){b.classList.toggle('on',b.getAttribute('data-mvl')===c||(b.getAttribute('data-mvl')==='hi'&&c==='hi'))});var f=document.querySelector('.mvl-fab');if(f){f.innerHTML=c==='en'?'अ<span>हिंदी</span>':'A<span>English</span>';f.setAttribute('aria-label',c==='en'?'हिंदी में पढ़ें':'Read in English')}
  var s=document.querySelector('.mvl-row select');if(s)s.value=(c==='en'||c==='hi')?'':c;note()}
 function nt(el){el.classList.add('notranslate');el.setAttribute('translate','no');return el}
