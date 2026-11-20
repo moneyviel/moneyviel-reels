@@ -52,7 +52,7 @@ html.translated-ltr #header-menu-1>ul>li>a,html.translated-rtl #header-menu-1>ul
 html.translated-ltr #header [data-row="middle"]>.ct-container,html.translated-rtl #header [data-row="middle"]>.ct-container{padding-top:6px;padding-bottom:6px}
 html.translated-ltr #header-menu-1>ul>li>a,html.translated-rtl #header-menu-1>ul>li>a{font-size:13px!important;padding-left:8px!important;padding-right:8px!important;height:36px!important}}
 /* smaller laptops: Subscribe pill hidden in the header (still in the footer and newsletter boxes) */
-@media(min-width:1000px) and (max-width:1319px){#header-menu-1 .mv-sub{display:none!important}}
+@media(min-width:1000px) and (max-width:1439px){#header-menu-1 .mv-sub{display:none!important}}
 /* go-to-top button: see-through, solid on hover */
 .ct-back-to-top{background:rgba(59,42,122,.30)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:none!important;border:1px solid rgba(255,255,255,.35)}
 .ct-back-to-top .ct-icon{fill:#fff!important}
