@@ -63,7 +63,7 @@ addRow();document.addEventListener('click',function(e){if(e.target.closest('[dat
 /* machine-translated note */
 function note(){var c=cur(),n=document.querySelector('.mvl-note');if(c==='en'||sessionStorage.getItem('mvlNoteX')){if(n)n.remove();return}
  if(n)return;n=document.createElement('div');n.className='mvl-note';n.innerHTML='This page is machine-translated, so a few money words may not be exact.<a class="notranslate" translate="no">Show in English</a><button type="button" class="x notranslate" aria-label="Close">×</button>';
- var mn=document.querySelector('.entry-content')||document.querySelector('main article')||document.querySelector('main');if(mn)mn.insertBefore(n,mn.firstChild);else document.body.insertBefore(n,document.body.firstChild);
+ var mn=document.querySelector('main#main .entry-content')||document.querySelector('main#main article')||document.querySelector('main#main');if(mn)mn.insertBefore(n,mn.firstChild);else document.body.insertBefore(n,document.body.firstChild);
  n.querySelector('a').addEventListener('click',function(){go('en')});n.querySelector('.x').addEventListener('click',function(){try{sessionStorage.setItem('mvlNoteX','1')}catch(e){}n.remove()})}
 /* one-time question */
 function ask(){if(read('mvLangAsked')||read('mvLang')||cur()!=='en')return;var langs=(navigator.languages||[navigator.language||'']).map(function(x){return String(x).toLowerCase().split('-')[0]});var l=null;for(var i=0;i<langs.length;i++){if(langs[i]==='en')break;if(INDIAN.indexOf(langs[i])>-1){l=langs[i];break}}if(!l)return;
