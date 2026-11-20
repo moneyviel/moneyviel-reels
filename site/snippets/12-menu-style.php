@@ -39,16 +39,20 @@ add_action( 'wp_head', function () {
 /* translated pages: longer words, so tighten the menu and hide the Subscribe pill (still in the footer/newsletter boxes) */
 html.translated-ltr #header-menu-1 .mv-sub,html.translated-rtl #header-menu-1 .mv-sub{display:none!important}
 html.translated-ltr #header-menu-1>ul>li>a,html.translated-rtl #header-menu-1>ul>li>a{font-size:14px!important;padding-left:9px!important;padding-right:9px!important}
-/* translated pages on laptops: long words (Tamil, Malayalam...) used to spill over the 🌐 button. Let the menu wrap onto 2 neat rows instead. */
+/* laptops: if the menu ever runs out of room (long translated words, or narrower screens), it wraps onto 2 neat rows instead of sliding under the 🌐 button */
 @media(min-width:1000px){
-html.translated-ltr #header [data-row="middle"],html.translated-rtl #header [data-row="middle"]{--height:auto}
-html.translated-ltr #header [data-row="middle"]>.ct-container,html.translated-rtl #header [data-row="middle"]>.ct-container{height:auto!important;min-height:74px;padding-top:6px;padding-bottom:6px}
-html.translated-ltr #header [data-row="middle"] [data-column="end"],html.translated-rtl #header [data-row="middle"] [data-column="end"]{min-width:0;flex:1 1 auto}
-html.translated-ltr #header [data-row="middle"] [data-column="end"]>[data-items],html.translated-rtl #header [data-row="middle"] [data-column="end"]>[data-items]{min-width:0;flex-wrap:nowrap}
-html.translated-ltr #header-menu-1,html.translated-rtl #header-menu-1{flex:1 1 auto;min-width:0;height:auto!important}
-html.translated-ltr #header-menu-1>ul,html.translated-rtl #header-menu-1>ul{flex-wrap:wrap;justify-content:flex-end;row-gap:2px;height:auto!important}
-html.translated-ltr #header-menu-1>ul>li>a,html.translated-rtl #header-menu-1>ul>li>a{font-size:13px!important;padding-left:8px!important;padding-right:8px!important;height:36px!important;white-space:nowrap}
-html.translated-ltr .mvl-btn,html.translated-rtl .mvl-btn{flex:0 0 auto}}
+#header [data-row="middle"]{--height:auto}
+#header [data-row="middle"]>.ct-container{height:auto!important;min-height:74px}
+#header [data-row="middle"] [data-column="end"]{min-width:0;flex:1 1 auto}
+#header [data-row="middle"] [data-column="end"]>[data-items]{min-width:0;flex-wrap:nowrap}
+#header-menu-1{flex:1 1 auto;min-width:0;height:auto!important}
+#header-menu-1>ul{flex-wrap:wrap;justify-content:flex-end;row-gap:2px;height:auto!important}
+#header-menu-1>ul>li>a{height:40px!important;white-space:nowrap}
+.mvl-btn{flex:0 0 auto}
+html.translated-ltr #header [data-row="middle"]>.ct-container,html.translated-rtl #header [data-row="middle"]>.ct-container{padding-top:6px;padding-bottom:6px}
+html.translated-ltr #header-menu-1>ul>li>a,html.translated-rtl #header-menu-1>ul>li>a{font-size:13px!important;padding-left:8px!important;padding-right:8px!important;height:36px!important}}
+/* smaller laptops: Subscribe pill hidden in the header (still in the footer and newsletter boxes) */
+@media(min-width:1000px) and (max-width:1319px){#header-menu-1 .mv-sub{display:none!important}}
 /* go-to-top button: see-through, solid on hover */
 .ct-back-to-top{background:rgba(59,42,122,.30)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:none!important;border:1px solid rgba(255,255,255,.35)}
 .ct-back-to-top .ct-icon{fill:#fff!important}
