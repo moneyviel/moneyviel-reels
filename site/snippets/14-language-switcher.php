@@ -1,11 +1,12 @@
 /**
- * MoneyViel: easy language switcher (works with the GTranslate plugin: doGTranslate('en|xx'), cookie googtrans=/en/xx).
+ * MoneyViel: one language button for every language (works with the GTranslate plugin).
  * GTranslate keeps the chosen language in localStorage __GT_TRANSLATE_LANGS {srcLang,tgtLang}; we set it and reload.
- * - Computer: small "EN | हिं" switch in the header, next to Search.
- * - Phone: small round "अ/A" button at the bottom-left (opposite the back-to-top arrow).
- * - Phone menu: "English | हिंदी | More languages" row at the top of the menu panel.
- * - One-time friendly question for visitors whose phone/browser language is Indian (remembered).
- * - Slim "machine-translated" note when the page is shown in another language, with a "Show in English" link.
+ * - Computer: small "🌐 EN" pill in the header, next to Search.  Phone: small round 🌐 button bottom-left.
+ * - Both open one panel: search, "Suggested for you", Indian & South Asian languages, World languages.
+ *   Native names first, English names underneath, ✓ on the current one, no flags (flags are countries, not languages).
+ * - Phone menu: "🌐 Language: <current>" row that opens the same panel.
+ * - The old GTranslate drop-down in the top strip is hidden (its script still does the translating).
+ * - One-time friendly question for visitors whose browser language is Indian; "machine-translated" note with "Show in English".
  * Our own tools with real Hindi (Money Words) switch to their own Hindi automatically.
  */
 add_action( 'wp_footer', function () {
@@ -14,16 +15,36 @@ add_action( 'wp_footer', function () {
 	}
 	?>
 <style>
-.mvl-sw{display:inline-flex;align-items:center;background:#F3EFFF;border-radius:999px;padding:3px;margin:0 8px 0 4px;font-weight:800;font-size:12.5px;line-height:1;vertical-align:middle}
-.mvl-sw button{border:0;background:none;color:#3B2A7A;border-radius:999px;padding:6px 10px;cursor:pointer;font:inherit}
-.mvl-sw button.on{background:#3B2A7A;color:#fff;box-shadow:0 2px 6px rgba(59,42,122,.25)}
-.mvl-fab{position:fixed;left:14px;bottom:18px;z-index:9990;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#3B2A7A;font-weight:900;font-size:13px;box-shadow:0 6px 18px rgba(27,22,64,.22);display:none;align-items:center;justify-content:center;cursor:pointer;line-height:1}
-.mvl-fab span{display:block;font-size:10px;color:#E0408F;margin-top:1px}
+.gtranslate_wrapper,.gt_switcher_wrapper,[id^="gt-wrapper-"]{display:none!important}
+.mvl-btn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #E7DEFF;background:#fff;color:#3B2A7A;border-radius:999px;padding:6px 12px 6px 9px;font-weight:800;font-size:13px;line-height:1;cursor:pointer;margin:0 8px 0 4px;vertical-align:middle;transition:border-color .15s,box-shadow .15s}
+.mvl-btn:hover{border-color:#5B3FD6;box-shadow:0 3px 10px rgba(91,63,214,.15)}
+.mvl-btn .g{font-size:15px}
+.mvl-btn .c{min-width:18px;text-align:center}
+.mvl-fab{position:fixed;left:14px;bottom:18px;z-index:9990;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#3B2A7A;font-weight:900;box-shadow:0 6px 18px rgba(27,22,64,.22);display:none;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;line-height:1;padding:0}
+.mvl-fab .g{font-size:18px}.mvl-fab .c{font-size:9.5px;color:#E0408F;margin-top:2px;max-width:40px;overflow:hidden;white-space:nowrap}
 .mvl-fab:active{transform:scale(.94)}
-.mvl-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:0 0 14px;padding:0 0 12px;border-bottom:1px solid rgba(0,0,0,.08)}
-.mvl-row button{border:1.5px solid #E7DEFF;background:#fff;color:#3B2A7A;border-radius:999px;padding:7px 14px;font-weight:800;font-size:14px;cursor:pointer}
-.mvl-row button.on{background:#3B2A7A;border-color:#3B2A7A;color:#fff}
-.mvl-row select{border:1.5px solid #E7DEFF;border-radius:999px;padding:7px 10px;font-size:13.5px;font-weight:700;color:#3B2A7A;background:#fff;max-width:160px}
+.mvl-row{display:flex;align-items:center;justify-content:space-between;width:100%;margin:0 0 14px;padding:10px 14px;border:1.5px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.06);color:inherit;font-weight:800;font-size:15px;cursor:pointer;text-align:left}
+.mvl-row small{opacity:.75;font-weight:700}
+.mvl-ov{position:fixed;inset:0;z-index:99998;background:rgba(27,22,64,.45);display:flex;align-items:flex-start;justify-content:center;padding:84px 14px 14px;animation:mvlfade .2s ease}
+.mvl-pn{width:min(560px,100%);max-height:calc(100vh - 110px);display:flex;flex-direction:column;background:#fff;border-radius:22px;box-shadow:0 24px 60px rgba(27,22,64,.35);overflow:hidden;color:#1B1640;animation:mvlpop .22s ease}
+.mvl-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 6px}
+.mvl-hd b{font-size:19px}
+.mvl-hd button{border:0;background:#F3EFFF;color:#3B2A7A;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer}
+.mvl-sr{margin:6px 20px 8px;position:relative}
+.mvl-sr input{width:100%;border:1.5px solid #E7DEFF;border-radius:999px;padding:10px 14px 10px 38px;font-size:15px;outline:none;color:#1B1640;background:#fff}
+.mvl-sr input:focus{border-color:#5B3FD6}
+.mvl-sr span{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px;opacity:.6}
+.mvl-bd{overflow:auto;padding:4px 20px 18px}
+.mvl-gh{font-size:11.5px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:#5B3FD6;margin:14px 0 8px}
+.mvl-gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.mvl-l{display:flex;align-items:center;justify-content:space-between;gap:6px;border:1.5px solid #EEE9FF;background:#fff;border-radius:14px;padding:9px 12px;cursor:pointer;text-align:left;color:#1B1640;transition:border-color .12s,background .12s}
+.mvl-l:hover{border-color:#5B3FD6;background:#FAF8FF}
+.mvl-l b{display:block;font-size:15.5px;font-weight:800;line-height:1.25}
+.mvl-l small{display:block;font-size:12px;color:#6B6488;font-weight:600}
+.mvl-l.on{border-color:#3B2A7A;background:#3B2A7A;color:#fff}.mvl-l.on small{color:#D9D2FF}
+.mvl-l .t{font-size:15px;font-weight:900}
+.mvl-ft{padding:10px 20px 14px;font-size:12px;color:#6B6488;border-top:1px solid #F3EFFF}
+.mvl-none{display:none;padding:10px 0;color:#6B6488;font-weight:600}
 .mvl-ask{position:fixed;left:14px;right:14px;bottom:76px;z-index:9991;max-width:380px;margin:0 auto;background:#1B1640;color:#fff;border-radius:18px;padding:16px 16px 14px;box-shadow:0 14px 40px rgba(27,22,64,.35);font-size:15px;animation:mvlup .35s ease}
 .mvl-ask b{display:block;font-size:16.5px;margin-bottom:10px}
 .mvl-ask button{border:0;border-radius:999px;padding:9px 16px;font-weight:800;font-size:14px;cursor:pointer;margin:0 6px 6px 0}
@@ -32,44 +53,59 @@ add_action( 'wp_footer', function () {
 .mvl-note a{color:#E0408F;font-weight:800;margin-left:6px;cursor:pointer;text-decoration:underline}
 .mvl-note .x{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:16px;color:#6B6488;cursor:pointer}
 @keyframes mvlup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@media(max-width:999px){.mvl-fab{display:flex;flex-direction:column}.mvl-sw{display:none}}
+@keyframes mvlfade{from{opacity:0}to{opacity:1}}
+@keyframes mvlpop{from{opacity:0;transform:translateY(-8px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:999px){.mvl-fab{display:flex}.mvl-btn{display:none}
+.mvl-ov{align-items:flex-end;padding:0}
+.mvl-pn{width:100%;max-height:82vh;border-radius:22px 22px 0 0;animation:mvlup .25s ease}
+.mvl-gr{grid-template-columns:repeat(2,1fr)}}
 </style>
 <script>
 (function(){
-var NAMES={en:'English',hi:'हिंदी',mr:'मराठी',bn:'বাংলা',ta:'தமிழ்',te:'తెలుగు',gu:'ગુજરાતી',kn:'ಕನ್ನಡ',ml:'മലയാളം',pa:'ਪੰਜਾਬੀ',ur:'اردو',ne:'नेपाली',sd:'سنڌي',ar:'العربية',de:'Deutsch',es:'Español',fr:'Français',it:'Italiano',ja:'日本語','zh-CN':'中文',ru:'Русский',pt:'Português',id:'Bahasa Indonesia',ms:'Bahasa Melayu',th:'ไทย',tr:'Türkçe',uk:'Українська',nl:'Nederlands',fi:'Suomi',no:'Norsk',ga:'Gaeilge',my:'မြန်မာ'};
-var INDIAN=['hi','mr','bn','ta','te','gu','kn','ml','pa','ur'];
+var L=[['en','English','English',''],['hi','हिंदी','Hindi','in'],['mr','मराठी','Marathi','in'],['bn','বাংলা','Bengali','in'],['ta','தமிழ்','Tamil','in'],['te','తెలుగు','Telugu','in'],['gu','ગુજરાતી','Gujarati','in'],['kn','ಕನ್ನಡ','Kannada','in'],['ml','മലയാളം','Malayalam','in'],['pa','ਪੰਜਾਬੀ','Punjabi','in'],['ur','اردو','Urdu','in'],['sd','سنڌي','Sindhi','in'],['ne','नेपाली','Nepali','in'],
+ ['ar','العربية','Arabic','w'],['zh-CN','中文 (简体)','Chinese','w'],['nl','Nederlands','Dutch','w'],['fi','Suomi','Finnish','w'],['fr','Français','French','w'],['de','Deutsch','German','w'],['id','Bahasa Indonesia','Indonesian','w'],['ga','Gaeilge','Irish','w'],['it','Italiano','Italian','w'],['ja','日本語','Japanese','w'],['ms','Bahasa Melayu','Malay','w'],['my','မြန်မာ','Burmese','w'],['no','Norsk','Norwegian','w'],['pt','Português','Portuguese','w'],['ru','Русский','Russian','w'],['es','Español','Spanish','w'],['th','ไทย','Thai','w'],['tr','Türkçe','Turkish','w'],['uk','Українська','Ukrainian','w']];
+var BY={};L.forEach(function(x){BY[x[0]]=x});
+var SHORT={en:'EN',hi:'हिं',mr:'मरा',bn:'বাং',ta:'தமி',te:'తెలు',gu:'ગુજ',kn:'ಕನ್ನ',ml:'മല',pa:'ਪੰਜਾ',ur:'اردو',sd:'سنڌي',ne:'नेपा','zh-CN':'中文',ja:'日本'};
+function short(c){return SHORT[c]||c.split('-')[0].toUpperCase()}
 var ASK={hi:'हिंदी में पढ़ना चाहेंगे?',mr:'मराठीत वाचायचे आहे का?',bn:'বাংলায় পড়তে চান?',ta:'தமிழில் படிக்க விரும்புகிறீர்களா?',te:'తెలుగులో చదవాలనుకుంటున్నారా?',gu:'ગુજરાતીમાં વાંચવું છે?',kn:'ಕನ್ನಡದಲ್ಲಿ ಓದಲು ಬಯಸುವಿರಾ?',ml:'മലയാളത്തിൽ വായിക്കണോ?',pa:'ਕੀ ਪੰਜਾਬੀ ਵਿੱਚ ਪੜ੍ਹਨਾ ਚਾਹੋਗੇ?',ur:'کیا آپ اردو میں پڑھنا چاہیں گے؟'};
 function cur(){try{var o=JSON.parse(localStorage.getItem('__GT_TRANSLATE_LANGS')||'{}');return o.tgtLang||'en'}catch(e){return 'en'}}
 function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function read(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function go(l){store('mvLang',l);try{if(l==='en')localStorage.removeItem('__GT_TRANSLATE_LANGS');else localStorage.setItem('__GT_TRANSLATE_LANGS',JSON.stringify({srcLang:'en',tgtLang:l}))}catch(e){}location.reload()}
-function paint(){var c=cur();[].forEach.call(document.querySelectorAll('[data-mvl]'),function(b){b.classList.toggle('on',b.getAttribute('data-mvl')===c||(b.getAttribute('data-mvl')==='hi'&&c==='hi'))});var f=document.querySelector('.mvl-fab');if(f){f.innerHTML=c==='en'?'अ<span>हिंदी</span>':'A<span>English</span>';f.setAttribute('aria-label',c==='en'?'हिंदी में पढ़ें':'Read in English')}
- var s=document.querySelector('.mvl-row select');if(s)s.value=(c==='en'||c==='hi')?'':c;note()}
 function nt(el){el.classList.add('notranslate');el.setAttribute('translate','no');return el}
-/* header switch (computer) */
+function browserLangs(){var out=[];(navigator.languages||[navigator.language||'']).forEach(function(x){x=String(x);var k=x.toLowerCase().split('-')[0];if(x.toLowerCase().indexOf('zh')===0)k='zh-CN';if(BY[k]&&out.indexOf(k)<0)out.push(k)});return out}
+/* ---- panel ---- */
+function item(x){var c=cur();return '<button type="button" class="mvl-l'+(x[0]===c?' on':'')+'" data-l="'+x[0]+'" data-s="'+(x[1]+' '+x[2]+' '+x[0]).toLowerCase()+'"'+(x[0]==='ar'||x[0]==='ur'||x[0]==='sd'?' dir="auto"':'')+'><span><b>'+x[1]+'</b>'+(x[1]!==x[2]?'<small>'+x[2]+'</small>':'')+'</span>'+(x[0]===c?'<span class="t">✓</span>':'')+'</button>'}
+function openPanel(){if(document.querySelector('.mvl-ov'))return;var sug=browserLangs();['en','hi'].forEach(function(k){if(sug.indexOf(k)<0)sug.push(k)});var c=cur();if(sug.indexOf(c)<0)sug.unshift(c);sug=sug.slice(0,4);
+ var ov=nt(document.createElement('div'));ov.className='mvl-ov';ov.setAttribute('role','dialog');ov.setAttribute('aria-modal','true');ov.setAttribute('aria-label','Choose your language');
+ ov.innerHTML='<div class="mvl-pn"><div class="mvl-hd"><b>🌐 Choose your language</b><button type="button" class="x" aria-label="Close">×</button></div><div class="mvl-sr"><span>🔍</span><input type="search" placeholder="Search language… e.g. Español, தமிழ்" aria-label="Search language"></div><div class="mvl-bd">'
+ +'<div class="mvl-sec"><div class="mvl-gh">Suggested for you</div><div class="mvl-gr">'+sug.map(function(k){return item(BY[k])}).join('')+'</div></div>'
+ +'<div class="mvl-sec"><div class="mvl-gh">Languages of India &amp; South Asia</div><div class="mvl-gr">'+L.filter(function(x){return x[3]==='in'}).map(item).join('')+'</div></div>'
+ +'<div class="mvl-sec"><div class="mvl-gh">World languages</div><div class="mvl-gr">'+[BY.en].concat(L.filter(function(x){return x[3]==='w'}).sort(function(a,b){return a[2]<b[2]?-1:1})).map(item).join('')+'</div></div>'
+ +'<div class="mvl-none">No language found. Try its English name.</div></div><div class="mvl-ft">Pages are translated automatically, so a few money words may not be exact. Our Money Words page has hand-written Hindi.</div></div>';
+ document.body.appendChild(ov);document.documentElement.style.overflow='hidden';
+ function close(){ov.remove();document.documentElement.style.overflow='';document.removeEventListener('keydown',esc)}
+ function esc(e){if(e.key==='Escape')close()}document.addEventListener('keydown',esc);
+ ov.addEventListener('click',function(e){if(e.target===ov||e.target.closest('.x')){close();return}var b=e.target.closest('[data-l]');if(b){var l=b.getAttribute('data-l');if(l===cur())close();else go(l)}});
+ var inp=ov.querySelector('input');if(window.matchMedia('(min-width:1000px)').matches)setTimeout(function(){inp.focus()},50);
+ inp.addEventListener('input',function(){var q=inp.value.trim().toLowerCase(),any=false;[].forEach.call(ov.querySelectorAll('.mvl-sec'),function(s,i){var shown=0;[].forEach.call(s.querySelectorAll('[data-l]'),function(b){var ok=!q||b.getAttribute('data-s').indexOf(q)>-1;b.style.display=ok?'':'none';if(ok)shown++});s.style.display=(q&&i===0)||!shown?'none':'';if(shown&&!(q&&i===0))any=true});ov.querySelector('.mvl-none').style.display=any?'none':'block'})}
+/* ---- header button (computer) ---- */
+var c0=cur();
 var srch=document.querySelector('header [data-id="search"], header .ct-header-search');
-if(srch){var sw=nt(document.createElement('div'));sw.className='mvl-sw';sw.setAttribute('role','group');sw.setAttribute('aria-label','Language');sw.innerHTML='<button type="button" data-mvl="en" title="English">EN</button><button type="button" data-mvl="hi" title="हिंदी">हिं</button>';srch.parentNode.insertBefore(sw,srch);
- sw.addEventListener('click',function(e){var b=e.target.closest('[data-mvl]');if(b&&b.getAttribute('data-mvl')!==cur())go(b.getAttribute('data-mvl'))})}
-/* floating button (phone) */
-var fab=nt(document.createElement('button'));fab.type='button';fab.className='mvl-fab';document.body.appendChild(fab);
-fab.addEventListener('click',function(){go(cur()==='en'?'hi':'en')});
-/* phone menu row */
-function addRow(){var mm=document.querySelector('#offcanvas .mobile-menu');if(!mm||document.querySelector('#offcanvas .mvl-row'))return;var r=nt(document.createElement('div'));r.className='mvl-row';
- var opts='<option value="">More languages…</option>';Object.keys(NAMES).forEach(function(k){if(k!=='en'&&k!=='hi')opts+='<option value="'+k+'">'+NAMES[k]+'</option>'});
- r.innerHTML='<button type="button" data-mvl="en">English</button><button type="button" data-mvl="hi">हिंदी</button><select aria-label="More languages">'+opts+'</select>';mm.parentNode.insertBefore(r,mm);
- r.addEventListener('click',function(e){var b=e.target.closest('[data-mvl]');if(b&&b.getAttribute('data-mvl')!==cur())go(b.getAttribute('data-mvl'))});
- r.querySelector('select').addEventListener('change',function(){if(this.value)go(this.value)});paint()}
-addRow();document.addEventListener('click',function(e){if(e.target.closest('[data-toggle-panel],.ct-header-trigger'))setTimeout(addRow,50)});
-/* machine-translated note */
-function note(){var c=cur(),n=document.querySelector('.mvl-note');if(c==='en'||sessionStorage.getItem('mvlNoteX')){if(n)n.remove();return}
- if(n)return;n=document.createElement('div');n.className='mvl-note';n.innerHTML='This page is machine-translated, so a few money words may not be exact.<a class="notranslate" translate="no">Show in English</a><button type="button" class="x notranslate" aria-label="Close">×</button>';
+if(srch){var hb=nt(document.createElement('button'));hb.type='button';hb.className='mvl-btn';hb.setAttribute('aria-label','Language: '+(BY[c0]?BY[c0][2]:c0)+'. Change language');hb.innerHTML='<span class="g">🌐</span><span class="c">'+short(c0)+'</span><span aria-hidden="true" style="font-size:9px;opacity:.6">▾</span>';srch.parentNode.insertBefore(hb,srch);hb.addEventListener('click',openPanel)}
+/* ---- floating button (phone) ---- */
+var fab=nt(document.createElement('button'));fab.type='button';fab.className='mvl-fab';fab.setAttribute('aria-label','Change language');fab.innerHTML='<span class="g">🌐</span><span class="c">'+short(c0)+'</span>';document.body.appendChild(fab);fab.addEventListener('click',openPanel);
+/* ---- phone menu row ---- */
+function addRow(){var mm=document.querySelector('#offcanvas .mobile-menu');if(!mm||document.querySelector('#offcanvas .mvl-row'))return;var r=nt(document.createElement('button'));r.type='button';r.className='mvl-row';r.innerHTML='<span>🌐 Language</span><small>'+(BY[c0]?BY[c0][1]:c0)+' ▸</small>';mm.parentNode.insertBefore(r,mm);r.addEventListener('click',openPanel)}
+addRow();document.addEventListener('click',function(e){if(e.target.closest('.ct-header-trigger,[data-toggle-panel]'))setTimeout(addRow,50)});
+/* ---- machine-translated note ---- */
+(function note(){if(c0==='en')return;try{if(sessionStorage.getItem('mvlNoteX'))return}catch(e){}var n=document.createElement('div');n.className='mvl-note';n.innerHTML='This page is machine-translated, so a few money words may not be exact.<a class="notranslate" translate="no">Show in English</a><button type="button" class="x notranslate" aria-label="Close">×</button>';
  var mn=document.querySelector('main#main .entry-content')||document.querySelector('main#main article')||document.querySelector('main#main');if(mn)mn.insertBefore(n,mn.firstChild);else document.body.insertBefore(n,document.body.firstChild);
- n.querySelector('a').addEventListener('click',function(){go('en')});n.querySelector('.x').addEventListener('click',function(){try{sessionStorage.setItem('mvlNoteX','1')}catch(e){}n.remove()})}
-/* one-time question */
-function ask(){if(read('mvLangAsked')||read('mvLang')||cur()!=='en')return;var langs=(navigator.languages||[navigator.language||'']).map(function(x){return String(x).toLowerCase().split('-')[0]});var l=null;for(var i=0;i<langs.length;i++){if(langs[i]==='en')break;if(INDIAN.indexOf(langs[i])>-1){l=langs[i];break}}if(!l)return;
- var a=nt(document.createElement('div'));a.className='mvl-ask';a.innerHTML='<b>'+ASK[l]+'</b><button type="button" class="y">'+NAMES[l]+'</button><button type="button" class="n">Continue in English</button>';document.body.appendChild(a);
- a.querySelector('.y').addEventListener('click',function(){store('mvLangAsked','1');a.remove();go(l)});a.querySelector('.n').addEventListener('click',function(){store('mvLangAsked','1');store('mvLang','en');a.remove()})}
-paint();setTimeout(ask,2500);
+ n.querySelector('a').addEventListener('click',function(){go('en')});n.querySelector('.x').addEventListener('click',function(){try{sessionStorage.setItem('mvlNoteX','1')}catch(e){}n.remove()})})();
+/* ---- one-time question ---- */
+setTimeout(function(){if(read('mvLangAsked')||read('mvLang')||cur()!=='en')return;var langs=(navigator.languages||[navigator.language||'']).map(function(x){return String(x).toLowerCase().split('-')[0]});var l=null;for(var i=0;i<langs.length;i++){if(langs[i]==='en')break;if(ASK[langs[i]]){l=langs[i];break}}if(!l)return;
+ var a=nt(document.createElement('div'));a.className='mvl-ask';a.innerHTML='<b>'+ASK[l]+'</b><button type="button" class="y">'+BY[l][1]+'</button><button type="button" class="n">Continue in English</button>';document.body.appendChild(a);
+ a.querySelector('.y').addEventListener('click',function(){store('mvLangAsked','1');a.remove();go(l)});a.querySelector('.n').addEventListener('click',function(){store('mvLangAsked','1');store('mvLang','en');a.remove()})},2500);
 })();
 </script>
 	<?php
