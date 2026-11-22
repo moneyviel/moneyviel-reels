@@ -20,9 +20,45 @@ Applies to every video, Short, post, image and social upload on every MoneyViel 
 - **Social captions** (Jetpack message, X, LinkedIn Page): always link back to moneyviel.com or our YouTube video (never upload our video files to other people's pages/groups).
 - **Weekly copy check** (with the weekly sweeps; record `copies_checked` in `state/checks.json`): WebSearch + YouTube search (youtube.com/results?search_query=…) for "Piggu Sikka", "MoneyViel Kids", "MoneyViel" and 2–3 exact titles of our newest videos. List any upload NOT on our two channels / our accounts that looks like our content (link, channel name, which of our videos) at the top of the report for the owner. Never contact anyone, comment, or file a copyright claim yourself — the owner decides (removal is requested through YouTube's copyright webform by the owner).
 
+## 0m. Short video design rules — owner feedback 2026-11-22 (MUST follow for every new main Short; kids Shorts follow the readability parts)
+Owner, after watching the 22 Nov quiz Short: *"I just couldn't understand anything… options must be on a new line… not interactive, engaging, exciting or attractive… texts simpler, clearer, completely understandable… give viewers time to think… they need to feel this is for them only. Our aim is reach and engagement, which only comes from the best content, interaction, engagement and quality."*
+What went wrong: question, all 3 options and the answer were on ONE slide at the same time (no thinking time, the answer spoiled the question); options were inside a sentence; light text on bright pink; logo/footer hidden under YouTube's buttons.
+
+**A. The "Can YOU?" pattern (every Short is a little game the viewer plays)**
+1. **0–2 s — personal hook, one line, big:** talk to ONE person. "Your salary came today. Where does ₹1 go first?" / "Can YOU get 3 out of 3?" / "Be honest: do YOU do this?" Never invent statistics ("90% fail") — only real, sourced numbers.
+2. **The promise (1 line, ≤ 2 s):** what they'll be able to do after 40 seconds.
+3. **One question per screen.** Question at top (≤ 12 words). Options BELOW, **each on its own line, one big tappable-looking card per option: "A", "B", "C"** with an emoji (max 3 options, ≤ 5 words each). Never options inside a sentence.
+4. **Thinking time:** a visible 5-second countdown ring + "Pause and decide 🤔" / "Type A, B or C in the comments". Soft tick sound. The answer is NEVER on screen before the countdown ends.
+5. **Reveal:** the right card turns green with ✅ and grows; wrong cards fade to grey. Then ONE "why" line (≤ 12 words, plain words). Ding sound.
+6. **Score tracker** always visible in a corner: "YOUR SCORE: 1/3" — the viewer keeps score in their head and feels it's about them.
+7. **Ending (last 4–5 s):** "3/3? You're ready 💪 · 2/3? Almost · 0–1? Save this and try again" + "Comment your score 👇". The last frame should flow back into the first (loop = rewatches).
+8. Length: 35–58 s. Longer is fine if every second is readable — clarity beats speed.
+
+**B. Formats to rotate (never the same format two days running)** — all built on A:
+- **Quiz** (3 questions, as above).
+- **Spot the mistake:** a simple 4-line budget or bill on screen; "One line will cost YOU money. Which?" → countdown → circle it.
+- **This or That:** split screen, two choices (e.g. "₹2,000 EMI for 12 months" vs "save ₹2,000 for 12 months, then buy") → countdown → the total-cost reveal.
+- **Guess the number:** "How much does a ₹500 daily habit cost in a year?" → three number cards → countdown → counter animation to the answer (computed in code).
+- **Rate yourself:** 4 quick yes/no habits; "Count YOUR yeses" → what your score means + one next step.
+- **Your day (POV chat):** phone-chat bubbles ("Salary credited ✅", "Sale ends tonight!") — viewer decides the reply → reveal the smart move.
+
+**C. Readability (hard rules, GATE 2 checks them)**
+- **Safe zone:** keep ALL important text inside x 80–900 px and y 380–1500 px (1080×1920). YouTube covers the top ~350 px (chips/menu), the right ~180 px (like/comment buttons) and the bottom ~420 px (title, related-video bar). Logo goes small inside the safe zone, not at the very top/bottom.
+- **Contrast:** dark solid background (brand navy `#1b1340` or deep purple) with white text and ONE accent (gold or green/red for answers). No light text on bright pink/orange, no busy gradients behind words. Text has no transparency.
+- **Size:** questions ≥ 72 px, options ≥ 64 px, small lines ≥ 48 px, bold font, max 2 lines per text block, left-aligned option cards.
+- **Words:** Class-6 English, ≤ 12 words per screen, no jargon (or explain it in 4 words), ₹ amounts with commas.
+- **Time on screen:** each text stays at least (words ÷ 2.5) + 1.5 seconds; nothing flashes. Only ONE new thing appears at a time.
+- **Sound off must still work:** everything important is written on screen; music is soft; tick/ding cues add energy.
+
+**D. Engine:** `tools/make_story.js` cannot do this (one text + sub per slide caused the 22 Nov problem). **Before the next main batch, build `tools/make_short2.js`** (same 1080×1920, brand logo/footer from 0b, Playwright recording like make_story.js) with scene types `hook`, `promise`, `question` (options as cards + countdown), `reveal`, `why`, `score`, `spot`, `thisorthat`, `guess`, `rate`, `chat`, `end`; all numbers computed in the spec. Make one sample of each format, look at the frames, and put a contact sheet of the quiz sample in the report for the owner. Use make_short2.js for ALL new main Shorts from then on. Kids Shorts keep their engine but follow C (safe zone, contrast, size, time on screen).
+
+**E. GATE 2 add-on — "fresh eyes" test:** give a reviewer agent (that has NOT seen the script) the frames at their real timestamps. It must answer, from the frames alone: What is the question? What are the options? Was there time to think before the answer? Is every text readable on a phone? Does it feel like it talks to "you"? Any "no" → fix and re-render before upload.
+
+**F. Website quiz/post text** follows the same idea: each option on its own line (A/B/C), answer under a "Answer 👇" line after the question, not inside it.
+
 ## 0c. Reach and value rules for EVERY video and post (owner-requested 2026-11-18: "reach must grow with each video; give 20x value to viewers, including children")
 - **Value first:** every video/post gives one thing the viewer can USE today (a number they can check, a rule, a checklist, a printable, a game, a free tool) and is about their real life (salary, bills, school, pocket money, festivals). Never filler.
-- **Hook in the first 2 seconds** (question, surprising number, or "Oh no!" moment); titles promise a clear benefit + curiosity, never clickbait.
+- **Hook in the first 2 seconds** (question, surprising number, or "Oh no!" moment) — and for every main Short follow section 0m (design rules, 22 Nov 2026); titles promise a clear benefit + curiosity, never clickbait.
 - **Keep them watching:** a pause-and-guess / quiz moment at least every 60–90 s in long videos; chapters on every long video; kids videos keep the fixed show pattern and the star counter.
 - **Next step for the viewer:** main channel → end screen (subscribe + next video), pinned comment question, related-video link from each Short to a long video; kids → "Next time…" teaser and playlists (no links/asks to comment for kids).
 - **Binge paths:** add every video to its playlist (main: topic playlists; kids: "Piggu & Sikka Stories" Shorts and "Big Adventures" long videos).
