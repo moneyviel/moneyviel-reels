@@ -142,6 +142,7 @@ For each video: open `https://studio.youtube.com/channel/UCymQ9Fi0Ix922qcEmpl8U_
 - Afterwards open `.../videos/short` and confirm each new Short shows "Scheduled" with the right date; note each Short's URL (`https://youtube.com/shorts/ID`).
 
 ## 6. Website posts (moneyviel.com, same Chrome) — auto-shared to FB/IG/Threads by Jetpack when they go live
+**If wp-admin shows the login page (owner tip, 22 Nov 2026):** never type a password. Open https://hpanel.hostinger.com (already signed in), go to Websites → moneyviel.com → "WP Admin" button; it opens WordPress already logged in. Then continue. Tip: don't return the nonce from page JS (the tool blocks output that looks like cookie data).
 In a moneyviel.com tab: `nonce = await (await fetch('/wp-admin/admin-ajax.php?action=rest-nonce')).text()`; REST with header `X-WP-Nonce`.
 - Upload the featured image: fetch the raw `.jpg` URL → POST `/wp-json/wp/v2/media` (body = blob, headers `Content-Type: image/jpeg`, `Content-Disposition: attachment; filename="moneyviel-<slug>.jpg"`), then set `alt_text`.
 - Create the post: POST `/wp-json/wp/v2/posts` with `status:"future"`, `date:"YYYY-MM-DDT19:30:00"` (site time is IST), `categories:[id]`, `featured_media`, `excerpt` (the one-line takeaway, see the card rules in section 1), `meta:{jetpack_publicize_message: <social caption with emojis + 4–6 hashtags>}`, and `content` in blocks:
