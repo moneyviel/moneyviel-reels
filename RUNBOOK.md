@@ -26,7 +26,7 @@ Display name everywhere: **MoneyViel**. Bio: "Money made simple for every family
 - YouTube: @moneyvielcom (YouTube said @moneyviel is not available) → https://www.youtube.com/@moneyvielcom
 - LinkedIn Page: /company/moneyvielcom (/company/moneyviel not accepted)
 - Facebook: facebook.com/moneyviel · Quora: Space "MoneyViel" moneyviel.quora.com, profile /profile/Moneyviel (name MoneyViel)
-- Instagram / Threads: @moneyvielcom until the owner changes it in Meta Accounts Center (Meta pages are off-limits to the browser tool); if it becomes @moneyviel, update the website social icons and this list.
+- Instagram / Threads: @moneyvielcom (owner tried @moneyviel on 2026-11-23: not available). Meta pages are off-limits to the browser tool.
 Never change handles again without the owner. When a profile shows a different name/bio, put it back to the above.
 
 ## 0m. Short video design rules — owner feedback 2026-11-22 (MUST follow for every new main Short; kids Shorts follow the readability parts)
