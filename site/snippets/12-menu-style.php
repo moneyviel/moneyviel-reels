@@ -10,14 +10,18 @@ add_action( 'wp_head', function () {
 /* ---------- desktop header menu ---------- */
 #header-menu-1 .mv-hide-desk{display:none!important}
 #header-menu-1 .menu-item-2080{position:static}
-#header-menu-1 .menu-item-2080>.sub-menu{display:grid!important;grid-template-columns:repeat(4,minmax(170px,1fr));gap:6px 18px;width:min(940px,calc(100vw - 40px))!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;padding:18px 20px 16px!important;border-radius:18px!important;box-shadow:0 18px 50px rgba(27,22,64,.18)!important;background:#fff!important}
+#header-menu-1 .menu-item-2080>.sub-menu{display:grid!important;grid-template-columns:repeat(4,max-content);gap:2px 14px;width:max-content!important;max-width:calc(100vw - 40px)!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;padding:12px 14px 10px!important;border-radius:16px!important;box-shadow:0 18px 50px rgba(27,22,64,.18)!important;background:#fff!important}
+/* invisible bridge over the gap between "Money Tools" and the panel, so the panel stays open while the mouse moves down */
+#header-menu-1 .menu-item-2080>.sub-menu:before{content:""!important;display:block!important;position:absolute!important;left:0;right:0;top:-30px!important;height:30px!important;background:transparent!important;opacity:1!important;transform:none!important}
+#header-menu-1 .menu-item-2080>.sub-menu{overflow:visible!important}
+#header-menu-1 .menu-item-2080 .mv-grp>.sub-menu:before,#header-menu-1 .menu-item-2080 .mv-grp>.sub-menu:after,#header-menu-1 .menu-item-2080 .mv-grp>.ct-toggle-dropdown-desktop-ghost,#header-menu-1 .menu-item-2080 .mv-grp>.ct-toggle-dropdown-desktop{display:none!important}
 #header-menu-1 .menu-item-2080>.sub-menu>li{width:auto!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important}
 #header-menu-1 .menu-item-2080>.sub-menu>li>a{justify-content:flex-start!important}
-#header-menu-1 .menu-item-2080 .mv-grp>a{font-size:12px!important;font-weight:800!important;letter-spacing:.06em;text-transform:uppercase;color:#5B3FD6!important;padding:6px 8px 8px!important;border-bottom:2px solid #F3EFFF;margin-bottom:4px;pointer-events:none}
+#header-menu-1 .menu-item-2080 .mv-grp>a{font-size:11.5px!important;font-weight:800!important;letter-spacing:.05em;text-transform:uppercase;color:#5B3FD6!important;padding:4px 6px 6px!important;border-bottom:2px solid #F3EFFF;margin-bottom:2px;pointer-events:none;height:auto!important}
 #header-menu-1 .menu-item-2080 .mv-grp>a .ct-toggle-dropdown-desktop,#header-menu-1 .menu-item-2080 .mv-grp>a .ct-toggle-dropdown-desktop-ghost{display:none!important}
 #header-menu-1 .menu-item-2080 .mv-grp>.sub-menu{position:static!important;opacity:1!important;visibility:inherit!important;transform:none!important;box-shadow:none!important;background:none!important;padding:0!important;margin:0!important;width:auto!important;min-width:0!important;display:block!important;pointer-events:inherit}
 #header-menu-1 .menu-item-2080 .mv-grp>.sub-menu>li{display:block!important;width:auto!important}
-#header-menu-1 .menu-item-2080 .mv-grp>.sub-menu a{padding:7px 8px!important;border-radius:10px;font-size:14px!important;white-space:nowrap;color:#1B1640!important;display:flex!important;justify-content:flex-start!important}
+#header-menu-1 .menu-item-2080 .mv-grp>.sub-menu a{padding:5px 6px!important;border-radius:9px;font-size:13.5px!important;white-space:nowrap;height:auto!important;color:#1B1640!important;display:flex!important;justify-content:flex-start!important}
 #header-menu-1 .menu-item-2080 .mv-grp>.sub-menu a:hover{background:#F3EFFF;color:#3B2A7A!important}
 #header-menu-1 .mv-new>a:after{content:"NEW";display:inline-block;margin-left:6px;font-size:9.5px;font-weight:900;letter-spacing:.05em;color:#1B1640;background:#FFB020;border-radius:999px;padding:1px 6px;vertical-align:2px}
 #header-menu-1 .mv-all>a{font-weight:800!important;color:#E0408F!important}
