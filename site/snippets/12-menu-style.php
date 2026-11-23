@@ -46,7 +46,7 @@ html.translated-ltr #header-menu-1>ul>li>a,html.translated-rtl #header-menu-1>ul
 /* laptops: if the menu ever runs out of room (long translated words, or narrower screens), it wraps onto 2 neat rows instead of sliding under the 🌐 button */
 @media(min-width:1000px){
 #header [data-row="middle"]{--height:auto}
-#header [data-row="middle"]>.ct-container{height:auto!important;min-height:74px}
+#header [data-row="middle"]>.ct-container{height:auto!important}
 #header [data-row="middle"] [data-column="end"]{min-width:0;flex:1 1 auto}
 #header [data-row="middle"] [data-column="end"]>[data-items]{min-width:0;flex-wrap:nowrap}
 #header-menu-1{flex:1 1 auto;min-width:0;height:auto!important}
@@ -57,9 +57,15 @@ html.translated-ltr #header [data-row="middle"]>.ct-container,html.translated-rt
 html.translated-ltr #header-menu-1>ul>li>a,html.translated-rtl #header-menu-1>ul>li>a{font-size:13px!important;padding-left:8px!important;padding-right:8px!important;height:36px!important}}
 /* smaller laptops: Subscribe pill hidden in the header (still in the footer and newsletter boxes) */
 @media(min-width:1000px) and (max-width:1439px){#header-menu-1 .mv-sub{display:none!important}}
-/* header width (owner 2026-11-23: "reduce the top row width"): logo, menu, language and Free Check-up line up with the page content (1120px) instead of 1290px; a bit wider on big screens where the Subscribe pill also shows */
-@media(min-width:1000px){#header [data-row="top"]>.ct-container,#header [data-row="middle"]>.ct-container{max-width:1120px!important;margin-left:auto!important;margin-right:auto!important}}
-@media(min-width:1440px){#header [data-row="top"]>.ct-container,#header [data-row="middle"]>.ct-container{max-width:1240px!important}}
+/* header row height (owner 2026-11-23: "reduce the height of the logo / menu / Free Check-up row"): 56px instead of 74px, everything vertically centred */
+@media(min-width:1000px){
+#header [data-row="middle"]>.ct-container{min-height:56px!important;padding-top:0!important;padding-bottom:0!important}
+#header [data-row="middle"] [data-column]{min-height:0!important}
+#header [data-row="middle"] .site-branding{margin:0!important;padding:0!important;height:auto!important;align-self:center!important}
+#header [data-row="middle"] .site-logo-container{height:auto!important;display:flex!important;align-items:center!important}
+#header [data-row="middle"] .site-logo-container img{max-height:42px!important;height:42px!important;width:auto!important}
+#header-menu-1>ul>li>a{height:36px!important}
+#header .ct-header-cta .ct-button{min-height:36px!important;padding-top:0!important;padding-bottom:0!important}}
 /* go-to-top button: see-through, solid on hover */
 .ct-back-to-top{background:rgba(59,42,122,.30)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:none!important;border:1px solid rgba(255,255,255,.35)}
 .ct-back-to-top .ct-icon{fill:#fff!important}
