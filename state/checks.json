@@ -9,8 +9,38 @@
  "copies_checked": "2026-11-20",
  "copies_checked_note": "WebSearch + YouTube search for Piggu Sikka / MoneyViel Kids / MoneyViel: only our own uploads; 'MoneyViel' search returns unrelated 'Moneyview' videos. No copies found.",
  "profiles_tidied": null,
- "replies_last": "2026-11-22T19:40+05:30",
- "replies_log": [],
- "numbers_week": null,
- "numbers_log": []
+ "replies_last": "2026-11-23T11:40+05:30",
+ "replies_log": [
+  {
+   "date": "2026-11-23",
+   "count": 0,
+   "note": "No unanswered YouTube comments; no pending website comments. X/IG/FB/LinkedIn comment scan not done this run."
+  }
+ ],
+ "numbers_week": "2026-11-23",
+ "numbers_log": [
+  {
+   "week_to": "2026-11-23",
+   "youtube_main": {
+    "views_7d": 265,
+    "watch_hours_7d": 0.9,
+    "subs_gained_7d": 9,
+    "subs_total": 36,
+    "top_48h": [
+     "Family Safety Net demo 12",
+     "Emergency fund quiz Short 11",
+     "Saver vs spender Short 9"
+    ],
+    "top_28d": [
+     "Ritu & Sameer trip story Short 78",
+     "Piggy catch game Short 39",
+     "Arjun festival bonus Short 36"
+    ],
+    "traffic": "Browse 72%, channel pages 14%, external 6%"
+   },
+   "x_followers": 6,
+   "linkedin_page_followers": 0,
+   "ig_fb": "not read this run"
+  }
+ ]
 }
