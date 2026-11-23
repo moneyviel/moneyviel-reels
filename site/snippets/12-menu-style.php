@@ -57,6 +57,9 @@ html.translated-ltr #header [data-row="middle"]>.ct-container,html.translated-rt
 html.translated-ltr #header-menu-1>ul>li>a,html.translated-rtl #header-menu-1>ul>li>a{font-size:13px!important;padding-left:8px!important;padding-right:8px!important;height:36px!important}}
 /* smaller laptops: Subscribe pill hidden in the header (still in the footer and newsletter boxes) */
 @media(min-width:1000px) and (max-width:1439px){#header-menu-1 .mv-sub{display:none!important}}
+/* header width (owner 2026-11-23: "reduce the top row width"): logo, menu, language and Free Check-up line up with the page content (1120px) instead of 1290px; a bit wider on big screens where the Subscribe pill also shows */
+@media(min-width:1000px){#header [data-row="top"]>.ct-container,#header [data-row="middle"]>.ct-container{max-width:1120px!important;margin-left:auto!important;margin-right:auto!important}}
+@media(min-width:1440px){#header [data-row="top"]>.ct-container,#header [data-row="middle"]>.ct-container{max-width:1240px!important}}
 /* go-to-top button: see-through, solid on hover */
 .ct-back-to-top{background:rgba(59,42,122,.30)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:none!important;border:1px solid rgba(255,255,255,.35)}
 .ct-back-to-top .ct-icon{fill:#fff!important}
