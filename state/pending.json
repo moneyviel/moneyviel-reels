@@ -1,13 +1,14 @@
 {
  "batch": "2026-11-19..2026-11-25",
- "status": "Shorts + WP posts scheduled 2026-11-17. Only the teaser Related-video links remain.",
+ "status": "Batch 19-25 Nov: only 25 Nov teaser related video (ejUZrAX8QLA -> uXJlwcg4KIs) remains, after 11:00 IST on 25 Nov.",
  "todo": [
   "On/after each date, once the long-form video is public (11:00 IST), open studio.youtube.com/video/<teaser>/edit, set Related video = that day's long-form (search by its title in the picker), Save. Teasers: 2026-11-19 XOYXHNmIfuw -> Ih-rtpAdTCM 'Minimum Due vs Fixed Payment...'; 2026-11-21 TmAJA1Aahh0 -> oXYd6Dy32hE 'Saver vs Spender...'; 2026-11-23 Tmif4pphyJw -> GvYu2WtOVOI 'What Will ₹100 Buy in 2046?...'; 2026-11-25 ejUZrAX8QLA -> uXJlwcg4KIs 'Are You Money-Healthy?...'. The picker lists only public videos.",
   "Non-teaser Shorts 3dMCMB7aGTs, cEldiZMwmb8, f-GL1a4wCO0 already have Related video = Tools Tour (done 2026-11-17)."
  ],
  "teaser_related_done": {
   "2026-11-19": "XOYXHNmIfuw -> Ih-rtpAdTCM (saved 2026-11-19 18:40 IST)",
-  "2026-11-21": "TmAJA1Aahh0 -> oXYd6Dy32hE (saved 2026-11-21 11:10 IST)"
+  "2026-11-21": "TmAJA1Aahh0 -> oXYd6Dy32hE (saved 2026-11-21 11:10 IST)",
+  "2026-11-23": "Tmif4pphyJw -> GvYu2WtOVOI saved 2026-11-23 11:25 IST"
  },
  "x_blocked": "Resolved 2026-11-19 10:30 IST: no email popup on X; 2231 shared."
 }

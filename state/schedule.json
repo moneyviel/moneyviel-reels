@@ -1,7 +1,7 @@
 {
  "timezone": "Asia/Kolkata",
  "publish_time": "19:30",
- "last_scheduled_date": "2026-11-25",
+ "last_scheduled_date": "2026-12-02",
  "log": [
   {
    "date": "2026-11-04",
@@ -203,6 +203,89 @@
      "yt_title": "Grab a pen ✍️ Can you answer this money question in 8 seconds? #MoneyViel #shorts",
      "short_url": "https://youtube.com/shorts/ejUZrAX8QLA",
      "post_id": 2272
+    }
+   ]
+  },
+  {
+   "date": "2026-11-23",
+   "note": "Batch 26 Nov-2 Dec, first batch on make_short2.js (RUNBOOK 0m). GATE 1 (2 rounds) + fresh-eyes PASS. Related video = Tools Tour, remix = audio only, all 7 scheduled 19:30.",
+   "items": [
+    {
+     "date": "2026-11-26",
+     "kind": "word",
+     "format": "spot",
+     "title": "Money Word: Net Worth explained",
+     "yt_title": "Net Worth Explained: Spot the Mistake in 10 Seconds #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/fsajrwBfC6o",
+     "post_id": 2546,
+     "theme": "salary and budgeting",
+     "pinned_question": "Do you check your net worth: never, yearly or every 6 months? 👇"
+    },
+    {
+     "date": "2026-11-27",
+     "kind": "challenge",
+     "format": "rate",
+     "title": "Weekend Challenge: Plan Next Week's Meals Before You Shop",
+     "yt_title": "Meal Planning to Save Money: Rate Your Grocery Habits #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/sOou8dIIntY",
+     "post_id": 2548,
+     "theme": "everyday money fixes",
+     "pinned_question": "How many grocery trips did you make last week? 👇"
+    },
+    {
+     "date": "2026-11-28",
+     "kind": "family",
+     "format": "guess",
+     "title": "Family Money: The Price-Guessing Game at the Market",
+     "yt_title": "Grocery Price Guessing Game: Can YOU Guess This Bill? #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/K-95-76NCuE",
+     "post_id": 2550,
+     "theme": "family money tools",
+     "pinned_question": "Which grocery price would surprise your child most? 👇"
+    },
+    {
+     "date": "2026-11-29",
+     "kind": "quiz",
+     "format": "quiz",
+     "title": "Quiz: 3 Questions on Credit Card Interest",
+     "yt_title": "Credit Card Interest Quiz: Can YOU Get 3/3? #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/RuR3VIxC5Hk",
+     "post_id": 2552,
+     "theme": "salary and budgeting",
+     "pinned_question": "What did you score: 3/3, 2/3 or 0–1? 👇"
+    },
+    {
+     "date": "2026-11-30",
+     "kind": "myth",
+     "format": "thisorthat",
+     "title": "Myth or Fact: You Need a Big Salary to Start Saving",
+     "yt_title": "Saving Money on a Small Salary: Myth or Fact? #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/9Y8oeXUZaZA",
+     "post_id": 2554,
+     "theme": "salary and budgeting",
+     "pinned_question": "How much will you save first this month: ₹20 a day or ₹500? 👇"
+    },
+    {
+     "date": "2026-12-01",
+     "kind": "story",
+     "format": "chat",
+     "title": "Story: Kabir's ₹3,000 Midnight Sale Cart",
+     "yt_title": "Impulse Buying at a Midnight Sale: What Should Kabir Do? #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/53ivARNaXw8",
+     "post_id": 2556,
+     "theme": "everyday money fixes",
+     "pinned_question": "Have you ever regretted a late-night buy? Yes or no 👇"
+    },
+    {
+     "date": "2026-12-02",
+     "kind": "guide",
+     "format": "thisorthat",
+     "title": "How to Split Rent With Flatmates Fairly",
+     "yt_title": "Split Rent With Flatmates Fairly: Equal or By Room Size? #MoneyViel #shorts",
+     "short_url": "https://youtube.com/shorts/5b_urK5qk28",
+     "post_id": 2558,
+     "theme": "salary and budgeting",
+     "pinned_question": "How do you split rent: equal or by room size? 👇"
     }
    ]
   }
