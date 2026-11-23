@@ -100,10 +100,11 @@ def bad(tt):
     w = np.sin(2*np.pi*np.cumsum(f)/SR) + .3*np.sin(4*np.pi*np.cumsum(f)/SR)
     put(FX, tt, lp(w, 1200)*np.exp(-x*5), .45)
 def slide(tt): put(FX, tt, bell(midi(84), .5), .14); put(FX, tt+.05, bell(midi(91), .5), .08)
+def tick(tt): put(FX, tt, bell(midi(96), .08), .10)
 def level(tt):
     for i, n in enumerate([72, 76, 79, 84]): put(FX, tt+i*.09, bell(midi(n), .6), .28)
 for tt, kind in ev['ev']:
-    {'good': good, 'bad': bad, 'level': level, 'slide': slide}[kind](tt+OFFSET)
+    {'good': good, 'bad': bad, 'level': level, 'slide': slide, 'tick': tick}[kind](tt+OFFSET)
 for i, n in enumerate([72, 76, 79, 84, 88]): put(FX, outro_t+i*.11, bell(midi(n), .9), .26)
 
 L += FX; R += FX

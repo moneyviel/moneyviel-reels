@@ -1,0 +1,902 @@
+[
+ {
+  "date": "2026-11-26",
+  "weekday": "Thursday",
+  "category": 38,
+  "kind": "word",
+  "title": "Money Word: Net Worth explained",
+  "slug": "money-word-net-worth",
+  "excerpt": "Net worth is what you own minus what you owe. A big salary does not always mean a big net worth.",
+  "content_html": "<p><strong>Net worth</strong> is everything you own minus everything you owe. It is one simple number that shows where your money really stands today.</p>\n<p>To find it, add up your savings, gold and other things of value. Then take away every loan or bill you still have to pay. What is left is your net worth. If it grows over time, you are moving in the right direction.</p>\n<h2>A simple ₹ example</h2>\n<p>Meera has ₹40,000 in savings. Her gold jewellery is worth about ₹60,000. Her scooter could sell for about ₹35,000. So Meera owns ₹1,35,000.</p>\n<p>She still has ₹15,000 left to pay on her scooter loan. She also has a ₹5,000 card bill due this month. So Meera owes ₹20,000.</p>\n<ul>\n<li>What Meera owns: ₹1,35,000</li>\n<li>What Meera owes: ₹20,000</li>\n<li>Meera's net worth: ₹1,35,000 − ₹20,000 = <strong>₹1,15,000</strong></li>\n</ul>\n<p>Here is a fun fact. If Meera pays the ₹5,000 card bill from her savings, her savings drop to ₹35,000. But her bills also drop to ₹15,000. Her net worth stays at ₹1,15,000. Paying a bill does not make you poorer. It only clears the way.</p>\n<p>Now say Meera saves ₹2,000 every month for a year. That adds ₹24,000. If nothing else changes, her net worth becomes ₹1,39,000. Small, steady saving is what moves this number.</p>\n<h2>A common mix-up</h2>\n<p>Many people think net worth means salary. It does not. Salary is money that comes in each month. Net worth is what is left after you count everything you own and owe.</p>\n<p>Arjun earns ₹50,000 a month. But he has only ₹15,000 in savings and owes ₹25,000. His net worth is ₹15,000 − ₹25,000 = −₹10,000. A big salary does not always mean a big net worth. What you keep matters more than what you earn.</p>\n<p>Another mix-up is counting things at the price you paid. A phone or bike is worth less each year. Count it at what it could sell for today, not the old bill.</p>\n<h2>Where you'll see it</h2>\n<ul>\n<li>In money health checks, where you list what you own and owe.</li>\n<li>On some loan forms, which ask about your assets (things you own) and liabilities (what you owe).</li>\n<li>In family talks about big goals, like a home or a child's studies.</li>\n</ul>\n<h2>Try it at home</h2>\n<p>Take a page and draw two columns: \"I own\" and \"I owe\". Fill both, then subtract. Do it again in six months and see if the number went up. You can learn more simple words like this in <a href=\"https://moneyviel.com/money-tools/money-words/\">MoneyViel Money Words</a>, and get a quick picture of your money with the <a href=\"https://moneyviel.com/money-tools/financial-health-score/\">Financial Health Score</a>.</p>",
+  "small_step": "Take a page and make two columns: \"I own\" and \"I owe\". Write your savings, gold and things of value on one side, and every loan or bill on the other. Subtract to find your net worth today, and write the date next to it so you can check again in six months.",
+  "jetpack_message": "Do YOU know your net worth? 🤔\n\nIt's simple: what you own minus what you owe. Meera owns ₹1,35,000 and owes ₹20,000, so her net worth is ₹1,15,000.\n\nA big salary does not always mean a big net worth. What you keep matters most.\n\nWhen will you work out yours? 👇\n\n#MoneyViel #PersonalFinance #NetWorth #MoneyWords",
+  "x_caption": "Do YOU know your net worth? Own minus owe. Meera owns ₹1,35,000, owes ₹20,000, so her net worth is ₹1,15,000. A big salary isn't a big net worth. What you keep matters. #MoneyViel #PersonalFinance",
+  "linkedin_hook": "Your salary tells you what comes in. Your net worth tells you what you have kept.",
+  "linkedin_bullets": [
+   "Net worth = everything you own minus everything you owe.",
+   "Paying off a bill from savings does not change net worth.",
+   "Check it every six months; the trend matters more than the number."
+  ],
+  "linkedin_tags": "#MoneyViel #PersonalFinance #MoneyTips #FinancialLiteracy #NetWorth",
+  "yt_title": "Net Worth Explained: Spot the Mistake in 10 Seconds #MoneyViel #shorts",
+  "yt_desc_hook": "Net worth = what you own minus what you owe. Can you spot the wrong line in Meera's sum?",
+  "tool_name": "Money Words",
+  "tool_path": "moneyviel.com/money-tools/money-words",
+  "yt_hashtags": "#NetWorth #MoneyWords #MoneyBasics",
+  "yt_tags": "net worth, what is net worth, net worth explained, assets and liabilities, money words, money basics, personal finance india",
+  "featured": {
+   "title": "What Is Net Worth?",
+   "emoji": "⚖️",
+   "badge": "MONEY WORD"
+  },
+  "pinned_question": "Do you check your net worth: never, yearly or every 6 months? 👇",
+  "theme": "salary and budgeting",
+  "short": {
+   "format": "spot",
+   "label": "MONEY WORD",
+   "hook": {
+    "text": "Do YOU know your net worth?",
+    "emoji": "🤔"
+   },
+   "promise": "Spot the money mistake in 10 seconds",
+   "scenes": [
+    {
+     "type": "spot",
+     "q": "One line is wrong. Which?",
+     "title": "Meera's net worth",
+     "lines": [
+      {
+       "t": "Savings + gold",
+       "v": "₹1,00,000"
+      },
+      {
+       "t": "Scooter",
+       "v": "₹35,000"
+      },
+      {
+       "t": "Loan + card bill",
+       "v": "₹20,000"
+      },
+      {
+       "t": "Net worth",
+       "v": "₹1,55,000"
+      }
+     ],
+     "answer": 3,
+     "why": "Own minus owe: ₹1,35,000 − ₹20,000 = ₹1,15,000."
+    },
+    {
+     "type": "question",
+     "q": "Use ₹5,000 savings to clear a ₹5,000 loan. Net worth?",
+     "options": [
+      {
+       "t": "Goes up",
+       "e": "⬆️"
+      },
+      {
+       "t": "Stays the same",
+       "e": "⚖️"
+      },
+      {
+       "t": "Goes down",
+       "e": "⬇️"
+      }
+     ],
+     "answer": 1,
+     "why": "Savings down ₹5,000, loan down ₹5,000. No change."
+    }
+   ],
+   "end": {
+    "lines": [
+     "2/2? You're ready 💪",
+     "1/2? Almost there",
+     "0/2? Save this and try again"
+    ],
+    "cta": "Comment A, B, C or D 👇"
+   }
+  },
+  "checks": [
+   {
+    "claim": "Meera owns savings + gold + scooter",
+    "computed": "₹40,000 + ₹60,000 + ₹35,000 = ₹1,35,000"
+   },
+   {
+    "claim": "Meera owes scooter loan + card bill",
+    "computed": "₹15,000 + ₹5,000 = ₹20,000"
+   },
+   {
+    "claim": "Meera's net worth",
+    "computed": "₹1,35,000 − ₹20,000 = ₹1,15,000"
+   },
+   {
+    "claim": "After paying card bill from savings: savings",
+    "computed": "₹40,000 − ₹5,000 = ₹35,000"
+   },
+   {
+    "claim": "After paying card bill: owns / owes / net worth",
+    "computed": "₹1,30,000 − ₹15,000 = ₹1,15,000 (unchanged)"
+   },
+   {
+    "claim": "Saving ₹2,000 a month for a year",
+    "computed": "₹2,000 × 12 = ₹24,000"
+   },
+   {
+    "claim": "Net worth after a year of saving (nothing else changes)",
+    "computed": "₹1,15,000 + ₹24,000 = ₹1,39,000"
+   },
+   {
+    "claim": "Arjun's net worth",
+    "computed": "₹15,000 − ₹25,000 = −₹10,000"
+   },
+   {
+    "claim": "Short: owns",
+    "computed": "₹40,000 + ₹60,000 = ₹1,00,000"
+   },
+   {
+    "claim": "Short: correct net worth",
+    "computed": "₹1,00,000 − ₹20,000 = ₹80,000"
+   },
+   {
+    "claim": "Short: wrong line (added loan instead of subtracting)",
+    "computed": "₹1,00,000 + ₹20,000 = ₹1,20,000"
+   },
+   {
+    "claim": "short extra scene",
+    "computed": "Savings down ₹5,000, loan down ₹5,000. No change."
+   }
+  ]
+ },
+ {
+  "date": "2026-11-27",
+  "weekday": "Friday",
+  "category": 66,
+  "kind": "challenge",
+  "title": "Weekend Challenge: Plan Next Week's Meals Before You Shop",
+  "slug": "weekend-challenge-plan-next-weeks-meals-before-you-shop",
+  "excerpt": "Spend 20 minutes this weekend planning next week's meals, then shop once with a list. Fewer trips, less waste, less extra spending.",
+  "content_html": "<p>This weekend, sit down for 20 minutes and plan next week's meals before you shop. Then buy only what your plan needs. It is free, it is safe, and it can stop a lot of small, extra spending.</p>\n<p>Why does it help? When there is no plan, we make many quick trips to the shop. Each trip adds a snack here and a packet there. Some vegetables also go bad because nobody planned to cook them. A plan means fewer trips, less waste and fewer \"just one more\" buys.</p>\n<p>Here is a simple example. Say unplanned trips add ₹150 a week in extra snacks and food that gets thrown away. In 4 weeks that is ₹600. In a year it is ₹7,800. A short plan on Saturday can keep much of that in your pocket.</p>\n<h2>How to do it, step by step</h2>\n<ol>\n<li><strong>Check your kitchen first.</strong> Look in the fridge and on the shelves. Note what you already have, like rice, dal, onions or leftover paneer.</li>\n<li><strong>Write 7 dinners.</strong> Start with dinners only. Use what you have first. Example: Monday dal-rice, Tuesday aloo sabzi with roti, Wednesday khichdi.</li>\n<li><strong>Reuse ingredients.</strong> If you buy spinach for one dish, plan a second dish with it. This stops waste.</li>\n<li><strong>Make one shopping list.</strong> Write only what the 7 dinners need, plus milk, fruit and basics.</li>\n<li><strong>Shop once, with the list.</strong> If something is not on the list, ask, \"Is this a need or a want?\"</li>\n<li><strong>Stick the plan on the fridge.</strong> Everyone at home can see what is cooking, so fewer surprise orders happen.</li>\n</ol>\n<h2>Make it a family thing</h2>\n<p>Ask each person to pick one dinner for the week. Children love choosing. It also helps everyone feel part of the plan, so it is easier to follow.</p>\n<h2>How to note your result</h2>\n<p>Next weekend, write down three things in a notebook or phone note:</p>\n<ul>\n<li>How many trips you made to the shop this week.</li>\n<li>How much you spent compared to your list.</li>\n<li>How much food you threw away.</li>\n</ul>\n<p>Compare it with a normal week. Whatever money you did not spend, move it to savings the same day by UPI to your savings account, or drop it in a jar. You can track it with the <a href=\"https://moneyviel.com/money-tools/52-week-challenge/\">52-Week Challenge</a>. To sort shopping list items, try <a href=\"https://moneyviel.com/money-tools/needs-vs-wants/\">Needs vs Wants</a>.</p>",
+  "small_step": "Open your fridge and write down three things you already have. Now plan two dinners that use them, and add only the missing items to a shopping list for this weekend.",
+  "jetpack_message": "₹150 a week in extra snacks and wasted food = ₹7,800 a year 😮\n\nThis weekend's challenge: plan 7 dinners before you shop. Check your kitchen, write one list, shop once.\n\nHow many shop trips did YOU make last week? 👇\n\n#MoneyViel #PersonalFinance #MealPlanning #WeekendChallenge",
+  "x_caption": "₹150 a week in extra snacks and wasted food = ₹7,800 a year. Weekend challenge: plan 7 dinners, write one list, shop once. How many shop trips did you make last week? #MoneyViel #PersonalFinance",
+  "linkedin_hook": "The cheapest grocery trip is the one you planned on Saturday.",
+  "linkedin_bullets": [
+   "Check your kitchen before you write a list.",
+   "Plan 7 dinners and reuse ingredients to cut waste.",
+   "Shop once, then move whatever you did not spend to savings."
+  ],
+  "linkedin_tags": "#MoneyViel #PersonalFinance #MoneyTips #FinancialLiteracy #MealPlanning",
+  "yt_title": "Meal Planning to Save Money: Rate Your Grocery Habits #MoneyViel #shorts",
+  "yt_desc_hook": "Plan 7 dinners before you shop. Rate your 4 grocery habits and see where your money leaks.",
+  "tool_name": "52-Week Challenge",
+  "tool_path": "moneyviel.com/money-tools/52-week-challenge",
+  "yt_hashtags": "#MealPlanning #GroceryBudget #SaveMoney #WeekendChallenge",
+  "yt_tags": "meal planning, grocery budget, save money on groceries, shopping list, weekend challenge, food waste, family budget india",
+  "featured": {
+   "title": "Plan Meals, Then Shop",
+   "emoji": "🥕",
+   "badge": "WEEKEND CHALLENGE"
+  },
+  "pinned_question": "How many grocery trips did you make last week? 👇",
+  "theme": "everyday money fixes",
+  "short": {
+   "format": "rate",
+   "label": "WEEKEND CHALLENGE",
+   "hook": {
+    "text": "Do YOU shop without a plan?",
+    "emoji": "🛒"
+   },
+   "promise": "Rate your grocery habits in 20 seconds",
+   "scenes": [
+    {
+     "type": "rate",
+     "items": [
+      "I check my kitchen first",
+      "I plan meals for the week",
+      "I shop with a written list",
+      "I rarely throw food away"
+     ],
+     "meaning": [
+      "4 yeses? Great habit 💪",
+      "2–3? Almost there",
+      "0–1? Start this weekend"
+     ]
+    }
+   ],
+   "end": {
+    "lines": [
+     "This Saturday: plan 7 dinners first 📝"
+    ],
+    "cta": "Comment your yeses 👇"
+   }
+  },
+  "checks": [
+   {
+    "claim": "Example extra spend from unplanned trips, per year",
+    "computed": "₹150 × 52 weeks = ₹7,800"
+   },
+   {
+    "claim": "Same extra spend over 4 weeks",
+    "computed": "₹150 × 4 = ₹600"
+   },
+   {
+    "claim": "Fewer trips",
+    "computed": "5 trips − 1 trip = 4 fewer trips"
+   }
+  ]
+ },
+ {
+  "date": "2026-11-28",
+  "weekday": "Saturday",
+  "category": 66,
+  "kind": "family",
+  "title": "Family Money: The Price-Guessing Game at the Market",
+  "slug": "family-money-price-guessing-game-at-the-market",
+  "excerpt": "At the market, let your child guess each price before you pay. Closest guess wins a point. Kids learn that things have real prices.",
+  "content_html": "<p>Next time you go to the market, turn it into a game. Before you pay for each item, ask your child to guess the price. The closest guess wins a point. It takes 10 to 15 minutes, costs nothing, and teaches children that things have real prices.</p>\n<p>Children often have no idea what milk, bread or soap costs. That is normal, because they rarely see the bill. This game gently shows them, so later they understand why we plan, compare and say \"not today\" sometimes.</p>\n<p>There are no wrong guesses here, only learning. Laugh at the funny guesses together, including your own.</p>\n<h2>How to play</h2>\n<ol>\n<li>Pick 5 items from your list before you leave home.</li>\n<li>At the shop, your child guesses each price before you check it.</li>\n<li>Score it: within ₹10 = 2 points, within ₹20 = 1 point, more than ₹20 away = 0 points.</li>\n<li>At the end, add the points and guess the total bill too.</li>\n</ol>\n<h2>A sample round</h2>\n<p>Here is how one round went for Riya. These are only example prices. Prices change from place to place and season to season, so use the prices at your own shop.</p>\n<ul>\n<li>1 litre milk: Riya guessed ₹50, example price ₹60, off by ₹10, <strong>2 points</strong></li>\n<li>A loaf of bread: Riya guessed ₹30, example price ₹45, off by ₹15, <strong>1 point</strong></li>\n<li>1 kg onions: Riya guessed ₹100, example price ₹40, off by ₹60, <strong>0 points</strong></li>\n<li>A dozen bananas: Riya guessed ₹50, example price ₹60, off by ₹10, <strong>2 points</strong></li>\n<li>A bar of soap: Riya guessed ₹20, example price ₹35, off by ₹15, <strong>1 point</strong></li>\n</ul>\n<p>Riya scored 6 out of 10. She guessed a total of ₹250, and the real total was ₹240. Her total was only ₹10 off, even though the onions surprised her. Next week she wants to beat her own score.</p>\n<h2>Age tips</h2>\n<h3>Ages 5–8</h3>\n<p>Use just 3 items. Instead of exact prices, ask, \"Is it more or less than ₹50?\" Let them hand over the money or watch you pay by UPI, and say the amount out loud.</p>\n<h3>Ages 9–12</h3>\n<p>Use all 5 items and the points system. Let them write guesses in a small notebook and add up the total. This is real maths practice without it feeling like homework.</p>\n<h3>Ages 13 and up</h3>\n<p>Add a \"smart value\" round. Example: a 500 g pack for ₹45 works out to ₹90 per kg. A 1 kg pack for ₹80 is ₹80 per kg. Ask, \"Which is better value, and will we use it all before it goes bad?\" Bigger is not always better if food gets wasted.</p>\n<h2>Talk about it on the way home</h2>\n<p>Ask one easy question: \"Which price surprised you most?\" Then ask, \"Was everything we bought a need, or were some things wants?\" Keep it light and curious. The goal is understanding, not guilt.</p>\n<p>For more ideas, visit the <a href=\"https://moneyviel.com/kids-money-corner/\">Kids Money Corner</a> for money games, and try sorting your list with <a href=\"https://moneyviel.com/money-tools/needs-vs-wants/\">Needs vs Wants</a>. If your child enjoys this, the <a href=\"https://moneyviel.com/learn/smart-money-habits/family-money-save-first-jar-game/\">Save-First Jar Game</a> is a great next step.</p>",
+  "small_step": "On your next shop, pick three items and ask your child to guess each price before you check it. Say the real price out loud, laugh at the surprises together, and ask which price surprised them most.",
+  "jetpack_message": "Can YOUR child guess the price of milk? 🥛\n\nTry the market price-guessing game: guess before you pay, closest guess wins a point. In our sample round, Riya's total guess was just ₹10 off!\n\nKids learn that things have real prices, and it's fun.\n\nWhich price would surprise your child most? 👇\n\n#MoneyViel #PersonalFinance #KidsAndMoney #FamilyMoney",
+  "x_caption": "Can your child guess the price of milk? Market game: guess before you pay, closest guess wins a point. Riya's total was just ₹10 off! Kids learn things have real prices. #MoneyViel #PersonalFinance",
+  "linkedin_hook": "The best money lesson for kids might be waiting at your local market.",
+  "linkedin_bullets": [
+   "Let children guess prices before you pay; closest guess wins.",
+   "Match the game to age: more-or-less for little ones, price per kg for teens.",
+   "Keep it light: no wrong guesses, only learning."
+  ],
+  "linkedin_tags": "#MoneyViel #PersonalFinance #MoneyTips #FinancialLiteracy #KidsAndMoney",
+  "yt_title": "Price Guessing Game for Kids: Can YOU Guess This Grocery Bill? #MoneyViel #shorts",
+  "yt_desc_hook": "Guess the total of milk, bread and onions (example prices). Then play it with your kids at the market!",
+  "tool_name": "Needs vs Wants",
+  "tool_path": "moneyviel.com/money-tools/needs-vs-wants",
+  "yt_hashtags": "#KidsAndMoney #FamilyMoney #MoneyGames #GroceryShopping",
+  "yt_tags": "price guessing game, kids money game, teach kids about money, family money, grocery prices, money lessons for children, parenting india",
+  "featured": {
+   "title": "Guess the Price Game",
+   "emoji": "🛒",
+   "badge": "FAMILY MONEY"
+  },
+  "pinned_question": "Which grocery price would surprise your child most? 👇",
+  "theme": "family money tools",
+  "short": {
+   "format": "guess",
+   "label": "FAMILY MONEY",
+   "hook": {
+    "text": "Can YOU guess a grocery bill?",
+    "emoji": "🛒"
+   },
+   "promise": "Play the game your kids will love",
+   "scenes": [
+    {
+     "type": "guess",
+     "q": "Milk, bread, 1 kg onions. Guess the total?",
+     "options": [
+      "₹95",
+      "₹145",
+      "₹245"
+     ],
+     "answer": 1,
+     "value": 145,
+     "prefix": "₹",
+     "why": "₹60 + ₹45 + ₹40 = ₹145 (example prices)"
+    },
+    {
+     "type": "guess",
+     "q": "Half-litre milk is ₹30 a day. Cost in 30 days?",
+     "options": [
+      "₹300",
+      "₹900",
+      "₹3,000"
+     ],
+     "answer": 1,
+     "value": 900,
+     "prefix": "₹",
+     "why": "₹30 × 30 days = ₹900. Small daily costs add up."
+    }
+   ],
+   "end": {
+    "lines": [
+     "2/2? You're ready 💪",
+     "1/2? Almost there",
+     "0/2? Save this and try again"
+    ],
+    "cta": "Comment A, B or C 👇"
+   }
+  },
+  "checks": [
+   {
+    "claim": "Riya's guess vs example price: 1 litre milk",
+    "computed": "|₹50 − ₹60| = ₹10 → 2 point(s)"
+   },
+   {
+    "claim": "Riya's guess vs example price: a loaf of bread",
+    "computed": "|₹30 − ₹45| = ₹15 → 1 point(s)"
+   },
+   {
+    "claim": "Riya's guess vs example price: 1 kg onions",
+    "computed": "|₹100 − ₹40| = ₹60 → 0 point(s)"
+   },
+   {
+    "claim": "Riya's guess vs example price: a dozen bananas",
+    "computed": "|₹50 − ₹60| = ₹10 → 2 point(s)"
+   },
+   {
+    "claim": "Riya's guess vs example price: a bar of soap",
+    "computed": "|₹20 − ₹35| = ₹15 → 1 point(s)"
+   },
+   {
+    "claim": "Real basket total (example prices)",
+    "computed": "₹60 + ₹45 + ₹40 + ₹60 + ₹35 = ₹240"
+   },
+   {
+    "claim": "Riya's guessed total",
+    "computed": "₹50 + ₹30 + ₹100 + ₹50 + ₹20 = ₹250"
+   },
+   {
+    "claim": "Difference in totals",
+    "computed": "₹250 − ₹240 = ₹10"
+   },
+   {
+    "claim": "Riya's points",
+    "computed": "6 out of 10"
+   },
+   {
+    "claim": "Teen tip: price per kg of 500 g pack at ₹45",
+    "computed": "₹45 × 2 = ₹90 per kg"
+   },
+   {
+    "claim": "Teen tip: 1 kg pack at ₹80",
+    "computed": "₹80 per kg; saves ₹10 per kg"
+   },
+   {
+    "claim": "Short: milk + bread + onions (example prices)",
+    "computed": "₹60 + ₹45 + ₹40 = ₹145"
+   },
+   {
+    "claim": "Short wrong options",
+    "computed": "₹145 − ₹50 = ₹95; ₹145 + ₹100 = ₹245"
+   },
+   {
+    "claim": "short extra scene",
+    "computed": "₹30 × 30 days = ₹900. Small daily costs add up."
+   }
+  ]
+ },
+ {
+  "date": "2026-11-29",
+  "weekday": "Sunday",
+  "category": 38,
+  "kind": "quiz",
+  "title": "Quiz: 3 Questions on Credit Card Interest",
+  "slug": "quiz-3-questions-credit-card-interest",
+  "excerpt": "At an example rate of 3% a month, ₹10,000 unpaid adds ₹300 in one month. Pay the full bill by the due date to usually avoid interest.",
+  "content_html": "<p>Credit card interest can grow fast if a bill is not paid in full. Try these 3 quick questions to check how well you understand it. All numbers use <strong>an example rate of 3% a month</strong>. Rates differ, so check your own card's statement for the real rate.</p>\n<p>The main idea is simple: pay the full bill by the due date, and interest usually stays away. Leave money unpaid, and interest is added every month.</p>\n<h2>Question 1</h2>\n<p>Nisha owes ₹10,000 on her card. At an example rate of 3% a month, how much interest is added after one month if she pays nothing?</p>\n<p>A) ₹30</p>\n<p>B) ₹300</p>\n<p>C) ₹3,000</p>\n<h2>Question 2</h2>\n<p>Imran pays his full card bill by the due date. How much interest does he usually pay on those purchases?</p>\n<p>A) ₹0</p>\n<p>B) Half the bill</p>\n<p>C) 3% of the bill</p>\n<h2>Question 3</h2>\n<p>An example rate of 3% a month is about how much in a year, using simple maths?</p>\n<p>A) 3%</p>\n<p>B) 12%</p>\n<p>C) 36%</p>\n<p>Done? Check your answers below. Answer 👇</p>\n<h2>Answers</h2>\n<p><strong>1. B) ₹300.</strong> ₹10,000 × 3% = ₹300 in just one month, at the example rate.</p>\n<p><strong>2. A) ₹0.</strong> Paying the full bill by the due date usually means no interest on those purchases. Check your card's terms to be sure.</p>\n<p><strong>3. C) 36%.</strong> 3% × 12 months = 36%. With interest added on interest, it is even more, about 42.6% in a year.</p>\n<h2>What this means for you</h2>\n<p>If Nisha leaves ₹10,000 unpaid for a full year at the example rate, with interest on interest, it grows to about ₹14,258. That is why paying only part of the bill can feel like running on the spot.</p>\n<ul>\n<li>Set a reminder 3 days before the due date.</li>\n<li>Try to pay the full bill, not just the minimum due.</li>\n<li>Only use a card for things you can already pay for this month.</li>\n</ul>\n<p>Want to see what paying only the minimum does? Try the <a href=\"https://moneyviel.com/money-tools/minimum-due-calculator/\">Minimum Due Calculator</a>, and read our <a href=\"https://moneyviel.com/learn/articles/money-word-minimum-due/\">Money Word on Minimum Due</a>.</p>\n<p><strong>Check your full money health:</strong> <a href=\"https://moneyviel.com/money-tools/money-health-report/\">take the Money Health Report</a>.</p>\n<p><strong>Quote of the week:</strong> \"Pay the whole bill on time, and interest rarely gets a seat at your table.\"</p>",
+  "small_step": "If you use a card, open your last statement and find two things: the due date and the monthly interest rate. Set a phone reminder three days before the due date so you can pay the full bill on time.",
+  "jetpack_message": "Owe ₹10,000 on a card and pay nothing? At an example rate of 3% a month, that's ₹300 added in ONE month 😮\n\n3% a month is about 36% a year, even more with interest on interest. Paying the full bill by the due date usually means ₹0 interest.\n\nCan YOU get 3/3 on our quiz? 👇\n\n#MoneyViel #PersonalFinance #CreditCard #MoneyQuiz",
+  "x_caption": "Owe ₹10,000 on a card and pay nothing? At an example 3% a month, that's ₹300 added in one month, about 36% a year. Pay the full bill by the due date. Can you get 3/3? #MoneyViel #PersonalFinance",
+  "linkedin_hook": "An example card rate of 3% a month sounds small. It is about 36% a year.",
+  "linkedin_bullets": [
+   "₹10,000 unpaid at an example 3% a month adds ₹300 in one month.",
+   "Paying the full bill by the due date usually means no interest.",
+   "With interest on interest, 3% a month is about 42.6% a year."
+  ],
+  "linkedin_tags": "#MoneyViel #PersonalFinance #MoneyTips #FinancialLiteracy #CreditCard",
+  "yt_title": "Credit Card Interest Quiz: Can YOU Get 3/3? #MoneyViel #shorts",
+  "yt_desc_hook": "3 quick questions on credit card interest, using an example rate of 3% a month. Check your own card's statement for the real rate.",
+  "tool_name": "Minimum Due Calculator",
+  "tool_path": "moneyviel.com/money-tools/minimum-due-calculator",
+  "yt_hashtags": "#CreditCard #CreditCardInterest #MoneyQuiz",
+  "yt_tags": "credit card interest, credit card quiz, minimum due, credit card bill, interest explained, money quiz, personal finance india",
+  "featured": {
+   "title": "Credit Card Interest Quiz",
+   "emoji": "💳",
+   "badge": "QUIZ"
+  },
+  "pinned_question": "What did you score: 3/3, 2/3 or 0–1? 👇",
+  "theme": "salary and budgeting",
+  "short": {
+   "format": "quiz",
+   "label": "QUIZ",
+   "hook": {
+    "text": "Do YOU really know card interest?",
+    "emoji": "💳"
+   },
+   "promise": "Get 3/3 and dodge costly card mistakes",
+   "scenes": [
+    {
+     "type": "question",
+     "q": "Owe ₹10,000. Say 3% a month. Interest after 1 month?",
+     "options": [
+      {
+       "t": "₹30",
+       "e": "🪙"
+      },
+      {
+       "t": "₹300",
+       "e": "💸"
+      },
+      {
+       "t": "₹3,000",
+       "e": "😱"
+      }
+     ],
+     "answer": 1,
+     "why": "₹10,000 × 3% = ₹300 in one month."
+    },
+    {
+     "type": "question",
+     "q": "Pay full bill by due date. Interest usually?",
+     "options": [
+      {
+       "t": "₹0 interest",
+       "e": "💳"
+      },
+      {
+       "t": "Half the bill",
+       "e": "✂️"
+      },
+      {
+       "t": "3% of the bill",
+       "e": "📈"
+      }
+     ],
+     "answer": 0,
+     "why": "Paying in full usually means no interest. Check your card."
+    },
+    {
+     "type": "question",
+     "q": "Say 3% a month. About how much a year?",
+     "options": [
+      {
+       "t": "3%",
+       "e": "📆"
+      },
+      {
+       "t": "12%",
+       "e": "📆"
+      },
+      {
+       "t": "36%",
+       "e": "📆"
+      }
+     ],
+     "answer": 2,
+     "why": "3% × 12 months = 36%, even more with compounding."
+    }
+   ],
+   "end": {
+    "lines": [
+     "3/3? You're ready 💪",
+     "2/3? Almost there",
+     "0–1? Save this and try again"
+    ],
+    "cta": "Comment your score 👇"
+   }
+  },
+  "checks": [
+   {
+    "claim": "Q1: one month's interest on ₹10,000 at example 3% a month",
+    "computed": "₹10,000 × 3% = ₹300"
+   },
+   {
+    "claim": "Q1 wrong options",
+    "computed": "₹10,000 × 0.3% = ₹30; ₹10,000 × 30% = ₹3,000"
+   },
+   {
+    "claim": "Q2: interest when full bill paid by due date (usual case)",
+    "computed": "₹0"
+   },
+   {
+    "claim": "Q3: 3% a month, simple yearly",
+    "computed": "3% × 12 = 36%"
+   },
+   {
+    "claim": "Q3: 3% a month, with interest on interest",
+    "computed": "(1.03^12 − 1) × 100 = 42.6%"
+   },
+   {
+    "claim": "₹10,000 left unpaid 12 months at example 3%/month compounding",
+    "computed": "₹10,000 × 1.03^12 = ₹14,258"
+   }
+  ]
+ },
+ {
+  "date": "2026-11-30",
+  "weekday": "Monday",
+  "category": 66,
+  "kind": "myth",
+  "title": "Myth or Fact: You Need a Big Salary to Start Saving",
+  "slug": "myth-or-fact-you-need-a-big-salary-to-start-saving",
+  "excerpt": "Myth. Saving is a habit, not a number. Just ₹20 a day adds up to ₹7,300 in a year.",
+  "content_html": "<p><strong>Verdict: Myth.</strong> You do not need a big salary to start saving, because saving is a habit, not a number. Small amounts saved regularly add up, and the habit you build now will help when your income grows.</p>\n<p>Many people say, \"I will start saving when I earn more.\" But when income goes up, spending often goes up too. The people who save well usually started small, with whatever they could.</p>\n<h2>A simple ₹ example</h2>\n<p>Pooja earns ₹18,000 a month. She thinks she cannot save. Then she tries saving just ₹20 a day, about the cost of a cup of tea.</p>\n<ul>\n<li>In 30 days: ₹20 × 30 = ₹600</li>\n<li>In one year: ₹20 × 365 = ₹7,300</li>\n</ul>\n<p>That ₹600 a month is only about 3.3% of her salary. Small enough to manage, big enough to matter.</p>\n<p>Her friend Rohan decides to wait for a raise. A year later, he has saved ₹0. Pooja has ₹7,300, with no return added, just her own steady saving. She also has something more valuable: a habit.</p>\n<p>Even ₹500 a month becomes ₹6,000 in one year and ₹18,000 in three years, without counting any return. That can cover a surprise doctor visit, a school fee or a phone repair without stress.</p>\n<h2>It is not just about the money</h2>\n<p>Saving a small amount every month also changes how you feel. You stop living from one salary day to the next. A small cushion means a sudden bill is a problem to solve, not a crisis. That calm feeling is worth a lot, even when the amount is small.</p>\n<h2>Why the myth feels true</h2>\n<p>When money is tight, saving can feel pointless. \"What will ₹20 do?\" is a fair question. But savings work like drops filling a bucket. One drop looks tiny. A full bucket does not. And starting small means you will not feel the pinch much.</p>\n<h2>What to do instead</h2>\n<ul>\n<li><strong>Save first, spend later.</strong> On salary day, move a small fixed amount to savings by UPI before you pay for anything else.</li>\n<li><strong>Start tiny and grow it.</strong> Begin with ₹20 a day or ₹500 a month. Add a little more each time your income rises.</li>\n<li><strong>Give your savings a name.</strong> \"Emergency fund\" or \"Diwali gifts\" feels more real than \"savings\", so you are less likely to touch it.</li>\n</ul>\n<h2>Try a fun way to start</h2>\n<p>The 52-week challenge starts with just ₹10 in week 1, ₹20 in week 2, and so on, adding ₹10 each week. By week 52 you will have saved ₹13,780. Track it with the <a href=\"https://moneyviel.com/money-tools/52-week-challenge/\">52-Week Challenge</a> tool. New to all this? Begin with <a href=\"https://moneyviel.com/learn/articles/start-here-your-money-journey-in-6-simple-steps/\">Start Here: Your Money Journey in 6 Simple Steps</a>.</p>",
+  "small_step": "Pick a tiny amount you will not miss, like ₹20 a day or ₹500 a month. Today, move it to a separate savings account by UPI or drop it in a jar, and set a reminder to do the same on your next salary day.",
+  "jetpack_message": "Think YOU need a big salary to save? Myth! 🙅\n\nJust ₹20 a day = ₹7,300 in a year. Saving is a habit, not a number. Start small, and grow it when your income grows.\n\nSave this for salary day 💾\n\n#MoneyViel #PersonalFinance #SavingMoney #MythOrFact",
+  "x_caption": "Think you need a big salary to save? Myth. Just ₹20 a day = ₹7,300 in a year. Saving is a habit, not a number. Start small today, grow it later. Save this for salary day. #MoneyViel #PersonalFinance",
+  "linkedin_hook": "Waiting for a raise to start saving? The habit matters more than the amount.",
+  "linkedin_bullets": [
+   "₹20 a day adds up to ₹7,300 in a year, before any return.",
+   "Save first on salary day, then spend what is left.",
+   "Start tiny and increase the amount as your income grows."
+  ],
+  "linkedin_tags": "#MoneyViel #PersonalFinance #MoneyTips #FinancialLiteracy #Saving",
+  "yt_title": "Saving Money on a Small Salary: Myth or Fact? #MoneyViel #shorts",
+  "yt_desc_hook": "Do you need a big salary to save? Myth! See how ₹20 a day becomes ₹7,300 in a year.",
+  "tool_name": "52-Week Challenge",
+  "tool_path": "moneyviel.com/money-tools/52-week-challenge",
+  "yt_hashtags": "#SavingMoney #MythOrFact #SmallSalary #SavingsHabit",
+  "yt_tags": "how to save money, saving on small salary, myth or fact, savings habit, save first, 52 week challenge, personal finance india",
+  "featured": {
+   "title": "Small Salary? Still Save",
+   "emoji": "🌱",
+   "badge": "MYTH OR FACT"
+  },
+  "pinned_question": "How much will you save first this month: ₹20 a day or ₹500? 👇",
+  "theme": "salary and budgeting",
+  "short": {
+   "format": "thisorthat",
+   "label": "MYTH OR FACT",
+   "hook": {
+    "text": "Think YOU earn too little to save?",
+    "emoji": "🤔"
+   },
+   "promise": "See who wins after one year",
+   "scenes": [
+    {
+     "type": "thisorthat",
+     "q": "Who has more after 1 year?",
+     "a": {
+      "title": "Wait for a raise",
+      "e": "🐢",
+      "lines": [
+       "Plans to save someday",
+       "Saves nothing for now"
+      ],
+      "result": "₹0"
+     },
+     "b": {
+      "title": "Save ₹20 a day",
+      "e": "🌱",
+      "lines": [
+       "Starts today",
+       "Small and steady"
+      ],
+      "result": "₹7,300"
+     },
+     "answer": "b",
+     "why": "₹20 × 365 days = ₹7,300. Start small, start now."
+    },
+    {
+     "type": "question",
+     "q": "Save ₹20 a day. How much in 30 days?",
+     "options": [
+      {
+       "t": "₹60",
+       "e": "🪙"
+      },
+      {
+       "t": "₹600",
+       "e": "🪙"
+      },
+      {
+       "t": "₹6,000",
+       "e": "🪙"
+      }
+     ],
+     "answer": 1,
+     "why": "₹20 × 30 days = ₹600. Start small, start now."
+    }
+   ],
+   "end": {
+    "lines": [
+     "2/2? You're ready 💪",
+     "1/2? Almost there",
+     "0/2? Save this and try again"
+    ],
+    "cta": "Comment A or B 👇"
+   }
+  },
+  "checks": [
+   {
+    "claim": "₹20 a day for 30 days",
+    "computed": "₹20 × 30 = ₹600"
+   },
+   {
+    "claim": "₹20 a day for a year",
+    "computed": "₹20 × 365 = ₹7,300"
+   },
+   {
+    "claim": "₹600 as share of ₹18,000 salary",
+    "computed": "₹600 ÷ ₹18,000 × 100 = 3.3%"
+   },
+   {
+    "claim": "₹500 a month for 1 year (no returns)",
+    "computed": "₹500 × 12 = ₹6,000"
+   },
+   {
+    "claim": "₹500 a month for 3 years (no returns)",
+    "computed": "₹500 × 36 = ₹18,000"
+   },
+   {
+    "claim": "52-week challenge starting ₹10, +₹10 each week",
+    "computed": "₹10 × (1+2+…+52) = ₹10 × 1,378 = ₹13,780"
+   },
+   {
+    "claim": "Waiting a year for a raise, saving nothing",
+    "computed": "₹0"
+   },
+   {
+    "claim": "short extra scene",
+    "computed": "₹20 × 30 days = ₹600. Start small, start now."
+   }
+  ]
+ },
+ {
+  "date": "2026-12-01",
+  "weekday": "Tuesday",
+  "category": 66,
+  "kind": "story",
+  "title": "Story: Kabir's ₹3,000 Midnight Sale Cart",
+  "slug": "story-kabirs-3000-midnight-sale-cart",
+  "excerpt": "When a sale makes you feel rushed, wait 24 hours. Kabir waited, kept one real need and saved ₹2,601.",
+  "content_html": "<p>Kabir earned ₹25,000 a month. But one night, at 12:15 am, he almost spent ₹3,000 on things he did not plan to buy.</p>\n<p>The lesson from his story is simple: when a sale makes you feel rushed, wait 24 hours. If you still need it tomorrow, buy it then. Most \"must-have\" feelings fade by morning.</p>\n<h2>The midnight sale</h2>\n<p>Kabir was in bed, scrolling his phone. A message popped up: \"Midnight SALE! Big discounts! Only for the next hour!\" A red timer was ticking on the screen.</p>\n<p>He tapped it \"just to look\". Ten minutes later, his cart had:</p>\n<ul>\n<li>Wireless earphones: ₹1,299</li>\n<li>A T-shirt: ₹799</li>\n<li>A phone cover: ₹399</li>\n<li>A desk lamp: ₹503</li>\n</ul>\n<p>Total: <strong>₹3,000</strong>. That was 12% of his whole month's pay, in ten minutes, in the middle of the night.</p>\n<p>His thumb was on the \"Pay now\" button. The timer said 40 minutes left. His heart was racing a little. \"If I don't buy now, I'll miss it,\" he thought.</p>\n<h2>The turning point</h2>\n<p>Then Kabir remembered something his elder sister Zoya always said: \"If it's a real need, it will still be a need tomorrow.\"</p>\n<p>So he did not pay. He left the cart as it was, put the phone down and went to sleep.</p>\n<p>The next morning, over chai, he opened the cart again. It looked very different in daylight.</p>\n<ul>\n<li>The earphones? His old ones worked fine.</li>\n<li>The T-shirt? He had three he hardly wore.</li>\n<li>The desk lamp? He studied in the living room anyway.</li>\n<li>The phone cover? His old one was cracked. That was a real need.</li>\n</ul>\n<p>He removed three items and bought only the phone cover for ₹399. He had kept ₹3,000 − ₹399 = <strong>₹2,601</strong> in his account.</p>\n<p>Kabir was already saving ₹1,000 a month for his emergency fund. That one decision added about 2.6 months' worth of saving in one go. He moved the ₹2,601 to his emergency savings that same morning.</p>\n<h2>The lesson</h2>\n<p>Sales are designed to make you feel rushed. Timers, \"only 2 left\" messages and late-night offers push you to decide fast. But a pause gives your thinking brain time to catch up with your excited brain. Sales come back. Your money, once spent, does not.</p>\n<p>Kabir did not stop shopping. He just stopped shopping in a hurry.</p>\n<h2>Try this today</h2>\n<p>Open your shopping cart or wishlist. For each item, ask: \"Do I need this, or do I just want it right now?\" Remove anything that is a \"right now\" want. If something is still in your mind after 24 hours, buy it calmly.</p>\n<p>Read more about <a href=\"https://moneyviel.com/learn/articles/the-24-hour-rule-a-simple-way-to-stop-impulse-buys/\">the 24-hour rule</a>, and practise sorting needs from wants with the <a href=\"https://moneyviel.com/money-tools/needs-vs-wants/\">Needs vs Wants</a> tool.</p>",
+  "small_step": "Open any shopping cart or wishlist on your phone. Remove one item that is a \"right now\" want, not a need. If you still want it after 24 hours, you can buy it calmly then.",
+  "jetpack_message": "Kabir's midnight sale cart: ₹3,000 😬 That's 12% of his monthly pay in 10 minutes.\n\nHe waited 24 hours. Next morning he kept one real need and saved ₹2,601.\n\nSales come back. Money spent does not.\n\nHave YOU ever regretted a midnight buy? 👇\n\n#MoneyViel #PersonalFinance #ImpulseBuying #24HourRule",
+  "x_caption": "Kabir's midnight sale cart: ₹3,000, 12% of his monthly pay in 10 minutes. He waited 24 hours, kept one real need and saved ₹2,601. Ever regretted a midnight buy? #MoneyViel #PersonalFinance",
+  "linkedin_hook": "A sale timer is designed to rush you. A 24-hour pause is how you win.",
+  "linkedin_bullets": [
+   "Late-night sales and timers push fast decisions.",
+   "Waiting 24 hours separates needs from passing wants.",
+   "Move the money you did not spend to savings the same day."
+  ],
+  "linkedin_tags": "#MoneyViel #PersonalFinance #MoneyTips #FinancialLiteracy #ImpulseBuying",
+  "yt_title": "Impulse Buying at a Midnight Sale: What Should Kabir Do? #MoneyViel #shorts",
+  "yt_desc_hook": "Kabir's cart hit ₹3,000 at midnight. One simple pause saved him ₹2,601. Can you pick the right move?",
+  "tool_name": "Needs vs Wants",
+  "tool_path": "moneyviel.com/money-tools/needs-vs-wants",
+  "yt_hashtags": "#ImpulseBuying #24HourRule #OnlineShopping #SaveMoney",
+  "yt_tags": "impulse buying, midnight sale, 24 hour rule, online shopping tips, needs vs wants, stop overspending, save money india",
+  "featured": {
+   "title": "Kabir's Midnight Sale Cart",
+   "emoji": "🛍️",
+   "badge": "STORY"
+  },
+  "pinned_question": "Have you ever regretted a late-night buy? Yes or no 👇",
+  "theme": "everyday money fixes",
+  "short": {
+   "format": "chat",
+   "label": "STORY",
+   "hook": {
+    "text": "Ever filled a ₹3,000 cart at midnight?",
+    "emoji": "🌙"
+   },
+   "promise": "Make the smart move before you pay",
+   "scenes": [
+    {
+     "type": "chat",
+     "bubbles": [
+      {
+       "from": "them",
+       "t": "Midnight SALE! Big discounts 🔥"
+      },
+      {
+       "from": "them",
+       "t": "Only 40 minutes left ⏰"
+      },
+      {
+       "from": "me",
+       "t": "My cart is ₹3,000 already 😬"
+      }
+     ],
+     "q": "What should Kabir do?",
+     "options": [
+      {
+       "t": "Buy now, sale ends",
+       "e": "⏰"
+      },
+      {
+       "t": "Add more for discount",
+       "e": "🛍️"
+      },
+      {
+       "t": "Wait 24 hours",
+       "e": "⏳"
+      }
+     ],
+     "answer": 2,
+     "why": "Sales come back. A real need still feels needed tomorrow."
+    }
+   ],
+   "end": {
+    "lines": [
+     "Got it right? You're ready 💪",
+     "Missed it? Save this and try again"
+    ],
+    "cta": "Comment A, B or C 👇"
+   }
+  },
+  "checks": [
+   {
+    "claim": "Kabir's cart total",
+    "computed": "₹1,299 + ₹799 + ₹399 + ₹503 = ₹3,000"
+   },
+   {
+    "claim": "Cart as share of monthly pay",
+    "computed": "₹3,000 ÷ ₹25,000 × 100 = 12%"
+   },
+   {
+    "claim": "Kept only the phone cover; money not spent",
+    "computed": "₹3,000 − ₹399 = ₹2,601"
+   },
+   {
+    "claim": "Saved amount vs his ₹1,000/month emergency saving",
+    "computed": "₹2,601 ÷ ₹1,000 = 2.6 months of saving"
+   }
+  ]
+ },
+ {
+  "date": "2026-12-02",
+  "weekday": "Wednesday",
+  "category": 38,
+  "kind": "guide",
+  "title": "How to Split Rent With Flatmates Fairly",
+  "slug": "split-rent-with-flatmates-fairly",
+  "excerpt": "Split shared spaces equally and the rest by room size. Equal rooms? Split equally. Agree on the method and write it down first.",
+  "rank_math_keyword": "split rent with flatmates",
+  "rank_math_description": "How to split rent with flatmates fairly: equal split, split by room size or the mix method, with a worked ₹ example and a simple checklist.",
+  "content_html": "<p>The fairest way to split rent with flatmates is usually to share the common spaces equally and split the rest by room size. If all rooms are about the same, a simple equal split works fine. Whatever you pick, agree on it together and write it down before you move in.</p>\n<p>Money fights between flatmates rarely start with big things. They start when one person feels they are paying for someone else's bigger room or extra comfort. A clear, simple method keeps things friendly.</p>\n<h2>Way 1: Split equally</h2>\n<p>Divide the total rent by the number of people. If rent is ₹30,000 and there are 3 of you, each pays ₹30,000 ÷ 3 = ₹10,000.</p>\n<ul>\n<li><strong>Good when:</strong> rooms are about the same size and have the same comforts.</li>\n<li><strong>Not so good when:</strong> one room is much bigger, or has an attached bathroom or balcony.</li>\n</ul>\n<p>It is quick and easy to understand. But if one person gets a much smaller room for the same price, they may feel it is unfair over time.</p>\n<h2>Way 2: Split by room size</h2>\n<p>Here, each person pays based on how big their room is. Add up all the bedroom sizes, then work out each person's share.</p>\n<p>Say Aditi's room is 150 sq ft, Farhan's is 120 sq ft and Simran's is 90 sq ft. That is 360 sq ft in total.</p>\n<ul>\n<li>Aditi: ₹30,000 × 150/360 = ₹12,500</li>\n<li>Farhan: ₹30,000 × 120/360 = ₹10,000</li>\n<li>Simran: ₹30,000 × 90/360 = ₹7,500</li>\n</ul>\n<p>This feels fair for private space. But it forgets one thing: everyone uses the kitchen, hall and balcony equally. So the person in the small room pays very little for shared space they use just as much.</p>\n<h2>Way 3: The mix method (worked example)</h2>\n<p>The mix method fixes this. Split half the rent equally for the shared spaces, and the other half by room size. Here is the worked example with the same flat and the same ₹30,000 rent.</p>\n<ol>\n<li>Half the rent is ₹15,000. Split it equally: ₹15,000 ÷ 3 = ₹5,000 each.</li>\n<li>Split the other ₹15,000 by room size, using 150, 120 and 90 out of 360 sq ft.</li>\n<li>Add the two parts for each person.</li>\n</ol>\n<ul>\n<li>Aditi (biggest room): ₹11,250 a month</li>\n<li>Farhan (middle room): ₹10,000 a month</li>\n<li>Simran (smallest room): ₹8,750 a month</li>\n</ul>\n<p>Check: ₹11,250 + ₹10,000 + ₹8,750 = ₹30,000. The full rent is covered.</p>\n<p>Compared with an equal split, Simran pays ₹15,000 less in a year, and Aditi pays ₹15,000 more for her bigger room. Both feel fair, because the difference matches the space each person gets.</p>\n<h2>Bills, deposit and a written plan</h2>\n<p>Shared bills like electricity and internet are usually easiest to split equally, since everyone uses them. If electricity is ₹1,800 and internet is ₹900, that is ₹2,700, or ₹900 each.</p>\n<p>For the deposit, many flatmates use the same split as the rent. If your deposit is ₹60,000, the mix method gives Aditi ₹22,500, Farhan ₹20,000 and Simran ₹17,500. Keep a note of who paid what, so the refund is easy to share when someone moves out.</p>\n<p>Use this checklist before you move in:</p>\n<ol>\n<li>Measure each bedroom, or at least agree which is big, medium and small.</li>\n<li>List extras: attached bathroom, balcony, AC or a better view.</li>\n<li>Pick a method together: equal, by size or mix.</li>\n<li>Agree on how to split electricity, internet, gas, cook or cleaning help.</li>\n<li>Decide who pays the owner and the date everyone sends their share by UPI.</li>\n<li>Write it all down in a shared note and have everyone say \"agreed\".</li>\n<li>Review it every six months, or when someone new moves in.</li>\n</ol>\n<p>Shared subscriptions can sneak in too. Use our <a href=\"https://moneyviel.com/learn/smart-money-habits/weekend-challenge-list-every-subscription/\">list-every-subscription challenge</a> to see what the flat pays for each month. To fit your share of rent into your monthly plan, try <a href=\"https://moneyviel.com/money-tools/budget-boss/\">Budget Boss</a>. If you are just starting out on your own, <a href=\"https://moneyviel.com/learn/articles/start-here-your-money-journey-in-6-simple-steps/\">Start Here: Your Money Journey in 6 Simple Steps</a> is a good first read.</p>\n<h2>Quick answers</h2>\n<h3>Should the flatmate who earns more pay more rent?</h3>\n<p>Not by default. Rent is usually split by space and comfort, not salary. If everyone happily agrees to a different plan, that is fine too, but write it down.</p>\n<h3>What if one room has an attached bathroom?</h3>\n<p>Agree on a small monthly extra for that room, and lower the other shares by the same total. The full rent should still add up exactly.</p>\n<h3>How do we avoid late payments?</h3>\n<p>Fix one date, a few days before the owner's due date, for everyone to send their share by UPI. Set a monthly phone reminder so nobody forgets.</p>",
+  "small_step": "Talk to your flatmates this week. Agree on one method (equal, by room size or mix), decide the date everyone sends their share by UPI, and write it in a shared note that everyone replies \"agreed\" to.",
+  "jetpack_message": "Bigger room, same rent? 🤔\n\nSplit ₹30,000 by the mix method (half equal, half by room size) and the smallest room pays ₹8,750, not ₹10,000. That's ₹15,000 less a year for the smallest room.\n\nAgree on the method and write it down before you move in.\n\nHow do YOU split rent: equal or by room size? 👇\n\n#MoneyViel #PersonalFinance #Flatmates #RentSplit",
+  "x_caption": "Bigger room, same rent? Mix method: split half of ₹30,000 equally, half by room size. Smallest room pays ₹8,750, not ₹10,000. Write it down before you move in. Equal or by size? #MoneyViel #PersonalFinance",
+  "linkedin_hook": "Most flatmate money fights start with one question: why do I pay the same for a smaller room?",
+  "linkedin_bullets": [
+   "Equal split works when rooms are similar.",
+   "The mix method: half the rent equally, half by room size.",
+   "Agree on bills, deposit and a payment date, and write it down."
+  ],
+  "linkedin_tags": "#MoneyViel #PersonalFinance #MoneyTips #FinancialLiteracy #Flatmates",
+  "yt_title": "Split Rent With Flatmates Fairly: Equal or By Room Size? #MoneyViel #shorts",
+  "yt_desc_hook": "₹30,000 rent, three rooms of different sizes. Which split is fair? See the maths.",
+  "tool_name": "Budget Boss",
+  "tool_path": "moneyviel.com/money-tools/budget-boss",
+  "yt_hashtags": "#Flatmates #RentSplit #SharedLiving #Budgeting",
+  "yt_tags": "split rent, split rent with flatmates, rent by room size, flatmates money, shared flat budget, roommate rent, budgeting india",
+  "featured": {
+   "title": "Split Rent Fairly",
+   "emoji": "🏠",
+   "badge": "HOW-TO"
+  },
+  "pinned_question": "How do you split rent: equal or by room size? 👇",
+  "theme": "salary and budgeting",
+  "short": {
+   "format": "thisorthat",
+   "label": "HOW-TO",
+   "hook": {
+    "text": "Smaller room, same rent? Is that fair?",
+    "emoji": "🏠"
+   },
+   "promise": "Pick the fair rent split in seconds",
+   "scenes": [
+    {
+     "type": "question",
+     "q": "Who should usually pay a bit more rent?",
+     "options": [
+      {
+       "t": "Biggest room",
+       "e": "🛏️"
+      },
+      {
+       "t": "Smallest room",
+       "e": "🚪"
+      },
+      {
+       "t": "Whoever joined last",
+       "e": "🧳"
+      }
+     ],
+     "answer": 0,
+     "why": "More space, a bit more rent. Agree it together."
+    },
+    {
+     "type": "thisorthat",
+     "q": "₹30,000 rent, 3 room sizes. Fairer split?",
+     "a": {
+      "title": "Equal split",
+      "e": "⚖️",
+      "lines": [
+       "Same rent for everyone",
+       "Ignores room size"
+      ],
+      "result": "₹10,000 each"
+     },
+     "b": {
+      "title": "Half-and-half split",
+      "e": "📐",
+      "lines": [
+       "Shared parts split equally",
+       "Bigger room pays a bit more"
+      ],
+      "result": "₹11,250 / ₹10,000 / ₹8,750"
+     },
+     "answer": "b",
+     "why": "Everyone shares the kitchen; bigger room pays a bit more."
+    }
+   ],
+   "end": {
+    "lines": [
+     "2/2? You're ready 💪",
+     "1/2? Almost there",
+     "0/2? Save this and try again"
+    ],
+    "cta": "Comment A or B 👇"
+   }
+  },
+  "checks": [
+   {
+    "claim": "Total room area",
+    "computed": "150 + 120 + 90 = 360 sq ft"
+   },
+   {
+    "claim": "Equal split",
+    "computed": "₹30,000 ÷ 3 = ₹10,000 each"
+   },
+   {
+    "claim": "By room size: Aditi",
+    "computed": "₹30,000 × 150/360 = ₹12,500"
+   },
+   {
+    "claim": "By room size: Farhan",
+    "computed": "₹30,000 × 120/360 = ₹10,000"
+   },
+   {
+    "claim": "By room size: Simran",
+    "computed": "₹30,000 × 90/360 = ₹7,500"
+   },
+   {
+    "claim": "Mix method: shared half split equally",
+    "computed": "₹15,000 ÷ 3 = ₹5,000 each"
+   },
+   {
+    "claim": "Mix method: Aditi",
+    "computed": "₹5,000 + ₹15,000 × 150/360 = ₹11,250"
+   },
+   {
+    "claim": "Mix method: Farhan",
+    "computed": "₹5,000 + ₹15,000 × 120/360 = ₹10,000"
+   },
+   {
+    "claim": "Mix method: Simran",
+    "computed": "₹5,000 + ₹15,000 × 90/360 = ₹8,750"
+   },
+   {
+    "claim": "Mix method total check",
+    "computed": "₹11,250 + ₹10,000 + ₹8,750 = ₹30,000"
+   },
+   {
+    "claim": "Shared bills",
+    "computed": "₹1,800 + ₹900 = ₹2,700; ÷ 3 = ₹900 each"
+   },
+   {
+    "claim": "Deposit share (mix ratio): Aditi",
+    "computed": "₹60,000 × ₹11,250/₹30,000 = ₹22,500"
+   },
+   {
+    "claim": "Deposit share (mix ratio): Farhan",
+    "computed": "₹60,000 × ₹10,000/₹30,000 = ₹20,000"
+   },
+   {
+    "claim": "Deposit share (mix ratio): Simran",
+    "computed": "₹60,000 × ₹8,750/₹30,000 = ₹17,500"
+   },
+   {
+    "claim": "Simran's yearly difference, equal vs mix",
+    "computed": "(₹10,000 − ₹8,750) × 12 = ₹15,000"
+   },
+   {
+    "claim": "Aditi's yearly difference, mix vs equal",
+    "computed": "(₹11,250 − ₹10,000) × 12 = ₹15,000"
+   },
+   {
+    "claim": "short extra scene",
+    "computed": "More space, a bit more rent. Agree it together."
+   }
+  ]
+ }
+]
