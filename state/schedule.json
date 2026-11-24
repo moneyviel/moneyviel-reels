@@ -297,5 +297,6 @@
  "kidsyt_last_long": "2026-12-05",
  "main_long_last_date": "2026-12-01",
  "big_last_date": "2026-12-05",
- "big_last_no": 1
+ "big_last_no": 1,
+ "main_long_autopilot": false
 }
