@@ -32,6 +32,7 @@ add_action( 'wp_head', function () {
 .ct-social-box a[data-network="instagram"]:hover{background:radial-gradient(circle at 30% 110%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
 .ct-social-box a[data-network="threads"]:hover,.ct-social-box a[data-network="twitter"]:hover{background:#000}
 .ct-social-box a[data-network="linkedin"]:hover{background:#0A66C2}
+.ct-social-box a[data-network="pinterest"]:hover{background:#E60023}
 .ct-social-box a:hover svg{fill:#fff!important}
 .ct-social-box a:after{content:attr(aria-label);position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1B1640;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:50}
 .ct-social-box a:hover:after{opacity:1}
