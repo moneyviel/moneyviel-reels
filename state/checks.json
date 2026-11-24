@@ -1,6 +1,6 @@
 {
  "kids_ads_note": "2026-11-23: snippets 5+7 active; Ep5 post, /kids/, /wonder-trail/, /kids-money-corner/ have no AdSense or gtag; normal post 2266 has both.",
- "gate4_last": "2026-11-23 ~19:45 IST: main post 2268 (19:30) live HTTP 200 with Short embed, FB/IG/Threads success; no pending comments.",
+ "gate4_last": "2026-11-24 10:45 IST: nothing new published since 23 Nov 19:30; 2 spam comments (4520, 4521) marked spam; all published posts already shared.",
  "kids_snippet_ok": "2026-11-15",
  "kids_category_page_no_ads": "2026-11-15 (category page: no AdSense tag; normal post 2109: tag present; snippet 5 active). Post-page check pending until first kids post is live 2026-11-16 18:00.",
  "comments_swept": "2026-11-22",
@@ -9,7 +9,7 @@
  "copies_checked": "2026-11-20",
  "copies_checked_note": "WebSearch + YouTube search for Piggu Sikka / MoneyViel Kids / MoneyViel: only our own uploads; 'MoneyViel' search returns unrelated 'Moneyview' videos. No copies found.",
  "profiles_tidied": null,
- "replies_last": "2026-11-23T18:40+05:30",
+ "replies_last": "2026-11-24T10:50+05:30",
  "replies_log": [
   {
    "date": "2026-11-23",
@@ -20,6 +20,11 @@
    "date": "2026-11-23",
    "count": 0,
    "note": "18:25 run: no unresponded YouTube main comments, no X mentions, no pending genuine website comments."
+  },
+  {
+   "date": "2026-11-24",
+   "count": 0,
+   "note": "10:40 run: no unresponded YouTube main comments, no X notifications, no pending genuine website comments."
   }
  ],
  "numbers_week": "2026-11-23",
@@ -47,5 +52,6 @@
    "linkedin_page_followers": 0,
    "ig_fb": "not read this run"
   }
- ]
+ ],
+ "quora_nfr_last": "2026-11-24 10:45 IST: Space + profile posts checked; all show no-copy icon (newest post menu says 'Allow reproduction'); 0 newly marked."
 }
