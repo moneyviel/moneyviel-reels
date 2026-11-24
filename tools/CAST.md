@@ -1,8 +1,6 @@
-# Mr. Hoot's Money Stories: the cast (grown-up MoneyViel content)
+# Mr. Hoot and the Viel Family (grown-up MoneyViel content)
 
-> **ON HOLD (owner, 24 Nov 2026 22:05 IST):** the owner rejected the names below (Priya, Rohan, Sharma, Mehta, Aarav, Meenu, Farhan). The audience is GLOBAL: names must be familiar worldwide. A new cast is being decided in the planning session. Until this note is removed: do NOT use any of these names in new content; Story/Family Money items keep Mr. Hoot as narrator and refer to people by role only ("a young professional", "her friend", "a freelancer"). Never make up other names meanwhile.
-
-Owner decision (24 Nov 2026): every grown-up MoneyViel story lives in ONE story world, narrated by Mr. Hoot (the wise owl from the MoneyViel books). No new one-off names (no more "Anjali", "Arjun", "Kabir", "Ritu & Sameer"). Already-published and already-scheduled items stay as they are; this applies to everything made from now on.
+Owner decision (24 Nov 2026, locked): every grown-up MoneyViel story lives in ONE story world: **Mr. Hoot and the Viel Family**. The audience is GLOBAL, so the names were chosen to be easy to say and spell for families everywhere. No other named characters, ever, without the owner. Already-published and already-scheduled items stay as they are (except the wedding story, which was renamed to this cast on 24–25 Nov 2026).
 
 All characters are fictional. Never present them as real people, and never base them on a real person.
 
@@ -10,25 +8,26 @@ All characters are fictional. Never present them as real people, and never base 
 
 | Character | Who they are | Typical money topics |
 | --- | --- | --- |
-| **Mr. Hoot** | The narrator. A calm, kind owl who has "seen every money mistake twice". Never mocks anyone; ends every story with 3 lessons. | Narrates everything |
-| **Priya Sharma** | 28, office job in a big city, organised, planned her own wedding on a budget (Nov 2026, the "Sharma Wedding" series). Married to Rohan. | Budgeting, wedding, saving, emergency fund, household planning |
-| **Rohan Mehta** | 30, Priya's husband, sales job, generous and a bit impulsive. | Credit cards, EMIs, impulse buys, "easy" loans, scams that use urgency |
-| **Mr. and Mrs. Sharma** | Priya's parents, late 50s, Mr. Sharma close to retirement, Mrs. Sharma runs the house accounts. | Retirement, scams aimed at elders (KYC calls, "customs parcel"), health emergencies, nominees |
-| **The Mehtas** | Rohan's parents. Warm, traditional, like to do things "the old way". | Family money talks, gold, joint decisions |
-| **Aarav Sharma** | 22, Priya's younger brother, first job, lots of friends, always on his phone. | First salary, peer pressure, stock-tip groups, task scams, fake job offers |
-| **Meenakshi (Meenu) Iyer** | 40s, the neighbour, runs a home tiffin business. Practical and funny. | Small-business cash flow, UPI tricks, separating business and home money |
-| **Farhan Qureshi** | 31, Rohan's college friend, freelancer with irregular income. | Irregular income, taxes as a concept, saving when income goes up and down, loan apps |
+| **Mr. Hoot** | The narrator. A calm, kind owl (from the MoneyViel books) who has "seen every money mistake twice". Never mocks anyone; ends every story with 3 lessons. No surname. | Narrates everything |
+| **Grandpa Soren Viel** | The grandfather. Retired, patient, a little old-fashioned, loves a good plan on paper. | Retirement, pensions as a concept, scams aimed at elders, nominees, passing on money habits |
+| **Grandma Rosa Viel** | The grandmother. Runs the family's accounts, sharp eye for a bad deal, warm and funny. | Household budgets, fake "bank" calls, parcel scams, health emergencies, gifts |
+| **Victor Viel** | Soren and Rosa's son, early 30s, steady job, generous, sometimes too quick to say yes. | Credit cards, loans, impulse buys, big purchases, scams that use urgency |
+| **Mira Viel** | Victor's wife, early 30s, organised and practical, the family planner. Married Victor in Nov 2026 (the wedding story). | Budgeting, saving, emergency fund, wedding, joint money, side income |
+| **Ronnie Viel** | Victor's younger brother, about 20, first job, lots of friends, always on his phone. | First paycheck, peer pressure, investment-tip groups, task scams, fake job offers, gaming spends |
+| **Nia Viel** | Victor's younger sister, about 17–18, curious, asks "but why?", starting to earn small money. | Pocket money to first earnings, online shopping traps, saving for a goal, student money |
 
-Use these first names in titles (e.g. `Story: Aarav's ₹40,000 first salary`). A minor extra character (a shopkeeper, a caller) may appear unnamed or with a generic role ("the caller", "the vendor").
+Use first names in titles (e.g. `Story: Ronnie's first paycheck`). A minor extra (a shopkeeper, a caller, a vendor) appears only by role ("the caller", "the vendor"), never with a name.
+
+Kids content is a separate world for younger viewers (Duggu, Chia, Pip; Mr. Hoot may appear there too). Never put Duggu or Chia in grown-up content.
 
 ## Rules
 
 - **Story** (Tue) and **Family Money** (Sat) posts, their Shorts, and the example character in long videos (`say` scenes) always use this cast.
 - Every Story post starts with the line: *From Mr. Hoot's Money Stories.*
-- Keep continuity: check "Timeline so far" below so nothing contradicts an earlier story (Priya is already married, etc.). After publishing a cast story, append one line to the timeline.
-- The kids' world (Piggu, Sikka, Granny Owl, Mr Hop, Pip) is separate; never mix the kids characters into grown-up posts.
-- All compliance rules (RUNBOOK section 2b) still apply: education only, no real brands, apps or people named as scammers.
+- **Global audience:** choose situations that happen everywhere (fake job fees, task scams, fake bank calls, parcel scams, loan apps, impulse buys, weddings, first jobs, retirement). Avoid India-only terms in cast stories (UPI, KYC, lakh, crore, mehendi) unless the owner asks. Use round, easy numbers. (Which currency the cast stories show is still being decided by the owner; until then follow the site's current convention.)
+- Keep continuity: check "Timeline so far" so nothing contradicts an earlier story. After publishing a cast story, append one line to the timeline.
+- All compliance rules (RUNBOOK section 2b) still apply: education only; no real brands, apps or people named as scammers.
 
 ## Timeline so far
 
-- Nov 2026: The Sharma Wedding (7 episodes on Pinterest; website post 2593). Priya and Rohan marry; the families split costs 60:40 and finish ₹1,20,000 under budget. (Before the next wedding-related story, check post 2593: if it gives the groom a different first name, use that name for Rohan everywhere and update this file.)
+- Nov 2026: **Victor and Mira's wedding** (7 episodes on Pinterest; website post 2593). The two families agree ONE budget, keep a 10% surprise fund, split shared costs 60:40 (Viels : Mira's family), log every payment, and finish under budget.
