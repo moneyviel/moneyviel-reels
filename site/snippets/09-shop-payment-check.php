@@ -19,6 +19,12 @@ function mv_shop_catalogue() {
 		array( 'MoneyViel Mart (A4)', 2447 ), array( 'MoneyViel Mart (US Letter)', 2448 ),
 		array( 'Chore & Earn (A4)', 2449 ), array( 'Chore & Earn (US Letter)', 2450 ),
 	);
+	$pip_files = array(
+		array( 'Starter Kit (A4)', 2441 ), array( 'Starter Kit (US Letter)', 2442 ),
+		array( 'Saving Challenge (A4)', 2443 ), array( 'Saving Challenge (US Letter)', 2444 ),
+		array( 'Bank Book (A4)', 2445 ), array( 'Bank Book (US Letter)', 2446 ),
+		array( 'Chore & Earn (A4)', 2449 ), array( 'Chore & Earn (US Letter)', 2450 ),
+	);
 	return array(
 		'starter-kit'           => array( 'name' => 'Money Club Starter Kit', 'price' => 14900, 'legacy' => true, 'files' => array( array( 'A4 PDF', 2441 ), array( 'US Letter PDF', 2442 ) ) ),
 		'saving-challenge'      => array( 'name' => '30-Day Saving Challenge', 'price' => 9900, 'legacy' => true, 'files' => array( array( 'A4 PDF', 2443 ), array( 'US Letter PDF', 2444 ) ) ),
@@ -31,6 +37,13 @@ function mv_shop_catalogue() {
 		'money-date-night'      => array( 'name' => 'Money Date Night Cards', 'price' => 19900, 'files' => array( array( 'A4 PDF', 2453 ), array( 'US Letter PDF', 2454 ) ) ),
 		'money-command-centre'  => array( 'name' => 'Money Command Centre', 'price' => 39900, 'files' => array( array( 'Access card (PDF): your Google Sheets links', 2520 ) ), 'note' => 'Open the access card and click "Make my copy" to save your own private Google Sheets copy (free Google account needed). This is a Google Sheets tool; Excel is not supported. For personal and family use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.' ),
 		'wedding-event-planner' => array( 'name' => 'Wedding & Big-Event Planner', 'price' => 24900, 'files' => array( array( 'Excel / Google Sheets file', 2457 ) ) ),
+		/* Apps (Nov 2026 launch offer). 'apps' = app keys from mv_shop_apps(); 'files' = bonus printables. */
+		'app-pip'         => array( 'name' => "Pip's Money Club app", 'price' => 4900, 'apps' => array( 'pip' ), 'files' => $pip_files ),
+		'app-detective'   => array( 'name' => 'Money Detective app (100 cases)', 'price' => 4900, 'apps' => array( 'detective' ), 'files' => array( array( 'Bonus printable (A4)', 2439 ), array( 'Bonus printable (US Letter)', 2440 ) ) ),
+		'app-mart'        => array( 'name' => 'MoneyViel Mart app (100 missions)', 'price' => 4900, 'apps' => array( 'mart' ), 'files' => array( array( 'Bonus printable (A4)', 2447 ), array( 'Bonus printable (US Letter)', 2448 ) ) ),
+		'app-datenight'   => array( 'name' => 'Money Date Night app', 'price' => 4900, 'apps' => array( 'datenight' ), 'files' => array( array( 'Bonus printable cards (A4)', 2453 ), array( 'Bonus printable cards (US Letter)', 2454 ) ) ),
+		'app-kids-bundle' => array( 'name' => 'MoneyViel Kids bundle: 3 apps', 'price' => 9900, 'apps' => array( 'pip', 'detective', 'mart' ), 'files' => $kids_files ),
+		'app-all'         => array( 'name' => 'All 4 MoneyViel apps', 'price' => 14900, 'apps' => array( 'pip', 'detective', 'mart', 'datenight' ), 'files' => array_merge( $kids_files, array( array( 'Money Date Night cards (A4)', 2453 ), array( 'Money Date Night cards (US Letter)', 2454 ) ) ) ),
 	);
 }
 /** Old download pages (from the Razorpay Payment Pages) => product slug. */
@@ -341,7 +354,12 @@ function mv_pay_files_box( $slug ) {
 	$cat = mv_shop_catalogue();
 	$p   = $cat[ $slug ];
 	$out = '<div style="background:linear-gradient(135deg,#fff6dd,#ffe9f0);border-radius:22px;padding:24px 20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:10px 0 18px">';
-	$out .= '<h2 style="margin:0 0 6px">🎉 Your ' . esc_html( $p['name'] ) . '</h2><p style="margin:0 0 12px;font-size:.92em;color:#4b5563">This page and its download links work for 24 hours, only in this browser. Please download and save all your files now. Problem? Email support@moneyviel.com with your payment ID.</p><p>';
+	$out .= '<h2 style="margin:0 0 6px">🎉 Your ' . esc_html( $p['name'] ) . '</h2>';
+	if ( ! empty( $p['apps'] ) && ! empty( $GLOBALS['mv_cur_pay_id'] ) ) {
+		$out .= mv_app_links_box( $GLOBALS['mv_cur_pay_id'], $p['apps'] );
+		$out .= '<h3 style="margin:18px 0 4px">🎁 Bonus printables</h3>';
+	}
+	$out .= '<p style="margin:0 0 12px;font-size:.92em;color:#4b5563">Download links work for 24 hours, only in this browser. Please save your files now. Problem? Email support@moneyviel.com with your payment ID.</p><p>';
 	foreach ( $p['files'] as $i => $f ) {
 		$bg   = ( $i % 2 ) ? '#6d28d9' : '#e8457a';
 		$out .= '<a style="display:inline-block;margin:6px;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:' . $bg . '" href="' . esc_url( mv_pay_link( $f[1] ) ) . '">⬇ ' . esc_html( $f[0] ) . '</a>';
@@ -428,6 +446,7 @@ add_shortcode( 'mv_my_downloads', function () {
 	if ( ! empty( $_GET['mv_t'] ) ) {
 		$tok = mv_pay_read_token( sanitize_text_field( wp_unslash( $_GET['mv_t'] ) ) );
 		if ( $tok && isset( mv_shop_catalogue()[ $tok[1] ] ) ) {
+			$GLOBALS['mv_cur_pay_id'] = $tok[0];
 			return $out . '<p style="background:#e6f6ea;border-radius:12px;padding:12px 16px">✅ Payment successful. Thank you! Your payment ID is <b>' . esc_html( $tok[0] ) . '</b>. Keep it in case you need help.</p>' . mv_pay_files_box( $tok[1] ) . '</div>';
 		}
 		$msg = 'This download page has expired, or it was opened in a different browser or device from the one used to buy. If you have not used your payment ID yet, enter it below; otherwise email support@moneyviel.com with your payment ID.';
@@ -451,9 +470,10 @@ add_shortcode( 'mv_my_downloads', function () {
 				$slug = mv_pay_product_for( $p );
 				if ( ! $slug ) {
 					$msg = 'We could not find a successful MoneyViel purchase with that payment ID. Please check the ID in your Razorpay receipt email (it starts with "pay_").';
-				} elseif ( ! mv_pay_count_use( $pay_id ) ) {
+				} elseif ( empty( mv_shop_catalogue()[ $slug ]['apps'] ) && ! mv_pay_count_use( $pay_id ) ) {
 					$msg = 'This payment ID has already been used to unlock the files. If you could not download them, email support@moneyviel.com with your payment ID and we will help.';
 				} else {
+					$GLOBALS['mv_cur_pay_id'] = $pay_id;
 					$out .= mv_pay_files_box( $slug );
 				}
 			}
@@ -559,3 +579,140 @@ rzp.open();}).catch(function(x){done();msg(b,x.message);});});});
 </script>
 	<?php
 }, 50 );
+
+/* ---------- Apps: permanent app links (Nov 2026) ----------
+ * An app link is moneyviel.com/?mv_app=<app>&p=<payment id>&k=<signature>. The signature proves we issued it after a checked payment,
+ * so opening the app needs no Razorpay call. Each payment's link works on up to 5 devices (a long-lived 'mv_appdev' cookie);
+ * a 6th device is refused, so a widely shared link stops working. App files are hidden attachments named mvp-app-<file>-<12 hex>.txt
+ * (Snippet 8 keeps them private) and are served as HTML only through this check. The logged-in admin can open any app with p=preview.
+ */
+function mv_shop_apps() {
+	return array(
+		'pip'       => array( 'name' => "Pip's Money Club", 'file' => 'pips-money-club', 'e' => '🐷' ),
+		'detective' => array( 'name' => 'Money Detective', 'file' => 'money-detective', 'e' => '🔍' ),
+		'mart'      => array( 'name' => 'MoneyViel Mart', 'file' => 'moneyviel-mart', 'e' => '🛒' ),
+		'datenight' => array( 'name' => 'Money Date Night', 'file' => 'money-date-night', 'e' => '💞' ),
+	);
+}
+function mv_app_att( $app ) {
+	$apps = mv_shop_apps();
+	if ( ! isset( $apps[ $app ] ) ) {
+		return 0;
+	}
+	$ck = 'mv_app_att_' . $app;
+	$id = (int) get_transient( $ck );
+	if ( $id && get_attached_file( $id ) ) {
+		return $id;
+	}
+	global $wpdb;
+	$like = '%' . $wpdb->esc_like( 'mvp-app-' . $apps[ $app ]['file'] . '-' ) . '%.txt';
+	$id   = (int) $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_wp_attached_file' AND meta_value LIKE %s ORDER BY post_id DESC LIMIT 1", $like ) );
+	if ( $id ) {
+		set_transient( $ck, $id, 10 * MINUTE_IN_SECONDS );
+	}
+	return $id;
+}
+function mv_app_sig( $pay_id, $app ) {
+	return substr( hash_hmac( 'sha256', $pay_id . '|' . $app, wp_salt( 'auth' ) . 'mv-app' ), 0, 24 );
+}
+function mv_app_url( $pay_id, $app ) {
+	return add_query_arg( array( 'mv_app' => $app, 'p' => $pay_id, 'k' => mv_app_sig( $pay_id, $app ) ), home_url( '/' ) );
+}
+function mv_app_links_box( $pay_id, $apps ) {
+	$all = mv_shop_apps();
+	$out = '<div style="background:#fff;border-radius:18px;padding:16px;margin:12px 0;text-align:left">';
+	$out .= '<p style="margin:0 0 10px"><b>📱 Your app' . ( count( $apps ) > 1 ? 's' : '' ) . '</b> (tap to open). <b>Save these links now:</b> bookmark them, or open each app and choose <b>Add to Home screen</b> (Android: ⋮ menu; iPhone: Share button). Each link works on up to 5 of your family\'s devices. Lost a link? Enter your payment ID at <a href="https://moneyviel.com/my-downloads/">moneyviel.com/my-downloads</a>.</p>';
+	foreach ( $apps as $a ) {
+		if ( ! isset( $all[ $a ] ) ) {
+			continue;
+		}
+		$u    = mv_app_url( $pay_id, $a );
+		$out .= '<p style="margin:8px 0"><a href="' . esc_url( $u ) . '" target="_blank" rel="noopener" style="display:inline-block;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;color:#fff;background:#16a34a">' . $all[ $a ]['e'] . ' Open ' . esc_html( $all[ $a ]['name'] ) . '</a><br><input readonly onclick="this.select()" value="' . esc_attr( $u ) . '" aria-label="App link" style="width:100%;margin-top:6px;padding:8px 10px;border:1px solid #d1d5db;border-radius:10px;font-size:13px"></p>';
+	}
+	return $out . '</div>';
+}
+function mv_app_device_ok( $pay_id ) {
+	if ( current_user_can( 'manage_options' ) ) {
+		return true;
+	}
+	$d = isset( $_COOKIE['mv_appdev'] ) ? (string) $_COOKIE['mv_appdev'] : '';
+	if ( ! preg_match( '/^[a-f0-9]{32}$/', $d ) ) {
+		$d = bin2hex( random_bytes( 16 ) );
+		setcookie( 'mv_appdev', $d, array( 'expires' => time() + 5 * YEAR_IN_SECONDS, 'path' => '/', 'secure' => is_ssl(), 'httponly' => true, 'samesite' => 'Lax' ) );
+	}
+	$h   = substr( md5( $d ), 0, 12 );
+	$log = get_option( 'mv_app_devices', array() );
+	$log = is_array( $log ) ? $log : array();
+	$set = isset( $log[ $pay_id ] ) ? (array) $log[ $pay_id ] : array();
+	if ( in_array( $h, $set, true ) ) {
+		return true;
+	}
+	if ( count( $set ) >= 5 ) {
+		return false;
+	}
+	$set[]          = $h;
+	$log[ $pay_id ] = $set;
+	update_option( 'mv_app_devices', $log, false );
+	return true;
+}
+function mv_app_deny( $msg, $code = 403 ) {
+	do_action( 'litespeed_control_set_nocache', 'MoneyViel app' );
+	header( 'X-LiteSpeed-Cache-Control: no-cache', true );
+	status_header( $code );
+	nocache_headers();
+	header( 'X-Robots-Tag: noindex, nofollow', true );
+	wp_die( esc_html( $msg ) . '<br><br><a href="https://moneyviel.com/shop/">MoneyViel shop</a> · <a href="https://moneyviel.com/my-downloads/">Find my apps with my payment ID</a> · support@moneyviel.com', 'MoneyViel app', array( 'response' => $code ) );
+}
+add_action( 'init', function () {
+	if ( empty( $_GET['mv_app'] ) ) {
+		return;
+	}
+	$app    = sanitize_key( (string) $_GET['mv_app'] );
+	$pay_id = (string) ( $_GET['p'] ?? '' );
+	$sig    = (string) ( $_GET['k'] ?? '' );
+	if ( ! isset( mv_shop_apps()[ $app ] ) ) {
+		mv_app_deny( 'This app link is not valid.' );
+	}
+	$preview = ( 'preview' === $pay_id && current_user_can( 'manage_options' ) );
+	if ( ! $preview && ( ! preg_match( '/^pay_[A-Za-z0-9]{8,30}$/', $pay_id ) || ! hash_equals( mv_app_sig( $pay_id, $app ), $sig ) ) ) {
+		mv_app_deny( 'This app link is not valid. Please use the exact link from your purchase.' );
+	}
+	if ( ! $preview && ! mv_app_device_ok( $pay_id ) ) {
+		mv_app_deny( 'This app link has already been opened on 5 devices, which is the limit for one purchase. If this is your family\'s link and you need help, email support@moneyviel.com with your payment ID.' );
+	}
+	$att  = mv_app_att( $app );
+	$file = $att ? get_attached_file( $att ) : '';
+	if ( ! $file || ! is_readable( $file ) ) {
+		mv_app_deny( 'This app is being updated. Please try again in a few minutes, or email support@moneyviel.com.', 503 );
+	}
+	while ( ob_get_level() ) {
+		ob_end_clean();
+	}
+	do_action( 'litespeed_control_set_nocache', 'MoneyViel app' );
+	header( 'X-LiteSpeed-Cache-Control: no-cache', true );
+	header( 'Content-Type: text/html; charset=utf-8' );
+	header( 'Cache-Control: private, no-store' );
+	header( 'X-Robots-Tag: noindex, nofollow, noarchive', true );
+	header( 'Referrer-Policy: no-referrer' );
+	header( 'X-Content-Type-Options: nosniff' );
+	readfile( $file );
+	exit;
+}, 1 );
+/* Admin: preview links for every app (Settings > MoneyViel Shop). */
+add_action( 'admin_notices', function () {
+	if ( ! current_user_can( 'manage_options' ) || ( $_GET['page'] ?? '' ) !== 'mv-shop' ) {
+		return;
+	}
+	$out = '<div class="notice notice-info"><p><b>App previews (admin only):</b> ';
+	foreach ( mv_shop_apps() as $k => $a ) {
+		$out .= '<a target="_blank" href="' . esc_url( add_query_arg( array( 'mv_app' => $k, 'p' => 'preview' ), home_url( '/' ) ) ) . '">' . esc_html( $a['name'] ) . '</a> ' . ( mv_app_att( $k ) ? '✅' : '❌ file missing' ) . ' · ';
+	}
+	echo $out . '</p></div>';
+} );
+/* Let the admin upload the app files (HTML saved as mvp-app-<name>-<12 hex>.txt). Nobody else, and no other file names. */
+add_filter( 'wp_check_filetype_and_ext', function ( $data, $file, $filename, $mimes ) {
+	if ( current_user_can( 'manage_options' ) && preg_match( '/^mvp-app-[a-z0-9-]+-[0-9a-f]{12}\.txt$/i', (string) $filename ) ) {
+		return array( 'ext' => 'txt', 'type' => 'text/plain', 'proper_filename' => false );
+	}
+	return $data;
+}, 10, 4 );
