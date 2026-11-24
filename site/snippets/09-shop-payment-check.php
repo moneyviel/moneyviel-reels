@@ -38,12 +38,12 @@ function mv_shop_catalogue() {
 		'money-command-centre'  => array( 'name' => 'Money Command Centre', 'price' => 39900, 'files' => array( array( 'Access card (PDF): your Google Sheets links', 2520 ) ), 'note' => 'Open the access card and click "Make my copy" to save your own private Google Sheets copy (free Google account needed). This is a Google Sheets tool; Excel is not supported. For personal and family use only. See our <a href="https://moneyviel.com/terms/">Terms</a>.' ),
 		'wedding-event-planner' => array( 'name' => 'Wedding & Big-Event Planner', 'price' => 24900, 'files' => array( array( 'Excel / Google Sheets file', 2457 ) ) ),
 		/* Apps (Nov 2026 launch offer). 'apps' = app keys from mv_shop_apps(); 'files' = bonus printables. */
-		'app-pip'         => array( 'name' => "Pip's Money Club app", 'price' => 4900, 'apps' => array( 'pip' ), 'files' => $pip_files ),
-		'app-detective'   => array( 'name' => 'Money Detective app (100 cases)', 'price' => 4900, 'apps' => array( 'detective' ), 'files' => array( array( 'Bonus printable (A4)', 2439 ), array( 'Bonus printable (US Letter)', 2440 ) ) ),
-		'app-mart'        => array( 'name' => 'MoneyViel Mart app (100 missions)', 'price' => 4900, 'apps' => array( 'mart' ), 'files' => array( array( 'Bonus printable (A4)', 2447 ), array( 'Bonus printable (US Letter)', 2448 ) ) ),
-		'app-datenight'   => array( 'name' => 'Money Date Night app', 'price' => 4900, 'apps' => array( 'datenight' ), 'files' => array( array( 'Bonus printable cards (A4)', 2453 ), array( 'Bonus printable cards (US Letter)', 2454 ) ) ),
-		'app-kids-bundle' => array( 'name' => 'MoneyViel Kids bundle: 3 apps', 'price' => 9900, 'apps' => array( 'pip', 'detective', 'mart' ), 'files' => $kids_files ),
-		'app-all'         => array( 'name' => 'All 4 MoneyViel apps', 'price' => 14900, 'apps' => array( 'pip', 'detective', 'mart', 'datenight' ), 'files' => array_merge( $kids_files, array( array( 'Money Date Night cards (A4)', 2453 ), array( 'Money Date Night cards (US Letter)', 2454 ) ) ) ),
+		'app-pip'         => array( 'name' => "Pip's Money Club app", 'price' => 4900, 'usd' => 199, 'apps' => array( 'pip' ), 'files' => $pip_files ),
+		'app-detective'   => array( 'name' => 'Money Detective app (100 cases)', 'price' => 4900, 'usd' => 199, 'apps' => array( 'detective' ), 'files' => array( array( 'Bonus printable (A4)', 2439 ), array( 'Bonus printable (US Letter)', 2440 ) ) ),
+		'app-mart'        => array( 'name' => 'MoneyViel Mart app (100 missions)', 'price' => 4900, 'usd' => 199, 'apps' => array( 'mart' ), 'files' => array( array( 'Bonus printable (A4)', 2447 ), array( 'Bonus printable (US Letter)', 2448 ) ) ),
+		'app-datenight'   => array( 'name' => 'Money Date Night app', 'price' => 4900, 'usd' => 199, 'apps' => array( 'datenight' ), 'files' => array( array( 'Bonus printable cards (A4)', 2453 ), array( 'Bonus printable cards (US Letter)', 2454 ) ) ),
+		'app-kids-bundle' => array( 'name' => 'MoneyViel Kids bundle: 3 apps', 'price' => 9900, 'usd' => 399, 'apps' => array( 'pip', 'detective', 'mart' ), 'files' => $kids_files ),
+		'app-all'         => array( 'name' => 'All 4 MoneyViel apps', 'price' => 14900, 'usd' => 599, 'apps' => array( 'pip', 'detective', 'mart', 'datenight' ), 'files' => array_merge( $kids_files, array( array( 'Money Date Night cards (A4)', 2453 ), array( 'Money Date Night cards (US Letter)', 2454 ) ) ) ),
 	);
 }
 /** Old download pages (from the Razorpay Payment Pages) => product slug. */
@@ -61,7 +61,7 @@ function mv_shop_all_files() {
 }
 function mv_pay_settings() {
 	$s = get_option( 'mv_shop_keys', array() );
-	return wp_parse_args( is_array( $s ) ? $s : array(), array( 'live_id' => '', 'live_secret' => '', 'test_id' => '', 'test_secret' => '', 'allow_test' => 0 ) );
+	return wp_parse_args( is_array( $s ) ? $s : array(), array( 'live_id' => '', 'live_secret' => '', 'test_id' => '', 'test_secret' => '', 'allow_test' => 0, 'intl_on' => 0, 'ph' => array() ) );
 }
 
 /* ---------- Settings page (owner pastes keys here) ---------- */
@@ -88,6 +88,23 @@ function mv_pay_settings_page() {
 			}
 		}
 		$s['allow_test'] = empty( $_POST['allow_test'] ) ? 0 : 1;
+		$s['intl_on']    = empty( $_POST['intl_on'] ) ? 0 : 1;
+		$ph              = is_array( $s['ph'] ) ? $s['ph'] : array();
+		foreach ( mv_shop_catalogue() as $slug => $prod ) {
+			if ( ! empty( $prod['legacy'] ) ) {
+				continue;
+			}
+			$u = esc_url_raw( trim( (string) wp_unslash( $_POST[ 'ph_url_' . $slug ] ?? '' ) ) );
+			$ph[ $slug ]['url'] = ( '' === $u || preg_match( '#^https://payhip\.com/b/[A-Za-z0-9]+$#', $u ) ) ? $u : ( $ph[ $slug ]['url'] ?? '' );
+			$k = trim( (string) wp_unslash( $_POST[ 'ph_key_' . $slug ] ?? '' ) );
+			if ( '' !== $k ) {
+				$ph[ $slug ]['key'] = sanitize_text_field( $k ); // Empty box = keep the saved key.
+			}
+			if ( ! empty( $_POST[ 'ph_clear_' . $slug ] ) ) {
+				$ph[ $slug ]['key'] = '';
+			}
+		}
+		$s['ph'] = $ph;
 		update_option( 'mv_shop_keys', $s, false );
 		$msg = 'Saved.';
 	}
@@ -120,6 +137,21 @@ function mv_pay_settings_page() {
 	echo '<tr><th>Test Key ID</th><td><input type="text" name="test_id" class="regular-text" autocomplete="off" value="' . esc_attr( $s['test_id'] ) . '" placeholder="rzp_test_..."></td></tr>';
 	echo '<tr><th>Test Key Secret</th><td><input type="password" name="test_secret" class="regular-text" autocomplete="new-password" placeholder="' . ( $s['test_secret'] ? 'saved (hidden)' : 'not set' ) . '"> <label><input type="checkbox" name="clear_test_secret" value="1"> remove</label></td></tr>';
 	echo '<tr><th>Accept test payments</th><td><label><input type="checkbox" name="allow_test" value="1" ' . checked( 1, (int) $s['allow_test'], false ) . '> Yes, for testing only. Untick after testing.</label></td></tr>';
+	echo '<tr><th>International buyers (USD)</th><td><label><input type="checkbox" name="intl_on" value="1" ' . checked( 1, (int) $s['intl_on'], false ) . '> Show US-dollar prices to buyers outside India. Tick this only after Razorpay has switched on International payments for your account.</label></td></tr>';
+	echo '</table><h2>Payhip (EU &amp; UK buyers)</h2><p>EU and UK buyers are sent to Payhip, which charges and pays VAT for us. For each product: paste its Payhip product link (https://payhip.com/b/XXXX). For app products also paste the licence-key <b>product secret key</b> (Payhip → product → Edit → Software licence keys). Saved keys are never shown again.</p><table class="form-table">';
+	$ph = is_array( $s['ph'] ) ? $s['ph'] : array();
+	foreach ( mv_shop_catalogue() as $slug => $prod ) {
+		if ( ! empty( $prod['legacy'] ) ) {
+			continue;
+		}
+		$cur = $ph[ $slug ] ?? array();
+		echo '<tr><th>' . esc_html( $prod['name'] ) . '</th><td><input type="url" name="ph_url_' . esc_attr( $slug ) . '" class="regular-text" placeholder="https://payhip.com/b/XXXX" value="' . esc_attr( $cur['url'] ?? '' ) . '">';
+		if ( empty( $prod['apps'] ) ) {
+			echo '</td></tr>';
+			continue;
+		}
+		echo '<br><input type="password" name="ph_key_' . esc_attr( $slug ) . '" class="regular-text" autocomplete="new-password" placeholder="' . ( ! empty( $cur['key'] ) ? 'product secret key saved (hidden)' : 'product secret key: not set' ) . '"> <label><input type="checkbox" name="ph_clear_' . esc_attr( $slug ) . '" value="1"> remove</label></td></tr>';
+	}
 	echo '</table><p><button class="button button-primary" name="mv_shop_save" value="1">Save</button> <button class="button" name="mv_shop_test" value="1">Check keys</button></p></form></div>';
 }
 
@@ -209,10 +241,14 @@ function mv_pay_lookup( $pay_id, $force_mode = '' ) {
 /** Which catalogue product did this payment buy? Returns slug or ''. */
 function mv_pay_product_for( $p ) {
 	// Only fully captured payments unlock files (an 'authorized' payment can still lapse and be returned to the buyer).
-	if ( ! is_array( $p ) || 'INR' !== $p['currency'] || 'captured' !== $p['status'] ) {
+	if ( ! is_array( $p ) || ! in_array( $p['currency'], array( 'INR', 'USD' ), true ) || 'captured' !== $p['status'] ) {
 		return '';
 	}
 	$cat = mv_shop_catalogue();
+	if ( 'USD' === $p['currency'] ) {
+		$prod = $p['product'] && isset( $cat[ $p['product'] ] ) ? $cat[ $p['product'] ] : null;
+		return ( $prod && ! empty( $prod['usd'] ) && (int) $prod['usd'] === (int) $p['amount'] ) ? $p['product'] : '';
+	}
 	if ( $p['product'] ) {
 		return ( isset( $cat[ $p['product'] ] ) && (int) $cat[ $p['product'] ]['price'] === (int) $p['amount'] ) ? $p['product'] : '';
 	}
@@ -226,6 +262,29 @@ function mv_pay_product_for( $p ) {
 		}
 	}
 	return '';
+}
+/** Payhip licence key (EU/UK buyers) -> array( product slug, app id ) or null. Checks each app product's Payhip key; a refunded key is disabled by Payhip. */
+function mv_payhip_licence( $key ) {
+	$key = strtoupper( trim( $key ) );
+	if ( ! preg_match( '/^[A-Z0-9-]{10,64}$/', $key ) ) {
+		return null;
+	}
+	$st = mv_pay_settings();
+	foreach ( mv_shop_catalogue() as $slug => $prod ) {
+		$secret = $st['ph'][ $slug ]['key'] ?? '';
+		if ( empty( $prod['apps'] ) || ! $secret ) {
+			continue;
+		}
+		$r = wp_remote_get( 'https://payhip.com/api/v2/license/verify?license_key=' . rawurlencode( $key ), array( 'timeout' => 12, 'headers' => array( 'product-secret-key' => $secret ) ) );
+		if ( is_wp_error( $r ) || 200 !== (int) wp_remote_retrieve_response_code( $r ) ) {
+			continue;
+		}
+		$j = json_decode( wp_remote_retrieve_body( $r ), true );
+		if ( ! empty( $j['data']['enabled'] ) ) {
+			return array( $slug, 'phl_' . substr( hash_hmac( 'sha256', $key, wp_salt( 'auth' ) . 'mv-ph' ), 0, 20 ) );
+		}
+	}
+	return null;
 }
 /** Counts a use of the payment ID: it unlocks once only. The logged-in admin can always re-open it to help a buyer. Returns true if allowed. */
 function mv_pay_count_use( $pay_id ) {
@@ -457,6 +516,20 @@ add_shortcode( 'mv_my_downloads', function () {
 	} elseif ( isset( $_GET['razorpay_payment_id'] ) ) {
 		$pay_id = trim( sanitize_text_field( wp_unslash( $_GET['razorpay_payment_id'] ) ) );
 	}
+	if ( '' !== $pay_id && ! preg_match( '/^pay_/', $pay_id ) ) {
+		if ( ! mv_pay_rate_ok() ) {
+			$msg = 'Too many attempts. Please wait an hour or email support@moneyviel.com.';
+		} else {
+			$lic = mv_payhip_licence( $pay_id );
+			if ( $lic ) {
+				$GLOBALS['mv_cur_pay_id'] = $lic[1];
+				$out .= mv_pay_files_box( $lic[0] );
+			} else {
+				$msg = 'We could not find an active MoneyViel licence with that key. Please copy the licence key exactly from your Payhip receipt email, or email support@moneyviel.com.';
+			}
+		}
+		$pay_id = '';
+	}
 	if ( '' !== $pay_id ) {
 		if ( ! mv_pay_ready() ) {
 			$msg = 'Downloads by payment ID are being set up. Please email support@moneyviel.com with your payment ID and we will send your files.';
@@ -482,8 +555,9 @@ add_shortcode( 'mv_my_downloads', function () {
 	if ( $msg ) {
 		$out .= '<p style="background:#fde8ef;border-radius:12px;padding:12px 16px">' . esc_html( $msg ) . '</p>';
 	}
-	$out .= '<form method="post" action="' . esc_url( get_permalink() ) . '" style="display:flex;flex-wrap:wrap;gap:10px;margin:18px 0">';
-	$out .= '<input type="text" name="mv_pay_id" required pattern="pay_[A-Za-z0-9]+" placeholder="pay_XXXXXXXXXXXXXX" autocomplete="off" aria-label="Razorpay payment ID" style="flex:1;min-width:220px;padding:12px 14px;border:1px solid #d1d5db;border-radius:999px;font-size:16px">';
+	$out .= '<p style="font-size:.92em;color:#4b5563;margin:14px 0 0">Bought on moneyviel.com? Enter your Razorpay <b>payment ID</b> (starts with pay_). Bought on Payhip (EU &amp; UK)? Enter the <b>licence key</b> from your Payhip receipt email.</p>';
+	$out .= '<form method="post" action="' . esc_url( get_permalink() ) . '" style="display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 18px">';
+	$out .= '<input type="text" name="mv_pay_id" required pattern="(pay_[A-Za-z0-9]+|[A-Za-z0-9-]{10,64})" placeholder="pay_XXXXXXXXXXXXXX or licence key" autocomplete="off" aria-label="Razorpay payment ID or Payhip licence key" style="flex:1;min-width:220px;padding:12px 14px;border:1px solid #d1d5db;border-radius:999px;font-size:16px">';
 	$out .= '<button type="submit" style="padding:12px 22px;border:0;border-radius:999px;background:#e8457a;color:#fff;font-weight:700;font-size:16px;cursor:pointer">Get my files</button></form>';
 	$out .= '</div>';
 	return $out;
@@ -507,9 +581,13 @@ add_action( 'rest_api_init', function () {
 			if ( ! mv_pay_rate_ok( 40 ) ) {
 				return new WP_Error( 'mv_busy', 'Too many attempts. Please try again later.', array( 'status' => 429 ) );
 			}
+			$usd = ( 'USD' === strtoupper( (string) $req->get_param( 'cur' ) ) );
+			if ( $usd && ( empty( $cat[ $slug ]['usd'] ) || empty( mv_pay_settings()['intl_on'] ) ) ) {
+				return new WP_Error( 'mv_no_usd', 'US-dollar checkout is not open yet for this product. Please email support@moneyviel.com and we will help.', array( 'status' => 400 ) );
+			}
 			$o = mv_pay_api( 'POST', 'orders', $mode, array(
-				'amount'   => (int) $cat[ $slug ]['price'],
-				'currency' => 'INR',
+				'amount'   => $usd ? (int) $cat[ $slug ]['usd'] : (int) $cat[ $slug ]['price'],
+				'currency' => $usd ? 'USD' : 'INR',
 				'receipt'  => 'mv-' . substr( $slug, 0, 20 ) . '-' . time(),
 				'notes'    => array( 'mv_product' => $slug, 'site' => 'moneyviel.com' ),
 			) );
@@ -517,7 +595,7 @@ add_action( 'rest_api_init', function () {
 				return new WP_Error( 'mv_order_failed', 'We could not start the payment. Please try again in a minute.', array( 'status' => 502 ) );
 			}
 			$s = mv_pay_settings();
-			return array( 'order_id' => $o['id'], 'amount' => (int) $o['amount'], 'key' => $s[ $mode . '_id' ], 'name' => $cat[ $slug ]['name'], 'mode' => $mode );
+			return array( 'order_id' => $o['id'], 'amount' => (int) $o['amount'], 'currency' => $usd ? 'USD' : 'INR', 'key' => $s[ $mode . '_id' ], 'name' => $cat[ $slug ]['name'], 'mode' => $mode );
 		},
 	) );
 	register_rest_route( 'mv-shop/v1', '/verify', array(
@@ -558,19 +636,57 @@ add_action( 'wp_footer', function () {
 		return;
 	}
 	$test = ( isset( $_GET['mvtest'] ) && current_user_can( 'manage_options' ) ) ? 1 : 0;
-	$cfg  = array( 'rest' => esc_url_raw( rest_url( 'mv-shop/v1/' ) ), 'nonce' => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '', 'test' => $test );
+	$st   = mv_pay_settings();
+	$usd  = array();
+	$phu  = array();
+	foreach ( mv_shop_catalogue() as $slug => $prod ) {
+		if ( ! empty( $prod['usd'] ) ) {
+			$usd[ $slug ] = (int) $prod['usd'];
+		}
+		if ( ! empty( $st['ph'][ $slug ]['url'] ) ) {
+			$phu[ $slug ] = $st['ph'][ $slug ]['url'];
+		}
+	}
+	$cfg = array( 'rest' => esc_url_raw( rest_url( 'mv-shop/v1/' ) ), 'nonce' => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '', 'test' => $test, 'intl' => (int) $st['intl_on'], 'usd' => $usd, 'ph' => $phu );
 	?>
 <script>
 (function(){
 var C=<?php echo wp_json_encode( $cfg ); ?>;
 function msg(b,t){var p=b.parentNode.querySelector('.mv-buy-msg');if(!p){p=document.createElement('p');p.className='mv-buy-msg';p.style.cssText='margin:6px 0 0;font-size:14px;color:#b4235a;text-align:center';b.parentNode.insertBefore(p,b.nextSibling);}p.textContent=t||'';}
 function post(path,data){var h={'Content-Type':'application/json'};if(C.nonce)h['X-WP-Nonce']=C.nonce;return fetch(C.rest+path,{method:'POST',headers:h,credentials:'same-origin',body:JSON.stringify(data)}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.message||'Something went wrong.');return j;});});}
+var EUUK=/^(Europe\/(London|Dublin|Lisbon|Madrid|Paris|Brussels|Amsterdam|Luxembourg|Berlin|Busingen|Copenhagen|Stockholm|Helsinki|Mariehamn|Tallinn|Riga|Vilnius|Warsaw|Prague|Bratislava|Vienna|Budapest|Ljubljana|Zagreb|Rome|Malta|Athens|Sofia|Bucharest|Nicosia|Belfast|Guernsey|Jersey|Isle_of_Man|Gibraltar)|Asia\/Famagusta|Atlantic\/(Madeira|Canary|Azores)|Africa\/Ceuta)$/;
+function tz(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){return ''}}
+function guess(){var z=tz(),l=(navigator.language||'');if(/Kolkata|Calcutta/.test(z)||/-IN$/i.test(l))return 'in';return EUUK.test(z)?'eu':'row';}
+var R='in';try{R=localStorage.getItem('mv_region')||guess()}catch(e){R=guess()}
+if(!C.intl)R='in';
+function usd(c){return '$'+(c/100).toFixed(2)}
+function swap(){if(!C.intl)return;document.querySelectorAll('.mv-buy[data-product]').forEach(function(b){var sl=b.dataset.product,u=C.usd[sl];if(!u)return;var box=b.closest('.bundle,.body')||b.parentNode;
+if(!box.dataset.inr){box.dataset.inr=box.innerHTML;}else{box.innerHTML=box.dataset.inr;b=box.querySelector('.mv-buy');}
+if(R==='in')return;var single=u===199,map=single?{'₹99':usd(399),'₹49':usd(199)}:(u===399?{'₹297':usd(597),'₹99':usd(399)}:{'₹396':usd(796),'₹149':usd(599)});
+var w=document.createTreeWalker(box,NodeFilter.SHOW_TEXT),n,ns=[];while(n=w.nextNode())ns.push(n);ns.forEach(function(t){t.nodeValue=t.nodeValue.replace(/₹\d+/g,function(m){return map[m]||m})});
+var note=document.createElement('p');note.className='mv-cur-note';note.style.cssText='margin:6px 0 0;font-size:12.5px;color:#6b7280;text-align:center';note.textContent=R==='eu'?'US dollars. VAT is added at checkout by our reseller Payhip.':'US dollars. Your bank may add a small conversion fee.';box.appendChild(note);});}
+function bar(){if(!C.intl||document.getElementById('mv-cur'))return;var h=[].find.call(document.querySelectorAll('h2'),function(e){return /For kids/.test(e.textContent)});if(!h)return;
+var d=document.createElement('div');d.id='mv-cur';d.style.cssText='display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0 14px;font-size:14px';
+d.innerHTML='<span style="align-self:center;color:#4b5563">Prices for:</span><button type="button" data-r="in">🇮🇳 India (₹)</button><button type="button" data-r="row">🌍 Outside India ($)</button><button type="button" data-r="eu">🇪🇺 EU &amp; UK ($ + VAT)</button>';
+h.parentNode.insertBefore(d,h.nextSibling);var paint=function(){[].forEach.call(d.querySelectorAll('button'),function(x){var on=x.dataset.r===R;x.style.cssText='border:2px solid '+(on?'#e8457a':'#e5e7eb')+';background:'+(on?'#fde8ef':'#fff')+';color:#1f2937;border-radius:999px;padding:6px 12px;font-weight:700;cursor:pointer'})};paint();
+d.addEventListener('click',function(e){var x=e.target.closest('button');if(!x)return;R=x.dataset.r;try{localStorage.setItem('mv_region',R)}catch(_){}paint();swap();vids();});}
+var VID={'app-detective':'MtjT0fYmYsQ','app-mart':'fr8um2YEemk','app-pip':'TPoupn2DlSE','app-datenight':'7eGrdgrCCiM'};
+function vplay(id){var o=document.createElement('div');o.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(15,10,40,.88);display:flex;align-items:center;justify-content:center;padding:16px';
+o.innerHTML='<div style="position:relative;height:min(86vh,760px);aspect-ratio:9/16;max-width:94vw;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 10px 40px rgba(0,0,0,.5)"><iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" title="App demo video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen style="border:0;width:100%;height:100%"></iframe></div><button type="button" aria-label="Close video" style="position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#1b1340;font-size:22px;font-weight:700;cursor:pointer">✕</button>';
+var close=function(){o.remove();document.removeEventListener('keydown',esc)};var esc=function(e){if(e.key==='Escape')close()};o.addEventListener('click',function(e){if(e.target===o||e.target.closest('button'))close()});document.addEventListener('keydown',esc);document.body.appendChild(o);}
+function vids(){Object.keys(VID).forEach(function(sl){var b=document.querySelector('.mv-buy[data-product="'+sl+'"]');if(!b)return;var box=b.closest('.bundle,.body');var card=box&&box.parentElement;if(!card||card.querySelector('.mv-vbtn'))return;var img=card.querySelector('img');
+var btn=document.createElement('button');btn.type='button';btn.className='mv-vbtn';btn.innerHTML='▶&nbsp; Watch the 1-minute demo';btn.style.cssText='display:block;width:100%;margin:8px 0 4px;padding:10px 14px;border:0;border-radius:999px;background:#1b1340;color:#fff;font-weight:700;font-size:15px;cursor:pointer';btn.addEventListener('click',function(){vplay(VID[sl])});
+box.insertBefore(btn,box.firstChild);
+if(img&&!img.dataset.mvv){img.dataset.mvv=1;img.style.cursor='pointer';img.title='Watch the demo';img.addEventListener('click',function(){vplay(VID[sl])});var w=document.createElement('span');w.style.cssText='position:relative;display:block';img.parentNode.insertBefore(w,img);w.appendChild(img);var pl=document.createElement('span');pl.setAttribute('aria-hidden','true');pl.textContent='▶';pl.style.cssText='position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(232,69,122,.92);color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;padding-left:5px;box-shadow:0 4px 16px rgba(0,0,0,.3);pointer-events:none';w.appendChild(pl);}});}
+function init(){bar();swap();vids();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 function load(cb){if(window.Razorpay)return cb();var s=document.createElement('script');s.src='https://checkout.razorpay.com/v1/checkout.js';s.onload=function(){cb();};s.onerror=function(){cb(new Error('load'));};document.head.appendChild(s);}
-document.addEventListener('click',function(e){var b=e.target.closest('.mv-buy');if(!b)return;e.preventDefault();if(b.dataset.busy)return;b.dataset.busy=1;var label=b.textContent;b.textContent='Opening secure checkout…';msg(b,'');
+document.addEventListener('click',function(e){var b=e.target.closest('.mv-buy');if(!b)return;e.preventDefault();if(b.dataset.busy)return;
+if(C.intl&&R==='eu'){if(C.ph[b.dataset.product]){window.location.href=C.ph[b.dataset.product];}else{msg(b,'Checkout for the EU and UK is opening soon. Please email support@moneyviel.com and we will help you buy.');}return;}b.dataset.busy=1;var label=b.textContent;b.textContent='Opening secure checkout…';msg(b,'');
 var done=function(){delete b.dataset.busy;b.textContent=label;};
 load(function(err){if(err){done();msg(b,'Could not load the payment window. Please check your connection and try again.');return;}
-post('order',{product:b.dataset.product,test:C.test}).then(function(o){
-var rzp=new Razorpay({key:o.key,amount:o.amount,currency:'INR',name:'MoneyViel',description:o.name,order_id:o.order_id,theme:{color:'#e8457a'},
+post('order',{product:b.dataset.product,test:C.test,cur:(C.intl&&R==='row'&&C.usd[b.dataset.product])?'USD':'INR'}).then(function(o){
+var rzp=new Razorpay({key:o.key,amount:o.amount,currency:o.currency||'INR',name:'MoneyViel',description:o.name,order_id:o.order_id,theme:{color:'#e8457a'},
 handler:function(r){b.textContent='Checking your payment…';post('verify',{razorpay_order_id:r.razorpay_order_id,razorpay_payment_id:r.razorpay_payment_id,razorpay_signature:r.razorpay_signature,test:C.test}).then(function(v){window.location.href=v.redirect;}).catch(function(x){done();msg(b,x.message+' Your payment ID: '+r.razorpay_payment_id);});},
 modal:{ondismiss:done}});
 rzp.on('payment.failed',function(r){msg(b,'Payment failed: '+((r.error&&r.error.description)||'please try again')+'. No money was taken, or it will be returned automatically by your bank.');});
@@ -674,7 +790,7 @@ add_action( 'init', function () {
 		mv_app_deny( 'This app link is not valid.' );
 	}
 	$preview = ( 'preview' === $pay_id && current_user_can( 'manage_options' ) );
-	if ( ! $preview && ( ! preg_match( '/^pay_[A-Za-z0-9]{8,30}$/', $pay_id ) || ! hash_equals( mv_app_sig( $pay_id, $app ), $sig ) ) ) {
+	if ( ! $preview && ( ! preg_match( '/^(pay_[A-Za-z0-9]{8,30}|phl_[a-f0-9]{20})$/', $pay_id ) || ! hash_equals( mv_app_sig( $pay_id, $app ), $sig ) ) ) {
 		mv_app_deny( 'This app link is not valid. Please use the exact link from your purchase.' );
 	}
 	if ( ! $preview && ! mv_app_device_ok( $pay_id ) ) {
