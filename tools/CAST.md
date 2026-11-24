@@ -1,5 +1,7 @@
 # Mr. Hoot's Money Stories: the cast (grown-up MoneyViel content)
 
+> **ON HOLD (owner, 24 Nov 2026 22:05 IST):** the owner rejected the names below (Priya, Rohan, Sharma, Mehta, Aarav, Meenu, Farhan). The audience is GLOBAL: names must be familiar worldwide. A new cast is being decided in the planning session. Until this note is removed: do NOT use any of these names in new content; Story/Family Money items keep Mr. Hoot as narrator and refer to people by role only ("a young professional", "her friend", "a freelancer"). Never make up other names meanwhile.
+
 Owner decision (24 Nov 2026): every grown-up MoneyViel story lives in ONE story world, narrated by Mr. Hoot (the wise owl from the MoneyViel books). No new one-off names (no more "Anjali", "Arjun", "Kabir", "Ritu & Sameer"). Already-published and already-scheduled items stay as they are; this applies to everything made from now on.
 
 All characters are fictional. Never present them as real people, and never base them on a real person.
