@@ -24,7 +24,15 @@ Kids content is a separate world for younger viewers (Duggu, Chia, Pip; Mr. Hoot
 
 - **Story** (Tue) and **Family Money** (Sat) posts, their Shorts, and the example character in long videos (`say` scenes) always use this cast.
 - Every Story post starts with the line: *From Mr. Hoot's Money Stories.*
-- **Global audience:** choose situations that happen everywhere (fake job fees, task scams, fake bank calls, parcel scams, loan apps, impulse buys, weddings, first jobs, retirement). Avoid India-only terms in cast stories (UPI, KYC, lakh, crore, mehendi) unless the owner asks. Use round, easy numbers. (Which currency the cast stories show is still being decided by the owner; until then follow the site's current convention.)
+- **Global audience:** choose situations that happen everywhere (fake job fees, task scams, fake bank calls, parcel scams, loan apps, impulse buys, weddings, first jobs, retirement). Avoid India-only terms in cast stories (UPI, KYC, mehendi, shagun) unless the owner asks. Use round, easy numbers.
+- **Currency (owner decision 25 Nov 2026): rupees, written so the world can follow.**
+  1. Show the ₹ symbol on amounts (on screen, in posts, in emails). Never write "bucks" (it means US dollars) and don't keep repeating the word "rupees".
+  2. In narration (Mr. Hoot voice-overs), say the number alone: "She saved forty-five thousand." Say "rupees" only when it is needed to avoid confusion.
+  3. Prefer plain money words: "her savings", "the budget", "a month's pay", "the bill", "the loan".
+  4. Teach in proportions: "a tenth of her pay", "half the budget", "three months of expenses". The lesson must work in any currency.
+  5. No lakh or crore in cast stories: write ₹1.6 million or ₹160,000 (international grouping, e.g. ₹45,000, ₹160,000, ₹1,600,000). India-only guides may still use lakh/crore.
+  6. End every cast story (post, video description, email) with: "Amounts in ₹. The same maths works in any currency."
+  Older content stays as it is (incl. the wedding story pins and the wedding planner sample data).
 - Keep continuity: check "Timeline so far" so nothing contradicts an earlier story. After publishing a cast story, append one line to the timeline.
 - All compliance rules (RUNBOOK section 2b) still apply: education only; no real brands, apps or people named as scammers.
 
