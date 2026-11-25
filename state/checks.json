@@ -1,6 +1,6 @@
 {
  "kids_ads_note": "2026-11-23: snippets 5+7 active; Ep5 post, /kids/, /wonder-trail/, /kids-money-corner/ have no AdSense or gtag; normal post 2266 has both.",
- "gate4_last": "2026-11-25 11:05 IST: nothing new published since 24 Nov 19:30; long video uXJlwcg4KIs public at 11:00 (oEmbed OK). 2 spam comments (4523, 4524) marked spam.",
+ "gate4_last": "2026-11-25 20:15 IST: posts 2309 (17:05), 2292 (18:05), 2272 (19:30) live, pages 200, Jetpack FB/IG/Threads success on all 3; no pending comments; Short ejUZrAX8QLA public.",
  "kids_snippet_ok": "2026-11-15",
  "kids_category_page_no_ads": "2026-11-15 (category page: no AdSense tag; normal post 2109: tag present; snippet 5 active). Post-page check pending until first kids post is live 2026-11-16 18:00.",
  "comments_swept": "2026-11-22",
@@ -9,7 +9,7 @@
  "copies_checked": "2026-11-20",
  "copies_checked_note": "WebSearch + YouTube search for Piggu Sikka / MoneyViel Kids / MoneyViel: only our own uploads; 'MoneyViel' search returns unrelated 'Moneyview' videos. No copies found.",
  "profiles_tidied": null,
- "replies_last": "2026-11-25T11:05+05:30",
+ "replies_last": "2026-11-25T20:15+05:30",
  "replies_log": [
   {
    "date": "2026-11-23",
@@ -35,6 +35,11 @@
    "date": "2026-11-25",
    "count": 0,
    "note": "10:40 run: no unresponded YouTube main comments, no pending genuine website comments. X mentions not readable (browser tool denied screenshots on x.com this run)."
+  },
+  {
+   "date": "2026-11-25",
+   "count": 0,
+   "note": "19:40 run: no unresponded YouTube main comments, no X mentions, no pending website comments."
   }
  ],
  "numbers_week": "2026-11-23",
@@ -63,5 +68,5 @@
    "ig_fb": "not read this run"
   }
  ],
- "quora_nfr_last": "2026-11-25 10:45 IST: no new Space posts since last sweep; newest post shows the no-copy mark; 0 newly marked."
+ "quora_nfr_last": "2026-11-25 20:05 IST: only new Space post is tonight's 2272 post, marked Not for Reproduction (1 newly marked)."
 }
