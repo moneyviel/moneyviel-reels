@@ -1,6 +1,6 @@
 {
  "batch": "2026-11-19..2026-11-25",
- "status": "Batch 19-25 Nov: all done (25 Nov teaser related video saved). Only remaining: delete longform/*.mp4 (runbook Long-form step 3) on a run after 25 Nov.",
+ "status": "Batch 19-25 Nov: all done. Remaining: delete longform/*.mp4 (history-rewrite force push was blocked by the 26 Nov 10:40 run's permission check; needs owner OK).",
  "todo": [],
  "teaser_related_done": {
   "2026-11-19": "XOYXHNmIfuw -> Ih-rtpAdTCM (saved 2026-11-19 18:40 IST)",
