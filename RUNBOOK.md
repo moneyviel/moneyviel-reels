@@ -418,5 +418,5 @@ Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of th
   - mv_try: one concrete action for today, 1–2 sentences, free and safe.
   - mv_quiz: JSON string of exactly 2 questions: [{"q":"...","o":["...","...","..."],"a":<index of correct option>,"why":"one-line explanation"}]. Facts must match the post; maths checked in code; one clearly correct option; education only.
   GATE 1 reviewer checks these three fields too.
-- Backfill duty (each run, after the main work): find up to 3 posts in 38/66 (scheduled ones first, then newest published) whose mv_tldr is empty, read each post, and add all three fields. Skip a post rather than guess. Done so far: 2272 (₹25,000 budget), 2546 (Net Worth).
+- Backfill duty (each run, after the main work): find up to 3 posts in 38/66 (scheduled ones first, then newest published) whose mv_tldr is empty, read each post, and add all three fields. Skip a post rather than guess. Done so far: 2272 (₹25,000 budget), 2546 (Net Worth), 2548 (meal planning), 2550 (price-guessing game). Next: 2552, 2554, 2556, 2558.
 - Kids discoverability (27 Nov): Kids menu has "🎨 Games, makers & printables" (/kids/#printables) and "📚 Wonder Trail puzzle books"; homepage has a "🎈 Play, make & print with your kids" band under the kids' stories. Shop page "For schools and teachers" panel removed (owner: not relevant).
