@@ -75,6 +75,7 @@ function mvp_css() {
 .mvp-b:active{transform:scale(.97)}
 .mvp-b.pk{background:#e8457a}.mvp-b.gh{background:#f3efff;color:#5b3fd6}.mvp-b.gn{background:#16a34a}
 .mvp-b[disabled]{opacity:.45;pointer-events:none}
+.mvp a.mvp-b,.mvp a.mvp-b:hover,.mvp a.mvp-b:visited,.mvp a.mvp-b:focus{color:#fff!important;text-decoration:none!important}.mvp a.mvp-b.gh,.mvp a.mvp-b.gh:hover,.mvp a.mvp-b.gh:visited{color:#5b3fd6!important}.mvp a.mvp-step,.mvp a.mvp-step:visited{color:#1b1340!important;text-decoration:none!important}.mvp a.mvp-card,.mvp a.mvp-card:visited{color:#1b1340!important;text-decoration:none!important}
 .mvp-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
 .mvp-small{font-size:13px;color:#6b6488;margin:8px 0 0}
 .mvp-pop{animation:mvpPop .35s ease}
