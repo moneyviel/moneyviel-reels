@@ -409,3 +409,14 @@ Scheduled long-form videos (11:00 AM IST), files + metadata in `longform/` of th
 - Homepage "Fresh on MoneyViel" was split (27 Nov): "Fresh for grown-ups" (categories 38, 39, 66 + "See all articles" → /learn/) and "New money stories for kids" (category 67 + "See all kids' stories" → /money-for-kids/).
 - Wonder Trail page: Books 1–6 have orange "Buy on Amazon" buttons (amazon.com/dp/ ASINs: 1 B0HQNNLC76, 2 B0HQW5Y6DS, 3 B0HRTJS35W, 4 B0HRT75Q6N, 5 B0HSTBRXG7, 6 B0HSTJTFT8). When Books 7–10 go live, replace their "Coming soon to Amazon" span the same way and add the cover tile on /kids (#books).
 - /start-here: check-up game, 6 "level" tiles (tool + read), 3 quick cards; the old step-by-step article list is kept inside a "See every article, step by step" fold (for search engines).
+
+## 0q. Interactive article format (Snippet 19, live 2026-11-27) — REQUIRED for every new grown-up post
+- Source: site/snippets/19-article-extras.php (Code Snippet 19). Applies to categories Articles (38) and Smart Money Habits (66); never kids (67) or Quotes (39).
+- Automatic on every such post: reading progress bar, "⚡ The 60-second version" card (read time + the points below, or the excerpt if none), and a clickable "🗺️ Your path" flow built from the H2 headings (so every post needs 3–7 clear H2s).
+- From now on, EVERY new post in 38/66 must be created with these REST meta fields (POST /wp/v2/posts with "meta": {...}):
+  - mv_tldr: 3–4 short points, one per line (each under 90 characters, plain words, the real takeaways).
+  - mv_try: one concrete action for today, 1–2 sentences, free and safe.
+  - mv_quiz: JSON string of exactly 2 questions: [{"q":"...","o":["...","...","..."],"a":<index of correct option>,"why":"one-line explanation"}]. Facts must match the post; maths checked in code; one clearly correct option; education only.
+  GATE 1 reviewer checks these three fields too.
+- Backfill duty (each run, after the main work): find up to 3 posts in 38/66 (scheduled ones first, then newest published) whose mv_tldr is empty, read each post, and add all three fields. Skip a post rather than guess. Done so far: 2272 (₹25,000 budget), 2546 (Net Worth).
+- Kids discoverability (27 Nov): Kids menu has "🎨 Games, makers & printables" (/kids/#printables) and "📚 Wonder Trail puzzle books"; homepage has a "🎈 Play, make & print with your kids" band under the kids' stories. Shop page "For schools and teachers" panel removed (owner: not relevant).
