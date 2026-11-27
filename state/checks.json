@@ -1,15 +1,15 @@
 {
  "kids_ads_note": "2026-11-23: snippets 5+7 active; Ep5 post, /kids/, /wonder-trail/, /kids-money-corner/ have no AdSense or gtag; normal post 2266 has both.",
- "gate4_last": "2026-11-26 19:40 IST: posts 2294 (kids Ep 9, 18:05) and 2546 (Net Worth, 19:30) live; Jetpack FB/IG/Threads success for both; Shorts IB828aHn2Hc and fsajrwBfC6o public; no pending comments.",
+ "gate4_last": "2026-11-27 10:45 IST: nothing new published since 26 Nov 19:40 run (all 26 Nov posts already shared). 3 pending website comments (4526-4528: betting link, abusive rant, off-topic glasses promo) marked spam.",
  "kids_snippet_ok": "2026-11-15",
  "kids_category_page_no_ads": "2026-11-15 (category page: no AdSense tag; normal post 2109: tag present; snippet 5 active). Post-page check pending until first kids post is live 2026-11-16 18:00.",
  "comments_swept": "2026-11-22",
  "comments_swept_count": 4,
  "kids_ads_checked": "2026-11-23",
- "copies_checked": "2026-11-20",
- "copies_checked_note": "WebSearch + YouTube search for Piggu Sikka / MoneyViel Kids / MoneyViel: only our own uploads; 'MoneyViel' search returns unrelated 'Moneyview' videos. No copies found.",
+ "copies_checked": "2026-11-27",
+ "copies_checked_note": "WebSearch (Piggu Sikka, MoneyViel, newest titles) + YouTube search (Piggu Sikka, \"MoneyViel\"): only our own uploads; 'MoneyViel' returns unrelated 'Moneyview' loan videos. No copies found.",
  "profiles_tidied": null,
- "replies_last": "2026-11-26T20:20+05:30",
+ "replies_last": "2026-11-27T10:45+05:30",
  "replies_log": [
   {
    "date": "2026-11-23",
@@ -50,6 +50,11 @@
    "date": "2026-11-26",
    "count": 0,
    "note": "19:40 run: no unresponded main YouTube comments, no X mentions, no pending website comments."
+  },
+  {
+   "date": "2026-11-27",
+   "count": 0,
+   "note": "10:40 run: no unresponded main YouTube comments, no X mentions, no LinkedIn Page comments, Quora Space 0 comments, website: 3 pending = spam."
   }
  ],
  "numbers_week": "2026-11-23",
@@ -78,5 +83,5 @@
    "ig_fb": "not read this run"
   }
  ],
- "quora_nfr_last": "2026-11-26 20:15 IST: new Space post (Net Worth) marked Not for Reproduction; 1 newly marked."
+ "quora_nfr_last": "2026-11-27 10:45 IST: no new Quora posts since last run; Space + profile post data all notForReproduction=true; 0 newly marked."
 }
