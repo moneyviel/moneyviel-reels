@@ -87,7 +87,7 @@ function mvp_css() {
 @keyframes mvpFall{to{transform:translateY(110vh) rotate(720deg)}}
 .mvp-stars{font-size:22px;letter-spacing:2px;min-height:28px}
 .mvp-say{display:flex;gap:10px;align-items:flex-start;background:#fff8e6;border-radius:16px;padding:10px 12px;margin:10px 0;font-size:15px;line-height:1.4}
-.mvp-say b{font-size:26px;line-height:1}
+.mvp-say>b{font-size:26px;line-height:1;flex:none}
 /* jars */
 .mvp-jars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
 .mvp-jar{all:unset;cursor:pointer;text-align:center;border-radius:16px 16px 22px 22px;padding:10px 4px 8px;font-weight:800;font-size:13px;border:3px solid;background:#fff;transition:transform .12s}
@@ -131,7 +131,7 @@ function mvp_css() {
 .mvp-flip .fr{background:linear-gradient(135deg,#5b3fd6,#e8457a);color:#fff;text-align:center}
 .mvp-flip .bk{background:#fff8e6;transform:rotateY(180deg);font-size:15px;line-height:1.45}
 .mvp-res{margin:6px 0}
-.mvp-res div{display:flex;justify-content:space-between;font-size:14px;font-weight:700}
+.mvp-res .h{display:flex;justify-content:space-between;gap:8px;font-size:14px;font-weight:700}
 .mvp-res .bar{height:9px;border-radius:999px;background:#efeaff;overflow:hidden;margin:3px 0 7px}
 .mvp-res .bar i{display:block;height:100%;background:#5b3fd6;transition:width .6s}
 .mvp-res .ok .bar i{background:#16a34a}
@@ -303,7 +303,7 @@ function rch(){var done=sk.last===D,n=sk.last>=D-1?sk.n:0;chb.innerHTML='<span c
 rch();
 /* Mr. Hoot question */
 var hq=HQ[D%HQ.length],hb=document.getElementById('mvp-hoot'),my=(M.ls('mvHoot')||{})[D];
-function bars(cnt){var t=cnt.reduce(function(a,b){return a+b},0),h='<div class="mvp-res">';hq[1].forEach(function(o,n){var p=t?Math.round(cnt[n]/t*100):0;h+='<div class="'+(n===hq[2]?'ok':'')+'"><div><span>'+(n===hq[2]?'✅ ':'')+M.esc(o)+(n===my?' (you)':'')+'</span><span>'+p+'%</span></div><div class="bar"><i style="width:0" data-w="'+p+'"></i></div></div>'});h+='</div><p class="mvp-small">'+(t>=5?t+' people answered today. ':'You are one of the first to answer today! ')+'</p>';return h}
+function bars(cnt){var t=cnt.reduce(function(a,b){return a+b},0),h='<div class="mvp-res">';hq[1].forEach(function(o,n){var p=t?Math.round(cnt[n]/t*100):0;h+='<div class="r'+(n===hq[2]?' ok':'')+'"><div class="h"><span>'+(n===hq[2]?'✅ ':'')+M.esc(o)+(n===my?' (you)':'')+'</span><span>'+p+'%</span></div><div class="bar"><i style="width:0" data-w="'+p+'"></i></div></div>'});h+='</div><p class="mvp-small">'+(t>=5?t+' people answered today. ':'You are one of the first to answer today! ')+'</p>';return h}
 function rh(cnt){var h='<span class="mvp-tag">🦉 Mr. Hoot asks</span><div style="font-weight:800;font-size:17px;line-height:1.35;margin:4px 0 10px">'+M.esc(hq[0])+'</div>';if(my===undefined){hq[1].forEach(function(o,n){h+='<button type="button" class="mvp-opt" data-n="'+n+'" style="padding:10px 12px;font-size:15px"><span style="font-size:14px;font-weight:800;width:26px;height:26px;border-radius:50%;background:#f3efff;color:#5b3fd6;display:inline-flex;align-items:center;justify-content:center;flex:none">'+'ABC'[n]+'</span>'+M.esc(o)+'</button>'})}else{h+='<div class="mvp-say" style="background:'+(my===hq[2]?'#e6f6ea':'#fff8e6')+'"><b>'+(my===hq[2]?'🎉':'🦉')+'</b><span>'+(my===hq[2]?'<b>Correct!</b> ':'<b>Good try!</b> ')+M.esc(hq[3])+'</span></div>'+bars(cnt||[0,0,0])+'<p class="mvp-small">New question tomorrow. 🦉</p>'}hb.innerHTML=h;setTimeout(function(){[].forEach.call(hb.querySelectorAll('[data-w]'),function(i){i.style.width=i.dataset.w+'%'})},60);
 [].forEach.call(hb.querySelectorAll('.mvp-opt'),function(b){b.onclick=function(){my=+b.dataset.n;var s=M.ls('mvHoot')||{};s[D]=my;var keep={};Object.keys(s).slice(-20).forEach(function(k){keep[k]=s[k]});M.ls('mvHoot',keep);if(my===hq[2])M.conf();fetch('/wp-json/mv-play/v1/hoot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({day:D,pick:my})}).then(function(r){return r.json()}).then(function(j){rh(j.counts)}).catch(function(){var c=[0,0,0];c[my]=1;rh(c)});rh([0,0,0])}})}
 if(my===undefined)rh();else fetch('/wp-json/mv-play/v1/hoot?day='+D).then(function(r){return r.json()}).then(function(j){rh(j.counts)}).catch(function(){rh([0,0,0])});
