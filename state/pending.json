@@ -8,5 +8,6 @@
   "2026-11-23": "Tmif4pphyJw -> GvYu2WtOVOI saved 2026-11-23 11:25 IST",
   "2026-11-25": "ejUZrAX8QLA -> uXJlwcg4KIs saved 2026-11-25 11:05 IST"
  },
- "x_blocked": "Resolved 2026-11-19 10:30 IST: no email popup on X; 2231 shared."
+ "x_blocked": "Resolved 2026-11-19 10:30 IST: no email popup on X; 2231 shared.",
+ "wp_login": "2026-11-28 19:40 run: moneyviel.com wp-admin was logged out; the Hostinger hPanel route was blocked by the browser permission check, so REST-with-login steps (Jetpack share-status, pending comments, mv_tldr backfill of 2558) were skipped. Owner needs to log in to wp-admin once in the MoneyViel Chrome."
 }

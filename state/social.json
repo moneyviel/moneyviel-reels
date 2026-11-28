@@ -224,5 +224,30 @@
   "quora": "skipped (kids post)",
   "date": "2026-11-27",
   "link_fix": "2026-11-27 ~21:15 IST: first X post (2126319382158876778) had a 404 URL without /money-for-kids/; deleted with owner OK and reposted with the real link."
+ },
+ "2550": {
+  "x": "https://x.com/moneyvielcom/status/2126681184931602474",
+  "x_note": "native video post (social-queue 2026-11-28-family.mp4, attached via file upload)",
+  "x_link_reply": "https://x.com/moneyvielcom/status/2126681357405618489",
+  "reel_ig": "skipped: Meta pages are off-limits to the browser tool (runbook 0n); Jetpack shared the article",
+  "reel_fb": "skipped: Meta pages are off-limits to the browser tool (runbook 0n); Jetpack shared the article",
+  "date": "2026-11-28",
+  "linkedin": "https://www.linkedin.com/feed/update/urn:li:activity:7532448028255920128/",
+  "linkedin_note": "native video post as the Page",
+  "quora": "https://moneyviel.quora.com/Can-YOUR-child-guess-what-a-packet-of-milk-costs-Most-children-have-no-idea-what-milk-bread-or-soap-costs-That-s-nor",
+  "quora_note": "featured image uploaded via bridge (top), link verified, Not for Reproduction on",
+  "pinned_question": "posted + pinned on Short K-95-76NCuE 2026-11-28 ~20:05 IST"
+ },
+ "2299": {
+  "x": "https://x.com/moneyvielcom/status/2126681604924043639",
+  "linkedin": "skipped (kids post)",
+  "quora": "skipped (kids post)",
+  "date": "2026-11-28"
+ },
+ "2310": {
+  "x": "https://x.com/moneyvielcom/status/2126681924920021255",
+  "linkedin": "skipped (kids post)",
+  "quora": "skipped (kids post)",
+  "date": "2026-11-28"
  }
 }
